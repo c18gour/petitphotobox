@@ -1,8 +1,9 @@
 <?php
-namespace petitphotobox\core\auth;
+namespace petitphotobox\auth;
 use \Exception;
 use soloproyectos\db\DbConnector;
 use soloproyectos\http\data\HttpSession;
+use petitphotobox\exceptions\AuthException;
 
 class User
 {
@@ -45,12 +46,12 @@ class User
     where username = ?";
     $row = $db->query($sql, $username);
     if (count($row) == 0) {
-      throw new Exception("User not found");
+        throw new AuthException("User not found");
     }
 
     // verifies the password
     if (!password_verify($password, $row["password"])) {
-      throw new Exception("Invalid password");
+      throw new AuthException("Invalid password");
     }
 
     // TODO: improve the security system (tokens)

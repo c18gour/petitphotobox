@@ -1,7 +1,9 @@
 <?php
-namespace petitphotobox;
-use petitphotobox\core\auth\User;
-use petitphotobox\core\http\controller\BaseController;
+namespace petitphotobox\controllers;
+use \Exception;
+use petitphotobox\auth\User;
+use petitphotobox\controller\BaseController;
+use petitphotobox\exceptions\AuthException;
 
 class LoginController extends BaseController
 {
@@ -11,6 +13,7 @@ class LoginController extends BaseController
    */
   public function __construct()
   {
+    parent::__construct();
     $this->on("POST", [$this, "onPost"]);
     $this->apply();
   }
@@ -25,16 +28,10 @@ class LoginController extends BaseController
     $username = $this->getParam("username");
     $password = $this->getParam("password");
 
-    User::login($username, $password);
-  }
-
-  /**
-   * {@inheritDoc}
-   *
-   * @return array Associative array
-   */
-  public function getResponse()
-  {
-    return ["status" => null];
+    try {
+      User::login($username, $password);
+    } catch (AuthException $e) {
+      return $this->setStatusException($e);
+    }
   }
 }
