@@ -19,6 +19,9 @@ class LoginController extends BaseController {
     User::login($username, $password);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public function getResponse()
   {
     return ["status" => null];
