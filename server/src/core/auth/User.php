@@ -4,7 +4,12 @@ use \Exception;
 use soloproyectos\db\DbConnector;
 use soloproyectos\http\data\HttpSession;
 
-class User {
+/**
+ * Registered user.
+ */
+class User
+{
+
   /**
    * User's ID.
    *
@@ -15,9 +20,9 @@ class User {
   /**
    * Creates a user.
    *
-   * @param  string $id User's ID
+   * @param string $id User's ID
    */
-  private function __constructor($id)
+  private function __construct($id)
   {
     $this->_id = $id;
   }
@@ -25,8 +30,8 @@ class User {
   /**
    * Logs into the system.
    *
-   * @param  string $username Username
-   * @param  string $password Password
+   * @param string $username Username
+   * @param string $password Password
    *
    * @return User
    */

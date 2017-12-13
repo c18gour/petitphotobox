@@ -2,7 +2,8 @@
 namespace petitphotobox\core\http\controller;
 use soloproyectos\http\controller\HttpController;
 
-class BaseController extends HttpController {
+class BaseController extends HttpController
+{
 
   /**
    * Gets the HTTP response.

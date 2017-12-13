@@ -3,14 +3,23 @@ namespace petitphotobox;
 use petitphotobox\core\auth\User;
 use petitphotobox\core\http\controller\BaseController;
 
-class LoginController extends BaseController {
+class LoginController extends BaseController
+{
 
+  /**
+   * Creates a new instance.
+   */
   public function __construct()
   {
     $this->on("POST", [$this, "onPost"]);
     $this->apply();
   }
 
+  /**
+   * Processes POST requests.
+   *
+   * @return void
+   */
   public function onPost()
   {
     $username = $this->getParam("username");
@@ -21,6 +30,8 @@ class LoginController extends BaseController {
 
   /**
    * {@inheritDoc}
+   *
+   * @return array Associative array
    */
   public function getResponse()
   {
