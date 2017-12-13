@@ -1,14 +1,9 @@
 <?xml version="1.0"?>
 <ruleset>
   <rule ref="PEAR">
-    <exclude name="PEAR.Commenting.ClassComment"/>
-    <exclude name="PEAR.Commenting.FileComment"/>
-  </rule>
-
-  <rule ref="PEAR.WhiteSpace.ScopeIndent">
-    <properties>
-      <property name="indent" value="2"/>
-      <property name="exact" value="true" />
-    </properties>
+    <exclude name="PEAR.Commenting.ClassComment" />
+    <exclude name="PEAR.Commenting.FileComment" />
+    <exclude name="PEAR.WhiteSpace.ScopeIndent" />
+    <exclude name="PEAR.Functions.FunctionCallSignature" />
   </rule>
 </ruleset>
