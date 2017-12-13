@@ -1,5 +1,6 @@
 <?php
 namespace petitphotobox;
+use petitphotobox\core\auth\User;
 use petitphotobox\core\http\controller\BaseController;
 
 class LoginController extends BaseController {
@@ -14,10 +15,12 @@ class LoginController extends BaseController {
   {
     $username = $this->getParam("username");
     $password = $this->getParam("password");
+
+    User::login($username, $password);
   }
 
   public function getResponse()
   {
-    return [1, 2, 3];
+    return ["status" => null];
   }
 }
