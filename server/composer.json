@@ -1,4 +1,7 @@
 {
+    "config": {
+      "vendor-dir": "app/src/vendor"
+    },
     "require": {
         "soloproyectos-php/http-controller": "^1.2",
         "soloproyectos-php/db": "^1.2",
@@ -7,7 +10,7 @@
     },
     "autoload": {
         "psr-4": {
-            "petitphotobox\\": "src/"
+            "petitphotobox\\": "app/src"
         }
     }
 }
