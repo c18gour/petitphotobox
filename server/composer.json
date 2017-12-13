@@ -1,6 +1,8 @@
 {
     "require": {
-        "soloproyectos-php/http-controller": "^1.2"
+        "soloproyectos-php/http-controller": "^1.2",
+        "soloproyectos-php/db": "^1.2",
+        "soloproyectos-php/db-record": "^4.4"
     },
     "autoload": {
         "psr-4": {

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e6f367c04104309579c31d631f7c0983",
-    "content-hash": "7b7a941faff99dc7f4214d48c08f8bae",
+    "hash": "e2aafb06a871402c3abe8b1e9f73f180",
+    "content-hash": "a2f9b53fc06fff3d48a95c6caa79c236",
     "packages": [
         {
             "name": "soloproyectos-php/array",
@@ -42,6 +42,83 @@
             ],
             "description": "A library for managing arrays. This library is part of the SoloProyectos PHP API.",
             "time": "2015-10-09 18:55:52"
+        },
+        {
+            "name": "soloproyectos-php/db",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/soloproyectos-php/db.git",
+                "reference": "8451a04a97d5dce1ab0a68d7b6b31d8a85e9abff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/soloproyectos-php/db/zipball/8451a04a97d5dce1ab0a68d7b6b31d8a85e9abff",
+                "reference": "8451a04a97d5dce1ab0a68d7b6b31d8a85e9abff",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0",
+                "soloproyectos-php/event": "~1.0",
+                "soloproyectos-php/text": "~1.0"
+            },
+            "type": "php-library",
+            "autoload": {
+                "psr-4": {
+                    "soloproyectos\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "The MIT License (MIT)"
+            ],
+            "authors": [
+                {
+                    "name": "Gonzalo Chumillas",
+                    "email": "gchumillas@email.com"
+                }
+            ],
+            "description": "Database library. This library is part of the SoloProyectos PHP API.",
+            "time": "2016-04-01 18:07:21"
+        },
+        {
+            "name": "soloproyectos-php/db-record",
+            "version": "4.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/soloproyectos-php/db-record.git",
+                "reference": "ac44c2ad6930f7b89e3596f648199a3b342420ca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/soloproyectos-php/db-record/zipball/ac44c2ad6930f7b89e3596f648199a3b342420ca",
+                "reference": "ac44c2ad6930f7b89e3596f648199a3b342420ca",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0",
+                "soloproyectos-php/array": "~1.0",
+                "soloproyectos-php/db": "~1.1",
+                "soloproyectos-php/text": "~1.0"
+            },
+            "type": "php-library",
+            "autoload": {
+                "psr-4": {
+                    "soloproyectos\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "The MIT License (MIT)"
+            ],
+            "authors": [
+                {
+                    "name": "Gonzalo Chumillas",
+                    "email": "gchumillas@email.com"
+                }
+            ],
+            "description": "Manage database records. This library is part of the SoloProyectos PHP API.",
+            "time": "2016-09-07 15:58:49"
         },
         {
             "name": "soloproyectos-php/event",
