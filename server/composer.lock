@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e2aafb06a871402c3abe8b1e9f73f180",
-    "content-hash": "a2f9b53fc06fff3d48a95c6caa79c236",
+    "hash": "cb3623fb552498adf174975e217e20a1",
+    "content-hash": "0842c5b6221ed5e4e91fa553801dff35",
     "packages": [
         {
             "name": "soloproyectos-php/array",
