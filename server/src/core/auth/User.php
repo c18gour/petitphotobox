@@ -4,9 +4,6 @@ use \Exception;
 use soloproyectos\db\DbConnector;
 use soloproyectos\http\data\HttpSession;
 
-/**
- * Registered user.
- */
 class User
 {
 
