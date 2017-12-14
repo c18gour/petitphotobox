@@ -2,7 +2,10 @@
 namespace petitphotobox\auth;
 use \Exception;
 use petitphotobox\exceptions\AuthException;
+use petitphotobox\exceptions\DbError;
+use petitphotobox\exceptions\SessionError;
 use soloproyectos\db\DbConnector;
+use soloproyectos\db\exception\DbException;
 use soloproyectos\http\data\HttpSession;
 
 class User
@@ -34,8 +37,11 @@ class User
   {
     $ret = null;
 
-    // TODO: what happens if DbConnector fails?
-    $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
+    try {
+      $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
+    } catch (DbException $e) {
+      throw new DbError($e->getMessage(), $e->getCode(), $e);
+    }
 
     $userId = HttpSession::get("user_id");
     $sql = "
@@ -45,7 +51,7 @@ class User
     where id = ?";
     $row = $db->query($sql, $userId);
     if (count($row) < 1) {
-      throw new AuthException("Your session has expired");
+      throw new SessionError("Your session has expired");
     }
 
     return new User($userId);
@@ -61,8 +67,11 @@ class User
    */
   public static function login($username, $password)
   {
-    // TODO: what happens if DbConnector fails?
-    $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
+    try {
+      $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
+    } catch (DbException $e) {
+      throw new DbError($e->getMessage(), $e->getCode(), $e);
+    }
 
     // searches a user by name
     $sql = "

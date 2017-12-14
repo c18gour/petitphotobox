@@ -2,7 +2,7 @@
 namespace petitphotobox\controller;
 use petitphotobox\auth\User;
 use petitphotobox\controller\BaseController;
-use petitphotobox\exceptions\AuthException;
+use petitphotobox\exception\AppError;
 
 class AuthController extends BaseController
 {
@@ -16,7 +16,7 @@ class AuthController extends BaseController
     $this->on("OPEN", function () {
       try {
         $this->user = User::getInstance();
-      } catch (AuthException $e) {
+      } catch (AppError $e) {
         $this->finalizeProgramExecution($e);
       }
     });
