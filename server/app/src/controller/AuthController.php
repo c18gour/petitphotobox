@@ -2,7 +2,7 @@
 namespace petitphotobox\controller;
 use petitphotobox\auth\User;
 use petitphotobox\controller\BaseController;
-use petitphotobox\exception\AppError;
+use petitphotobox\exceptions\SessionError;
 
 class AuthController extends BaseController
 {
@@ -17,10 +17,10 @@ class AuthController extends BaseController
 
     // processes the initial request
     $this->on("OPEN", function () {
-      try {
-        $this->user = User::getInstance();
-      } catch (AppError $e) {
-        $this->appError($e);
+      $this->user = User::getInstance();
+
+      if ($this->user === null) {
+        $this->appError(new SessionError("Your session has expired"));
       }
     });
   }

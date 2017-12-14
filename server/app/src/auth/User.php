@@ -81,10 +81,9 @@ class User
    *
    * @return User
    */
-  // TODO: no debería arrojar una excepción
-  // TODO: cambiar por `getInstance`
   public static function getInstance()
   {
+    $ret = null;
     $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
 
     $userId = HttpSession::get("user_id");
@@ -94,11 +93,11 @@ class User
     from `user`
     where id = ?";
     $row = $db->query($sql, $userId);
-    if (count($row) < 1) {
-      throw new SessionError("Your session has expired");
+    if (count($row) > 0) {
+      $ret = new User($userId);
     }
 
-    return new User($userId);
+    return $ret;
   }
 
   /**
