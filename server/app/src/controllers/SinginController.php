@@ -25,7 +25,6 @@ class SinginController extends BaseController
    */
   public function onPost()
   {
-    // TODO: veirficar que el usuario no existe (duplicado)
     // TODO: deberíamos eliminar los espacios? Text::trim($str)
     $username = $this->getParam("username");
     $password = $this->getParam("password");

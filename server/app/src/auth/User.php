@@ -40,7 +40,6 @@ class User
   {
     $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
 
-    // TODO: puede arrojar una excepción
     $r = new DbRecordTable($db, "user");
     $userId = $r->save(
       [
@@ -84,7 +83,7 @@ class User
    */
   // TODO: no debería arrojar una excepción
   // TODO: cambiar por `getInstance`
-  public static function retrieveInstance()
+  public static function getInstance()
   {
     $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
 
@@ -154,6 +153,6 @@ class User
    */
   public function isLogged()
   {
-    return User::retrieveInstance() !== null;
+    return User::getInstance() !== null;
   }
 }
