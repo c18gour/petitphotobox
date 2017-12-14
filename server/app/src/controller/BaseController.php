@@ -50,7 +50,7 @@ class BaseController extends HttpController
   /**
    * Finalizes the program execution and prints and exception.
    *
-   * @param AppException $e Application exception.
+   * @param AppError $e Application exception.
    *
    * @return void
    */
