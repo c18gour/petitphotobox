@@ -26,6 +26,7 @@ class SinginController extends BaseController
   public function onPost()
   {
     // TODO: veirficar que el usuario no existe (duplicado)
+    // TODO: deberíamos eliminar los espacios? Text::trim($str)
     $username = $this->getParam("username");
     $password = $this->getParam("password");
     $rePassword = $this->getParam("re_password");
@@ -36,6 +37,11 @@ class SinginController extends BaseController
       return $this->clientException(
         "The following fields are required: username, password, re_password"
       );
+    }
+
+    $user = User::searchByName($username);
+    if ($user !== null) {
+      return $this->clientException("The user already exist");
     }
 
     if (strlen($password) < MIN_PASSWORD_LENGTH) {

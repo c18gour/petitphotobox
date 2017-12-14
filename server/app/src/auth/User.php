@@ -53,10 +53,37 @@ class User
   }
 
   /**
+   * Searches an user by name.
+   *
+   * @param string $username Username
+   *
+   * @return User
+   */
+  public static function searchByName($username)
+  {
+    $ret = null;
+    $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
+
+    $sql = "
+    select
+      id
+    from `user`
+    where username = ?";
+    $row = $db->query($sql, $username);
+    if (count($row) > 0) {
+      $ret = new User($row["id"]);
+    }
+
+    return $ret;
+  }
+
+  /**
    * Gets the current user instance.
    *
    * @return User
    */
+  // TODO: no debería arrojar una excepción
+  // TODO: cambiar por `getInstance`
   public static function retrieveInstance()
   {
     $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
