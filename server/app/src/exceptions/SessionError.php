@@ -1,7 +1,7 @@
 <?php
 namespace petitphotobox\exceptions;
-
 use petitphotobox\exception\AppError;
+use petitphotobox\exceptions\Codes;
 
 class SessionError extends AppError
 {
@@ -13,6 +13,6 @@ class SessionError extends AppError
    */
   public function __construct($message, $previous = null)
   {
-      parent::__construct($message, 502, $previous);
+      parent::__construct($message, Codes::SESSION_ERROR, $previous);
   }
 }

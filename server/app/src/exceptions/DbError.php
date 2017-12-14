@@ -1,7 +1,7 @@
 <?php
 namespace petitphotobox\exceptions;
-
 use petitphotobox\exception\AppError;
+use petitphotobox\exceptions\Codes;
 
 class DbError extends AppError
 {
@@ -13,6 +13,6 @@ class DbError extends AppError
    */
   public function __construct($message, $previous = null)
   {
-      parent::__construct($message, 501, $previous);
+      parent::__construct($message, Codes::DB_ERROR, $previous);
   }
 }
