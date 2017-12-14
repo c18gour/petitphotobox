@@ -19,8 +19,8 @@ class ClientException extends Exception
    * @param string $message  Message
    * @param int    $code     Exception code
    */
-  public function __construct($message = "", $code = 400)
+  public function __construct($message = "", $code = CLIENT_EXCEPTION_CODE)
   {
-      parent::__construct($message, 400);
+    parent::__construct($message, $code);
   }
 }
