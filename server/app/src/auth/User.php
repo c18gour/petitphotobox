@@ -6,6 +6,7 @@ use petitphotobox\exceptions\DbError;
 use petitphotobox\exceptions\SessionError;
 use soloproyectos\db\DbConnector;
 use soloproyectos\db\exception\DbException;
+use soloproyectos\db\record\DbRecordTable;
 use soloproyectos\http\data\HttpSession;
 
 class User
@@ -29,6 +30,40 @@ class User
   }
 
   /**
+   * Creates a user.
+   *
+   * @param string $username [description]
+   * @param string $password [description]
+   *
+   * @return User
+   */
+  public static function create($username, $password)
+  {
+    try {
+      $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
+    } catch (DbException $e) {
+      throw new DbError($e->getMessage());
+    }
+
+    // TODO: puede arrojar una excepción
+    $r = new DbRecordTable($db, "user");
+
+    $userId = null;
+    try {
+      $userId = $r->save(
+        [
+          "username" => $username,
+          "password" => password_hash($password, PASSWORD_BCRYPT)
+        ]
+      );
+    } catch (DbException $e) {
+      throw new DbError($e->getMessage());
+    }
+
+    return new User($userId);
+  }
+
+  /**
    * Gets the current user instance.
    *
    * @return User
@@ -40,7 +75,7 @@ class User
     try {
       $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
     } catch (DbException $e) {
-      throw new DbError($e->getMessage(), $e);
+      throw new DbError($e->getMessage());
     }
 
     $userId = HttpSession::get("user_id");
@@ -70,7 +105,7 @@ class User
     try {
       $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
     } catch (DbException $e) {
-      throw new DbError($e->getMessage(), $e);
+      throw new DbError($e->getMessage());
     }
 
     // searches a user by name

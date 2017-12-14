@@ -1,4 +1,5 @@
 <?php
+// TODO: eliminar este archivo
 namespace petitphotobox\exceptions;
 
 /**

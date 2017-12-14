@@ -9,10 +9,9 @@ class SessionError extends AppError
    * Constructor.
    *
    * @param string    $message  Message
-   * @param Exception $previous Previous exception
    */
-  public function __construct($message, $previous = null)
+  public function __construct($message)
   {
-      parent::__construct($message, Codes::SESSION_ERROR, $previous);
+      parent::__construct($message, Codes::SESSION_ERROR);
   }
 }

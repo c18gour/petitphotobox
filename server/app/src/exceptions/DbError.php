@@ -9,10 +9,9 @@ class DbError extends AppError
    * Constructor.
    *
    * @param string    $message  Message
-   * @param Exception $previous Previous exception
    */
-  public function __construct($message, $previous = null)
+  public function __construct($message)
   {
-      parent::__construct($message, Codes::DB_ERROR, $previous);
+      parent::__construct($message, Codes::DB_ERROR);
   }
 }

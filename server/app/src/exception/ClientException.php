@@ -13,5 +13,14 @@ use \Exception;
  */
 class ClientException extends Exception
 {
-
+  /**
+   * Constructor.
+   *
+   * @param string $message  Message
+   * @param int    $code     Exception code
+   */
+  public function __construct($message = "", $code = 400)
+  {
+      parent::__construct($message, 400);
+  }
 }

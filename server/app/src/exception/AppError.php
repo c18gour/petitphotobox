@@ -10,5 +10,14 @@ use \Exception;
  */
 class AppError extends Exception
 {
-
+  /**
+   * Constructor.
+   *
+   * @param string $message  Message
+   * @param int    $code     Exception code
+   */
+  public function __construct($message = "", $code = 500)
+  {
+      parent::__construct($message, $code);
+  }
 }
