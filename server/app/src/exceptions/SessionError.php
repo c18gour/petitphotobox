@@ -7,7 +7,7 @@ class SessionError extends AppError
   /**
    * Constructor.
    *
-   * @param string    $message  Message
+   * @param string $message Message
    */
   public function __construct($message)
   {

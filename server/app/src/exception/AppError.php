@@ -13,8 +13,8 @@ class AppError extends Exception
   /**
    * Constructor.
    *
-   * @param string $message  Message
-   * @param int    $code     Exception code
+   * @param string $message Message
+   * @param int    $code    Exception code
    */
   public function __construct($message = "", $code = APP_EXCEPTION_CODE)
   {

@@ -23,7 +23,7 @@ class BaseController extends HttpController
   /**
    * Sets a status response based on an exception.
    *
-   * @param string|ClientException $e Client exception
+   * @param ClientException|string $exception Client exception
    *
    * @return void
    */
@@ -40,7 +40,7 @@ class BaseController extends HttpController
   /**
    * Stops the program execution and sends back an application error.
    *
-   * @param string|AppException $exception Application exception
+   * @param AppException|string $exception Application exception
    *
    * @return void
    */

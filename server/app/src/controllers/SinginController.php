@@ -29,9 +29,10 @@ class SinginController extends BaseController
     $password = trim($this->getParam("password"));
     $rePassword = trim($this->getParam("re_password"));
 
-    if (Text::isEmpty($username) ||
-        Text::isEmpty($password) ||
-        Text::isEmpty($rePassword)) {
+    if (   Text::isEmpty($username)
+        || Text::isEmpty($password)
+        || Text::isEmpty($rePassword)
+    ) {
       return $this->clientException(
         "The following fields are required: username, password, re_password"
       );
