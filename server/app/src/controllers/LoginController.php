@@ -32,9 +32,9 @@ class LoginController extends BaseController
     try {
       User::login($username, $password);
     } catch (AuthException $e) {
-      return $this->setStatusException($e);
+      return $this->clientException($e);
     } catch (DbError $e) {
-      $this->finalizeProgramExecution($e);
+      $this->appError($e);
     }
   }
 }

@@ -20,7 +20,7 @@ class AuthController extends BaseController
       try {
         $this->user = User::retrieveInstance();
       } catch (AppError $e) {
-        $this->finalizeProgramExecution($e);
+        $this->appError($e);
       }
     });
   }

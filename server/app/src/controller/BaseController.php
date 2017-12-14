@@ -1,6 +1,8 @@
 <?php
 namespace petitphotobox\controller;
 use soloproyectos\http\controller\HttpController;
+use petitphotobox\exception\AppError;
+use petitphotobox\exception\ClientException;
 
 class BaseController extends HttpController
 {
@@ -19,16 +21,41 @@ class BaseController extends HttpController
   }
 
   /**
-   * Sets an status code and message based on an exception.
+   * Sets a status response based on an exception.
    *
-   * @param Exception $e Exception
+   * @param string|ClientException $e Client exception
    *
    * @return void
    */
-  public function setStatusException($e)
+  public function clientException($exception)
   {
+    $e = is_string($exception)
+      ? new ClientException($exception)
+      : $exception;
+
     $this->response->setStatusCode($e->getCode());
     $this->response->setStatusMessage($e->getMessage());
+  }
+
+  /**
+   * Stops the program execution and sends back an application error.
+   *
+   * @param string|AppException $exception Application exception
+   *
+   * @return void
+   */
+  public function appError($exception)
+  {
+    $e = is_string($exception)
+      ? new AppError($exception)
+      : $exception;
+
+    $this->response->setStatusCode($e->getCode());
+    $this->response->setStatusMessage($e->getMessage());
+
+    header("HTTP/1.0 500 Application Error");
+    echo $this->response;
+    die();
   }
 
   /**
@@ -45,21 +72,6 @@ class BaseController extends HttpController
     }
 
     echo $this->response;
-  }
-
-  /**
-   * Finalizes the program execution and prints and exception.
-   *
-   * @param AppError $e Application exception.
-   *
-   * @return void
-   */
-  public function finalizeProgramExecution($e)
-  {
-    header("HTTP/1.0 500 Application Error");
-    $this->setStatusException($e);
-    echo $this->response;
-    die();
   }
 }
 

@@ -29,6 +29,7 @@ class SinginController extends BaseController
    */
   public function onPost()
   {
+    // TODO: veirficar que el usuario no existe (duplicado)
     $username = $this->getParam("username");
     $password = $this->getParam("password");
     $rePassword = $this->getParam("re_password");
@@ -36,39 +37,33 @@ class SinginController extends BaseController
     if (Text::isEmpty($username) ||
         Text::isEmpty($password) ||
         Text::isEmpty($rePassword)) {
-      return $this->setStatusException(
-        new ClientException(
-          "The following fields are required: username, password, re_password"
-        )
+      return $this->clientException(
+        "The following fields are required: username, password, re_password"
       );
     }
 
     if (strlen($password) < $this->_minPasswordLength) {
-      return $this->setStatusException(
-        new ClientException(
-          "Password must have at least {$this->_minPasswordLength} characters"
-        )
+      return $this->clientException(
+        "Password must have at least {$this->_minPasswordLength} characters"
       );
     }
 
     if ($password !== $rePassword) {
-      return $this->setStatusException(
-        new ClientException("Passwords do not match")
-      );
+      return $this->clientException("Passwords do not match");
     }
 
     try {
       $user = User::create($username, $password);
     } catch (DbError $e) {
-      $this->finalizeProgramExecution($e);
+      $this->appError($e);
     }
 
     try {
       User::login($username, $password);
     } catch (AuthException $e) {
-      return $this->setStatusException($e);
+      return $this->clientException($e);
     } catch (DbError $e) {
-      $this->finalizeProgramExecution($e);
+      $this->appError($e);
     }
   }
 }
