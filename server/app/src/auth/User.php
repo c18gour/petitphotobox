@@ -3,6 +3,7 @@ namespace petitphotobox\auth;
 use \Exception;
 use soloproyectos\db\DbConnector;
 use soloproyectos\http\data\HttpSession;
+use soloproyectos\text\Text;
 use petitphotobox\exceptions\AuthException;
 
 class User
@@ -26,6 +27,32 @@ class User
   }
 
   /**
+   * Gets the current user instance.
+   *
+   * @return User
+   */
+  public static function getInstance()
+  {
+    $ret = null;
+
+    // TODO: what happens if DbConnector fails?
+    $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
+
+    $userId = HttpSession::get("user_id");
+    $sql = "
+    select
+      id
+    from `user`
+    where id = ?";
+    $row = $db->query($sql, $userId);
+    if (count($row) < 1) {
+      throw new AuthException("Your session has expired");
+    }
+
+    return new User($userId);
+  }
+
+  /**
    * Logs into the system.
    *
    * @param string $username Username
@@ -35,6 +62,7 @@ class User
    */
   public static function login($username, $password)
   {
+    // TODO: what happens if DbConnector fails?
     $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
 
     // searches a user by name
@@ -54,9 +82,8 @@ class User
       throw new AuthException("Invalid password");
     }
 
-    // TODO: improve the security system (tokens)
     // registers the user in the system
-    HttpSession::set("logged", true);
+    HttpSession::set("user_id", $row["id"]);
 
     return new User($row["id"]);
   }
@@ -68,7 +95,7 @@ class User
    */
   public function logout()
   {
-    HttpSession::delete("logged");
+    HttpSession::delete("user_id");
   }
 
   /**
@@ -78,6 +105,6 @@ class User
    */
   public function isLogged()
   {
-    return HttpSession::exist("logged");
+    return User::getInstance() !== null;
   }
 }
