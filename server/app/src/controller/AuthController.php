@@ -8,6 +8,9 @@ class AuthController extends BaseController
 {
   public $user;
 
+  /**
+   * Constructor.
+   */
   public function __construct()
   {
     parent::__construct();
