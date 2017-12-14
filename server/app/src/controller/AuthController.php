@@ -15,7 +15,7 @@ class AuthController extends BaseController
     // processes the initial request
     $this->on("OPEN", function () {
       try {
-        $this->user = User::getInstance();
+        $this->user = User::retrieveInstance();
       } catch (AppError $e) {
         $this->finalizeProgramExecution($e);
       }

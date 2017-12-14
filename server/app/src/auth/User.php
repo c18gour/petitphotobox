@@ -33,7 +33,7 @@ class User
    *
    * @return User
    */
-  public static function getInstance()
+  public static function retrieveInstance()
   {
     $ret = null;
 
@@ -113,6 +113,6 @@ class User
    */
   public function isLogged()
   {
-    return User::getInstance() !== null;
+    return User::retrieveInstance() !== null;
   }
 }
