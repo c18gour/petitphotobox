@@ -38,7 +38,7 @@ class SinginController extends BaseController
       );
     }
 
-    if (strlen($password) < $this->_minPasswordLength) {
+    if (strlen($password) < MIN_PASSWORD_LENGTH) {
       return $this->clientException(
         "Password must have at least " . MIN_PASSWORD_LENGTH . " characters"
       );
