@@ -40,7 +40,7 @@ class User
     try {
       $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
     } catch (DbException $e) {
-      throw new DbError($e->getMessage(), $e->getCode(), $e);
+      throw new DbError($e->getMessage(), $e);
     }
 
     $userId = HttpSession::get("user_id");
@@ -70,7 +70,7 @@ class User
     try {
       $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
     } catch (DbException $e) {
-      throw new DbError($e->getMessage(), $e->getCode(), $e);
+      throw new DbError($e->getMessage(), $e);
     }
 
     // searches a user by name
