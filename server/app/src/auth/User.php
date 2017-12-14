@@ -2,7 +2,6 @@
 namespace petitphotobox\auth;
 use \Exception;
 use petitphotobox\exceptions\AuthException;
-use petitphotobox\exceptions\DbError;
 use petitphotobox\exceptions\SessionError;
 use soloproyectos\db\DbConnector;
 use soloproyectos\db\exception\DbException;
@@ -39,26 +38,16 @@ class User
    */
   public static function create($username, $password)
   {
-    try {
-      $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
-    } catch (DbException $e) {
-      throw new DbError($e->getMessage());
-    }
+    $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
 
     // TODO: puede arrojar una excepción
     $r = new DbRecordTable($db, "user");
-
-    $userId = null;
-    try {
-      $userId = $r->save(
-        [
-          "username" => $username,
-          "password" => password_hash($password, PASSWORD_BCRYPT)
-        ]
-      );
-    } catch (DbException $e) {
-      throw new DbError($e->getMessage());
-    }
+    $userId = $r->save(
+      [
+        "username" => $username,
+        "password" => password_hash($password, PASSWORD_BCRYPT)
+      ]
+    );
 
     return new User($userId);
   }
@@ -70,13 +59,7 @@ class User
    */
   public static function retrieveInstance()
   {
-    $ret = null;
-
-    try {
-      $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
-    } catch (DbException $e) {
-      throw new DbError($e->getMessage());
-    }
+    $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
 
     $userId = HttpSession::get("user_id");
     $sql = "
@@ -102,11 +85,7 @@ class User
    */
   public static function login($username, $password)
   {
-    try {
-      $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
-    } catch (DbException $e) {
-      throw new DbError($e->getMessage());
-    }
+    $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
 
     // searches a user by name
     $sql = "

@@ -7,8 +7,8 @@ namespace petitphotobox\exceptions;
  *
  * An `exception` is caused by the client whereas an `error` is caused by
  * the application. For example, if the user enters invalid credentials it
- * throws an `AuthException`. A database connection issue would
- * throw a `DbError`.
+ * throws an `AuthException`. If the session has expired it throws
+ * a `SessionError`.
  */
 class Codes
 {

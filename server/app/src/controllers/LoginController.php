@@ -4,7 +4,6 @@ use \Exception;
 use petitphotobox\auth\User;
 use petitphotobox\controller\BaseController;
 use petitphotobox\exceptions\AuthException;
-use petitphotobox\exceptions\DbError;
 
 class LoginController extends BaseController
 {
@@ -33,8 +32,6 @@ class LoginController extends BaseController
       User::login($username, $password);
     } catch (AuthException $e) {
       return $this->clientException($e);
-    } catch (DbError $e) {
-      $this->appError($e);
     }
   }
 }

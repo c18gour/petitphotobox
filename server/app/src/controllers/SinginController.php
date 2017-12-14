@@ -4,7 +4,6 @@ use petitphotobox\auth\User;
 use petitphotobox\controller\BaseController;
 use petitphotobox\exception\ClientException;
 use petitphotobox\exceptions\AuthException;
-use petitphotobox\exceptions\DbError;
 use soloproyectos\text\Text;
 
 class SinginController extends BaseController
@@ -52,18 +51,7 @@ class SinginController extends BaseController
       return $this->clientException("Passwords do not match");
     }
 
-    try {
-      $user = User::create($username, $password);
-    } catch (DbError $e) {
-      $this->appError($e);
-    }
-
-    try {
-      User::login($username, $password);
-    } catch (AuthException $e) {
-      return $this->clientException($e);
-    } catch (DbError $e) {
-      $this->appError($e);
-    }
+    $user = User::create($username, $password);
+    User::login($username, $password);
   }
 }
