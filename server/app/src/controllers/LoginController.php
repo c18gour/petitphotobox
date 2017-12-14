@@ -25,8 +25,8 @@ class LoginController extends BaseController
    */
   public function onPost()
   {
-    $username = $this->getParam("username");
-    $password = $this->getParam("password");
+    $username = trim($this->getParam("username"));
+    $password = trim($this->getParam("password"));
 
     try {
       User::login($username, $password);
