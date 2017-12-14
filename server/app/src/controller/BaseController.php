@@ -1,6 +1,5 @@
 <?php
 namespace petitphotobox\controller;
-use petitphotobox\exception\ClientException;
 use soloproyectos\http\controller\HttpController;
 
 class BaseController extends HttpController

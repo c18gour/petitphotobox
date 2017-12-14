@@ -4,7 +4,6 @@ use \Exception;
 use petitphotobox\exceptions\AuthException;
 use soloproyectos\db\DbConnector;
 use soloproyectos\http\data\HttpSession;
-use soloproyectos\text\Text;
 
 class User
 {
