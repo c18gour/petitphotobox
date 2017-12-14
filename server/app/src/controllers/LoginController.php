@@ -1,5 +1,6 @@
 <?php
 namespace petitphotobox\controllers;
+// TODO: check imported libraries
 use \Exception;
 use petitphotobox\auth\User;
 use petitphotobox\controller\BaseController;
