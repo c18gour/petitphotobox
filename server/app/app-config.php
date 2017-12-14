@@ -6,6 +6,11 @@
  * the application. Do not touch it unless you know what are you doing.   *
  **************************************************************************/
 
+/**
+ * General constants.
+ */
+define("MIN_PASSWORD_LENGTH", 6);
+
 
 /**
  * List of exception codes.

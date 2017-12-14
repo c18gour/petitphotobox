@@ -8,9 +8,6 @@ use soloproyectos\text\Text;
 
 class SinginController extends BaseController
 {
-  // TODO: shouldn't be this in a config file?
-  private $_minPasswordLength = 6;
-
   /**
    * Creates a new instance.
    */
@@ -43,7 +40,7 @@ class SinginController extends BaseController
 
     if (strlen($password) < $this->_minPasswordLength) {
       return $this->clientException(
-        "Password must have at least {$this->_minPasswordLength} characters"
+        "Password must have at least " . MIN_PASSWORD_LENGTH . " characters"
       );
     }
 
