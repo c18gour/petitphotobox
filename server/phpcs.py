@@ -1,6 +1,13 @@
 #!/usr/bin/env python
 
-""" A script to verify coding standards. """
+"""
+A script to verify coding standards.
+
+Open the terminal and execute the following command:
+
+   ./phpcs.py
+
+"""
 
 import subprocess
 
