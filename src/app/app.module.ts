@@ -5,8 +5,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { SingupComponent } from './singup/singup.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { SinginComponent } from './singin/singin.component';
 
 
 @NgModule({
@@ -14,7 +14,7 @@ import { AppRoutingModule } from './/app-routing.module';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    SingupComponent
+    SinginComponent
   ],
   imports: [
     BrowserModule,
