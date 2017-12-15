@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { SinginComponent } from './singin/singin.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SinginComponent } from './singin/singin.component';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    SinginComponent
+    SinginComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
