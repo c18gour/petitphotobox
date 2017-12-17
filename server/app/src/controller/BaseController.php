@@ -36,16 +36,14 @@ class BaseController extends HttpController
     } catch (AppError $e) {
       header("HTTP/1.0 500 Application Error");
       $this->_setStatus($e->getCode(), $e->getMessage());
-      echo $this->response;
       throw $e;
     } catch (Exception $e) {
       header("HTTP/1.0 500 Internal Server Error");
       $this->_setStatus(500, $e->getMessage());
-      echo $this->response;
       throw $e;
+    } finally {
+      $this->printDocument();
     }
-
-    $this->printDocument();
   }
 
   /**
