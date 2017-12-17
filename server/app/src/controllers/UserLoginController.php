@@ -5,7 +5,7 @@ use petitphotobox\auth\User;
 use petitphotobox\controller\BaseController;
 use petitphotobox\exceptions\AuthException;
 
-class LoginController extends BaseController
+class UserLoginController extends BaseController
 {
 
   /**
