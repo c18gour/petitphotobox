@@ -55,7 +55,6 @@ class BaseController extends HttpController
    *
    * @return void
    */
-  // TODO: rename by printDocument()
   public function printDocument()
   {
     echo $this->response;
