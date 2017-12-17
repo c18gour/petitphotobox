@@ -1,5 +1,6 @@
 <?php
 namespace petitphotobox\controller;
+use \Exception;
 use soloproyectos\http\controller\HttpController;
 use petitphotobox\exception\AppError;
 use petitphotobox\exception\ClientException;
@@ -21,41 +22,39 @@ class BaseController extends HttpController
   }
 
   /**
-   * Sets a status response based on an exception.
-   *
-   * @param ClientException|string $exception Client exception
+   * {@inheritdoc}
    *
    * @return void
    */
-  public function clientException($exception)
+  public function apply()
   {
-    $e = is_string($exception)
-      ? new ClientException($exception)
-      : $exception;
+    try {
+      parent::apply();
+    } catch (ClientException $e) {
+      header("HTTP/1.0 400 Client Error");
 
-    $this->response->setStatusCode($e->getCode());
-    $this->response->setStatusMessage($e->getMessage());
-  }
+      // TODO: setStatus($e->getCode(), $e->getMessage());
+      $this->response->setStatusCode($e->getCode());
+      $this->response->setStatusMessage($e->getMessage());
+    } catch (AppError $e) {
+      header("HTTP/1.0 500 Application Error");
 
-  /**
-   * Stops the program execution and sends back an application error.
-   *
-   * @param AppException|string $exception Application exception
-   *
-   * @return void
-   */
-  public function appError($exception)
-  {
-    $e = is_string($exception)
-      ? new AppError($exception)
-      : $exception;
+      $this->response->setStatusCode($e->getCode());
+      $this->response->setStatusMessage($e->getMessage());
 
-    $this->response->setStatusCode($e->getCode());
-    $this->response->setStatusMessage($e->getMessage());
+      echo $this->response;
+      throw $e;
+    } catch (Exception $e) {
+      header("HTTP/1.0 500 Internal Server Error");
 
-    header("HTTP/1.0 500 Application Error");
-    echo $this->response;
-    die();
+      $this->response->setStatusCode(500);
+      $this->response->setStatusMessage($e->getMessage());
+
+      echo $this->response;
+      throw $e;
+    }
+
+    $this->printResponse();
   }
 
   /**
@@ -65,12 +64,9 @@ class BaseController extends HttpController
    *
    * @return void
    */
+  // TODO: rename by printDocument()
   public function printResponse()
   {
-    if ($this->response->getStatusCode() > 0) {
-      header("HTTP/1.0 400 Client Error");
-    }
-
     echo $this->response;
   }
 }
@@ -159,6 +155,7 @@ class ResponseEntity
    *
    * @return string
    */
+  // TODO: remove this function (is confusing)
   public function __toString()
   {
     return json_encode($this->_data);

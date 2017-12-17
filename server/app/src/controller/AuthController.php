@@ -20,7 +20,7 @@ class AuthController extends BaseController
       $this->user = User::getInstance();
 
       if ($this->user === null) {
-        $this->appError(new SessionError("Your session has expired"));
+        throw new SessionError("Your session has expired");
       }
     });
   }

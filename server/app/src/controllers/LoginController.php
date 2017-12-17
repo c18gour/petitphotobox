@@ -15,7 +15,6 @@ class LoginController extends BaseController
   {
     parent::__construct();
     $this->on("POST", [$this, "onPost"]);
-    $this->apply();
   }
 
   /**
@@ -28,10 +27,6 @@ class LoginController extends BaseController
     $username = trim($this->getParam("username"));
     $password = trim($this->getParam("password"));
 
-    try {
-      User::login($username, $password);
-    } catch (AuthException $e) {
-      return $this->clientException($e);
-    }
+    User::login($username, $password);
   }
 }

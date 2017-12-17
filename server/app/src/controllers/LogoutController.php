@@ -12,7 +12,6 @@ class LogoutController extends AuthController
   {
     parent::__construct();
     $this->on("POST", [$this, "onPost"]);
-    $this->apply();
   }
 
   /**

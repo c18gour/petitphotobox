@@ -15,7 +15,6 @@ class SinginController extends BaseController
   {
     parent::__construct();
     $this->on("POST", [$this, "onPost"]);
-    $this->apply();
   }
 
   /**
@@ -33,24 +32,24 @@ class SinginController extends BaseController
         || Text::isEmpty($password)
         || Text::isEmpty($rePassword)
     ) {
-      return $this->clientException(
+      throw new ClientException(
         "The following fields are required: username, password, re_password"
       );
     }
 
     $user = User::searchByName($username);
     if ($user !== null) {
-      return $this->clientException("The user already exist");
+      throw new ClientException("The user already exist");
     }
 
     if (strlen($password) < MIN_PASSWORD_LENGTH) {
-      return $this->clientException(
+      throw new ClientException(
         "Password must have at least " . MIN_PASSWORD_LENGTH . " characters"
       );
     }
 
     if ($password !== $rePassword) {
-      return $this->clientException("Passwords do not match");
+      throw new ClientException("Passwords do not match");
     }
 
     $user = User::create($username, $password);
