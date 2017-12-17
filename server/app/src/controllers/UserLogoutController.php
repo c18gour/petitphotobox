@@ -11,7 +11,7 @@ class UserLogoutController extends AuthController
   public function __construct()
   {
     parent::__construct();
-    $this->on("POST", [$this, "onPost"]);
+    $this->addPostRequestHandler([$this, "onPostRequest"]);
   }
 
   /**
@@ -19,7 +19,7 @@ class UserLogoutController extends AuthController
    *
    * @return void
    */
-  public function onPost()
+  public function onPostRequest()
   {
     $this->user->logout();
   }

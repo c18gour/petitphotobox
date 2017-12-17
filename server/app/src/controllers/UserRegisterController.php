@@ -13,7 +13,7 @@ class UserRegisterController extends BaseController
   public function __construct()
   {
     parent::__construct();
-    $this->on("POST", [$this, "onPost"]);
+    $this->addPostRequestHandler([$this, "onPostRequest"]);
   }
 
   /**
@@ -21,7 +21,7 @@ class UserRegisterController extends BaseController
    *
    * @return void
    */
-  public function onPost()
+  public function onPostRequest()
   {
     $username = trim($this->getParam("username"));
     $password = trim($this->getParam("password"));

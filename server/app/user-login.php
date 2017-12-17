@@ -6,4 +6,4 @@ require_once "config.php";
 use petitphotobox\controllers\UserLoginController;
 
 $c = new UserLoginController();
-$c->apply();
+$c->processRequest();

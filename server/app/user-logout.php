@@ -6,4 +6,4 @@ require_once "config.php";
 use petitphotobox\controllers\UserLogoutController;
 
 $c = new UserLogoutController();
-$c->apply();
+$c->processRequest();

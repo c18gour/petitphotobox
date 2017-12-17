@@ -16,7 +16,7 @@ class AuthController extends BaseController
     parent::__construct();
 
     // processes the initial request
-    $this->on("OPEN", function () {
+    $this->addOpenRequestHandler(function () {
       $this->user = User::getInstance();
 
       if ($this->user === null) {

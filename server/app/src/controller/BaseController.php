@@ -18,6 +18,7 @@ class BaseController extends HttpController
    */
   public function __construct()
   {
+    parent::__construct();
     $this->response = new ResponseEntity();
   }
 
@@ -26,10 +27,10 @@ class BaseController extends HttpController
    *
    * @return void
    */
-  public function apply()
+  public function processRequest()
   {
     try {
-      parent::apply();
+      parent::processRequest();
     } catch (ClientException $e) {
       header("HTTP/1.0 400 Client Error");
       $this->_setStatus($e->getCode(), $e->getMessage());
