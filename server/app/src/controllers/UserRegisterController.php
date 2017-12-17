@@ -3,7 +3,6 @@ namespace petitphotobox\controllers;
 use petitphotobox\auth\User;
 use petitphotobox\controller\BaseController;
 use petitphotobox\exception\ClientException;
-use petitphotobox\exceptions\AuthException;
 use soloproyectos\text\Text;
 
 class UserRegisterController extends BaseController

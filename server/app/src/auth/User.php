@@ -1,10 +1,7 @@
 <?php
 namespace petitphotobox\auth;
-use \Exception;
 use petitphotobox\exceptions\AuthException;
-use petitphotobox\exceptions\SessionError;
 use soloproyectos\db\DbConnector;
-use soloproyectos\db\exception\DbException;
 use soloproyectos\db\record\DbRecordTable;
 use soloproyectos\http\data\HttpSession;
 

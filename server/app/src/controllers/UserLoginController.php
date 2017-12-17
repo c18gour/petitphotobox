@@ -1,9 +1,7 @@
 <?php
 namespace petitphotobox\controllers;
-use \Exception;
 use petitphotobox\auth\User;
 use petitphotobox\controller\BaseController;
-use petitphotobox\exceptions\AuthException;
 
 class UserLoginController extends BaseController
 {
