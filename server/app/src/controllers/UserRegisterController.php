@@ -6,7 +6,7 @@ use petitphotobox\exception\ClientException;
 use petitphotobox\exceptions\AuthException;
 use soloproyectos\text\Text;
 
-class SinginController extends BaseController
+class UserRegisterController extends BaseController
 {
   /**
    * Creates a new instance.
