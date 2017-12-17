@@ -14,7 +14,7 @@
  * example, a database connection error would append an error message to the
  * response document, ruining it.
  */
-ini_set("log_errors", "Off");
+ini_set("display_errors", "Off");
 
 /**
  * General constants.
