@@ -32,20 +32,20 @@ class BaseController extends HttpController
       parent::apply();
     } catch (ClientException $e) {
       header("HTTP/1.0 400 Client Error");
-      $this->setStatus($e->getCode(), $e->getMessage());
+      $this->_setStatus($e->getCode(), $e->getMessage());
     } catch (AppError $e) {
       header("HTTP/1.0 500 Application Error");
-      $this->setStatus($e->getCode(), $e->getMessage());
+      $this->_setStatus($e->getCode(), $e->getMessage());
       echo $this->response;
       throw $e;
     } catch (Exception $e) {
       header("HTTP/1.0 500 Internal Server Error");
-      $this->setStatus(500, $e->getMessage());
+      $this->_setStatus(500, $e->getMessage());
       echo $this->response;
       throw $e;
     }
 
-    $this->printResponse();
+    $this->printDocument();
   }
 
   /**
@@ -56,7 +56,7 @@ class BaseController extends HttpController
    * @return void
    */
   // TODO: rename by printDocument()
-  public function printResponse()
+  public function printDocument()
   {
     echo $this->response;
   }
