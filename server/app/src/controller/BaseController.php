@@ -32,24 +32,15 @@ class BaseController extends HttpController
       parent::apply();
     } catch (ClientException $e) {
       header("HTTP/1.0 400 Client Error");
-
-      // TODO: setStatus($e->getCode(), $e->getMessage());
-      $this->response->setStatusCode($e->getCode());
-      $this->response->setStatusMessage($e->getMessage());
+      $this->setStatus($e->getCode(), $e->getMessage());
     } catch (AppError $e) {
       header("HTTP/1.0 500 Application Error");
-
-      $this->response->setStatusCode($e->getCode());
-      $this->response->setStatusMessage($e->getMessage());
-
+      $this->setStatus($e->getCode(), $e->getMessage());
       echo $this->response;
       throw $e;
     } catch (Exception $e) {
       header("HTTP/1.0 500 Internal Server Error");
-
-      $this->response->setStatusCode(500);
-      $this->response->setStatusMessage($e->getMessage());
-
+      $this->setStatus(500, $e->getMessage());
       echo $this->response;
       throw $e;
     }
@@ -68,6 +59,20 @@ class BaseController extends HttpController
   public function printResponse()
   {
     echo $this->response;
+  }
+
+  /**
+   * Set code and message status.
+   *
+   * @param int    $code    Status code
+   * @param string $message Status message
+   *
+   * @return void;
+   */
+  private function _setStatus($code, $message)
+  {
+    $this->response->setStatusCode($code);
+    $this->response->setStatusMessage($message);
   }
 }
 
