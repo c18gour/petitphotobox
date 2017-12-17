@@ -157,7 +157,6 @@ class ResponseEntity
    *
    * @return string
    */
-  // TODO: remove this function (is confusing)
   public function __toString()
   {
     return json_encode($this->_data);
