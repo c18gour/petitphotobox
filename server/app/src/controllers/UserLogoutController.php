@@ -2,7 +2,7 @@
 namespace petitphotobox\controllers;
 use petitphotobox\controller\AuthController;
 
-class LogoutController extends AuthController
+class UserLogoutController extends AuthController
 {
 
   /**
