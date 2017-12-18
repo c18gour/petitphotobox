@@ -1,4 +1,5 @@
 <?php
+// TODO: rename auth by model and User by UserModel
 namespace petitphotobox\auth;
 use petitphotobox\exceptions\AuthException;
 use soloproyectos\db\DbConnector;
