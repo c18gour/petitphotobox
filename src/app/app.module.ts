@@ -1,15 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
-
+import { AppRoutingModule } from './/app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { AppRoutingModule } from './/app-routing.module';
 import { SinginComponent } from './components/singin/singin.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
+import { LoginService } from './services/login.service';
 
 @NgModule({
   declarations: [
@@ -22,9 +23,12 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

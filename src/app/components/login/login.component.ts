@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LoginService } from '../../services/login.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,13 +11,14 @@ export class LoginComponent implements OnInit {
   username = '';
   password = '';
 
-  constructor() { }
+  constructor(private _controller: LoginService) { }
 
   ngOnInit() {
   }
 
-  onSubmit() {
-    console.log('yes!');
+  async onSubmit() {
+    const res = await this._controller.post(this.username, this.password);
+    console.log(res);
   }
 
 }
