@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { SinginComponent } from './singin/singin.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SinginComponent } from './components/singin/singin.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 @NgModule({
