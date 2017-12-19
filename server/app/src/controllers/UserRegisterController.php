@@ -1,6 +1,6 @@
 <?php
 namespace petitphotobox\controllers;
-use petitphotobox\auth\User;
+use petitphotobox\model\User;
 use petitphotobox\controller\BaseController;
 use petitphotobox\exception\ClientException;
 use soloproyectos\text\Text;
