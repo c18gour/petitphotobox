@@ -1,12 +1,11 @@
 <?php
-// TODO: rename auth by model and User by UserModel
 namespace petitphotobox\model;
 use petitphotobox\exceptions\AuthException;
 use soloproyectos\db\DbConnector;
 use soloproyectos\db\record\DbRecordTable;
 use soloproyectos\http\data\HttpSession;
 
-class User
+class UserModel
 {
 
   /**
@@ -32,7 +31,7 @@ class User
    * @param string $username [description]
    * @param string $password [description]
    *
-   * @return User
+   * @return UserModel
    */
   public static function create($username, $password)
   {
@@ -46,7 +45,7 @@ class User
       ]
     );
 
-    return new User($userId);
+    return new UserModel($userId);
   }
 
   /**
@@ -54,7 +53,7 @@ class User
    *
    * @param string $username Username
    *
-   * @return User
+   * @return UserModel
    */
   public static function searchByName($username)
   {
@@ -68,7 +67,7 @@ class User
     where username = ?";
     $row = $db->query($sql, $username);
     if (count($row) > 0) {
-      $ret = new User($row["id"]);
+      $ret = new UserModel($row["id"]);
     }
 
     return $ret;
@@ -77,7 +76,7 @@ class User
   /**
    * Gets the current user instance.
    *
-   * @return User
+   * @return UserModel
    */
   public static function getInstance()
   {
@@ -92,7 +91,7 @@ class User
     where id = ?";
     $row = $db->query($sql, $userId);
     if (count($row) > 0) {
-      $ret = new User($userId);
+      $ret = new UserModel($userId);
     }
 
     return $ret;
@@ -104,7 +103,7 @@ class User
    * @param string $username Username
    * @param string $password Password
    *
-   * @return User
+   * @return UserModel
    */
   public static function login($username, $password)
   {
@@ -130,7 +129,7 @@ class User
     // registers the user in the system
     HttpSession::set("user_id", $row["id"]);
 
-    return new User($row["id"]);
+    return new UserModel($row["id"]);
   }
 
   /**
@@ -150,6 +149,6 @@ class User
    */
   public function isLogged()
   {
-    return User::getInstance() !== null;
+    return UserModel::getInstance() !== null;
   }
 }

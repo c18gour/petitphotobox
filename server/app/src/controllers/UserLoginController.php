@@ -1,6 +1,6 @@
 <?php
 namespace petitphotobox\controllers;
-use petitphotobox\model\User;
+use petitphotobox\model\UserModel;
 use petitphotobox\controller\BaseController;
 
 class UserLoginController extends BaseController
@@ -25,6 +25,6 @@ class UserLoginController extends BaseController
     $username = trim($this->getParam("username"));
     $password = trim($this->getParam("password"));
 
-    User::login($username, $password);
+    UserModel::login($username, $password);
   }
 }

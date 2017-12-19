@@ -1,6 +1,6 @@
 <?php
 namespace petitphotobox\controllers;
-use petitphotobox\model\User;
+use petitphotobox\model\UserModel;
 use petitphotobox\controller\BaseController;
 use petitphotobox\exception\ClientException;
 use soloproyectos\text\Text;
@@ -36,7 +36,7 @@ class UserRegisterController extends BaseController
       );
     }
 
-    $user = User::searchByName($username);
+    $user = UserModel::searchByName($username);
     if ($user !== null) {
       throw new ClientException("The user already exist");
     }
@@ -51,7 +51,7 @@ class UserRegisterController extends BaseController
       throw new ClientException("Passwords do not match");
     }
 
-    $user = User::create($username, $password);
-    User::login($username, $password);
+    $user = UserModel::create($username, $password);
+    UserModel::login($username, $password);
   }
 }
