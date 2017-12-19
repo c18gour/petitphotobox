@@ -1,0 +1,19 @@
+$alert-message: #f00;
+$ng-valid: #008000;
+$ng-invalid: #f00;
+
+input {
+  &.ng-valid {
+    border: 1px solid $ng-valid;
+  }
+
+  &:not(.ng-pristine) {
+    &.ng-invalid {
+      border: 1px solid $ng-invalid;
+    }
+  }
+}
+
+.alert {
+  border: 1px solid $alert-message;
+}
