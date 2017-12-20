@@ -1,4 +1,4 @@
-import { BaseDocument } from '../../core/model/document/base-document';
+import { BaseDocument } from '../../core/document/base-document';
 
 export abstract class BaseController {
   constructor(public url: string) { }
