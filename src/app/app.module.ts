@@ -10,7 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SinginComponent } from './components/singin/singin.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
-import { LoginController } from './services/controllers/login-controller';
+import { LoginController } from './controllers/login-controller';
 
 @NgModule({
   declarations: [

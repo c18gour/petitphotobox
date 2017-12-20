@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams } from '@angular/http';
 
-import { environment as env } from '../../../environments/environment';
-import { BaseController } from '../../core/controller/base-controller';
-import { LoginDocument } from '../../model/documents/login-document';
+import { environment as env } from '../../environments/environment';
+import { BaseController } from '../core/controller/base-controller';
+import { LoginDocument } from '../model/documents/login-document';
 
 @Injectable()
 export class LoginController extends BaseController {
