@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { LoginService } from '../../services/login.service';
+import { LoginController } from '../../services/controllers/login-controller';
+import { LoginDocument } from '../../model/documents/login-document';
 
 @Component({
   selector: 'app-login',
@@ -8,17 +9,18 @@ import { LoginService } from '../../services/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  username = '';
-  password = '';
+  model: LoginDocument;
 
-  constructor(private _controller: LoginService) { }
+  constructor(private _controller: LoginController) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.model = await this._controller.get();
+    console.log(this.model);
   }
 
   async onSubmit() {
-    const res = await this._controller.post(this.username, this.password);
-    console.log(res);
+    this.model = await this._controller.post(this.model);
+    console.log(this.model);
   }
 
 }
