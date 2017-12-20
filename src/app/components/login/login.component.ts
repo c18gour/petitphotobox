@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { LoginController } from '../../controllers/login-controller';
-import { LoginDocument } from '../../model/documents/login-document';
+import { LoginDocument } from '../../documents/login-document';
 
 @Component({
   selector: 'app-login',
