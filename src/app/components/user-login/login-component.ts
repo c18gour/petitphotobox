@@ -8,7 +8,7 @@ import { LoginDocument } from '../../documents/login-document';
   templateUrl: './login-component.html',
   styleUrls: ['./login-component.scss']
 })
-export class LoginComponent implements OnInit {
+export class UserLoginComponent implements OnInit {
   model: LoginDocument;
 
   constructor(private _controller: LoginController) { }

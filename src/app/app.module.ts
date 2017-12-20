@@ -6,8 +6,8 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './/app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home-component';
-import { LoginComponent } from './components/login/login-component';
-import { SinginComponent } from './components/user-register/user-register-component';
+import { UserLoginComponent } from './components/user-login/login-component';
+import { UserRegisterComponent } from './components/user-register/user-register-component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found-component';
 
 import { LoginController } from './controllers/login-controller';
@@ -16,8 +16,8 @@ import { LoginController } from './controllers/login-controller';
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent,
-    SinginComponent,
+    UserLoginComponent,
+    UserRegisterComponent,
     PageNotFoundComponent
   ],
   imports: [

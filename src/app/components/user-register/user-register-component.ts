@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './user-register-component.html',
   styleUrls: ['./user-register-component.scss']
 })
-export class SinginComponent implements OnInit {
+export class UserRegisterComponent implements OnInit {
 
   constructor() { }
 
