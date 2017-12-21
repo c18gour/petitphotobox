@@ -1,0 +1,95 @@
+/*!
+ * This file overrides the default Milligram theme:
+ * https://milligram.github.io/
+ */
+@import './palette';
+@import '~compass-mixins/lib/compass/css3';
+
+$bg-color: #fff;
+
+.app {
+  a {
+    @include user-select(none);
+    color: $primary-text-color;
+    cursor: pointer;
+  }
+
+
+  blockquote,
+  dl,
+  figure,
+  form,
+  ol,
+  p,
+  pre,
+  table,
+  ul {
+    margin-bottom: 1.6rem;
+  }
+
+  pre {
+    background-color: $bg-color;
+    border-left: .3rem solid $primary-color;
+    padding: 1rem 1.5rem;
+
+    code {
+      background-color: $bg-color;
+      padding: 0;
+    }
+  }
+
+  table {
+    border-collapse: collapse;
+
+    th {
+      border-bottom: .2rem solid $divider-color;
+    }
+
+    td {
+      border-bottom: .1rem solid $divider-color;
+    }
+  }
+
+  button {
+    background-color: $primary-color-dark;
+    border: .1rem solid $primary-color-dark;
+    color: $bg-color;
+
+    &:disabled {
+      pointer-events: none;
+    }
+
+    &.button-outline,
+    &.button-clear {
+      background: none;
+      border-color: $divider-color;
+      color: $primary-text-color;
+      margin-bottom: 0;
+      padding: 0 1.1rem;
+    }
+
+    &.button-clear {
+      border-color: transparent;
+    }
+
+    &:hover,
+    &:focus {
+      opacity: .8;
+    }
+  }
+
+  input,
+  textarea,
+  select {
+    border: .1rem solid $divider-color;
+    color: $primary-text-color;
+
+    &:disabled {
+      pointer-events: none;
+    }
+
+    &:focus {
+      border: .1rem solid $secondary-text-color;
+    }
+  }
+}
