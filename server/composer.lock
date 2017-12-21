@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "05dc99cf982abd1f30103d4aa960c298",
-    "content-hash": "50a103369fdf549a2d7b0004f643498a",
+    "hash": "2d17f7de737c8806b749ca4353cec23b",
+    "content-hash": "4b875ec20717dd2c4004d564988ebd18",
     "packages": [
         {
             "name": "soloproyectos-php/array",
@@ -196,16 +196,16 @@
         },
         {
             "name": "soloproyectos-php/http-controller",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/soloproyectos-php/http-controller.git",
-                "reference": "ccb1e5380177d6af74be5a0be19fd5517b383b48"
+                "reference": "8caf9384a1e185b26d6e40712302c748d398359c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/soloproyectos-php/http-controller/zipball/ccb1e5380177d6af74be5a0be19fd5517b383b48",
-                "reference": "ccb1e5380177d6af74be5a0be19fd5517b383b48",
+                "url": "https://api.github.com/repos/soloproyectos-php/http-controller/zipball/8caf9384a1e185b26d6e40712302c748d398359c",
+                "reference": "8caf9384a1e185b26d6e40712302c748d398359c",
                 "shasum": ""
             },
             "require": {
@@ -230,7 +230,7 @@
                 }
             ],
             "description": "A simple HTTP Controller. This library is part of the SoloProyectos PHP API.",
-            "time": "2017-12-17 14:41:59"
+            "time": "2017-12-21 18:02:55"
         },
         {
             "name": "soloproyectos-php/text",
