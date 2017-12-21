@@ -1,12 +1,16 @@
 @import '../../config/css/palette';
 
 div {
-  .error {
-    background-color: $primary-color-light;
-    border: .1rem solid $primary-color;
+  %box {
     border-radius: .4rem;
-    font-weight: 400;
     margin-bottom: .5rem;
     padding: .6rem 1rem;
+  }
+
+  .error-box {
+    @extend %box;
+    background-color: $primary-color-light;
+    border: .1rem solid $primary-color;
+    font-weight: 400;
   }
 }

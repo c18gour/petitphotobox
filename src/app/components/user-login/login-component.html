@@ -5,13 +5,13 @@
       <input
         type="text" placeholder="Username" id="username" name="username"
         required [(ngModel)]="document.username" #name="ngModel">
-      <div [hidden]="name.valid || name.pristine" class="error">Username is required</div>
+      <div [hidden]="name.valid || name.pristine" class="error-box">Username is required</div>
       <label for="password">Password</label>
       <input
         type="password" placeholder="Password" id="password" name="password"
         required [(ngModel)]="document.password" #pass="ngModel">
       <button type="submit" class="button-primary" (click)="onSubmit()">Enter</button>
-      <div class="error" [hidden]="document.statusCode == 0">{{document.statusMessage}}</div>
+      <div class="error-box" [hidden]="document.statusCode == 0">{{document.statusMessage}}</div>
     </fieldset>
   </form>
 </div>
