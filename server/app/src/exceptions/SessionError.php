@@ -11,6 +11,6 @@ class SessionError extends AppError
    */
   public function __construct($message)
   {
-    parent::__construct($message, SESSION_EXCEPTION_CODE);
+    parent::__construct($message, SESSION_ERROR_CODE);
   }
 }

@@ -1,6 +1,6 @@
 <?php
 namespace petitphotobox\core\exception;
-use \Exception;
+use petitphotobox\core\exception\AppException;
 
 /**
  * A `ClientException` represents an exception caused by the client.
@@ -11,15 +11,15 @@ use \Exception;
  * caused by the interaction of the user with the application and not for the
  * application itself.
  */
-class ClientException extends Exception
+class ClientException extends AppException
 {
   /**
    * Constructor.
    *
    * @param string $message Message
-   * @param int    $code    Exception code
+   * @param int    $code    Exception code (not required)
    */
-  public function __construct($message = "", $code = CLIENT_EXCEPTION_CODE)
+  public function __construct($message, $code = CLIENT_EXCEPTION_CODE)
   {
     parent::__construct($message, $code);
   }
