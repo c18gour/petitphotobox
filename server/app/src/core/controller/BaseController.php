@@ -76,6 +76,7 @@ class BaseController extends HttpController
 
 class ResponseEntity
 {
+  // TODO: esto debería ser un objeto stdClass
   private $_data = [
     "status" => [
       "code" => 0,
@@ -151,6 +152,28 @@ class ResponseEntity
   public function setProperty($name, $value)
   {
     $this->_data["body"][$name] = $value;
+  }
+
+  /**
+   * Sets body response.
+   *
+   * @param object $value Plain object
+   *
+   * @return void
+   */
+  public function setBody($value)
+  {
+    $this->_data["body"] = $value;
+  }
+
+  /**
+   * Gets body response.
+   *
+   * @return object Plain object
+   */
+  public function getBody()
+  {
+    return $this->_data["body"];
   }
 
   /**
