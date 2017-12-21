@@ -7,13 +7,10 @@
         type="text" placeholder="Username" id="username" name="username"
         required [(ngModel)]="document.username" #name="ngModel">
       <div [hidden]="name.valid || name.pristine" class="alert">Username is required</div>
-
       <label for="password">Password</label>
       <input
         type="password" placeholder="Password" id="password" name="password"
         required [(ngModel)]="document.password" #pass="ngModel">
-      <div [hidden]="pass.valid || pass.pristine" class="alert">Password is required</div>
-
       <button type="submit" class="button-primary" (click)="onSubmit()">Enter</button>
     </fieldset>
   </form>
