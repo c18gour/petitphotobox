@@ -24,8 +24,8 @@ class UserLoginController extends BaseController
    */
   public function onPostRequest()
   {
-    $username = trim($this->getParam("username"));
-    $password = trim($this->getParam("password"));
+    $username = $this->getParam("username");
+    $password = $this->getParam("password");
 
     if (Text::isEmpty($username) || Text::isEmpty($password)) {
       throw new ClientException("Required fields: username, password");

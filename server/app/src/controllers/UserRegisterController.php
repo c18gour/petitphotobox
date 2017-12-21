@@ -23,9 +23,9 @@ class UserRegisterController extends BaseController
    */
   public function onPostRequest()
   {
-    $username = trim($this->getParam("username"));
-    $password = trim($this->getParam("password"));
-    $rePassword = trim($this->getParam("re_password"));
+    $username = $this->getParam("username");
+    $password = $this->getParam("password");
+    $rePassword = $this->getParam("re_password");
 
     if (   Text::isEmpty($username)
         || Text::isEmpty($password)
