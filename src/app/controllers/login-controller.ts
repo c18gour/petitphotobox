@@ -3,7 +3,7 @@ import { Http, URLSearchParams } from '@angular/http';
 
 import { environment as env } from '../../environments/environment';
 import { BaseController } from '../core/controller/base-controller';
-import { LoginDocument } from '../documents/login-document';
+import { LoginModel } from '../models/login-model';
 
 @Injectable()
 export class LoginController extends BaseController {
@@ -16,13 +16,13 @@ export class LoginController extends BaseController {
   async get() {
     const response = await this._http.get(this.url).toPromise();
 
-    return new LoginDocument(response.json());
+    return new LoginModel(response.json());
   }
 
-  async post(doc: LoginDocument) {
+  async post(doc: LoginModel) {
     const response = await this._http
       .post(this.url, JSON.stringify(doc)).toPromise();
 
-    return new LoginDocument(response.json());
+    return new LoginModel(response.json());
   }
 }

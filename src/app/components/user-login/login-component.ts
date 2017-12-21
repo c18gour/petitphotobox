@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { LoginController } from '../../controllers/login-controller';
-import { LoginDocument } from '../../documents/login-document';
+import { LoginModel } from '../../models/login-model';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,7 @@ import { LoginDocument } from '../../documents/login-document';
   styleUrls: ['./login-component.scss']
 })
 export class UserLoginComponent implements OnInit {
-  model: LoginDocument;
+  model: LoginModel;
 
   constructor(private _controller: LoginController) { }
 

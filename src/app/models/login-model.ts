@@ -1,6 +1,6 @@
 import { BaseDocument } from '../core/document/base-document';
 
-export class LoginDocument extends BaseDocument {
+export class LoginModel extends BaseDocument {
 
   get username(): string {
     return this.document.username;
