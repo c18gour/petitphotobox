@@ -1,7 +1,7 @@
 <?php
 namespace petitphotobox\controllers;
 use petitphotobox\model\UserModel;
-use petitphotobox\controller\BaseController;
+use petitphotobox\core\controller\BaseController;
 use petitphotobox\exception\ClientException;
 use soloproyectos\text\Text;
 

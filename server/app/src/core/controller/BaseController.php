@@ -1,5 +1,5 @@
 <?php
-namespace petitphotobox\controller;
+namespace petitphotobox\core\controller;
 use \Exception;
 use soloproyectos\http\controller\HttpController;
 use petitphotobox\exception\AppError;
