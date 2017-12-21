@@ -2,8 +2,8 @@
 namespace petitphotobox\core\controller;
 use \Exception;
 use soloproyectos\http\controller\HttpController;
-use petitphotobox\exception\AppError;
-use petitphotobox\exception\ClientException;
+use petitphotobox\core\exception\AppError;
+use petitphotobox\core\exception\ClientException;
 
 class BaseController extends HttpController
 {

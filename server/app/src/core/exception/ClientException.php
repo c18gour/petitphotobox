@@ -1,5 +1,5 @@
 <?php
-namespace petitphotobox\exception;
+namespace petitphotobox\core\exception;
 use \Exception;
 
 /**

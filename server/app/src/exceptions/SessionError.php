@@ -1,6 +1,6 @@
 <?php
 namespace petitphotobox\exceptions;
-use petitphotobox\exception\AppError;
+use petitphotobox\core\exception\AppError;
 
 class SessionError extends AppError
 {

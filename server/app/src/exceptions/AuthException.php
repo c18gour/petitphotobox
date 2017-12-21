@@ -1,6 +1,6 @@
 <?php
 namespace petitphotobox\exceptions;
-use petitphotobox\exception\ClientException;
+use petitphotobox\core\exception\ClientException;
 
 class AuthException extends ClientException
 {
