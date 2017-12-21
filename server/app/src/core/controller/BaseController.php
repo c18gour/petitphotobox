@@ -4,23 +4,16 @@ use \Exception;
 use soloproyectos\http\controller\HttpController;
 use petitphotobox\core\exception\AppError;
 use petitphotobox\core\exception\ClientException;
+use petitphotobox\core\model\BaseDocument;
 
-class BaseController extends HttpController
+abstract class BaseController extends HttpController
 {
   /**
-   * Request response.
-   * @var ResponseEntity
+   * Gets the current document.
+   *
+   * @return BaseDocument
    */
-  public $response = null;
-
-  /**
-   * Constructor.
-   */
-  public function __construct()
-  {
-    parent::__construct();
-    $this->response = new ResponseEntity();
-  }
+  abstract public function getDocument();
 
   /**
    * {@inheritdoc}
@@ -43,20 +36,8 @@ class BaseController extends HttpController
       $this->_setStatus(500, $e->getMessage());
       throw $e;
     } finally {
-      $this->printDocument();
+      echo $this->getDocument();
     }
-  }
-
-  /**
-   * Prints the response.
-   *
-   * Eventually it sets a client error status in the HTTP header.
-   *
-   * @return void
-   */
-  public function printDocument()
-  {
-    echo $this->response;
   }
 
   /**
@@ -69,120 +50,8 @@ class BaseController extends HttpController
    */
   private function _setStatus($code, $message)
   {
-    $this->response->setStatusCode($code);
-    $this->response->setStatusMessage($message);
-  }
-}
-
-class ResponseEntity
-{
-  // TODO: esto debería ser un objeto stdClass
-  private $_data = [
-    "status" => [
-      "code" => 0,
-      "message" => ""
-    ],
-    "body" => []
-  ];
-
-  /**
-   * Gets the status code.
-   *
-   * @return int
-   */
-  public function getStatusCode()
-  {
-    return $this->_data["status"]["code"];
-  }
-
-  /**
-   * Sets the status code.
-   *
-   * @param int $code Status code
-   *
-   * @return void
-   */
-  public function setStatusCode($code)
-  {
-    $this->_data["status"]["code"] = $code;
-  }
-
-  /**
-   * Gets the status message.
-   *
-   * @return string
-   */
-  public function getStatusMessage()
-  {
-    return $this->_data["status"]["message"];
-  }
-
-  /**
-   * Sets the status message.
-   *
-   * @param string $message Status message
-   *
-   * @return void
-   */
-  public function setStatusMessage($message)
-  {
-    $this->_data["status"]["message"] = $message;
-  }
-
-  /**
-   * Gets a property.
-   *
-   * @param string $name Property name
-   *
-   * @return mixed
-   */
-  public function getProperty($name)
-  {
-    return $this->_data["body"][$name];
-  }
-
-  /**
-   * Sets a property value.
-   *
-   * @param string $name  Property name
-   * @param mixed  $value Value
-   *
-   * @return void
-   */
-  public function setProperty($name, $value)
-  {
-    $this->_data["body"][$name] = $value;
-  }
-
-  /**
-   * Sets body response.
-   *
-   * @param object $value Plain object
-   *
-   * @return void
-   */
-  public function setBody($value)
-  {
-    $this->_data["body"] = $value;
-  }
-
-  /**
-   * Gets body response.
-   *
-   * @return object Plain object
-   */
-  public function getBody()
-  {
-    return $this->_data["body"];
-  }
-
-  /**
-   * Gets the string representation of the current instance.
-   *
-   * @return string
-   */
-  public function __toString()
-  {
-    return json_encode($this->_data);
+    $doc = $this->getDocument();
+    $doc->setStatusCode($code);
+    $doc->setStatusMessage($message);
   }
 }
