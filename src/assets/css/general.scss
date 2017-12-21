@@ -1,0 +1,12 @@
+@import '../../config/css/palette';
+
+div {
+  .error {
+    background-color: $primary-color-light;
+    border: .1rem solid $primary-color;
+    border-radius: .4rem;
+    font-weight: 400;
+    margin-bottom: .5rem;
+    padding: .6rem 1rem;
+  }
+}
