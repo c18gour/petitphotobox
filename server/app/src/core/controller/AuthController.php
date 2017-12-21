@@ -1,6 +1,6 @@
 <?php
 namespace petitphotobox\core\controller;
-use petitphotobox\model\UserModel;
+use petitphotobox\models\UserModel;
 use petitphotobox\core\controller\BaseController;
 use petitphotobox\exceptions\SessionError;
 

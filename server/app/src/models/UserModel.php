@@ -1,5 +1,5 @@
 <?php
-namespace petitphotobox\model;
+namespace petitphotobox\models;
 use petitphotobox\exceptions\AuthException;
 use soloproyectos\db\DbConnector;
 use soloproyectos\db\record\DbRecordTable;
