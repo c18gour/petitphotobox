@@ -3,9 +3,8 @@ namespace petitphotobox\controllers;
 use petitphotobox\core\auth\UserAuth;
 use petitphotobox\core\controller\BaseController;
 use petitphotobox\core\exception\ClientException;
-use soloproyectos\text\Text;
-use petitphotobox\models\UserLoginModel;
 use petitphotobox\documents\UserLoginDocument;
+use soloproyectos\text\Text;
 
 class UserLoginController extends BaseController
 {

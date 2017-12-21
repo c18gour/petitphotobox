@@ -1,10 +1,10 @@
 <?php
 namespace petitphotobox\core\controller;
 use \Exception;
-use soloproyectos\http\controller\HttpController;
 use petitphotobox\core\exception\AppError;
 use petitphotobox\core\exception\ClientException;
 use petitphotobox\core\model\BaseDocument;
+use soloproyectos\http\controller\HttpController;
 
 abstract class BaseController extends HttpController
 {
