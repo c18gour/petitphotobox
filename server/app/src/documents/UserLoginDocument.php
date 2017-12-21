@@ -6,9 +6,6 @@ class UserLoginDocument extends BaseDocument
 {
   /**
    * Creates an instance.
-   *
-   * @param string $username User name
-   * @param string $password Password
    */
   public function __construct()
   {
@@ -16,26 +13,55 @@ class UserLoginDocument extends BaseDocument
     $this->setProperty("password", "");
   }
 
+  /**
+   * Gets the username.
+   *
+   * @return string
+   */
   public function getUsername()
   {
     return $this->getProperty("username");
   }
 
+  /**
+   * Sets the username.
+   *
+   * @param string $value Username
+   *
+   * @return void
+   */
   public function setUsername($value)
   {
     $this->setProperty("username", $value);
   }
 
+  /**
+   * Gets the password.
+   *
+   * @return string
+   */
   public function getPassword()
   {
     return $this->getProperty("password");
   }
 
+  /**
+   * Sets the password.
+   *
+   * @param string $value Password
+   *
+   * @return void
+   */
   public function setPassword($value)
   {
     $this->setProperty("password", $value);
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return string
+   */
   public function __toString()
   {
     // hides the password

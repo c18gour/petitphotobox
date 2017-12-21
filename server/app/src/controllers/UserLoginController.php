@@ -21,6 +21,11 @@ class UserLoginController extends BaseController
     $this->addPostRequestHandler([$this, "onPostRequest"]);
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return UserLoginDocument
+   */
   public function getDocument()
   {
     return $this->_document;
