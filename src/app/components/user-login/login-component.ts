@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { LoginController } from '../../controllers/login-controller';
-import { LoginModel } from '../../models/login-model';
+import { UserLoginController } from '../../controllers/user-login-controller';
+import { UserLoginDocument } from '../../documents/user-login-document';
 
 @Component({
   selector: 'app-login',
@@ -9,18 +9,18 @@ import { LoginModel } from '../../models/login-model';
   styleUrls: ['./login-component.scss']
 })
 export class UserLoginComponent implements OnInit {
-  model: LoginModel;
+  document: UserLoginDocument;
 
-  constructor(private _controller: LoginController) { }
+  constructor(private _controller: UserLoginController) { }
 
   async ngOnInit() {
-    this.model = await this._controller.get();
-    console.log(this.model);
+    this.document = await this._controller.get();
   }
 
   async onSubmit() {
-    this.model = await this._controller.post(this.model);
-    console.log(this.model);
+    this.document = await this._controller.post(
+      this.document.username, this.document.password);
+    console.log(this.document);
   }
 
 }

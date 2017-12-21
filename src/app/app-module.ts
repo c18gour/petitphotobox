@@ -10,7 +10,7 @@ import { UserLoginComponent } from './components/user-login/login-component';
 import { UserRegisterComponent } from './components/user-register/user-register-component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found-component';
 
-import { LoginController } from './controllers/login-controller';
+import { UserLoginController } from './controllers/user-login-controller';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { LoginController } from './controllers/login-controller';
     AppRoutingModule
   ],
   providers: [
-    LoginController
+    UserLoginController
   ],
   bootstrap: [AppComponent]
 })

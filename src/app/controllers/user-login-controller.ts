@@ -3,10 +3,10 @@ import { Http, URLSearchParams } from '@angular/http';
 
 import { environment as env } from '../../environments/environment';
 import { BaseController } from '../core/controller/base-controller';
-import { LoginModel } from '../models/login-model';
+import { UserLoginDocument } from '../documents/user-login-document';
 
 @Injectable()
-export class LoginController extends BaseController {
+export class UserLoginController extends BaseController {
 
   constructor(private _http: Http) {
     super(`${env.apiUrl}/user-login.php`);
@@ -16,17 +16,17 @@ export class LoginController extends BaseController {
   async get() {
     const response = await this._http.get(this.url).toPromise();
 
-    return new LoginModel(response.json());
+    return new UserLoginDocument(response.json());
   }
 
-  async post(model: LoginModel) {
+  async post(username: string, password: string) {
     const params = new URLSearchParams();
-    params.append('username', model.username);
-    params.append('password', model.password);
+    params.append('username', username);
+    params.append('password', password);
 
     const response = await this._http
-      .post(this.url, params.toString()).toPromise();
+      .post(this.url, params).toPromise();
 
-    return new LoginModel(response.json());
+    return new UserLoginDocument(response.json());
   }
 }
