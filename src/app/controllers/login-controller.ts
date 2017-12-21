@@ -19,9 +19,13 @@ export class LoginController extends BaseController {
     return new LoginModel(response.json());
   }
 
-  async post(doc: LoginModel) {
+  async post(model: LoginModel) {
+    const params = new URLSearchParams();
+    params.append('username', model.username);
+    params.append('password', model.password);
+
     const response = await this._http
-      .post(this.url, JSON.stringify(doc)).toPromise();
+      .post(this.url, params.toString()).toPromise();
 
     return new LoginModel(response.json());
   }

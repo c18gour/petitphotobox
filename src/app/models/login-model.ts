@@ -1,12 +1,12 @@
-import { BaseDocument } from '../core/document/base-document';
+import { BaseModel } from '../core/model/base-model';
 
-export class LoginModel extends BaseDocument {
+export class LoginModel extends BaseModel {
 
   get username(): string {
-    return this.document.username;
+    return this.model.username;
   }
 
   get password(): string {
-    return this.document.password;
+    return this.model.password;
   }
 }

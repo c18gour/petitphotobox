@@ -1,8 +1,8 @@
-import { BaseDocument } from '../../core/document/base-document';
+import { BaseModel } from '../../core/model/base-model';
 
 export abstract class BaseController {
   constructor(public url: string) { }
 
-  abstract async get(): Promise<BaseDocument>;
-  abstract async post(document: BaseDocument): Promise<BaseDocument>;
+  abstract async get(): Promise<BaseModel>;
+  abstract async post(document: BaseModel): Promise<BaseModel>;
 }
