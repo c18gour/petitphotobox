@@ -17,6 +17,7 @@ class UserLoginController extends BaseController
   {
     parent::__construct();
     $this->_document = new UserLoginDocument();
+    $this->addOpenRequestHandler([$this, "onOpenRequest"]);
     $this->addPostRequestHandler([$this, "onPostRequest"]);
   }
 
@@ -31,24 +32,30 @@ class UserLoginController extends BaseController
   }
 
   /**
+   * Processes OPEN requests.
+   *
+   * @return void
+   */
+  public function onOpenRequest()
+  {
+    $this->_document->setUsername($this->getParam("username", ""));
+    $this->_document->setPassword($this->getParam("password"));
+  }
+
+  /**
    * Processes POST requests.
    *
    * @return void
    */
   public function onPostRequest()
   {
-    $this->_document->setUsername($this->getParam("username"));
-    $this->_document->setPassword($this->getParam("password"));
+    $username = $this->_document->getUsername();
+    $password = $this->_document->getPassword();
 
-    if ( Text::isEmpty($this->_document->getUsername())
-      || Text::isEmpty($this->_document->getPassword())
-    ) {
+    if (Text::isEmpty($username) || Text::isEmpty($password)) {
       throw new ClientException("Required fields: username, password");
     }
 
-    UserAuth::login(
-      $this->_document->getUsername(),
-      $this->_document->getPassword()
-    );
+    UserAuth::login($username, $password);
   }
 }
