@@ -20,7 +20,8 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "../node_modules/milligram/dist/milligram.min.css"
+        "../node_modules/milligram/dist/milligram.min.css",
+        "config/css/theme.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
