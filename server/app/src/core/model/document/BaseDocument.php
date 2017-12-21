@@ -89,7 +89,7 @@ abstract class BaseDocument
           "code" => $this->_statusCode,
           "message" => $this->_statusMessage
         ],
-        "body" => $this->_body
+        "body" => (object) $this->_body
       ]
     );
   }
