@@ -12,6 +12,11 @@ $bg-color: #fff;
     @include user-select(none);
     color: $primary-text-color;
     cursor: pointer;
+    font-weight: 400;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
 
