@@ -10,6 +10,7 @@ import { UserLoginDocument } from '../../documents/user-login-document';
 })
 export class UserLoginComponent implements OnInit {
   document: UserLoginDocument;
+  isRequestInProgress = false;
 
   constructor(private _controller: UserLoginController) { }
 
@@ -18,8 +19,14 @@ export class UserLoginComponent implements OnInit {
   }
 
   async onSubmit() {
-    this.document = await this._controller.post(
-      this.document.username, this.document.password);
+    this.isRequestInProgress = true;
+
+    try {
+      this.document = await this._controller.post(
+        this.document.username, this.document.password);
+    } finally {
+      this.isRequestInProgress = false;
+    }
   }
 
 }
