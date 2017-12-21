@@ -10,10 +10,10 @@ class UserLoginDocument extends BaseDocument
    * @param string $username User name
    * @param string $password Password
    */
-  public function __construct($username = "", $password = "")
+  public function __construct()
   {
-    $this->setProperty("username", $username);
-    $this->setProperty("password", $password);
+    $this->setProperty("username", "");
+    $this->setProperty("password", "");
   }
 
   public function getUsername()
