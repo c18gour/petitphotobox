@@ -4,7 +4,7 @@ use petitphotobox\core\auth\UserAuth;
 use petitphotobox\core\controller\BaseController;
 use petitphotobox\exceptions\SessionError;
 
-class AuthController extends BaseController
+abstract class AuthController extends BaseController
 {
   public $user;
 
