@@ -20,7 +20,6 @@ export class UserLoginComponent implements OnInit {
   async onSubmit() {
     this.document = await this._controller.post(
       this.document.username, this.document.password);
-    console.log(this.document);
   }
 
 }

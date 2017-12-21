@@ -24,8 +24,7 @@ export class UserLoginController extends BaseController {
     params.append('username', username);
     params.append('password', password);
 
-    const response = await this._http
-      .post(this.url, params).toPromise();
+    const response = await this._http.post(this.url, params).toPromise();
 
     return new UserLoginDocument(response.json());
   }

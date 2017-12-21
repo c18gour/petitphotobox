@@ -1,17 +1,17 @@
 <div class="container" *ngIf="document">
-  <h2>User Login</h2>
   <form #loginForm="ngForm">
     <fieldset>
       <label for="username">Username</label>
       <input
         type="text" placeholder="Username" id="username" name="username"
         required [(ngModel)]="document.username" #name="ngModel">
-      <div [hidden]="name.valid || name.pristine" class="alert">Username is required</div>
+      <div [hidden]="name.valid || name.pristine" class="error">Username is required</div>
       <label for="password">Password</label>
       <input
         type="password" placeholder="Password" id="password" name="password"
         required [(ngModel)]="document.password" #pass="ngModel">
       <button type="submit" class="button-primary" (click)="onSubmit()">Enter</button>
+      <div class="error" [hidden]="document.statusCode == 0">{{document.statusMessage}}</div>
     </fieldset>
   </form>
 </div>
