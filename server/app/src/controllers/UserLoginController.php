@@ -1,6 +1,6 @@
 <?php
 namespace petitphotobox\controllers;
-use petitphotobox\models\UserModel;
+use petitphotobox\core\auth\UserAuth;
 use petitphotobox\core\controller\BaseController;
 use petitphotobox\core\exception\ClientException;
 use soloproyectos\text\Text;
@@ -31,6 +31,6 @@ class UserLoginController extends BaseController
       throw new ClientException("Required fields: username, password");
     }
 
-    UserModel::login($username, $password);
+    UserAuth::login($username, $password);
   }
 }

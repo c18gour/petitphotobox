@@ -1,11 +1,11 @@
 <?php
-namespace petitphotobox\models;
+namespace petitphotobox\core\auth;
 use petitphotobox\exceptions\AuthException;
 use soloproyectos\db\DbConnector;
 use soloproyectos\db\record\DbRecordTable;
 use soloproyectos\http\data\HttpSession;
 
-class UserModel
+class UserAuth
 {
 
   /**
@@ -31,7 +31,7 @@ class UserModel
    * @param string $username [description]
    * @param string $password [description]
    *
-   * @return UserModel
+   * @return UserAuth
    */
   public static function create($username, $password)
   {
@@ -45,7 +45,7 @@ class UserModel
       ]
     );
 
-    return new UserModel($userId);
+    return new UserAuth($userId);
   }
 
   /**
@@ -53,7 +53,7 @@ class UserModel
    *
    * @param string $username Username
    *
-   * @return UserModel
+   * @return UserAuth
    */
   public static function searchByName($username)
   {
@@ -67,7 +67,7 @@ class UserModel
     where username = ?";
     $row = $db->query($sql, $username);
     if (count($row) > 0) {
-      $ret = new UserModel($row["id"]);
+      $ret = new UserAuth($row["id"]);
     }
 
     return $ret;
@@ -76,7 +76,7 @@ class UserModel
   /**
    * Gets the current user instance.
    *
-   * @return UserModel
+   * @return UserAuth
    */
   public static function getInstance()
   {
@@ -91,7 +91,7 @@ class UserModel
     where id = ?";
     $row = $db->query($sql, $userId);
     if (count($row) > 0) {
-      $ret = new UserModel($userId);
+      $ret = new UserAuth($userId);
     }
 
     return $ret;
@@ -103,7 +103,7 @@ class UserModel
    * @param string $username Username
    * @param string $password Password
    *
-   * @return UserModel
+   * @return UserAuth
    */
   public static function login($username, $password)
   {
@@ -129,7 +129,7 @@ class UserModel
     // registers the user in the system
     HttpSession::set("user_id", $row["id"]);
 
-    return new UserModel($row["id"]);
+    return new UserAuth($row["id"]);
   }
 
   /**
@@ -149,6 +149,6 @@ class UserModel
    */
   public function isLogged()
   {
-    return UserModel::getInstance() !== null;
+    return UserAuth::getInstance() !== null;
   }
 }
