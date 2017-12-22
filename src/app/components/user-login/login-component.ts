@@ -24,6 +24,7 @@ export class UserLoginComponent implements OnInit {
         this.document.username, this.document.password);
     } catch (e) {
       this.errorMessage = e.message;
+      throw e;
     }
   }
 
