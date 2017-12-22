@@ -1,7 +1,8 @@
 <?php
 namespace petitphotobox\core\controller;
 use \Exception;
-use petitphotobox\core\exception\AppException;
+use petitphotobox\core\exception\AppError;
+use petitphotobox\core\exception\ClientException;
 use petitphotobox\core\model\BaseDocument;
 use soloproyectos\http\controller\HttpController;
 
@@ -23,10 +24,17 @@ abstract class BaseController extends HttpController
   {
     try {
       parent::processRequest();
-    } catch (AppException $e) {
+    } catch (ClientException $e) {
+      header("HTTP/1.0 400 Client Error");
       $this->_setStatus($e->getCode(), $e->getMessage());
-    } catch (Exception $e) {
+    } catch (AppError $e) {
+      header("HTTP/1.0 500 Application Error");
+      $this->_setStatus($e->getCode(), $e->getMessage());
+      throw $e;
+    }catch (Exception $e) {
+      header("HTTP/1.0 500 Internal Server Error");
       $this->_setStatus(500, $e->getMessage());
+      throw $e;
     } finally {
       echo $this->getDocument();
     }
