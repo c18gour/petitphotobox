@@ -53,7 +53,7 @@ class UserLoginController extends BaseController
     $password = $this->_document->getPassword();
 
     if (Text::isEmpty($username) || Text::isEmpty($password)) {
-      throw new ClientException("Required fields: username, password");
+      throw new ClientException("Username and Password are required fields");
     }
 
     UserAuth::login($username, $password);
