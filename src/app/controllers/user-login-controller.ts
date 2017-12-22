@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment as env } from '../../environments/environment';
 import { BaseController } from '../core/controller/base-controller';
 import { UserLoginDocument } from '../documents/user-login-document';
-
-import { HttpRequest } from '../core/http/http-request';
+import { HttpRequest } from '../core/service/http/http-request';
 
 @Injectable()
 export class UserLoginController extends BaseController {

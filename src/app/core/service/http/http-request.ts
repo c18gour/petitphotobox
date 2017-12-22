@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, URLSearchParams, RequestOptions } from '@angular/http';
 
-import { AppError } from '../../core/exception/app-error';
-import { SessionError } from '../../core/exception/session-error';
-import { ClientException } from '../../core/exception/client-exception';
+import { AppError } from '../../../core/exception/app-error';
+import { SessionError } from '../../../core/exception/session-error';
+import { ClientException } from '../../../core/exception/client-exception';
 
 @Injectable()
 export class HttpRequest {
