@@ -1,6 +1,6 @@
 <?php
 namespace petitphotobox\core\exception;
-use petitphotobox\core\exception\AppException;
+use \Exception;
 
 /**
  * An `AppError` represents an exception caused by the application.
@@ -8,7 +8,7 @@ use petitphotobox\core\exception\AppException;
  * For example, if the application can't connect to the database engine it
  * throws an AppError.
  */
-class AppError extends AppException
+class AppError extends Exception
 {
   /**
    * Constructor.
