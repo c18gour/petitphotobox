@@ -11,6 +11,7 @@ import { UserLoginDocument } from '../../documents/user-login-document';
 export class UserLoginComponent implements OnInit {
   document: UserLoginDocument;
   isRequestInProgress = false;
+  errorMessage = '';
 
   constructor(private _controller: UserLoginController) { }
 
@@ -20,10 +21,11 @@ export class UserLoginComponent implements OnInit {
 
   async onSubmit() {
     this.isRequestInProgress = true;
-
     try {
       this.document = await this._controller.post(
         this.document.username, this.document.password);
+    } catch (e) {
+      this.errorMessage = e.message;
     } finally {
       this.isRequestInProgress = false;
     }
