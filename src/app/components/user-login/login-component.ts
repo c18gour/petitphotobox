@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { UserLoginController } from '../../controllers/user-login-controller';
 import { UserLoginDocument } from '../../documents/user-login-document';
@@ -12,7 +13,9 @@ export class UserLoginComponent implements OnInit {
   document: UserLoginDocument;
   errorMessage = '';
 
-  constructor(private _controller: UserLoginController) { }
+  constructor(
+    private _router: Router,
+    private _controller: UserLoginController) { }
 
   async ngOnInit() {
     this.document = await this._controller.get();
@@ -26,6 +29,8 @@ export class UserLoginComponent implements OnInit {
       this.errorMessage = e.message;
       throw e;
     }
+
+    this._router.navigate(['/home']);
   }
 
 }
