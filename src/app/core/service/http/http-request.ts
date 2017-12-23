@@ -7,6 +7,8 @@ import { ClientException } from '../../../core/exception/client-exception';
 
 @Injectable()
 export class HttpRequest {
+  private _sessionErrorCode = 501;
+
   constructor(private _http: Http) { }
 
   get(url: string, args: { [key: string]: any } = {}): Promise<Response> {
@@ -53,8 +55,7 @@ export class HttpRequest {
       throw new ClientException(message);
     } else if (code > 499 && code < 600) {
       // app error (5xx)
-      // QUESTION: create a list of error codes?
-      throw code === 501
+      throw code === this._sessionErrorCode
         ? new SessionError(message)
         : new AppError(message);
     } else {
