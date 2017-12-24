@@ -3,8 +3,10 @@ namespace petitphotobox\core\controller;
 use \Exception;
 use petitphotobox\core\exception\AppError;
 use petitphotobox\core\exception\ClientException;
+use petitphotobox\exceptions\DatabaseError;
 use petitphotobox\core\model\BaseDocument;
 use soloproyectos\db\DbConnector;
+use soloproyectos\db\exception\DbException;
 use soloproyectos\http\controller\HttpController;
 
 abstract class BaseController extends HttpController
@@ -15,7 +17,11 @@ abstract class BaseController extends HttpController
   {
     parent::__construct();
     $this->addOpenRequestHandler(function () {
-      $this->db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
+      try {
+        $this->db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
+      } catch (DbException $e) {
+        throw new DatabaseError($e->getMessage());
+      }
     });
   }
 
