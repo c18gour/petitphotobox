@@ -36,6 +36,8 @@ define("MIN_PASSWORD_LENGTH", 6);
 define("CLIENT_EXCEPTION_CODE", 400);
 define("AUTH_EXCEPTION_CODE", 401);
 
-// Application exception codes
-define("APP_EXCEPTION_CODE", 500);
-define("SESSION_EXCEPTION_CODE", 501);
+// Application error codes
+define("APP_ERROR_CODE", 500);
+define("SESSION_ERROR_CODE", 501);
+define("ACCESS_DENIED_ERROR_CODE", 502);
+define("DATABASE_ERROR_CODE", 503);
