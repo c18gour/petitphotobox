@@ -5,11 +5,22 @@ use petitphotobox\model\records\DbSnapshot;
 
 class DbPicture extends DbRecord
 {
+  /**
+   * Creates a new instance.
+   *
+   * @param DbConnector $db Database connection
+   * @param string      $id Record ID
+   */
   public function __construct($db, $id = null)
   {
     parent::__construct($db, "picture", $id);
   }
 
+  /**
+   * Gets the list of snapshots.
+   *
+   * @return DbSnapshot[]
+   */
   public function getSnapshots()
   {
     $sql = "
@@ -28,6 +39,11 @@ class DbPicture extends DbRecord
     );
   }
 
+  /**
+   * Gets the main snapshot.
+   *
+   * @return DbSnapshot
+   */
   public function getMainSnapshot()
   {
     $sql = "

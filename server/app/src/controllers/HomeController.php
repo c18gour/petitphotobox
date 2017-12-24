@@ -10,6 +10,9 @@ class HomeController extends AuthController
 {
   private $_document;
 
+  /**
+   * Creates a new instance..
+   */
   public function __construct()
   {
     parent::__construct();
@@ -26,6 +29,11 @@ class HomeController extends AuthController
     return $this->_document;
   }
 
+  /**
+   * Processes OPEN requests.
+   *
+   * @return void
+   */
   public function onOpenRequest()
   {
     $categoryId = $this->getParam("category_id");

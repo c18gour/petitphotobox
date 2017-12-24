@@ -13,6 +13,9 @@ abstract class BaseController extends HttpController
 {
   protected $db;
 
+  /**
+   * Creates a new instance..
+   */
   public function __construct()
   {
     parent::__construct();
@@ -73,8 +76,9 @@ abstract class BaseController extends HttpController
   /**
    * Prints a document showing an 'application error'.
    *
-   * @param  int    $code    Status code
-   * @param  string $message Status message
+   * @param int    $code    Status code
+   * @param string $message Status message
+   *
    * @return void
    */
   private function _printAppError($code, $message)

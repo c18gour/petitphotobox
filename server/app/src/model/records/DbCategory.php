@@ -5,23 +5,41 @@ use petitphotobox\model\records\DbPicture;
 
 class DbCategory extends DbRecord
 {
+  /**
+   * Creates a new instance.
+   *
+   * @param DbConnector $db Database connection
+   * @param string      $id Record ID (not required)
+   */
   public function __construct($db, $id = null)
   {
     parent::__construct($db, "category", $id);
   }
 
+  /**
+   * Gets the title.
+   *
+   * @return string
+   */
   public function getTitle()
   {
     return $this->get("title");
   }
 
+  /**
+   * Sets the title.
+   *
+   * @param string $value Title
+   *
+   * @return void
+   */
   public function setTitle($value)
   {
     $this->set("title", $value);
   }
 
   /**
-   * Gets sub-categories from the current category.
+   * Gets subcategories from the current category.
    *
    * @return DbCategory[]
    */
@@ -43,6 +61,11 @@ class DbCategory extends DbRecord
     );
   }
 
+  /**
+   * Gets the list of pictures.
+   *
+   * @return DbPicture[]
+   */
   public function getPictures()
   {
     $sql = "

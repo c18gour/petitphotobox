@@ -9,6 +9,12 @@ class HomeDocument extends BaseDocument
   private $_user;
   private $_category;
 
+  /**
+   * Creates a new instance.
+   *
+   * @param DbUser     $user     User
+   * @param DbCategory $category Category
+   */
   public function __construct($user, $category)
   {
     $this->_user = $user;
@@ -18,6 +24,11 @@ class HomeDocument extends BaseDocument
     $this->setProperty("pictures", []);
   }
 
+  /**
+   * Gets a 'plain object' representing the current instance.
+   *
+   * @return object
+   */
   protected function getJsonObject()
   {
     return [
@@ -26,6 +37,13 @@ class HomeDocument extends BaseDocument
     ];
   }
 
+  /**
+   * Gets the categories tree.
+   *
+   * @param DbCategory $category Category (not required)
+   *
+   * @return array An associative array
+   */
   private function _getCategoriesTree($category = null)
   {
     if ($category === null) {
@@ -45,6 +63,11 @@ class HomeDocument extends BaseDocument
     );
   }
 
+  /**
+   * Gets the list of pictures.
+   *
+   * @return array Associative array
+   */
   private function _getPictures()
   {
     $category = $this->_category === null

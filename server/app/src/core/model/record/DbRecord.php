@@ -44,11 +44,26 @@ class DbRecord
     return $this->_id;
   }
 
+  /**
+   * Gets a column value.
+   *
+   * @param stirng $colName Column name
+   *
+   * @return mixed
+   */
   protected function get($colName)
   {
     return $this->_columns[$colName]->getValue();
   }
 
+  /**
+   * Sets a column value.
+   *
+   * @param string $colName Column name
+   * @param mixed  $value   Column value
+   *
+   * @return void
+   */
   protected function set($colName, $value)
   {
     $this->_columns[$colName]->setValue($value);

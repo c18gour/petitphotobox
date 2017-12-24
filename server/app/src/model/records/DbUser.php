@@ -6,26 +6,56 @@ use petitphotobox\model\records\DbCategory;
 
 class DbUser extends DbRecord
 {
+  /**
+   * Creates a new instance.
+   *
+   * @param DbConnector $db Database connection
+   * @param string      $id Record ID (not required)
+   */
   public function __construct($db, $id = null)
   {
     parent::__construct($db, "user", $id);
   }
 
+  /**
+   * Gets the user name.
+   *
+   * @return string
+   */
   public function getUsername()
   {
     return $this->get("username");
   }
 
+  /**
+   * Sets the user name.
+   *
+   * @param string $value User name
+   *
+   * @return void
+   */
   public function setUsername($value)
   {
     $this->set("username", $value);
   }
 
+  /**
+   * Gets the encrypted password.
+   *
+   * @return string
+   */
   public function getPassword()
   {
     return $this->get("password");
   }
 
+  /**
+   * Sets the encrypted password.
+   *
+   * @param string $value Encrypted password
+   *
+   * @return void
+   */
   public function setPassword($value)
   {
     $this->set("password", $value);
