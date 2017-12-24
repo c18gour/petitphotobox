@@ -1,37 +1,20 @@
 <?php
 namespace petitphotobox\core\auth;
 use petitphotobox\exceptions\AuthException;
+use petitphotobox\records\DbUser;
 use soloproyectos\db\DbConnector;
 use soloproyectos\db\record\DbRecordTable;
 use soloproyectos\http\data\HttpSession;
 
 class UserAuth
 {
-
-  /**
-   * User's ID.
-   *
-   * @var string
-   */
-  private $_id;
-
-  /**
-   * Creates a user.
-   *
-   * @param string $id User's ID
-   */
-  private function __construct($id)
-  {
-    $this->_id = $id;
-  }
-
   /**
    * Creates a user.
    *
    * @param string $username [description]
    * @param string $password [description]
    *
-   * @return UserAuth
+   * @return DbUser
    */
   public static function create($username, $password)
   {
@@ -45,7 +28,7 @@ class UserAuth
       ]
     );
 
-    return new UserAuth($userId);
+    return new DbUser($db, $userId);
   }
 
   /**
@@ -63,8 +46,9 @@ class UserAuth
    *
    * @param string $username Username
    *
-   * @return UserAuth
+   * @return DbUser
    */
+  // TODO: this method belongs to the model (DbUser)
   public static function searchByName($username)
   {
     $ret = null;
@@ -77,7 +61,7 @@ class UserAuth
     where username = ?";
     $row = $db->query($sql, $username);
     if (count($row) > 0) {
-      $ret = new UserAuth($row["id"]);
+      $ret = new DbUser($db, $row["id"]);
     }
 
     return $ret;
@@ -86,7 +70,7 @@ class UserAuth
   /**
    * Gets the current user instance.
    *
-   * @return UserAuth
+   * @return DbUser
    */
   public static function getInstance()
   {
@@ -101,7 +85,7 @@ class UserAuth
     where id = ?";
     $row = $db->query($sql, $userId);
     if (count($row) > 0) {
-      $ret = new UserAuth($userId);
+      $ret = new DbUser($db, $userId);
     }
 
     return $ret;
@@ -113,7 +97,7 @@ class UserAuth
    * @param string $username Username
    * @param string $password Password
    *
-   * @return UserAuth
+   * @return DbUser
    */
   public static function login($username, $password)
   {
@@ -139,7 +123,7 @@ class UserAuth
     // registers the user in the system
     HttpSession::set("user_id", $row["id"]);
 
-    return new UserAuth($row["id"]);
+    return new DbUser($db, $row["id"]);
   }
 
   /**

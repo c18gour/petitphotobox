@@ -51,7 +51,7 @@ class UserRegisterController extends BaseController
       throw new ClientException("Passwords do not match");
     }
 
-    $user = UserAuth::create($username, $password);
+    UserAuth::create($username, $password);
     UserAuth::login($username, $password);
   }
 }

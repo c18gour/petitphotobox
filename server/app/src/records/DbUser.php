@@ -10,6 +10,11 @@ class DbUser extends DbRecord
     parent::__construct($db, "user", $id);
   }
 
+  public function getId()
+  {
+    return $this->id;
+  }
+
   /**
    * Gets the 'main category' of the current user.
    *
