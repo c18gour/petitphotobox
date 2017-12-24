@@ -16,6 +16,28 @@ class DbUser extends DbRecord
     return $this->id;
   }
 
+  public function getUsername()
+  {
+    // TODO: $this->get("username")
+    return $this->columns["username"]->getValue();
+  }
+
+  public function setUsername($value)
+  {
+    // TODO: $this->set("username", $value)
+    $this->columns["username"]->setValue($value);
+  }
+
+  public function getPassword()
+  {
+    return $this->columns["password"]->getValue();
+  }
+
+  public function setPassword($value)
+  {
+    $this->columns["password"]->setValue($value);
+  }
+
   /**
    * Gets the 'main category' of the current user.
    *
@@ -40,14 +62,14 @@ class DbUser extends DbRecord
   /**
    * Searches an user by name.
    *
-   * @param string $username Username
+   * @param DbConnector $db       Database connection
+   * @param string      $username Username
    *
    * @return DbUser
    */
-  public static function searchByName($username)
+  public static function searchByName($db, $username)
   {
     $ret = null;
-    $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
 
     $sql = "
     select

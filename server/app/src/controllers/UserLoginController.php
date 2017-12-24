@@ -56,6 +56,6 @@ class UserLoginController extends BaseController
       throw new ClientException("Username and Password are required fields");
     }
 
-    UserAuth::login($username, $password);
+    UserAuth::login($this->db, $username, $password);
   }
 }

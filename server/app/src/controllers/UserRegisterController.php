@@ -39,7 +39,7 @@ class UserRegisterController extends BaseController
    */
   public function onOpenRequest()
   {
-    if (UserAuth::isLogged()) {
+    if (UserAuth::isLogged($this->db)) {
       throw new AccessDeniedError("The user has already logged");
     }
 
@@ -69,7 +69,7 @@ class UserRegisterController extends BaseController
       );
     }
 
-    $user = DbUser::searchByName($username);
+    $user = DbUser::searchByName($this->db, $username);
     if ($user !== null) {
       throw new ClientException("The user already exist");
     }
@@ -84,7 +84,7 @@ class UserRegisterController extends BaseController
       throw new ClientException("Passwords do not match");
     }
 
-    UserAuth::create($username, $password);
-    UserAuth::login($username, $password);
+    UserAuth::create($this->db, $username, $password);
+    UserAuth::login($this->db, $username, $password);
   }
 }

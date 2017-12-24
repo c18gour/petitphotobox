@@ -8,7 +8,6 @@ use soloproyectos\text\Text;
 
 class HomeController extends AuthController
 {
-  private $_db;
   private $_document;
 
   public function __construct()

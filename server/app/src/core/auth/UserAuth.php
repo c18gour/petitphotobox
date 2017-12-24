@@ -11,15 +11,14 @@ class UserAuth
   /**
    * Creates a user.
    *
-   * @param string $username [description]
-   * @param string $password [description]
+   * @param DbConnector $db       Database connection
+   * @param string      $username User name
+   * @param string      $password Password
    *
    * @return DbUser
    */
-  public static function create($username, $password)
+  public static function create($db, $username, $password)
   {
-    $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
-
     $r = new DbRecordTable($db, "user");
     $userId = $r->save(
       [
@@ -34,14 +33,15 @@ class UserAuth
   /**
    * Gets the current user instance.
    *
+   * @param DbConnector $db Database connection
+   *
    * @return DbUser
    */
-  public static function getInstance()
+  public static function getInstance($db)
   {
     $ret = null;
-    $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
-
     $userId = HttpSession::get("user_id");
+
     $sql = "
     select
       id
@@ -58,36 +58,28 @@ class UserAuth
   /**
    * Logs into the system.
    *
-   * @param string $username Username
-   * @param string $password Password
+   * @param DbConnector $db       Database connection
+   * @param string      $username Username
+   * @param string      $password Password
    *
    * @return DbUser
    */
-  public static function login($username, $password)
+  public static function login($db, $username, $password)
   {
-    $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
-
-    // searches a user by name
-    $sql = "
-    select
-      id,
-      password
-    from `user`
-    where username = ?";
-    $row = $db->query($sql, $username);
-    if (count($row) == 0) {
+    $user = DbUser::searchByName($db, $username);
+    if ($user === null) {
         throw new AuthException("User not found");
     }
 
     // verifies the password
-    if (!password_verify($password, $row["password"])) {
+    if (!password_verify($password, $user->getPassword())) {
       throw new AuthException("Invalid password");
     }
 
     // registers the user in the system
-    HttpSession::set("user_id", $row["id"]);
+    HttpSession::set("user_id", $user->getId());
 
-    return new DbUser($db, $row["id"]);
+    return $user;
   }
 
   /**
@@ -103,10 +95,12 @@ class UserAuth
   /**
    * Is the user logged?
    *
+   * @param DbConnector $db Database connection
+   *
    * @return boolean
    */
-  public static function isLogged()
+  public static function isLogged($db)
   {
-    return UserAuth::getInstance() !== null;
+    return UserAuth::getInstance($db) !== null;
   }
 }
