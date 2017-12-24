@@ -4,10 +4,21 @@ use \Exception;
 use petitphotobox\core\exception\AppError;
 use petitphotobox\core\exception\ClientException;
 use petitphotobox\core\model\BaseDocument;
+use soloproyectos\db\DbConnector;
 use soloproyectos\http\controller\HttpController;
 
 abstract class BaseController extends HttpController
 {
+  protected $db;
+
+  public function __construct()
+  {
+    parent::__construct();
+    $this->addOpenRequestHandler(function () {
+      $this->db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
+    });
+  }
+
   /**
    * Gets the current document.
    *

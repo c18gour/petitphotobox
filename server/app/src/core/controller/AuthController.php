@@ -17,8 +17,8 @@ abstract class AuthController extends BaseController
 
     // processes the initial request
     $this->addOpenRequestHandler(function () {
+      // retrieves the user from the current session
       $this->user = UserAuth::getInstance();
-
       if ($this->user === null) {
         throw new SessionError("Your session has expired");
       }
