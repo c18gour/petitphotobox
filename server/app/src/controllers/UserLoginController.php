@@ -16,8 +16,6 @@ class UserLoginController extends BaseController
   public function __construct()
   {
     parent::__construct();
-    // TODO: move this to onOpenRequest
-    $this->_document = new UserLoginDocument();
     $this->addOpenRequestHandler([$this, "onOpenRequest"]);
     $this->addPostRequestHandler([$this, "onPostRequest"]);
   }
@@ -39,6 +37,7 @@ class UserLoginController extends BaseController
    */
   public function onOpenRequest()
   {
+    $this->_document = new UserLoginDocument();
     $this->_document->setUsername($this->getParam("username", ""));
     $this->_document->setPassword($this->getParam("password"));
   }

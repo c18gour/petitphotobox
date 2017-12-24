@@ -17,8 +17,6 @@ class UserRegisterController extends BaseController
   public function __construct()
   {
     parent::__construct();
-    // TODO: move this to onOpenRequest
-    $this->_document = new UserRegisterDocument();
     $this->addOpenRequestHandler([$this, "onOpenRequest"]);
     $this->addPostRequestHandler([$this, "onPostRequest"]);
   }
@@ -40,6 +38,7 @@ class UserRegisterController extends BaseController
    */
   public function onOpenRequest()
   {
+    $this->_document = new UserRegisterDocument();
     $this->_document->setUsername($this->getParam("username", ""));
     $this->_document->setPassword($this->getParam("password"));
     $this->_document->setRePassword($this->getParam("re_password"));
