@@ -34,6 +34,8 @@ abstract class BaseController extends HttpController
       $this->_printAppError($e->getCode(), $e->getMessage());
       throw $e;
     }
+
+    echo $this->getDocument();
   }
 
   /**
