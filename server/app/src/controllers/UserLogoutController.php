@@ -1,5 +1,6 @@
 <?php
 namespace petitphotobox\controllers;
+use petitphotobox\core\auth\UserAuth;
 use petitphotobox\core\controller\AuthController;
 use petitphotobox\model\documents\UserLogoutDocument;
 
@@ -44,6 +45,6 @@ class UserLogoutController extends AuthController
    */
   public function onPostRequest()
   {
-    $this->user->logout();
+    UserAuth::logout();
   }
 }

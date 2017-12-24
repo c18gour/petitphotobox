@@ -95,7 +95,7 @@ class UserAuth
    *
    * @return void
    */
-  public function logout()
+  public static function logout()
   {
     HttpSession::delete("user_id");
   }
@@ -105,7 +105,7 @@ class UserAuth
    *
    * @return boolean
    */
-  public function isLogged()
+  public static function isLogged()
   {
     return UserAuth::getInstance() !== null;
   }
