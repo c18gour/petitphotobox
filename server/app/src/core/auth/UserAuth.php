@@ -49,6 +49,16 @@ class UserAuth
   }
 
   /**
+   * Gets the user ID.
+   *
+   * @return string
+   */
+  public function getId()
+  {
+    return $this->_id;
+  }
+
+  /**
    * Searches an user by name.
    *
    * @param string $username Username
