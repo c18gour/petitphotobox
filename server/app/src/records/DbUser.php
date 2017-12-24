@@ -1,6 +1,7 @@
 <?php
 namespace petitphotobox\records;
 use petitphotobox\core\model\record\DbRecord;
+use soloproyectos\db\DbConnector;
 use petitphotobox\records\DbCategory;
 
 class DbUser extends DbRecord
@@ -34,5 +35,30 @@ class DbUser extends DbRecord
     $row = $this->db->query($sql, $this->id);
 
     return new DbCategory($this->db, $row["id"]);
+  }
+
+  /**
+   * Searches an user by name.
+   *
+   * @param string $username Username
+   *
+   * @return DbUser
+   */
+  public static function searchByName($username)
+  {
+    $ret = null;
+    $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
+
+    $sql = "
+    select
+      id
+    from `user`
+    where username = ?";
+    $row = $db->query($sql, $username);
+    if (count($row) > 0) {
+      $ret = new DbUser($db, $row["id"]);
+    }
+
+    return $ret;
   }
 }

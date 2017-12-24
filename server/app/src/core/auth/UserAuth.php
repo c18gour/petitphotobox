@@ -32,32 +32,6 @@ class UserAuth
   }
 
   /**
-   * Searches an user by name.
-   *
-   * @param string $username Username
-   *
-   * @return DbUser
-   */
-  // TODO: this method belongs to the model (DbUser)
-  public static function searchByName($username)
-  {
-    $ret = null;
-    $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
-
-    $sql = "
-    select
-      id
-    from `user`
-    where username = ?";
-    $row = $db->query($sql, $username);
-    if (count($row) > 0) {
-      $ret = new DbUser($db, $row["id"]);
-    }
-
-    return $ret;
-  }
-
-  /**
    * Gets the current user instance.
    *
    * @return DbUser

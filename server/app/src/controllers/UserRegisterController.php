@@ -3,6 +3,7 @@ namespace petitphotobox\controllers;
 use petitphotobox\core\auth\UserAuth;
 use petitphotobox\core\controller\BaseController;
 use petitphotobox\core\exception\ClientException;
+use petitphotobox\records\DbUser;
 use soloproyectos\text\Text;
 
 class UserRegisterController extends BaseController
@@ -36,7 +37,7 @@ class UserRegisterController extends BaseController
       );
     }
 
-    $user = UserAuth::searchByName($username);
+    $user = DbUser::searchByName($username);
     if ($user !== null) {
       throw new ClientException("The user already exist");
     }
