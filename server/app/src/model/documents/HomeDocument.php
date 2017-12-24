@@ -1,5 +1,5 @@
 <?php
-namespace petitphotobox\documents;
+namespace petitphotobox\model\documents;
 use petitphotobox\core\model\document\BaseDocument;
 
 class HomeDocument extends BaseDocument

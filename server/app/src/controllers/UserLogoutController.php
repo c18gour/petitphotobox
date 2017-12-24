@@ -1,7 +1,7 @@
 <?php
 namespace petitphotobox\controllers;
 use petitphotobox\core\controller\AuthController;
-use petitphotobox\documents\UserLogoutDocument;
+use petitphotobox\model\documents\UserLogoutDocument;
 
 class UserLogoutController extends AuthController
 {

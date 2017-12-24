@@ -1,8 +1,8 @@
 <?php
-namespace petitphotobox\documents;
+namespace petitphotobox\model\documents;
 use petitphotobox\core\model\document\BaseDocument;
 
-class UserRegisterDocument extends BaseDocument
+class UserLoginDocument extends BaseDocument
 {
   /**
    * Creates an instance.
@@ -11,7 +11,6 @@ class UserRegisterDocument extends BaseDocument
   {
     $this->setProperty("username", "");
     $this->setProperty("password", "");
-    $this->setProperty("rePassword", "");
   }
 
   /**
@@ -59,41 +58,16 @@ class UserRegisterDocument extends BaseDocument
   }
 
   /**
-   * Gets the password.
+   * {@inheritdoc}
    *
    * @return string
    */
-  public function getRePassword()
-  {
-    return $this->getProperty("rePassword");
-  }
-
-  /**
-   * Sets the password.
-   *
-   * @param string $value Password
-   *
-   * @return void
-   */
-  public function setRePassword($value)
-  {
-    $this->setProperty("rePassword", $value);
-  }
-
-  // TODO: create a protected toObject() method and overwrite in the inherited class
   public function __toString()
   {
-    return json_encode(
-      [
-        "status" => [
-          "code" => $this->getStatusCode(),
-          "message" => $this->getStatusMessage()
-        ],
-        "body" => (object) [
-          "username" => $this->getUsername(),
-          "pasword" => $this->getPassword()
-        ]
-      ]
-    );
+    // hides the password
+    $obj = json_decode(parent::__toString());
+    $obj->body->password = "";
+
+    return json_encode($obj);
   }
 }

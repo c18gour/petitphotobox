@@ -1,7 +1,7 @@
 <?php
 namespace petitphotobox\controllers;
 use petitphotobox\core\controller\AuthController;
-use petitphotobox\documents\HomeDocument;
+use petitphotobox\model\documents\HomeDocument;
 use petitphotobox\model\records\DbCategory;
 use petitphotobox\model\records\DbUser;
 use soloproyectos\db\DbConnector;
