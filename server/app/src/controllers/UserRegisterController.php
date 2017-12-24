@@ -3,6 +3,7 @@ namespace petitphotobox\controllers;
 use petitphotobox\core\auth\UserAuth;
 use petitphotobox\core\controller\BaseController;
 use petitphotobox\core\exception\ClientException;
+use petitphotobox\exceptions\AccessDeniedError;
 use petitphotobox\model\documents\UserRegisterDocument;
 use petitphotobox\model\records\DbUser;
 use soloproyectos\text\Text;
@@ -38,6 +39,10 @@ class UserRegisterController extends BaseController
    */
   public function onOpenRequest()
   {
+    if (UserAuth::isLogged()) {
+      throw new AccessDeniedError("The user has already logged");
+    }
+
     $this->_document = new UserRegisterDocument();
     $this->_document->setUsername($this->getParam("username", ""));
     $this->_document->setPassword($this->getParam("password"));
