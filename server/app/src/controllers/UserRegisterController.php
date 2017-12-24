@@ -4,7 +4,7 @@ use petitphotobox\core\auth\UserAuth;
 use petitphotobox\core\controller\BaseController;
 use petitphotobox\core\exception\ClientException;
 use petitphotobox\documents\UserRegisterDocument;
-use petitphotobox\records\DbUser;
+use petitphotobox\model\records\DbUser;
 use soloproyectos\text\Text;
 
 class UserRegisterController extends BaseController

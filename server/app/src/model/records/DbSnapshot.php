@@ -1,5 +1,5 @@
 <?php
-namespace petitphotobox\records;
+namespace petitphotobox\model\records;
 use petitphotobox\core\model\record\DbRecord;
 
 class DbSnapshot extends DbRecord

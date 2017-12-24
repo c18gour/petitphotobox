@@ -2,8 +2,8 @@
 namespace petitphotobox\controllers;
 use petitphotobox\core\controller\AuthController;
 use petitphotobox\documents\HomeDocument;
-use petitphotobox\records\DbCategory;
-use petitphotobox\records\DbUser;
+use petitphotobox\model\records\DbCategory;
+use petitphotobox\model\records\DbUser;
 use soloproyectos\db\DbConnector;
 use soloproyectos\text\Text;
 

@@ -1,7 +1,7 @@
 <?php
-namespace petitphotobox\records;
+namespace petitphotobox\model\records;
 use petitphotobox\core\model\record\DbRecord;
-use petitphotobox\records\DbPicture;
+use petitphotobox\model\records\DbPicture;
 
 class DbCategory extends DbRecord
 {
