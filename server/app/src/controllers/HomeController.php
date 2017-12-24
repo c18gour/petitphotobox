@@ -52,10 +52,10 @@ class HomeController extends AuthController
     return array_map(
       function ($category) {
         return [
-          "id" => $category["id"],
-          "title" => $category["title"],
+          "id" => $category->getId(),
+          "title" => $category->getTitle(),
           "items" => $this->_getCategoriesTree($category),
-          "selected" => $category["id"] == $this->_categoryId
+          "selected" => $category->getId() == $this->_categoryId
         ];
       },
       $parentCategory->getCategories()
@@ -74,7 +74,7 @@ class HomeController extends AuthController
       function ($picture) {
         $snapshot = $picture->getMainSnapshot();
 
-        return ["id" => $picture["id"], "path" => $snapshot["path"]];
+        return ["id" => $picture->getId(), "path" => $snapshot->getPath()];
       },
       $pictures
     );

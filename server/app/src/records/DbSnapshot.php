@@ -8,4 +8,14 @@ class DbSnapshot extends DbRecord
   {
     parent::__construct($db, "snapshot", $id);
   }
+
+  public function getPath()
+  {
+    return $this->columns["path"]->getValue();
+  }
+
+  public function setPath($value)
+  {
+    $this->columns["path"]->setValue($value);
+  }
 }

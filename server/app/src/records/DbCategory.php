@@ -10,6 +10,16 @@ class DbCategory extends DbRecord
     parent::__construct($db, "category", $id);
   }
 
+  public function getTitle()
+  {
+    return $this->columns["title"]->getValue();
+  }
+
+  public function setTitle($value)
+  {
+    $this->columns["title"]->setValue($value);
+  }
+
   /**
    * Gets sub-categories from the current category.
    *

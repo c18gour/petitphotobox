@@ -1,6 +1,5 @@
 <?php
 namespace petitphotobox\core\model\record;
-use \ArrayAccess;
 use soloproyectos\db\Db;
 use soloproyectos\db\DbConnector;
 use soloproyectos\db\record\DbRecordTable;
@@ -8,12 +7,12 @@ use soloproyectos\db\record\DbRecordTable;
 /**
  * Implements the 'active record' approach.
  */
-class DbRecord implements ArrayAccess
+class DbRecord
 {
   protected $db;
   protected $tableName;
   protected $id;
-  private $_columns;
+  protected $columns;
   private $_isRecordFetched = false;
 
   /**
@@ -36,52 +35,13 @@ class DbRecord implements ArrayAccess
   }
 
   /**
-   * {@inheritDoc}
+   * Gets record ID.
    *
-   * @param string $colName Column name
-   *
-   * @return boolean
+   * @return string
    */
-  public function offsetExists($colName)
+  public function getId()
   {
-    return array_key_exists($colName, $this->_columns);
-  }
-
-  /**
-   * {@inheritDoc}
-   *
-   * @param string $colName Column name
-   *
-   * @return mixed
-   */
-  public function offsetGet($colName)
-  {
-    return $this->_columns[$colName]->getValue();
-  }
-
-  /**
-   * {@inheritDoc}
-   *
-   * @param string $colName Column name
-   * @param mixed  $value   Column value
-   *
-   * @return void
-   */
-  public function offsetSet($colName, $value)
-  {
-    $this->_columns[$colName]->setValue($value);
-  }
-
-  /**
-   * {@inheritDoc}
-   *
-   * @param string $colName Column name
-   *
-   * @return void
-   */
-  public function offsetUnset($colName)
-  {
-    throw new Exception("Method not implemented");
+    return $this->id;
   }
 
   /**
@@ -107,7 +67,7 @@ class DbRecord implements ArrayAccess
 
     // gets the modified columns
     $columns = [];
-    foreach ($this->_columns as $colName => $column) {
+    foreach ($this->columns as $colName => $column) {
       if ($column->hasChanged()) {
         $columns[$colName] = $column->getValue();
       }
@@ -145,7 +105,7 @@ class DbRecord implements ArrayAccess
 
     foreach ($rows as $row) {
       $name = $row["Field"];
-      $this->_columns[$name] = new DbRecordColumn();
+      $this->columns[$name] = new DbRecordColumn();
     }
   }
 
@@ -156,13 +116,13 @@ class DbRecord implements ArrayAccess
    */
   private function _fetchRecord()
   {
-    $colNames = array_keys($this->_columns);
+    $colNames = array_keys($this->columns);
 
     // fetches column values
     $r = new DbRecordTable($this->db, $this->tableName);
     $cols = $r->select($colNames, $this->id);
     foreach ($colNames as $i => $colName) {
-      $this->_columns[$colName]->setInitialValue($cols[$i]);
+      $this->columns[$colName]->setInitialValue($cols[$i]);
     }
   }
 }
