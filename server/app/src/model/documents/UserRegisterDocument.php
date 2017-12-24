@@ -80,20 +80,17 @@ class UserRegisterDocument extends BaseDocument
     $this->setProperty("rePassword", $value);
   }
 
-  // TODO: create a protected toObject() method and overwrite in the inherited class
-  public function __toString()
+  /**
+   * {@inheritdoc}
+   *
+   * @return object
+   */
+  protected function getJsonObject()
   {
-    return json_encode(
-      [
-        "status" => [
-          "code" => $this->getStatusCode(),
-          "message" => $this->getStatusMessage()
-        ],
-        "body" => (object) [
-          "username" => $this->getUsername(),
-          "pasword" => $this->getPassword()
-        ]
-      ]
-    );
+    return [
+      "username" => $this->getUsername(),
+      "password" => "",
+      "rePassword" => ""
+    ];
   }
 }

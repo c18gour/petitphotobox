@@ -60,14 +60,13 @@ class UserLoginDocument extends BaseDocument
   /**
    * {@inheritdoc}
    *
-   * @return string
+   * @return object
    */
-  public function __toString()
+  protected function getJsonObject()
   {
-    // hides the password
-    $obj = json_decode(parent::__toString());
-    $obj->body->password = "";
-
-    return json_encode($obj);
+    return [
+      "username" => $this->getUsername(),
+      "password" => ""
+    ];
   }
 }

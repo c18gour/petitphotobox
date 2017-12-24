@@ -77,6 +77,16 @@ abstract class BaseDocument
   }
 
   /**
+   * Gets a 'plain object' representing the current instance.
+   *
+   * @return object
+   */
+  protected function getJsonObject()
+  {
+    return $this->_body;
+  }
+
+  /**
    * Gets a string representation of the current instance.
    *
    * @return string
@@ -84,12 +94,12 @@ abstract class BaseDocument
   public function __toString()
   {
     return json_encode(
-      [
+      (object) [
         "status" => [
           "code" => $this->_statusCode,
           "message" => $this->_statusMessage
         ],
-        "body" => (object) $this->_body
+        "body" => (object) $this->getJsonObject()
       ]
     );
   }
