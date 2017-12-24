@@ -13,6 +13,7 @@ class UserLogoutController extends AuthController
   public function __construct()
   {
     parent::__construct();
+    // TODO: move this to onOpenRequest
     $this->_document = new UserLogoutDocument();
     $this->addPostRequestHandler([$this, "onPostRequest"]);
   }

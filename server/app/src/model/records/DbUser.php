@@ -19,7 +19,7 @@ class DbUser extends DbRecord
   /**
    * Gets the 'main category' of the current user.
    *
-   * Every user has a 'main category'. This category has no parents and it's
+   * Each user has a 'main category'. This category has no parents and it's
    * unique for each user.
    *
    * @return DbCategory

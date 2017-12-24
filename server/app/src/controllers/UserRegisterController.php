@@ -17,6 +17,7 @@ class UserRegisterController extends BaseController
   public function __construct()
   {
     parent::__construct();
+    // TODO: move this to onOpenRequest
     $this->_document = new UserRegisterDocument();
     $this->addOpenRequestHandler([$this, "onOpenRequest"]);
     $this->addPostRequestHandler([$this, "onPostRequest"]);
