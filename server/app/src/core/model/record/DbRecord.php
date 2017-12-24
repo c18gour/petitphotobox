@@ -12,8 +12,7 @@ class DbRecord
   protected $db;
   private $_id;
   private $_tableName;
-  // TODO:  change protected to private
-  protected $columns;
+  private $_columns;
   private $_isRecordFetched = false;
 
   /**
@@ -27,7 +26,7 @@ class DbRecord
   {
     $this->db = $db;
     $this->_tableName = $tableName;
-    $this->id = $id;
+    $this->_id = $id;
 
     $this->_fetchColumns();
     if ($id !== null) {
@@ -42,17 +41,17 @@ class DbRecord
    */
   public function getId()
   {
-    return $this->id;
+    return $this->_id;
   }
 
   protected function get($colName)
   {
-    return $this->columns[$colName]->getValue();
+    return $this->_columns[$colName]->getValue();
   }
 
   protected function set($colName, $value)
   {
-    $this->columns[$colName]->setValue($value);
+    $this->_columns[$colName]->setValue($value);
   }
 
   /**
@@ -78,13 +77,13 @@ class DbRecord
 
     // gets the modified columns
     $columns = [];
-    foreach ($this->columns as $colName => $column) {
+    foreach ($this->_columns as $colName => $column) {
       if ($column->hasChanged()) {
         $columns[$colName] = $column->getValue();
       }
     }
 
-    $this->id = $r->save($columns, $this->id);
+    $this->_id = $r->save($columns, $this->_id);
     $this->_fetchRecord();
   }
 
@@ -116,7 +115,7 @@ class DbRecord
 
     foreach ($rows as $row) {
       $name = $row["Field"];
-      $this->columns[$name] = new DbRecordColumn();
+      $this->_columns[$name] = new DbRecordColumn();
     }
   }
 
@@ -127,13 +126,13 @@ class DbRecord
    */
   private function _fetchRecord()
   {
-    $colNames = array_keys($this->columns);
+    $colNames = array_keys($this->_columns);
 
     // fetches column values
     $r = new DbRecordTable($this->db, $this->_tableName);
-    $cols = $r->select($colNames, $this->id);
+    $cols = $r->select($colNames, $this->_id);
     foreach ($colNames as $i => $colName) {
-      $this->columns[$colName]->setInitialValue($cols[$i]);
+      $this->_columns[$colName]->setInitialValue($cols[$i]);
     }
   }
 }
