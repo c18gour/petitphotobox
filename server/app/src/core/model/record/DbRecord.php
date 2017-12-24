@@ -10,8 +10,8 @@ use soloproyectos\db\record\DbRecordTable;
 class DbRecord
 {
   protected $db;
+  private $_id;
   // TODO:  change protected to private
-  protected $id;
   protected $tableName;
   protected $columns;
   private $_isRecordFetched = false;

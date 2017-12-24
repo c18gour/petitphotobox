@@ -33,7 +33,7 @@ class DbCategory extends DbRecord
     from category
     where parent_category_id = ?
     order by id";
-    $rows = iterator_to_array($this->db->query($sql, $this->id));
+    $rows = iterator_to_array($this->db->query($sql, $this->getId()));
 
     return array_map(
       function ($row) {
@@ -50,7 +50,7 @@ class DbCategory extends DbRecord
       picture_id
     from category_picture
     where category_id = ?";
-    $rows = iterator_to_array($this->db->query($sql, $this->id));
+    $rows = iterator_to_array($this->db->query($sql, $this->getId()));
 
     return array_map(
       function ($row) {

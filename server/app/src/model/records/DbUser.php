@@ -11,11 +11,6 @@ class DbUser extends DbRecord
     parent::__construct($db, "user", $id);
   }
 
-  public function getId()
-  {
-    return $this->id;
-  }
-
   public function getUsername()
   {
     return $this->get("username");
@@ -52,7 +47,7 @@ class DbUser extends DbRecord
     from category
     where parent_category_id is null
     and user_id = ?";
-    $row = $this->db->query($sql, $this->id);
+    $row = $this->db->query($sql, $this->getId());
 
     return new DbCategory($this->db, $row["id"]);
   }

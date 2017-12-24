@@ -18,7 +18,7 @@ class DbPicture extends DbRecord
     from snapshot
     where picture_id = ?
     order by ord desc";
-    $rows = iterator_to_array($this->db->query($sql, $this->id));
+    $rows = iterator_to_array($this->db->query($sql, $this->getId()));
 
     return array_map(
       function ($row) {
@@ -37,7 +37,7 @@ class DbPicture extends DbRecord
     where picture_id = ?
     order by ord desc
     limit 1";
-    $row = $this->db->query($sql, $this->id);
+    $row = $this->db->query($sql, $this->getId());
 
     return new DbSnapshot($this->db, $row["id"]);
   }
