@@ -11,8 +11,8 @@ class DbRecord
 {
   protected $db;
   private $_id;
+  private $_tableName;
   // TODO:  change protected to private
-  protected $tableName;
   protected $columns;
   private $_isRecordFetched = false;
 
@@ -26,7 +26,7 @@ class DbRecord
   public function __construct($db, $tableName, $id = null)
   {
     $this->db = $db;
-    $this->tableName = $tableName;
+    $this->_tableName = $tableName;
     $this->id = $id;
 
     $this->_fetchColumns();
@@ -74,7 +74,7 @@ class DbRecord
    */
   public function save()
   {
-    $r = new DbRecordTable($this->db, $this->tableName);
+    $r = new DbRecordTable($this->db, $this->_tableName);
 
     // gets the modified columns
     $columns = [];
@@ -111,7 +111,7 @@ class DbRecord
   private function _fetchColumns()
   {
     $rows = $this->db->query(
-      "show columns from " . Db::quoteId($this->tableName)
+      "show columns from " . Db::quoteId($this->_tableName)
     );
 
     foreach ($rows as $row) {
@@ -130,7 +130,7 @@ class DbRecord
     $colNames = array_keys($this->columns);
 
     // fetches column values
-    $r = new DbRecordTable($this->db, $this->tableName);
+    $r = new DbRecordTable($this->db, $this->_tableName);
     $cols = $r->select($colNames, $this->id);
     foreach ($colNames as $i => $colName) {
       $this->columns[$colName]->setInitialValue($cols[$i]);
