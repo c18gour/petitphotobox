@@ -45,6 +45,16 @@ class DbRecord
     return $this->id;
   }
 
+  protected function get($colName)
+  {
+    return $this->columns[$colName]->getValue();
+  }
+
+  protected function set($colName, $value)
+  {
+    $this->columns[$colName]->setValue($value);
+  }
+
   /**
    * Inserts or updates a column.
    *

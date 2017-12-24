@@ -18,24 +18,22 @@ class DbUser extends DbRecord
 
   public function getUsername()
   {
-    // TODO: $this->get("username")
-    return $this->columns["username"]->getValue();
+    return $this->get("username");
   }
 
   public function setUsername($value)
   {
-    // TODO: $this->set("username", $value)
-    $this->columns["username"]->setValue($value);
+    $this->set("username", $value);
   }
 
   public function getPassword()
   {
-    return $this->columns["password"]->getValue();
+    return $this->get("password");
   }
 
   public function setPassword($value)
   {
-    $this->columns["password"]->setValue($value);
+    $this->set("password", $value);
   }
 
   /**

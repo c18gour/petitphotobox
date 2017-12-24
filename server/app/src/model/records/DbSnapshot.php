@@ -11,11 +11,11 @@ class DbSnapshot extends DbRecord
 
   public function getPath()
   {
-    return $this->columns["path"]->getValue();
+    return $this->get("path");
   }
 
   public function setPath($value)
   {
-    $this->columns["path"]->setValue($value);
+    $this->set("path", $value);
   }
 }

@@ -12,12 +12,12 @@ class DbCategory extends DbRecord
 
   public function getTitle()
   {
-    return $this->columns["title"]->getValue();
+    return $this->get("title");
   }
 
   public function setTitle($value)
   {
-    $this->columns["title"]->setValue($value);
+    $this->set("title", $value);
   }
 
   /**
