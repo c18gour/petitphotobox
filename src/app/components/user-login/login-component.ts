@@ -14,8 +14,8 @@ export class UserLoginComponent implements OnInit {
   errorMessage = '';
 
   constructor(
-    private _router: Router,
-    private _controller: UserLoginController) { }
+    private _controller: UserLoginController,
+    private _router: Router) { }
 
   async ngOnInit() {
     this.document = await this._controller.get();
