@@ -33,9 +33,10 @@ export class HttpRequest {
     }
 
     // prepares the request
+    const options = new RequestOptions({ withCredentials: true });
     const request = method === 'get'
-      ? this._http.get(url, new RequestOptions({ params }))
-      : this._http.post(url, params);
+      ? this._http.get(url, options.merge({ params }))
+      : this._http.post(url, params, options);
 
     // checkes and returns the response
     try {
