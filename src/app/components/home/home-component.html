@@ -1,4 +1,5 @@
-<div class="container">
+<div class="container" *ngIf="document">
+  <app-menu [entries]="document.categories" (selectEntry)="onSelect($event)"></app-menu>
   <p><button type="button" (click)="logout()">Logout</button></p>
   <p>
     <span>home works!</span>

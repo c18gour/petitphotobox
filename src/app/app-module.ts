@@ -7,6 +7,7 @@ import { AppRoutingModule } from './/app-routing-module';
 
 // components
 import { AppComponent } from './app-component';
+import { MenuComponent } from './components/menu/menu-component';
 import { HomeComponent } from './components/home/home-component';
 import { UserLoginComponent } from './components/user-login/login-component';
 import { UserRegisterComponent } from './components/user-register/user-register-component';
@@ -21,6 +22,7 @@ import { HomeController } from './controllers/home-controller';
 @NgModule({
   declarations: [
     AppComponent,
+    MenuComponent,
     HomeComponent,
     UserLoginComponent,
     UserRegisterComponent,

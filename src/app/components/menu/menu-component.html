@@ -1,0 +1,6 @@
+<ul>
+  <li *ngFor="let entry of entries">
+    <a (click)="onSelectEntry(entry.id)">{{entry.title}}</a>
+    <app-menu [entries]="entry.items" *ngIf="entry.items.length > 0" (selectEntry)="onSelectEntry($event)"></app-menu>
+  </li>
+</ul>

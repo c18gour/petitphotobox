@@ -11,8 +11,8 @@ export class HomeController extends BaseController {
     super(`${env.apiUrl}/home.php`);
   }
 
-  async get() {
-    const response = await this._http.get(this.url);
+  async get(categoryId?: string) {
+    const response = await this._http.get(this.url, { categoryId });
 
     return new HomeDocument(response.json());
   }

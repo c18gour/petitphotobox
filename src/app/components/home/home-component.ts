@@ -39,4 +39,8 @@ export class HomeComponent implements OnInit {
     await this._logoutController.post();
     this._router.navigate(['/login']);
   }
+
+  onSelect(categoryId: string) {
+    this._controller.get(categoryId);
+  }
 }
