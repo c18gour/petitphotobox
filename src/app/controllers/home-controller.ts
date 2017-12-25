@@ -18,11 +18,4 @@ export class HomeController extends BaseController {
 
     return new HomeDocument(response.json());
   }
-
-  async post(categoryId: string) {
-    const response = await this._http.post(
-      this.url, { category_id: categoryId });
-
-    return new HomeDocument(response.json());
-  }
 }

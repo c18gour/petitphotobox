@@ -11,12 +11,6 @@ export class LogoutController extends BaseController {
     super(`${env.apiUrl}/user-logout.php`);
   }
 
-  async get() {
-    const response = await this._http.get(this.url);
-
-    return new LogoutDocument(response.json());
-  }
-
   async post() {
     const response = await this._http.post(this.url);
 
