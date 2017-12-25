@@ -1,1 +1,9 @@
 Options -Indexes
+
+<IfModule mod_headers.c>
+  # uncomment these two lines when testing on local
+  # Header set Access-Control-Allow-Origin "http://localhost:4200"
+  # Header set Access-Control-Allow-Credentials true
+  Header add Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
+  Header add Access-Control-Allow-Headers: "Content-Type"
+</IfModule>
