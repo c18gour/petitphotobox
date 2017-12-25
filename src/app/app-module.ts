@@ -15,6 +15,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 // services and controllers
 import { HttpRequest } from './core/service/http/http-request';
 import { UserLoginController } from './controllers/user-login-controller';
+import { LogoutController } from './controllers/logout-controller';
 import { HomeController } from './controllers/home-controller';
 
 @NgModule({
@@ -34,6 +35,7 @@ import { HomeController } from './controllers/home-controller';
   providers: [
     HttpRequest,
     UserLoginController,
+    LogoutController,
     HomeController
   ],
   bootstrap: [AppComponent]

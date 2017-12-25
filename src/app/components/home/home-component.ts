@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { HomeController } from '../../controllers/home-controller';
+import { LogoutController } from '../../controllers/logout-controller';
 import { HomeDocument } from '../../documents/home-document';
 
 @Component({
@@ -14,6 +15,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private _controller: HomeController,
+    private _logoutController: LogoutController,
     private _router: Router
   ) { }
 
@@ -21,4 +23,10 @@ export class HomeComponent implements OnInit {
     this.document = await this._controller.get();
   }
 
+  async logout() {
+    // TODO: preloader
+    // TODO: check status response
+    await this._logoutController.post();
+    this._router.navigate(['/login']);
+  }
 }
