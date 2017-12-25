@@ -7,7 +7,6 @@ import { HttpRequest } from '../core/service/http/http-request';
 
 @Injectable()
 export class UserLoginController extends BaseController {
-
   constructor(private _http: HttpRequest) {
     super(`${env.apiUrl}/user-login.php`);
   }
