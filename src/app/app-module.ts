@@ -4,13 +4,18 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './/app-routing-module';
+
+// components
 import { AppComponent } from './app-component';
 import { HomeComponent } from './components/home/home-component';
 import { UserLoginComponent } from './components/user-login/login-component';
 import { UserRegisterComponent } from './components/user-register/user-register-component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found-component';
-import { UserLoginController } from './controllers/user-login-controller';
+
+// services and controllers
 import { HttpRequest } from './core/service/http/http-request';
+import { UserLoginController } from './controllers/user-login-controller';
+import { HomeController } from './controllers/home-controller';
 
 @NgModule({
   declarations: [
@@ -27,8 +32,9 @@ import { HttpRequest } from './core/service/http/http-request';
     AppRoutingModule
   ],
   providers: [
+    HttpRequest,
     UserLoginController,
-    HttpRequest
+    HomeController
   ],
   bootstrap: [AppComponent]
 })

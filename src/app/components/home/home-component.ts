@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { HomeController } from '../../controllers/home-controller';
+import { HomeDocument } from '../../documents/home-document';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +10,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-component.scss']
 })
 export class HomeComponent implements OnInit {
+  document: HomeDocument;
 
-  constructor() { }
+  constructor(
+    private _controller: HomeController,
+    private _router: Router
+  ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.document = await this._controller.get();
   }
 
 }
