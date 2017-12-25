@@ -18,6 +18,8 @@ export class UserLoginComponent implements OnInit {
     private _router: Router) { }
 
   async ngOnInit() {
+    // TODO: if the user has already logged, redirect to home
+    // TODO: check error status
     this.document = await this._controller.get();
   }
 
