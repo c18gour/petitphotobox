@@ -1,7 +1,9 @@
-<div class="container" *ngIf="document">
-  <app-menu [entries]="document.categories" (selectEntry)="onSelect($event)"></app-menu>
-  <p><button type="button" (click)="logout()">Logout</button></p>
-  <p>
-    <span>home works!</span>
-  </p>
+<div class="container" *ngIf="doc">
+  <div>
+    <app-menu [entries]="doc.categories" (selectEntry)="onSelect($event)"></app-menu>
+    <p><button type="button" (click)="logout()">Logout</button></p>
+  </div>
+  <div>
+    <p *ngFor="let picture of doc.pictures">{{picture.path}}</p>
+  </div>
 </div>

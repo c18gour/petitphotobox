@@ -12,7 +12,9 @@ export class HomeController extends BaseController {
   }
 
   async get(categoryId?: string) {
-    const response = await this._http.get(this.url, { categoryId });
+    const response = await this._http.get(
+      this.url, { category_id: categoryId }
+    );
 
     return new HomeDocument(response.json());
   }

@@ -4,4 +4,8 @@ export class HomeDocument extends BaseDocument {
   get categories() {
     return this.body.categories;
   }
+
+  get pictures() {
+    return this.body.pictures;
+  }
 }

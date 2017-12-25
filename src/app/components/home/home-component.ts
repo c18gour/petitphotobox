@@ -13,7 +13,7 @@ import { HomeDocument } from '../../documents/home-document';
   styleUrls: ['./home-component.scss']
 })
 export class HomeComponent implements OnInit {
-  document: HomeDocument;
+  doc: HomeDocument;
 
   constructor(
     private _controller: HomeController,
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      this.document = await this._controller.get();
+      this.doc = await this._controller.get();
     } catch (e) {
       if (e instanceof SessionError) {
         this._router.navigate(['/login']);
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     this._router.navigate(['/login']);
   }
 
-  onSelect(categoryId: string) {
-    this._controller.get(categoryId);
+  async onSelect(categoryId: string) {
+    this.doc = await this._controller.get(categoryId);
   }
 }
