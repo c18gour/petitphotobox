@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { SessionError } from '../../core/exception/session-error';
+
 import { HomeController } from '../../controllers/home-controller';
 import { LogoutController } from '../../controllers/logout-controller';
 import { HomeDocument } from '../../documents/home-document';
@@ -20,7 +22,15 @@ export class HomeComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.document = await this._controller.get();
+    try {
+      this.document = await this._controller.get();
+    } catch (e) {
+      if (e instanceof SessionError) {
+        this._router.navigate(['/login']);
+      }
+
+      throw e;
+    }
   }
 
   async logout() {
