@@ -1,29 +1,6 @@
 @import './config/css/palette';
 @import './config/css/metrics';
 
-body {
-  margin: 0;
-}
-
-.main {
-  &.container {
-    max-width: none;
-    padding: 0;
-  }
-}
-
-.header {
-  background: $primary-text-color;
-  color: $primary-color-text;
-  margin-bottom: 2rem;
-  padding: .2rem .5rem;
-
-  h1 {
-    font-size: $font-size-h3;
-    margin: 0;
-  }
-}
-
 div {
   %box {
     border-radius: .4rem;
@@ -36,5 +13,48 @@ div {
     background-color: $primary-color-light;
     border: .1rem solid $primary-color;
     font-weight: 400;
+  }
+}
+
+:scope {
+  body {
+    margin: 0;
+  }
+
+  .main {
+    &.container {
+      max-width: none;
+      padding: 0;
+    }
+  }
+
+  .header {
+    align-items: center;
+    background: $primary-text-color;
+    color: $primary-color-text;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2rem;
+    padding: .6rem 1rem;
+
+    & > * {
+      line-height: 0;
+      padding-left: 1rem;
+
+      &:first-child {
+        padding-left: 0;
+      }
+    }
+
+    a {
+      color: $primary-color-text;
+      font-size: $font-size-h3;
+    }
+
+    h1 {
+      flex-grow: 1;
+      font-size: $font-size-h3;
+      margin: 0;
+    }
   }
 }

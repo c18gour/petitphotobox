@@ -1,6 +1,9 @@
 <div class="header">
-  <h1>Photobox</h1>
+  <a class="menu item" href="#" title="Toggles menu"><i class="fa fa-bars"></i></a>
+  <h1 class="header item">Photobox</h1>
+  <a class="exit item" href="#" title="Sign out"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
 </div>
+
 <div class="container" *ngIf="entity"> <!-- secondary container -->
   <div>
     <app-menu [entries]="entity.categories" (selectEntry)="onSelect($event)"></app-menu>
