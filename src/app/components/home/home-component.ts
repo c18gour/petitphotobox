@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { SessionError } from '../../core/exception/session-error';
 
@@ -18,19 +18,24 @@ export class HomeComponent implements OnInit {
   constructor(
     private _controller: HomeController,
     private _logoutController: LogoutController,
-    private _router: Router
+    private _router: Router,
+    private _route: ActivatedRoute
   ) { }
 
-  async ngOnInit() {
-    try {
-      this.entity = await this._controller.get();
-    } catch (e) {
-      if (e instanceof SessionError) {
-        this._router.navigate(['/login']);
-      }
+  ngOnInit() {
+    this._route.params.subscribe(async (params) => {
+      const categoryId = params.id ? params.id : '';
 
-      throw e;
-    }
+      try {
+        this.entity = await this._controller.get({ category_id: categoryId });
+      } catch (e) {
+        if (e instanceof SessionError) {
+          this._router.navigate(['/login']);
+        }
+
+        throw e;
+      }
+    });
   }
 
   async logout() {
@@ -40,7 +45,7 @@ export class HomeComponent implements OnInit {
     this._router.navigate(['/login']);
   }
 
-  async onSelect(categoryId: string) {
-    this.entity = await this._controller.get({ category_id: categoryId });
+  onSelect(categoryId: string) {
+    this._router.navigate(['/home', categoryId]);
   }
 }
