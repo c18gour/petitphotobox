@@ -21,8 +21,7 @@
       "styles": [
         "styles.scss",
         "../node_modules/milligram/dist/milligram.min.css",
-        "config/css/theme.scss",
-        "assets/css/general.scss"
+        "config/css/theme.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
