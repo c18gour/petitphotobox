@@ -1,4 +1,5 @@
 @import './config/css/palette';
+@import './config/css/metrics';
 
 body {
   margin: 0;
@@ -15,8 +16,10 @@ body {
   background: $primary-text-color;
   color: $primary-color-text;
   margin-bottom: 2rem;
+  padding: .2rem .5rem;
 
   h1 {
+    font-size: $font-size-h3;
     margin: 0;
   }
 }
