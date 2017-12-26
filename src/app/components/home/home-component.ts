@@ -38,6 +38,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  openMenu() {
+    console.log('yes!');
+  }
+
   async logout() {
     // TODO: preloader
     // TODO: check status response

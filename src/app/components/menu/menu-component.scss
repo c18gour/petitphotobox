@@ -3,8 +3,15 @@
 ul {
   background-color: $primary-text-color;
   border-top: 1px solid $divider-color;
+  // display: none;
   list-style: none;
-  padding: 1.5rem 0 1.5rem 1rem;
+  padding: 1rem 0 1.6rem 1.6rem;
+
+  li {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 
   a {
     color: $primary-color-text;
@@ -13,16 +20,12 @@ ul {
   ul {
     border-top: 0;
     font-size: 100%;
+    margin-bottom: 1.6rem;
     opacity: .7;
     padding: 0;
   }
-}
 
-/*
-ul {
-  background-color: $primary-text-color;
-  border: 1px solid red;
-  color: $primary-color-text !important;
-  list-style: none;
-  // margin-bottom: 0;
-}*/
+  &.open {
+    display: block;
+  }
+}
