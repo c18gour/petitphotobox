@@ -3,6 +3,7 @@ namespace petitphotobox\controllers;
 use petitphotobox\core\auth\UserAuth;
 use petitphotobox\core\controller\BaseController;
 use petitphotobox\core\exception\ClientException;
+use petitphotobox\exceptions\SessionError;
 use petitphotobox\model\documents\UserLoginDocument;
 use soloproyectos\text\Text;
 
@@ -17,6 +18,7 @@ class UserLoginController extends BaseController
   {
     parent::__construct();
     $this->addOpenRequestHandler([$this, "onOpenRequest"]);
+    $this->addOpenRequestHandler([$this, "onGetRequest"]);
     $this->addPostRequestHandler([$this, "onPostRequest"]);
   }
 
@@ -40,6 +42,18 @@ class UserLoginController extends BaseController
     $this->_document = new UserLoginDocument();
     $this->_document->setUsername($this->getParam("username", ""));
     $this->_document->setPassword($this->getParam("password"));
+  }
+
+  /**
+   * Processes OPEN requests.
+   *
+   * @return void
+   */
+  public function onGetRequest()
+  {
+    if (UserAuth::isLogged($this->db)) {
+      throw new SessionError("User has already logged");
+    }
   }
 
   /**

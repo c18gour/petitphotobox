@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { UserLoginController } from '../../controllers/user-login-controller';
 import { UserLoginEntity } from '../../entities/user-login-entity';
+import { SessionError } from '../../core/exception/session-error';
 
 @Component({
   selector: 'app-login',
@@ -18,9 +19,14 @@ export class UserLoginComponent implements OnInit {
     private _router: Router) { }
 
   async ngOnInit() {
-    // TODO: if the user has already logged, redirect to home
     // TODO: check error status
-    this.entity = await this._controller.get();
+    try {
+      this.entity = await this._controller.get();
+    } catch (e) {
+      if (e instanceof SessionError) {
+        this._router.navigate(['/home']);
+      }
+    }
   }
 
   async onSubmit() {
