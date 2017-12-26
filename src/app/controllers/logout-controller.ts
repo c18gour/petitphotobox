@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { environment as env } from '../../environments/environment';
-import { BaseController } from '../core/service/controller/base-controller';
+import { BaseController } from '../core/controller/base-controller';
 import { LogoutEntity } from '../model/entities/logout-entity';
 
 @Injectable()

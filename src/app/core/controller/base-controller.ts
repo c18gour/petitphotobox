@@ -1,11 +1,10 @@
 import { Http, Response, URLSearchParams, RequestOptions } from '@angular/http';
 
-import { BaseEntity } from '../../../core/model/entity/base-entity';
-import { AppError } from '../../../core/exception/app-error';
-import { SessionError } from '../../../core/exception/session-error';
-import { ClientException } from '../../../core/exception/client-exception';
+import { BaseEntity } from '../../core/model/entity/base-entity';
+import { AppError } from '../../core/exception/app-error';
+import { SessionError } from '../../core/exception/session-error';
+import { ClientException } from '../../core/exception/client-exception';
 
-// TODO: esto no es un servicio !!!
 export abstract class BaseController<Type extends BaseEntity> {
   private _sessionErrorCode = 501;
 
