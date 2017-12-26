@@ -5,9 +5,7 @@
 @import './palette';
 @import '~compass-mixins/lib/compass/css3';
 
-$bg-color: #fff;
-
-.app {
+:scope {
   a {
     @include user-select(none);
     color: $primary-text-color;
@@ -18,7 +16,6 @@ $bg-color: #fff;
       text-decoration: underline;
     }
   }
-
 
   blockquote,
   dl,
