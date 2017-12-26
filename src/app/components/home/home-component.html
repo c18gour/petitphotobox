@@ -5,7 +5,7 @@
   <a title="Sign out" (click)="logout()"><i class="fa fa-sign-out"></i></a>
 </div>
 
-<div class="container" *ngIf="entity"> <!-- secondary container -->
+<div class="container" *ngIf="entity">
   <div>
     <app-menu [entries]="entity.categories" (selectEntry)="onSelect($event)"></app-menu>
   </div>
