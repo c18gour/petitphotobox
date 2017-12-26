@@ -1,6 +1,60 @@
+<!--
 <ul>
   <li *ngFor="let entry of entries">
     <a (click)="onSelectEntry(entry.id)">{{entry.title}}</a>
     <app-menu [entries]="entry.items" *ngIf="entry.items.length > 0" (selectEntry)="onSelectEntry($event)"></app-menu>
+  </li>
+</ul>-->
+
+<ul>
+  <li>
+    <a href="#">Item 1</a>
+    <ul>
+      <li>
+        <a href="#">Item 11</a>
+        <ul>
+          <li><a href="#">Item 111</a></li>
+          <li><a href="#">Item 112</a></li>
+          <li><a href="#">Item 113</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Item 12</a>
+        <ul>
+          <li><a href="#">Item 121</a></li>
+          <li><a href="#">Item 122</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Item 13</a>
+        <ul>
+          <li><a href="#">Item 131</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#">Item 2</a>
+    <ul>
+      <li>
+        <a href="#">Item 21</a>
+        <ul>
+          <li><a href="#">Item 211</a></li>
+          <li><a href="#">Item 212</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Item 22</a>
+        <ul>
+          <li><a href="#">Item 221</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#">Item 3</a>
+    <ul>
+      <li><a href="#">Item 21</a></li>
+    </ul>
   </li>
 </ul>

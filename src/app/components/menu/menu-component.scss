@@ -1,0 +1,28 @@
+@import '../../../config/css/palette';
+
+ul {
+  background-color: $primary-text-color;
+  border-top: 1px solid $divider-color;
+  list-style: none;
+  padding: 1.5rem 0 1.5rem 1rem;
+
+  a {
+    color: $primary-color-text;
+  }
+
+  ul {
+    border-top: 0;
+    font-size: 100%;
+    opacity: .7;
+    padding: 0;
+  }
+}
+
+/*
+ul {
+  background-color: $primary-text-color;
+  border: 1px solid red;
+  color: $primary-color-text !important;
+  list-style: none;
+  // margin-bottom: 0;
+}*/
