@@ -38,7 +38,7 @@ div {
     padding: .6rem 1rem;
 
     & > * {
-      line-height: 0;
+      line-height: normal;
       padding-left: 1rem;
 
       &:first-child {
