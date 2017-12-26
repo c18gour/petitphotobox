@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserLoginController } from '../../controllers/user-login-controller';
-import { UserLoginDocument } from '../../documents/user-login-document';
+import { UserLoginEntity } from '../../model/entities/user-login-entity';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ import { UserLoginDocument } from '../../documents/user-login-document';
   styleUrls: ['./login-component.scss']
 })
 export class UserLoginComponent implements OnInit {
-  document: UserLoginDocument;
+  entity: UserLoginEntity;
   errorMessage = '';
 
   constructor(
@@ -20,13 +20,13 @@ export class UserLoginComponent implements OnInit {
   async ngOnInit() {
     // TODO: if the user has already logged, redirect to home
     // TODO: check error status
-    this.document = await this._controller.get();
+    this.entity = await this._controller.get();
   }
 
   async onSubmit() {
     try {
-      this.document = await this._controller.post(
-        this.document.username, this.document.password);
+      this.entity = await this._controller.post(
+        { username: this.entity.username, password: this.entity.password });
     } catch (e) {
       this.errorMessage = e.message;
       throw e;

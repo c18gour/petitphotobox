@@ -14,7 +14,6 @@ import { UserRegisterComponent } from './components/user-register/user-register-
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found-component';
 
 // services and controllers
-import { HttpRequest } from './core/service/http/http-request';
 import { UserLoginController } from './controllers/user-login-controller';
 import { LogoutController } from './controllers/logout-controller';
 import { HomeController } from './controllers/home-controller';
@@ -35,7 +34,6 @@ import { HomeController } from './controllers/home-controller';
     AppRoutingModule
   ],
   providers: [
-    HttpRequest,
     UserLoginController,
     LogoutController,
     HomeController

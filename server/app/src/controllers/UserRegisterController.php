@@ -37,6 +37,7 @@ class UserRegisterController extends BaseController
    *
    * @return void
    */
+  // TODO: rename re_password by rePassword
   public function onOpenRequest()
   {
     if (UserAuth::isLogged($this->db)) {

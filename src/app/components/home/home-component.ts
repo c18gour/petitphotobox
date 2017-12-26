@@ -5,7 +5,7 @@ import { SessionError } from '../../core/exception/session-error';
 
 import { HomeController } from '../../controllers/home-controller';
 import { LogoutController } from '../../controllers/logout-controller';
-import { HomeDocument } from '../../documents/home-document';
+import { HomeEntity } from '../../model/entities/home-entity';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,7 @@ import { HomeDocument } from '../../documents/home-document';
   styleUrls: ['./home-component.scss']
 })
 export class HomeComponent implements OnInit {
-  doc: HomeDocument;
+  entity: HomeEntity;
 
   constructor(
     private _controller: HomeController,
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     try {
-      this.doc = await this._controller.get();
+      this.entity = await this._controller.get();
     } catch (e) {
       if (e instanceof SessionError) {
         this._router.navigate(['/login']);
@@ -41,6 +41,6 @@ export class HomeComponent implements OnInit {
   }
 
   async onSelect(categoryId: string) {
-    this.doc = await this._controller.get(categoryId);
+    this.entity = await this._controller.get({ category_id: categoryId });
   }
 }

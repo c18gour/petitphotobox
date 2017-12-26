@@ -1,9 +1,9 @@
-<div class="container" *ngIf="doc">
+<div class="container" *ngIf="entity">
   <div>
-    <app-menu [entries]="doc.categories" (selectEntry)="onSelect($event)"></app-menu>
+    <app-menu [entries]="entity.categories" (selectEntry)="onSelect($event)"></app-menu>
     <p><button type="button" (click)="logout()">Logout</button></p>
   </div>
   <div>
-    <p *ngFor="let picture of doc.pictures">{{picture.path}}</p>
+    <p *ngFor="let picture of entity.pictures">{{picture.path}}</p>
   </div>
 </div>

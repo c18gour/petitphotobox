@@ -1,21 +1,17 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 
 import { environment as env } from '../../environments/environment';
 import { BaseController } from '../core/service/controller/base-controller';
-import { HomeDocument } from '../documents/home-document';
-import { HttpRequest } from '../core/service/http/http-request';
+import { HomeEntity } from '../model/entities/home-entity';
 
 @Injectable()
-export class HomeController extends BaseController {
-  constructor(private _http: HttpRequest) {
-    super(`${env.apiUrl}/home.php`);
+export class HomeController extends BaseController<HomeEntity> {
+  constructor(http: Http) {
+    super(http, `${env.apiUrl}/home.php`);
   }
 
-  async get(categoryId?: string) {
-    const response = await this._http.get(
-      this.url, { category_id: categoryId }
-    );
-
-    return new HomeDocument(response.json());
+  get(args?: { category_id: string }) {
+    return super.get(args);
   }
 }

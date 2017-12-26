@@ -34,6 +34,7 @@ class HomeController extends AuthController
    *
    * @return void
    */
+  // TODO: rename category_id by categoryId
   public function onOpenRequest()
   {
     $categoryId = $this->getParam("category_id");
