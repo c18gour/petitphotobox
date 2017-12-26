@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 
 import { environment as env } from '../../environments/environment';
 import { BaseController } from '../core/controller/base-controller';
-import { LogoutEntity } from '../model/entities/logout-entity';
+import { LogoutEntity } from '../entities/logout-entity';
 
 @Injectable()
 export class LogoutController extends BaseController<LogoutEntity> {

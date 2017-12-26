@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { environment as env } from '../../environments/environment';
-import { UserLoginEntity } from '../model/entities/user-login-entity';
+import { UserLoginEntity } from '../entities/user-login-entity';
 import { BaseController } from '../core/controller/base-controller';
 
 @Injectable()

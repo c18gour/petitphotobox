@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserLoginController } from '../../controllers/user-login-controller';
-import { UserLoginEntity } from '../../model/entities/user-login-entity';
+import { UserLoginEntity } from '../../entities/user-login-entity';
 
 @Component({
   selector: 'app-login',

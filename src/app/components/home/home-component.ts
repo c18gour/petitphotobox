@@ -5,7 +5,7 @@ import { SessionError } from '../../core/exception/session-error';
 
 import { HomeController } from '../../controllers/home-controller';
 import { LogoutController } from '../../controllers/logout-controller';
-import { HomeEntity } from '../../model/entities/home-entity';
+import { HomeEntity } from '../../entities/home-entity';
 
 @Component({
   selector: 'app-home',

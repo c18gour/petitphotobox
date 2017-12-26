@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 
 import { environment as env } from '../../environments/environment';
 import { BaseController } from '../core/controller/base-controller';
-import { HomeEntity } from '../model/entities/home-entity';
+import { HomeEntity } from '../entities/home-entity';
 
 @Injectable()
 export class HomeController extends BaseController<HomeEntity> {
