@@ -7,16 +7,6 @@ ul {
   list-style: none;
   padding: 1rem 0 1.6rem 1.6rem;
 
-  li {
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  a {
-    color: $primary-color-text;
-  }
-
   ul {
     border-top: 0;
     font-size: 100%;
