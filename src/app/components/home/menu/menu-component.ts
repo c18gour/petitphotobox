@@ -17,7 +17,7 @@ export class MenuComponent {
   @ViewChildren('items')
   items;
 
-  onSelect(value) {
-    console.log(this.items.toArray());
+  onSelect(categoryId) {
+    this.selectEntry.emit(categoryId);
   }
 }
