@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChildren } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -6,13 +6,18 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./menu-component.scss']
 })
 export class MenuComponent {
+  private _isOpen = false;
+
   @Input()
   entries = [];
 
   @Output()
   selectEntry = new EventEmitter<string>();
 
-  onSelectEntry(categoryId: string) {
-    this.selectEntry.emit(categoryId);
+  @ViewChildren('items')
+  items;
+
+  onSelect(value) {
+    console.log(this.items.toArray());
   }
 }

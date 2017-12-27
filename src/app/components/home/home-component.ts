@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { SessionError } from '../../core/exception/session-error';
@@ -14,6 +14,9 @@ import { HomeEntity } from '../../entities/home-entity';
 })
 export class HomeComponent implements OnInit {
   entity: HomeEntity;
+
+  @ViewChild('menu')
+  menu;
 
   constructor(
     private _controller: HomeController,
@@ -36,10 +39,6 @@ export class HomeComponent implements OnInit {
         throw e;
       }
     });
-  }
-
-  openMenu() {
-    console.log('yes!');
   }
 
   async logout() {

@@ -8,6 +8,7 @@ import { AppRoutingModule } from './/app-routing-module';
 // components
 import { AppComponent } from './app-component';
 import { MenuComponent } from './components/menu/menu-component';
+import { EntryComponent } from './components/menu/entry/entry-component';
 import { HomeComponent } from './components/home/home-component';
 import { UserLoginComponent } from './components/user-login/login-component';
 import { UserRegisterComponent } from './components/user-register/user-register-component';
@@ -22,6 +23,7 @@ import { HomeController } from './controllers/home-controller';
   declarations: [
     AppComponent,
     MenuComponent,
+    EntryComponent,
     HomeComponent,
     UserLoginComponent,
     UserRegisterComponent,
