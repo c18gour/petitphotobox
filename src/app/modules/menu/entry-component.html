@@ -1,5 +1,5 @@
 <li>
   <a (click)="onSelectEntry(entry.id)">{{entry.title}}</a>
-  <app-menu #items [entries]="entry.items" *ngIf="entry.items.length > 0" (selectEntry)="onSelectEntry($event)"></app-menu>
+  <app-menu #menu [entries]="entry.items" *ngIf="entry.items.length > 0" (selectEntry)="onSelectEntry($event)" [isOpen]="entry.selected"></app-menu>
 </li>
 <ng-content></ng-content>

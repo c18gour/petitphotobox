@@ -1,13 +1,7 @@
 import { BaseEntity } from '../core/entity/base-entity';
+import { MenuEntry } from '../modules/menu/entities/menu-entry';
 
 export class HomeEntity extends BaseEntity {
-  categories: Array<CategoryType>;
+  categories: Array<MenuEntry>;
   pictures: Array<{ id: string, path: string }>;
-}
-
-interface CategoryType {
-  id: string;
-  title: string;
-  selected: boolean;
-  items: Array<CategoryType>;
 }

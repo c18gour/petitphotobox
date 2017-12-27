@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { SessionError } from '../../core/exception/session-error';
 
+import { MenuComponent } from '../../modules/menu/menu-component';
+
 import { HomeController } from '../../controllers/home-controller';
 import { LogoutController } from '../../controllers/logout-controller';
 import { HomeEntity } from '../../entities/home-entity';
@@ -15,15 +17,15 @@ import { HomeEntity } from '../../entities/home-entity';
 export class HomeComponent implements OnInit {
   entity: HomeEntity;
 
-  @ViewChild('menu')
-  menu;
-
   constructor(
     private _controller: HomeController,
     private _logoutController: LogoutController,
     private _router: Router,
     private _route: ActivatedRoute
   ) { }
+
+  @ViewChild('menu')
+  menu: MenuComponent;
 
   ngOnInit() {
     this._route.params.subscribe(async (params) => {
@@ -50,5 +52,9 @@ export class HomeComponent implements OnInit {
 
   onSelect(categoryId: string) {
     this._router.navigate(['/home', categoryId]);
+  }
+
+  toggleMenu() {
+    this.menu.toggle();
   }
 }
