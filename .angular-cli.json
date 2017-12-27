@@ -20,6 +20,7 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
+        "app/modules/menu/styles.scss",
         "../node_modules/milligram/dist/milligram.min.css",
         "../node_modules/font-awesome/css/font-awesome.min.css",
         "config/css/theme.scss"

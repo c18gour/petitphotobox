@@ -3,26 +3,18 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-/**
- * Application module.
- */
-import { AppRoutingModule } from './/app-routing-module';
+// modules
+import { MenuModule } from './modules/menu/menu-module';
+
+// components
+import { AppRoutingModule } from './app-routing-module';
 import { AppComponent } from './app-component';
-
-/**
- * Views.
- */
 import { HomeComponent } from './components/home/home-component';
-import { MenuComponent } from './components/home/menu/menu-component';
-import { EntryComponent } from './components/home/menu/entry/entry-component';
-
 import { UserLoginComponent } from './components/user-login/login-component';
 import { UserRegisterComponent } from './components/user-register/user-register-component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found-component';
 
-/**
- * Controllers.
- */
+// controllers
 import { UserLoginController } from './controllers/user-login-controller';
 import { LogoutController } from './controllers/logout-controller';
 import { HomeController } from './controllers/home-controller';
@@ -30,12 +22,7 @@ import { HomeController } from './controllers/home-controller';
 @NgModule({
   declarations: [
     AppComponent,
-
-    // views
     HomeComponent,
-    MenuComponent,
-    EntryComponent,
-
     UserLoginComponent,
     UserRegisterComponent,
     PageNotFoundComponent
@@ -44,7 +31,8 @@ import { HomeController } from './controllers/home-controller';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MenuModule
   ],
   providers: [
     UserLoginController,
