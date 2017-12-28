@@ -13,7 +13,6 @@ import { EntryComponent } from './entry-component';
 })
 export class MenuComponent implements AfterViewInit {
   private _isOpen = false;
-  private _isVisible = null;
 
   @Input()
   entries: Array<MenuEntry> = [];
@@ -26,17 +25,7 @@ export class MenuComponent implements AfterViewInit {
   }
 
   get open() {
-    return this._isOpen
-      || this.items.some((item: EntryComponent) => item.open);
-  }
-
-  @Input()
-  set visible(value) {
-    this._isVisible = value;
-  }
-
-  get visible() {
-    return (this._isVisible !== null && this._isVisible) || !this.open;
+    return this._isOpen;
   }
 
   @Output()
@@ -48,15 +37,15 @@ export class MenuComponent implements AfterViewInit {
   ngAfterViewInit() {
     // This workaround solves a known issue:
     //   https://github.com/angular/angular/issues/6005
-    this._changeDetector.detectChanges();
+    // this._changeDetector.detectChanges();
   }
 
   onSelect(categoryId) {
-    this.open = true;
-    this.selectEntry.emit(categoryId);
+    // this.open = true;
+    // this.selectEntry.emit(categoryId);
   }
 
   toggle() {
-    this.visible = !this.visible;
+    this.open = !this.open;
   }
 }

@@ -10,6 +10,8 @@ import { MenuEntry } from './../entities/menu-entry';
 })
 // TODO: rename by MenuEntryComponent
 export class EntryComponent {
+  private _isOpen = false;
+
   @Input()
   entry: MenuEntry;
 
@@ -21,21 +23,21 @@ export class EntryComponent {
   }
 
   set open(value) {
-    if (!value && this.menu) {
-      this.menu.open = false;
-    }
-
-    this.entry.selected = false;
+    this._isOpen = value;
   }
 
   get open() {
-    return this.entry.selected || (this.menu && this.menu.open);
+    return this._isOpen;
   }
 
   @ViewChild('menu')
   menu: MenuComponent;
 
   onSelectEntry(categoryId: string) {
-    this.selectEntry.emit(categoryId);
+    // this.selectEntry.emit(categoryId);
+  }
+
+  toggle() {
+    this.open = !this.open;
   }
 }
