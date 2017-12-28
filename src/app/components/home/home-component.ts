@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
   async logout() {
     // TODO: preloader
     // TODO: check status response
+    // TODO: crear un logout page para confirmar que el usuario quiere salir?
     await this._logoutController.post();
     this._router.navigate(['/login']);
   }

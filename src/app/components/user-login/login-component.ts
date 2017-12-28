@@ -19,7 +19,6 @@ export class UserLoginComponent implements OnInit {
     private _router: Router) { }
 
   async ngOnInit() {
-    // TODO: check error status
     try {
       this.entity = await this._controller.get();
     } catch (e) {
