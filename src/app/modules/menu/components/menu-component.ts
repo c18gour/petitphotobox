@@ -12,10 +12,20 @@ import { EntryComponent } from './entry-component';
   inputs: ['open']
 })
 export class MenuComponent {
+  private _isVisible = null;
   private _isOpen = false;
 
   @Input()
   entries: Array<MenuEntry> = [];
+
+  @Input()
+  set visible(value) {
+    this._isVisible = value;
+  }
+
+  get visible() {
+    return (this._isVisible !== null && this._isVisible) || this.open;
+  }
 
   @Input()
   set open(value) {
