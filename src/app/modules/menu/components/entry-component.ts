@@ -2,18 +2,31 @@ import { Component, Input, Output, EventEmitter, ViewChild, QueryList } from '@a
 
 import { MenuComponent } from './menu-component';
 import { MenuEntry } from './../entities/menu-entry';
-import { AbstractEntry } from '../core/abstract-entry';
 
 @Component({
   selector: 'app-entry',
   templateUrl: './entry-component.html',
-  styleUrls: ['./entry-component.scss'],
-  inputs: ['open']
+  styleUrls: ['./entry-component.scss']
 })
 // TODO: rename by MenuEntryComponent
-export class EntryComponent extends AbstractEntry {
+export class EntryComponent {
+  private _isOpen = false;
+
   @Input()
   entry: MenuEntry;
+
+  @Input()
+  set open(value) {
+    this.items.forEach((item) => {
+      item.open = false;
+    });
+
+    this._isOpen = value;
+  }
+
+  get open(): boolean {
+    return this._isOpen;
+  }
 
   @Output()
   selectEntry = new EventEmitter<string>();
@@ -31,7 +44,7 @@ export class EntryComponent extends AbstractEntry {
   get items() {
     return this.menu !== undefined
       ? this.menu.items
-      : new QueryList<AbstractEntry>();
+      : new QueryList<EntryComponent>();
   }
 
   onSelectEntry(categoryId: string) {

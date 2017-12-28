@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 
 import { MenuEntry } from './../entities/menu-entry';
-import { AbstractEntry } from '../core/abstract-entry';
+import { EntryComponent } from './entry-component';
 
 @Component({
   selector: 'app-menu',
@@ -11,17 +11,30 @@ import { AbstractEntry } from '../core/abstract-entry';
   styleUrls: ['./menu-component.scss'],
   inputs: ['open']
 })
-export class MenuComponent extends AbstractEntry {
-  // private _isOpen = false;
+export class MenuComponent {
+  private _isOpen = false;
 
   @Input()
   entries: Array<MenuEntry> = [];
+
+  @Input()
+  set open(value) {
+    this.items.forEach((item) => {
+      item.open = false;
+    });
+
+    this._isOpen = value;
+  }
+
+  get open(): boolean {
+    return this._isOpen;
+  }
 
   @Output()
   selectEntry = new EventEmitter<string>();
 
   @ViewChildren('entries')
-  items: QueryList<AbstractEntry> = new QueryList<AbstractEntry>();
+  items = new QueryList<EntryComponent>();
 
   // TODO: remove this method
   /*
@@ -31,7 +44,7 @@ export class MenuComponent extends AbstractEntry {
     this._changeDetector.detectChanges();
   }*/
 
-  onToggle(entry: AbstractEntry) {
+  onToggle(entry: EntryComponent) {
     this.items.forEach((item) => {
       if (item !== entry) {
         item.open = false;
