@@ -1,50 +1,37 @@
 import {
-  Component, Input, Output, AfterViewInit, EventEmitter, ViewChildren,
-  ChangeDetectorRef, QueryList
+  Component, Input, Output, EventEmitter, ViewChildren, QueryList
 } from '@angular/core';
 
 import { MenuEntry } from './../entities/menu-entry';
-import { EntryComponent } from './entry-component';
+import { AbstractEntry } from '../core/abstract-entry';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu-component.html',
-  styleUrls: ['./menu-component.scss']
+  styleUrls: ['./menu-component.scss'],
+  inputs: ['open']
 })
-export class MenuComponent implements AfterViewInit {
-  private _isOpen = false;
+export class MenuComponent extends AbstractEntry {
+  // private _isOpen = false;
 
   @Input()
   entries: Array<MenuEntry> = [];
-
-  constructor(private _changeDetector: ChangeDetectorRef) { }
-
-  @Input()
-  set open(value) {
-    this.items.forEach((item) => {
-      item.open = false;
-    });
-
-    this._isOpen = value;
-  }
-
-  get open() {
-    return this._isOpen;
-  }
 
   @Output()
   selectEntry = new EventEmitter<string>();
 
   @ViewChildren('entries')
-  items: QueryList<EntryComponent> = new QueryList<EntryComponent>();
+  items: QueryList<AbstractEntry> = new QueryList<AbstractEntry>();
 
+  // TODO: remove this method
+  /*
   ngAfterViewInit() {
     // This workaround solves a known issue:
     //   https://github.com/angular/angular/issues/6005
-    // this._changeDetector.detectChanges();
-  }
+    this._changeDetector.detectChanges();
+  }*/
 
-  onToggle(entry: EntryComponent) {
+  onToggle(entry: AbstractEntry) {
     this.items.forEach((item) => {
       if (item !== entry) {
         item.open = false;

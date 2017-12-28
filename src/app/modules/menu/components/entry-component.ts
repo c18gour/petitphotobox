@@ -1,17 +1,17 @@
-import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, QueryList } from '@angular/core';
 
 import { MenuComponent } from './menu-component';
 import { MenuEntry } from './../entities/menu-entry';
+import { AbstractEntry } from '../core/abstract-entry';
 
 @Component({
   selector: 'app-entry',
   templateUrl: './entry-component.html',
-  styleUrls: ['./entry-component.scss']
+  styleUrls: ['./entry-component.scss'],
+  inputs: ['open']
 })
 // TODO: rename by MenuEntryComponent
-export class EntryComponent {
-  private _isOpen = false;
-
+export class EntryComponent extends AbstractEntry {
   @Input()
   entry: MenuEntry;
 
@@ -25,20 +25,14 @@ export class EntryComponent {
     return this.entry.selected === true;
   }
 
-  set open(value) {
-    if (this.menu) {
-      this.menu.open = false;
-    }
-
-    this._isOpen = value;
-  }
-
-  get open() {
-    return this._isOpen;
-  }
-
   @ViewChild('menu')
   menu: MenuComponent;
+
+  get items() {
+    return this.menu !== undefined
+      ? this.menu.items
+      : new QueryList<AbstractEntry>();
+  }
 
   onSelectEntry(categoryId: string) {
     this.selectEntry.emit(categoryId);
