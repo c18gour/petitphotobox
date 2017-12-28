@@ -26,7 +26,7 @@ export class EntryComponent {
   }
 
   set open(value) {
-    if (!value && this.menu) {
+    if (this.menu) {
       this.menu.open = false;
     }
 
@@ -41,7 +41,7 @@ export class EntryComponent {
   menu: MenuComponent;
 
   onSelectEntry(categoryId: string) {
-    // this.selectEntry.emit(categoryId);
+    this.selectEntry.emit(categoryId);
   }
 
   toggle() {

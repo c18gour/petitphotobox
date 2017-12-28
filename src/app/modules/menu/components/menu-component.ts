@@ -21,8 +21,6 @@ export class MenuComponent implements AfterViewInit {
 
   @Input()
   set open(value) {
-    const self = this;
-
     this.items.forEach((item) => {
       item.open = false;
     });
@@ -55,8 +53,7 @@ export class MenuComponent implements AfterViewInit {
   }
 
   onSelect(categoryId) {
-    // this.open = true;
-    // this.selectEntry.emit(categoryId);
+    this.selectEntry.emit(categoryId);
   }
 
   toggle() {

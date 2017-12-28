@@ -52,8 +52,7 @@ export class HomeComponent implements OnInit {
   }
 
   onSelect(categoryId: string) {
-    // this.menu.visible = false;
-    // this._router.navigate(['/home', categoryId]);
+    this._router.navigate(['/home', categoryId]);
   }
 
   toggleMenu() {
