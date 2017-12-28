@@ -13,14 +13,12 @@ import { EntryComponent } from './entry-component';
 })
 export class MenuComponent implements AfterViewInit {
   private _isOpen = false;
+  private _isHidden = null;
 
   @Input()
   entries: Array<MenuEntry> = [];
 
   constructor(private _changeDetector: ChangeDetectorRef) { }
-
-  @Input()
-  isHidden = false;
 
   @Input()
   set isOpen(value) {
@@ -30,6 +28,24 @@ export class MenuComponent implements AfterViewInit {
   get isOpen() {
     return this._isOpen
       || this.items.some((item: EntryComponent) => item.isOpen);
+  }
+
+  @Input()
+  set isHidden(value) {
+    this._isHidden = value;
+  }
+
+  get isHidden() {
+    /*
+    let ret = true;
+
+    if (this._isHidden !== null) {
+      ret = this._isHidden;
+    } else {
+      ret = !this.isOpen;
+    }*/
+
+    return (this._isHidden !== null && this._isHidden) || !this.isOpen;
   }
 
   @Output()

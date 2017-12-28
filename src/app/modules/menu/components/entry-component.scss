@@ -3,3 +3,14 @@
 a {
   color: $primary-color-text;
 }
+
+.entry {
+  display: inline-flex;
+  flex-direction: row;
+
+  a {
+    &:first-child {
+      margin-right: 1rem;
+    }
+  }
+}
