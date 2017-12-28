@@ -3,6 +3,6 @@
     <a *ngIf="entry.items.length > 0"><i class="fa" [ngClass]="{'fa-chevron-down': isOpen, 'fa-chevron-right': !isOpen}"></i></a>
     <a (click)="onSelectEntry(entry.id)">{{entry.title}}</a>
   </div>
-  <app-menu #menu [entries]="entry.items" *ngIf="entry.items.length > 0" (selectEntry)="onSelectEntry($event)" [isOpen]="isSelected"></app-menu>
+  <app-menu #menu [entries]="entry.items" *ngIf="entry.items.length > 0" (selectEntry)="onSelectEntry($event)" [isOpen]="selected"></app-menu>
 </li>
 <ng-content></ng-content>

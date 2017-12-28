@@ -16,7 +16,7 @@ export class EntryComponent {
   @Output()
   selectEntry = new EventEmitter<string>();
 
-  get isSelected() {
+  get selected() {
     return this.entry.selected === true;
   }
 
