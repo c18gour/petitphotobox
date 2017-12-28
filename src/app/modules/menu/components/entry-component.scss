@@ -1,16 +1,17 @@
 @import '../../../../config/css/palette';
 
-a {
-  color: $primary-color-text;
+div {
+  display: flex;
+  padding-right: 1rem;
 }
 
-.entry {
-  display: inline-flex;
-  flex-direction: row;
+a {
+  color: $primary-color-text;
 
-  a {
-    &:first-child {
-      margin-right: 1rem;
-    }
+  &:first-child {
+    margin-right: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
