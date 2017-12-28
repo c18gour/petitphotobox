@@ -1,4 +1,3 @@
-// TODO: entities, components, etc...
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
