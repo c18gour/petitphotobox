@@ -1,0 +1,3 @@
+<ul [ngClass]="{'open': isOpen}">
+  <app-entry #entries *ngFor="let entry of entries" [entry]="entry" (selectEntry)="onSelect($event)"></app-entry>
+</ul>

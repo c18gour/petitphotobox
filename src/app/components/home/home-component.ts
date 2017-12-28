@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { SessionError } from '../../core/exception/session-error';
 
-import { MenuComponent } from '../../modules/menu/menu-component';
+import { MenuComponent } from '../../modules/menu/components/menu-component';
 
 import { HomeController } from '../../controllers/home-controller';
 import { LogoutController } from '../../controllers/logout-controller';

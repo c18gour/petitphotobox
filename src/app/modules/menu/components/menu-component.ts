@@ -3,7 +3,7 @@ import {
   ChangeDetectorRef, QueryList
 } from '@angular/core';
 
-import { MenuEntry } from './entities/menu-entry';
+import { MenuEntry } from './../entities/menu-entry';
 import { EntryComponent } from './entry-component';
 
 @Component({

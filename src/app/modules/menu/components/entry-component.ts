@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
 import { MenuComponent } from './menu-component';
-import { MenuEntry } from './entities/menu-entry';
+import { MenuEntry } from './../entities/menu-entry';
 
 @Component({
   selector: 'app-entry',
