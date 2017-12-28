@@ -23,6 +23,10 @@ export class EntryComponent {
   }
 
   set open(value) {
+    if (!value && this.menu) {
+      this.menu.open = false;
+    }
+
     this._isOpen = value;
   }
 

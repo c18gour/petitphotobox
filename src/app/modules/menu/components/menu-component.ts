@@ -21,6 +21,12 @@ export class MenuComponent implements AfterViewInit {
 
   @Input()
   set open(value) {
+    if (!value) {
+      this.items.forEach((item) => {
+        item.open = false;
+      });
+    }
+
     this._isOpen = value;
   }
 
