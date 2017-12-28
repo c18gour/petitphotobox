@@ -25,17 +25,15 @@ export class MenuComponent implements AfterViewInit {
   }
 
   get isOpen() {
-    const isAnyItemOpen = this.items !== undefined
-      && this.items.some((item: EntryComponent) => item.isOpen);
-
-    return this._isOpen || isAnyItemOpen;
+    return this._isOpen
+      || this.items.some((item: EntryComponent) => item.isOpen);
   }
 
   @Output()
   selectEntry = new EventEmitter<string>();
 
   @ViewChildren('entries')
-  items: QueryList<EntryComponent>;
+  items: QueryList<EntryComponent> = new QueryList<EntryComponent>();
 
   ngAfterViewInit() {
     // This workaround solves a known issue:
