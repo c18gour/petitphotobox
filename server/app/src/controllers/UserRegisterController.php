@@ -37,7 +37,6 @@ class UserRegisterController extends BaseController
    *
    * @return void
    */
-  // TODO: rename re_password by rePassword
   public function onOpenRequest()
   {
     if (UserAuth::isLogged($this->db)) {
@@ -47,7 +46,7 @@ class UserRegisterController extends BaseController
     $this->_document = new UserRegisterDocument();
     $this->_document->setUsername($this->getParam("username", ""));
     $this->_document->setPassword($this->getParam("password"));
-    $this->_document->setRePassword($this->getParam("re_password"));
+    $this->_document->setRePassword($this->getParam("rePassword"));
   }
 
   /**
@@ -66,7 +65,7 @@ class UserRegisterController extends BaseController
         || Text::isEmpty($rePassword)
     ) {
       throw new ClientException(
-        "The following fields are required: username, password, re_password"
+        "The following fields are required: username, password, rePassword"
       );
     }
 
