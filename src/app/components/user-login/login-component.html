@@ -16,7 +16,7 @@
       <input
         type="password" placeholder="Password" id="password" name="password"
         required [(ngModel)]="entity.password" #pass="ngModel">
-      <button [disabled]="isRequestInProgress" type="submit" class="button-primary">Enter</button>
+      <button type="submit" class="button-primary">Enter</button>
       <div class="error-box" [hidden]="!errorMessage">{{errorMessage}}</div>
     </fieldset>
   </form>

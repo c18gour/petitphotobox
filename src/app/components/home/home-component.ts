@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
   }
 
   onSelect(categoryId: string) {
-    this.menu.isHidden = true;
+    this.menu.visible = false;
     this._router.navigate(['/home', categoryId]);
   }
 

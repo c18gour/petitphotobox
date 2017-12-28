@@ -13,7 +13,7 @@ import { EntryComponent } from './entry-component';
 })
 export class MenuComponent implements AfterViewInit {
   private _isOpen = false;
-  private _isHidden = null;
+  private _isVisible = null;
 
   @Input()
   entries: Array<MenuEntry> = [];
@@ -31,21 +31,12 @@ export class MenuComponent implements AfterViewInit {
   }
 
   @Input()
-  set isHidden(value) {
-    this._isHidden = value;
+  set visible(value) {
+    this._isVisible = value;
   }
 
-  get isHidden() {
-    /*
-    let ret = true;
-
-    if (this._isHidden !== null) {
-      ret = this._isHidden;
-    } else {
-      ret = !this.open;
-    }*/
-
-    return (this._isHidden !== null && this._isHidden) || !this.open;
+  get visible() {
+    return (this._isVisible !== null && this._isVisible) || !this.open;
   }
 
   @Output()
@@ -66,6 +57,6 @@ export class MenuComponent implements AfterViewInit {
   }
 
   toggle() {
-    this.isHidden = !this.isHidden;
+    this.visible = !this.visible;
   }
 }
