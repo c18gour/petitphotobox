@@ -20,6 +20,9 @@ export class MenuComponent implements AfterViewInit {
   constructor(private _changeDetector: ChangeDetectorRef) { }
 
   @Input()
+  isHidden = false;
+
+  @Input()
   set isOpen(value) {
     this._isOpen = value;
   }
@@ -47,6 +50,6 @@ export class MenuComponent implements AfterViewInit {
   }
 
   toggle() {
-    this.isOpen = !this.isOpen;
+    this.isHidden = !this.isHidden;
   }
 }

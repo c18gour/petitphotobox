@@ -20,6 +20,14 @@ export class EntryComponent {
     return this.entry.selected === true;
   }
 
+  set isOpen(value) {
+    if (!value && this.menu) {
+      this.menu.isOpen = false;
+    }
+
+    this.entry.selected = false;
+  }
+
   get isOpen() {
     return this.entry.selected || (this.menu && this.menu.isOpen);
   }

@@ -1,12 +1,12 @@
 <div class="header">
   <a title="Home" routerLink="/home" ><i class="fa fa-home"></i></a>
   <h1>Photobox</h1>
-  <a title="Toggle menu" (click)="toggleMenu()" *ngIf="entity"><i class="fa fa-bars"></i></a>
+  <a title="Toggle menu" (click)="menu.toggle()" *ngIf="entity"><i class="fa fa-bars"></i></a>
   <a title="Sign out" (click)="logout()"><i class="fa fa-sign-out"></i></a>
 </div>
 
 <div class="container" *ngIf="entity">
-  <app-menu #menu [entries]="entity.categories" (selectEntry)="onSelect($event)" [isOpen]="true"></app-menu>
+  <app-menu #menu [entries]="entity.categories" (selectEntry)="onSelect($event)" [isHidden]="true"></app-menu>
   <div>
     <p *ngFor="let picture of entity.pictures">{{picture.path}}</p>
   </div>
