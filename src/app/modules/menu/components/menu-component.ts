@@ -21,13 +21,13 @@ export class MenuComponent implements AfterViewInit {
   constructor(private _changeDetector: ChangeDetectorRef) { }
 
   @Input()
-  set isOpen(value) {
+  set open(value) {
     this._isOpen = value;
   }
 
-  get isOpen() {
+  get open() {
     return this._isOpen
-      || this.items.some((item: EntryComponent) => item.isOpen);
+      || this.items.some((item: EntryComponent) => item.open);
   }
 
   @Input()
@@ -42,10 +42,10 @@ export class MenuComponent implements AfterViewInit {
     if (this._isHidden !== null) {
       ret = this._isHidden;
     } else {
-      ret = !this.isOpen;
+      ret = !this.open;
     }*/
 
-    return (this._isHidden !== null && this._isHidden) || !this.isOpen;
+    return (this._isHidden !== null && this._isHidden) || !this.open;
   }
 
   @Output()
@@ -61,7 +61,7 @@ export class MenuComponent implements AfterViewInit {
   }
 
   onSelect(categoryId) {
-    this.isOpen = true;
+    this.open = true;
     this.selectEntry.emit(categoryId);
   }
 
