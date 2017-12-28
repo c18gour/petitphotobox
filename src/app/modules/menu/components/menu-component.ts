@@ -21,11 +21,11 @@ export class MenuComponent implements AfterViewInit {
 
   @Input()
   set open(value) {
-    if (!value) {
-      this.items.forEach((item) => {
-        item.open = false;
-      });
-    }
+    const self = this;
+
+    this.items.forEach((item) => {
+      item.open = false;
+    });
 
     this._isOpen = value;
   }
@@ -44,6 +44,14 @@ export class MenuComponent implements AfterViewInit {
     // This workaround solves a known issue:
     //   https://github.com/angular/angular/issues/6005
     // this._changeDetector.detectChanges();
+  }
+
+  onToggle(entry: EntryComponent) {
+    this.items.forEach((item) => {
+      if (item !== entry) {
+        item.open = false;
+      }
+    });
   }
 
   onSelect(categoryId) {
