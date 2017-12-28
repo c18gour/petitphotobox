@@ -8,6 +8,10 @@ div {
 a {
   color: $primary-color-text;
 
+  &.selected {
+    text-decoration: underline;
+  }
+
   &:first-child {
     margin-right: 1rem;
     overflow: hidden;
