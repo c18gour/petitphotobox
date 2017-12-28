@@ -10,8 +10,6 @@ import { MenuComponent } from './menu-component';
 })
 // TODO: rename by MenuEntryComponent
 export class EntryComponent {
-  private _isOpen = false;
-
   @Input()
   entry: MenuEntry;
 
@@ -21,11 +19,11 @@ export class EntryComponent {
       item.open = false;
     });
 
-    this._isOpen = value;
+    this.entry.open = value;
   }
 
   get open(): boolean {
-    return this._isOpen;
+    return this.entry.open;
   }
 
   @Output()
@@ -49,18 +47,6 @@ export class EntryComponent {
 
   onSelectEntry(categoryId: string) {
     this.selectEntry.emit(categoryId);
-  }
-
-  searchItemById(id: string): EntryComponent {
-    const ret = this.items.map((item) => {
-      if (item.entry.id === id) {
-        return item;
-      }
-
-      return item.searchItemById(id);
-    }).filter((item) => item !== null).pop();
-
-    return ret !== undefined ? ret : null;
   }
 
   toggle() {

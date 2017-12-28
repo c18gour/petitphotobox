@@ -31,8 +31,10 @@ class HomeDocument extends BaseDocument
    */
   protected function getJsonObject()
   {
+    $items = $this->_getCategoriesTree();
+
     return [
-      "categories" => $this->_getCategoriesTree(),
+      "categories" => $items,
       "pictures" => $this->_getPictures()
     ];
   }
@@ -52,11 +54,27 @@ class HomeDocument extends BaseDocument
 
     return array_map(
       function ($category) {
+        $items = $this->_getCategoriesTree($category);
+
+        // an item is 'open' if it is 'selected' or any of its childs is 'open'
+        $isSelected =  ($category->getId() === $this->_category->getId());
+        $isOpen = $isSelected;
+        if (!$isOpen) {
+          $selectedItems = array_filter(
+            $items,
+            function ($item) {
+              return $item["open"];
+            }
+          );
+          $isOpen = count($selectedItems) > 0;
+        }
+
         return [
           "id" => $category->getId(),
           "title" => $category->getTitle(),
-          "selected" => ($category->getId() === $this->_category->getId()),
-          "items" => $this->_getCategoriesTree($category),
+          "open" => $isOpen,
+          "selected" => $isSelected,
+          "items" => $items
         ];
       },
       $category->getCategories()

@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
     this._router.navigate(['/login']);
   }
 
-  onSelect(categoryId: string) {
+  onSelectEntry(categoryId: string) {
     this._router.navigate(['/home', categoryId]);
   }
 

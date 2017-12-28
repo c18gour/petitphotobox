@@ -6,7 +6,7 @@
 </div>
 
 <div class="container" *ngIf="entity">
-  <app-menu #menu [entries]="entity.categories" (selectEntry)="onSelect($event)"></app-menu>
+  <app-menu #menu [entries]="entity.categories" (selectEntry)="onSelectEntry($event)" [open]="true"></app-menu>
   <div>
     <p *ngFor="let picture of entity.pictures">{{picture.path}}</p>
   </div>

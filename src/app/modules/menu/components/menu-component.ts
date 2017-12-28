@@ -36,36 +36,8 @@ export class MenuComponent {
   @ViewChildren('entries')
   items = new QueryList<EntryComponent>();
 
-  // TODO: remove this method
-  /*
-  ngAfterViewInit() {
-    // This workaround solves a known issue:
-    //   https://github.com/angular/angular/issues/6005
-    this._changeDetector.detectChanges();
-  }*/
-
-  onToggle(entry: EntryComponent) {
-    this.items.forEach((item) => {
-      if (item !== entry) {
-        item.open = false;
-      }
-    });
-  }
-
-  onSelect(categoryId) {
+  onSelectEntry(categoryId) {
     this.selectEntry.emit(categoryId);
-  }
-
-  searchItemById(id: string): EntryComponent {
-    const ret = this.items.map((item) => {
-      if (item.entry.id === id) {
-        return item;
-      }
-
-      return item.searchItemById(id);
-    }).filter((item) => item !== null).pop();
-
-    return ret !== undefined ? ret : null;
   }
 
   toggle() {
