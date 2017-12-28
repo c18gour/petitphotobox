@@ -56,6 +56,18 @@ export class MenuComponent {
     this.selectEntry.emit(categoryId);
   }
 
+  searchItemById(id: string): EntryComponent {
+    const ret = this.items.map((item) => {
+      if (item.entry.id === id) {
+        return item;
+      }
+
+      return item.searchItemById(id);
+    }).filter((item) => item !== null).pop();
+
+    return ret !== undefined ? ret : null;
+  }
+
   toggle() {
     this.open = !this.open;
   }

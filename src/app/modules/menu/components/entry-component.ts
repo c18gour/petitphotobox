@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild, QueryList } from '@angular/core';
 
-import { MenuComponent } from './menu-component';
 import { MenuEntry } from './../entities/menu-entry';
+import { MenuComponent } from './menu-component';
 
 @Component({
   selector: 'app-entry',
@@ -49,6 +49,18 @@ export class EntryComponent {
 
   onSelectEntry(categoryId: string) {
     this.selectEntry.emit(categoryId);
+  }
+
+  searchItemById(id: string): EntryComponent {
+    const ret = this.items.map((item) => {
+      if (item.entry.id === id) {
+        return item;
+      }
+
+      return item.searchItemById(id);
+    }).filter((item) => item !== null).pop();
+
+    return ret !== undefined ? ret : null;
   }
 
   toggle() {
