@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 
 import { MenuComponent } from './menu-component';
 import { MenuEntry } from './entities/menu-entry';
@@ -16,17 +16,12 @@ export class EntryComponent {
   @Output()
   selectEntry = new EventEmitter<string>();
 
-  @Output()
-  set isSelected(value) {
-    this.entry.selected = false;
-  }
-
   get isSelected() {
     return this.entry.selected === true;
   }
 
   get isOpen() {
-    return this.isSelected || this.menu !== undefined && this.menu.isOpen;
+    return this.entry.selected || (this.menu && this.menu.isOpen);
   }
 
   @ViewChild('menu')

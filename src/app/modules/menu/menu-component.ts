@@ -21,12 +21,6 @@ export class MenuComponent implements AfterViewInit {
 
   @Input()
   set isOpen(value) {
-    if (!value && this.items !== undefined) {
-      for (const item of this.items.toArray()) {
-        item.isSelected = false;
-      }
-    }
-
     this._isOpen = value;
   }
 
