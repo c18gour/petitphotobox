@@ -11,7 +11,7 @@ export class HomeController extends BaseController<HomeEntity> {
     super(http, `${env.apiUrl}/home.php`);
   }
 
-  get(args?: { category_id: string }) {
+  get(args?: { categoryId: string }) {
     return super.get(args);
   }
 }

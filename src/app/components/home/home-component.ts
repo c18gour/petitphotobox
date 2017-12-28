@@ -17,8 +17,6 @@ import { HomeEntity } from '../../entities/home-entity';
 export class HomeComponent implements OnInit {
   entity: HomeEntity;
 
-  private _categoryId: string;
-
   constructor(
     private _controller: HomeController,
     private _logoutController: LogoutController,
@@ -31,11 +29,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this._route.params.subscribe(async (params) => {
-      this._categoryId = params.id ? params.id : '';
+      const categoryId = params.id ? params.id : '';
 
       try {
-        this.entity = await this._controller.get(
-          { category_id: this._categoryId });
+        this.entity = await this._controller.get({ categoryId });
       } catch (e) {
         if (e instanceof SessionError) {
           this._router.navigate(['/login']);
