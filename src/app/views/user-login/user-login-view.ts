@@ -12,29 +12,29 @@ import { SessionError } from '../../core/exception/session-error';
   styleUrls: ['./user-login-view.scss']
 })
 export class UserLoginView implements OnInit {
+  isRequesting = false;
   entity: UserLoginEntity;
   errorMessage = '';
-
-  @ViewChild('loading')
-  loading: ModalLoadingComponent;
 
   constructor(
     private _controller: UserLoginController,
     private _router: Router) { }
 
   async ngOnInit() {
+    this.isRequesting = true;
     try {
       this.entity = await this._controller.get();
     } catch (e) {
       if (e instanceof SessionError) {
         this._router.navigate(['/home']);
       }
+    } finally {
+      this.isRequesting = false;
     }
   }
 
   async onSubmit() {
-    this.loading.open();
-
+    this.isRequesting = true;
     try {
       this.entity = await this._controller.post(
         { username: this.entity.username, password: this.entity.password });
@@ -42,7 +42,7 @@ export class UserLoginView implements OnInit {
       this.errorMessage = e.message;
       throw e;
     } finally {
-      this.loading.close();
+      this.isRequesting = false;
     }
 
     this._router.navigate(['/home']);

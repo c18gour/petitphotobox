@@ -20,5 +20,6 @@
       <div class="error-box" [hidden]="!errorMessage">{{errorMessage}}</div>
     </fieldset>
   </form>
-  <app-modal-loading #loading></app-modal-loading>
 </div>
+
+<app-modal-loading [hidden]="!isRequesting"></app-modal-loading>

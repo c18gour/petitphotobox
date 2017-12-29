@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { SessionError } from '../../core/exception/session-error';
 
+import { ModalLoadingComponent } from '../../components/modal-loading/modal-loading-component';
 import { MenuComponent } from '../../modules/menu/components/menu-component';
 
 import { HomeController } from '../../controllers/home-controller';
@@ -16,6 +17,7 @@ import { HomeEntity } from '../../entities/home-entity';
 })
 export class HomeView implements OnInit {
   entity: HomeEntity;
+  isRequesting = false;
 
   constructor(
     private _controller: HomeController,
@@ -27,10 +29,14 @@ export class HomeView implements OnInit {
   @ViewChild('menu')
   menu: MenuComponent;
 
+  @ViewChild('loading')
+  loading: ModalLoadingComponent;
+
   ngOnInit() {
     this._route.params.subscribe(async (params) => {
       const categoryId = params.id ? params.id : '';
 
+      this.isRequesting = true;
       try {
         this.entity = await this._controller.get({ categoryId });
       } catch (e) {
@@ -39,14 +45,21 @@ export class HomeView implements OnInit {
         }
 
         throw e;
+      } finally {
+        this.isRequesting = false;
       }
     });
   }
 
   async logout() {
-    // TODO: preloader
     // TODO: check status response
-    await this._logoutController.post();
+    this.isRequesting = true;
+    try {
+      await this._logoutController.post();
+    } finally {
+      this.isRequesting = false;
+    }
+
     this._router.navigate(['/login']);
   }
 
