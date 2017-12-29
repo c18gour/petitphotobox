@@ -10,7 +10,7 @@ export class ModalConfirmComponent {
   hidden = true;
 
   @Input()
-  title = 'Alert';
+  title = 'Confirm';
 
   @Input()
   data: any;
