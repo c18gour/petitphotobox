@@ -21,6 +21,7 @@
       "styles": [
         "styles.scss",
         "app/modules/menu/styles.scss",
+        "../node_modules/spinkit/css/spinners/3-wave.css",
         "../node_modules/milligram/dist/milligram.min.css",
         "../node_modules/font-awesome/css/font-awesome.min.css",
         "config/css/theme.scss"
