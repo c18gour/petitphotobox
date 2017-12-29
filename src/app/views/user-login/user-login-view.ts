@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { ModalLoadingComponent } from '../../components/modal-loading/modal-loading-component';
 import { UserLoginController } from '../../controllers/user-login-controller';
 import { UserLoginEntity } from '../../entities/user-login-entity';
 import { SessionError } from '../../core/exception/session-error';
@@ -13,6 +14,9 @@ import { SessionError } from '../../core/exception/session-error';
 export class UserLoginView implements OnInit {
   entity: UserLoginEntity;
   errorMessage = '';
+
+  @ViewChild('loading')
+  loading: ModalLoadingComponent;
 
   constructor(
     private _controller: UserLoginController,
@@ -29,15 +33,18 @@ export class UserLoginView implements OnInit {
   }
 
   async onSubmit() {
+    this.loading.open();
+
     try {
       this.entity = await this._controller.post(
         { username: this.entity.username, password: this.entity.password });
     } catch (e) {
       this.errorMessage = e.message;
       throw e;
+    } finally {
+      this.loading.close();
     }
 
     this._router.navigate(['/home']);
   }
-
 }

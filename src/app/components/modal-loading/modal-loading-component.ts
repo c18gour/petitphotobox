@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-modal-loading',
@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./modal-loading-component.scss']
 })
 export class ModalLoadingComponent {
+  @Input()
+  hidden = true;
 
+  open() {
+    this.hidden = false;
+  }
+
+  close() {
+    this.hidden = true;
+  }
 }
