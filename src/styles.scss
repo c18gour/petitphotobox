@@ -10,8 +10,9 @@ div {
 
   .error-box {
     @extend %box;
-    background-color: $primary-color-light;
-    border: .1rem solid $primary-color;
+    background-color: $accent-color;
+    border: .1rem solid $accent-color;
+    color: $primary-color-text;
     font-weight: 400;
   }
 }
