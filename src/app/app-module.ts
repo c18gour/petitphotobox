@@ -9,6 +9,9 @@ import { AppComponent } from './app-component';
 // modules
 import { MenuModule } from './modules/menu/menu-module';
 
+// components
+import { ModalLoadingComponent } from './components/modal-loading/modal-loading-component';
+
 // views
 import { HomeView } from './views/home/home-view';
 import { UserLoginView } from './views/user-login/user-login-view';
@@ -23,6 +26,11 @@ import { HomeController } from './controllers/home-controller';
 @NgModule({
   declarations: [
     AppComponent,
+
+    // components
+    ModalLoadingComponent,
+
+    // views
     HomeView,
     UserLoginView,
     UserRegisterView,
@@ -36,6 +44,7 @@ import { HomeController } from './controllers/home-controller';
     MenuModule
   ],
   providers: [
+    ModalLoadingComponent,
     UserLoginController,
     LogoutController,
     HomeController
