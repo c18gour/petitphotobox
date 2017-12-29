@@ -11,7 +11,7 @@ import { MenuModule } from './modules/menu/menu-module';
 
 // views
 import { HomeView } from './views/home/home-view';
-import { UserLoginComponent } from './views/user-login/login-component';
+import { UserLoginView } from './views/user-login/user-login-view';
 import { UserRegisterComponent } from './views/user-register/user-register-component';
 import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
@@ -24,7 +24,7 @@ import { HomeController } from './controllers/home-controller';
   declarations: [
     AppComponent,
     HomeView,
-    UserLoginComponent,
+    UserLoginView,
     UserRegisterComponent,
     PageNotFoundView
   ],

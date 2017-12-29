@@ -6,11 +6,11 @@ import { UserLoginEntity } from '../../entities/user-login-entity';
 import { SessionError } from '../../core/exception/session-error';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login-component.html',
-  styleUrls: ['./login-component.scss']
+  selector: 'app-user-login',
+  templateUrl: './user-login-view.html',
+  styleUrls: ['./user-login-view.scss']
 })
-export class UserLoginComponent implements OnInit {
+export class UserLoginView implements OnInit {
   entity: UserLoginEntity;
   errorMessage = '';
 
