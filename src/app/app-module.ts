@@ -11,6 +11,7 @@ import { MenuModule } from './modules/menu/menu-module';
 
 // components
 import { ModalLoadingComponent } from './components/modal-loading/modal-loading-component';
+import { ModalAlertComponent } from './components/modal-alert/modal-alert-component';
 
 // views
 import { HomeView } from './views/home/home-view';
@@ -29,6 +30,7 @@ import { HomeController } from './controllers/home-controller';
 
     // components
     ModalLoadingComponent,
+    ModalAlertComponent,
 
     // views
     HomeView,
@@ -44,7 +46,6 @@ import { HomeController } from './controllers/home-controller';
     MenuModule
   ],
   providers: [
-    ModalLoadingComponent,
     UserLoginController,
     LogoutController,
     HomeController
