@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ModalLoadingComponent } from '../../components/modal-loading/modal-loading-component';
 import { UserLoginController } from '../../controllers/user-login-controller';
 import { UserLoginEntity } from '../../entities/user-login-entity';
 import { SessionError } from '../../core/exception/session-error';

@@ -2,10 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { SessionError } from '../../core/exception/session-error';
-
-import { ModalLoadingComponent } from '../../components/modal-loading/modal-loading-component';
 import { MenuComponent } from '../../modules/menu/components/menu-component';
-
 import { HomeController } from '../../controllers/home-controller';
 import { LogoutController } from '../../controllers/logout-controller';
 import { HomeEntity } from '../../entities/home-entity';
@@ -28,9 +25,6 @@ export class HomeView implements OnInit {
 
   @ViewChild('menu')
   menu: MenuComponent;
-
-  @ViewChild('loading')
-  loading: ModalLoadingComponent;
 
   ngOnInit() {
     this._route.params.subscribe(async (params) => {
