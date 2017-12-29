@@ -12,6 +12,7 @@ import { MenuModule } from './modules/menu/menu-module';
 // components
 import { ModalLoadingComponent } from './components/modal-loading/modal-loading-component';
 import { ModalAlertComponent } from './components/modal-alert/modal-alert-component';
+import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm-component';
 
 // views
 import { HomeView } from './views/home/home-view';
@@ -31,6 +32,7 @@ import { HomeController } from './controllers/home-controller';
     // components
     ModalLoadingComponent,
     ModalAlertComponent,
+    ModalConfirmComponent,
 
     // views
     HomeView,
