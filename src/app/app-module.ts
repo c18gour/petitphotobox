@@ -10,7 +10,7 @@ import { AppComponent } from './app-component';
 import { MenuModule } from './modules/menu/menu-module';
 
 // views
-import { HomeComponent } from './views/home/home-component';
+import { HomeView } from './views/home/home-view';
 import { UserLoginComponent } from './views/user-login/login-component';
 import { UserRegisterComponent } from './views/user-register/user-register-component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found-component';
@@ -23,7 +23,7 @@ import { HomeController } from './controllers/home-controller';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    HomeView,
     UserLoginComponent,
     UserRegisterComponent,
     PageNotFoundComponent

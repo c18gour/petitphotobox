@@ -11,10 +11,10 @@ import { HomeEntity } from '../../entities/home-entity';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home-component.html',
-  styleUrls: ['./home-component.scss']
+  templateUrl: './home-view.html',
+  styleUrls: ['./home-view.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeView implements OnInit {
   entity: HomeEntity;
 
   constructor(
