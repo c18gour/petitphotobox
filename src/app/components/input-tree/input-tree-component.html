@@ -1,0 +1,7 @@
+<select (change)="onChange(name.value)" [(ngModel)]="inputValue">
+  <option value=""></option>
+  <option *ngFor="let item of items" [value]="item.value">{{item.label}}</option>
+</select>
+<app-input-tree
+  *ngIf="selectedItem && selectedItem.items.length > 0" [value]="value"
+  [items]="selectedItem.items" (select)="onSelect($event)"></app-input-tree>
