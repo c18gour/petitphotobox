@@ -25,7 +25,7 @@ class HomeDocument extends BaseDocument
   }
 
   /**
-   * Gets a 'plain object' representing the current instance.
+   * {@inheritdoc}
    *
    * @return object
    */
