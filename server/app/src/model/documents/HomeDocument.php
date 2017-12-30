@@ -19,9 +19,6 @@ class HomeDocument extends BaseDocument
   {
     $this->_user = $user;
     $this->_category = $category;
-
-    $this->setProperty("categories", []);
-    $this->setProperty("pictures", []);
   }
 
   /**
@@ -46,6 +43,7 @@ class HomeDocument extends BaseDocument
    *
    * @return array An associative array
    */
+  // TODO: user DbCategory::getTree()
   private function _getCategoriesTree($category = null)
   {
     if ($category === null) {
