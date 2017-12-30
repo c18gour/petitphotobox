@@ -17,6 +17,50 @@ class DbCategory extends DbRecord
   }
 
   /**
+   * Gets the user.
+   *
+   * @return DbUser
+   */
+  public function getUser()
+  {
+    return new DbUser($this->db, $this->get("user_id"));
+  }
+
+  /**
+   * Sets the user.
+   *
+   * @param DbUser $user User
+   *
+   * @return void
+   */
+  public function setUser($user)
+  {
+    $this->set("user_id", $user->getId());
+  }
+
+  /**
+   * Gets the parent category.
+   *
+   * @return DbCategory
+   */
+  public function getParent()
+  {
+    return new DbCategory($this->db, $this->get("parent_category_id"));
+  }
+
+  /**
+   * Sets the parent category.
+   *
+   * @param DbCategory $parent Parent category
+   *
+   * @return void
+   */
+  public function setParent($parent)
+  {
+    $this->set("parent_category_id", $parent->getId());
+  }
+
+  /**
    * Gets the title.
    *
    * @return string
@@ -80,6 +124,37 @@ class DbCategory extends DbRecord
         return new DbPicture($this->db, $row["picture_id"]);
       },
       $rows
+    );
+  }
+
+  public function getTree($selectedId = null)
+  {
+    return array_map(
+      function ($category) use ($selectedId) {
+        $items = $category->getTree($selectedId);
+
+        // an item is 'open' if it is 'selected' or any of its childs is 'open'
+        $isSelected =  ($category->getId() === $selectedId);
+        $isOpen = $isSelected;
+        if (!$isOpen) {
+          $selectedItems = array_filter(
+            $items,
+            function ($item) {
+              return $item["open"];
+            }
+          );
+          $isOpen = count($selectedItems) > 0;
+        }
+
+        return [
+          "value" => $category->getId(),
+          "label" => $category->getTitle(),
+          "open" => $isOpen,
+          "selected" => $isSelected,
+          "items" => $items
+        ];
+      },
+      $this->getCategories()
     );
   }
 }
