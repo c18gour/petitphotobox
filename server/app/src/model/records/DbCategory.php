@@ -127,31 +127,14 @@ class DbCategory extends DbRecord
     );
   }
 
-  public function getTree($selectedId = null)
+  public function getTree()
   {
     return array_map(
-      function ($category) use ($selectedId) {
-        $items = $category->getTree($selectedId);
-
-        // an item is 'open' if it is 'selected' or any of its childs is 'open'
-        $isSelected =  ($category->getId() === $selectedId);
-        $isOpen = $isSelected;
-        if (!$isOpen) {
-          $selectedItems = array_filter(
-            $items,
-            function ($item) {
-              return $item["open"];
-            }
-          );
-          $isOpen = count($selectedItems) > 0;
-        }
-
+      function ($category) {
         return [
           "value" => $category->getId(),
           "label" => $category->getTitle(),
-          "open" => $isOpen,
-          "selected" => $isSelected,
-          "items" => $items
+          "items" => $category->getTree()
         ];
       },
       $this->getCategories()
