@@ -1,6 +1,7 @@
 <?php
 namespace petitphotobox\core\model\document;
 
+// TODO: remove getProperty() and setProperty()
 abstract class BaseDocument
 {
   private $_statusCode = 0;
@@ -71,6 +72,7 @@ abstract class BaseDocument
    *
    * @return void
    */
+  // TODO: should be abstract method
   protected function setProperty($name, $value)
   {
     $this->_body[$name] = $value;
