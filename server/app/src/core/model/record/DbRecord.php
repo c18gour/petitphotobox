@@ -7,7 +7,7 @@ use soloproyectos\db\record\DbRecordTable;
 /**
  * Implements the 'active record' approach.
  */
-class DbRecord
+abstract class DbRecord
 {
   protected $db;
   private $_id;
@@ -41,7 +41,7 @@ class DbRecord
    */
   public function getId()
   {
-    return $this->_id;
+    return $this->_columns["id"]->getValue();
   }
 
   /**
