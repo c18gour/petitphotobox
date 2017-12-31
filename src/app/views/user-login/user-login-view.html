@@ -15,10 +15,9 @@
         type="password" id="password" name="password" required
         [(ngModel)]="entity.password" #pass="ngModel">
       <button type="submit" class="button-primary">Enter</button>
-      <!-- TODO: replace this by app-modal-error -->
-      <div class="error-box" [hidden]="!errorMessage">{{errorMessage}}</div>
     </fieldset>
   </form>
 </div>
 
 <app-modal-loading [hidden]="!isRequesting"></app-modal-loading>
+<app-modal-error [hidden]="!errorMessage" [message]="errorMessage"></app-modal-error>
