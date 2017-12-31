@@ -4,7 +4,7 @@
   <!-- TODO: <div class="button" *ngIf="entity">...</div> -->
   <a *ngIf="entity" [routerLink]="'/category/new/' + categoryId" title="New category"><i class="fa fa-plus"></i></a>
   <a *ngIf="entity" (click)="menu.visible = !menu.visible" title="Toggle menu" ><i class="fa fa-bars"></i></a>
-  <a (click)="confirmLogout.open()" title="Sign out"><i class="fa fa-sign-out"></i></a>
+  <a (click)="logout.hidden = false" title="Sign out"><i class="fa fa-sign-out"></i></a>
 </div>
 
 <div class="container" *ngIf="entity">
@@ -15,5 +15,5 @@
 </div>
 
 <app-modal-loading [hidden]="!isRequesting"></app-modal-loading>
-<app-modal-confirm #confirmLogout [hidden]="true" [message]="'Do you want to exit the system?'" (accept)="logout()"></app-modal-confirm>
+<app-modal-confirm #logout [hidden]="true" [message]="'Do you want to exit the system?'" (accept)="exit()" (cancel)="logout.hidden = true"></app-modal-confirm>
 <app-modal-error [hidden]="!errorMessage" [message]="errorMessage" (accept)="goHome()"></app-modal-error>

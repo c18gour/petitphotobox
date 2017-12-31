@@ -51,7 +51,7 @@ export class HomeView implements OnInit {
     });
   }
 
-  async logout() {
+  async exit() {
     this.isRequesting = true;
     try {
       await this._logoutController.post();

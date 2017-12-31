@@ -20,14 +20,4 @@ export class ModalErrorComponent {
 
   @Output()
   accept = new EventEmitter<any>();
-
-  open(data?: any) {
-    this.hidden = false;
-    this.data = data;
-  }
-
-  close() {
-    this.hidden = true;
-    this.data = undefined;
-  }
 }
