@@ -1,4 +1,4 @@
-<select (change)="onChange(name.value)" [(ngModel)]="inputValue">
+<select #input (change)="onChange(input.value)" [(ngModel)]="inputValue">
   <option value=""></option>
   <option *ngFor="let item of items" [value]="item.value">{{item.label}}</option>
 </select>
