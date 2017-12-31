@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ModalLoadingComponent {
   @Input()
-  hidden = true;
+  hidden = false;
 
   open() {
     this.hidden = false;

@@ -7,7 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ModalAlertComponent {
   @Input()
-  hidden = true;
+  hidden = false;
 
   @Input()
   title = 'Alert';
