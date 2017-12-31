@@ -15,4 +15,4 @@
 </div>
 
 <app-modal-loading [hidden]="!isRequesting"></app-modal-loading>
-<app-modal-confirm #confirmLogout [message]="'Do you want to exit the system?'" (accept)="logout()"></app-modal-confirm>
+<app-modal-confirm #confirmLogout [hidden]="true" [message]="'Do you want to exit the system?'" (accept)="logout()"></app-modal-confirm>
