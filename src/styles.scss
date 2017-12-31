@@ -32,6 +32,10 @@ div {
       color: $primary-color-text;
       font-weight: 400;
       padding: .6rem 1rem;
+
+      &.error {
+        background-color: $accent-color;
+      }
     }
 
     .modal-dialog-body {

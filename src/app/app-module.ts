@@ -14,6 +14,7 @@ import { MenuModule } from './modules/menu/menu-module';
 import { ModalLoadingComponent } from './components/modal-loading/modal-loading-component';
 import { ModalAlertComponent } from './components/modal-alert/modal-alert-component';
 import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm-component';
+import { ModalErrorComponent } from './components/modal-error/modal-error-component';
 import { InputTreeComponent } from './components/input-tree/input-tree-component';
 
 // views
@@ -37,6 +38,7 @@ import { CategoryNewController } from './controllers/category-new-controller';
     ModalLoadingComponent,
     ModalAlertComponent,
     ModalConfirmComponent,
+    ModalErrorComponent,
     InputTreeComponent,
 
     // views
