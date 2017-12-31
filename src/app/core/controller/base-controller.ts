@@ -27,7 +27,10 @@ export abstract class BaseController<Type extends BaseEntity> {
     const params = new URLSearchParams();
     for (const name in args) {
       if (args.hasOwnProperty(name)) {
-        params.append(name, '' + args[name]);
+        const value = args[name];
+        if (value !== undefined && value !== null) {
+          params.append(name, '' + value);
+        }
       }
     }
 
