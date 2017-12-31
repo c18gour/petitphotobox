@@ -1,6 +1,7 @@
 <?php
 namespace petitphotobox\controllers;
 use petitphotobox\core\controller\AuthController;
+use petitphotobox\core\exception\AppError;
 use petitphotobox\model\documents\HomeDocument;
 use petitphotobox\model\records\DbCategory;
 use petitphotobox\model\records\DbUser;
@@ -40,6 +41,10 @@ class HomeController extends AuthController
     $category = Text::isEmpty($categoryId)
       ? $this->user->getMainCategory()
       : new DbCategory($this->db, $categoryId);
+
+    if (Text::isEmpty($category->getId())) {
+      throw new AppError("Category not found");
+    }
 
     $this->_document = new HomeDocument($this->user, $category);
   }
