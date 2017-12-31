@@ -7,15 +7,16 @@ div {
 
 a {
   color: $primary-color-text;
+  margin-right: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   &.selected {
     text-decoration: underline;
   }
 
-  &:first-child {
-    margin-right: 1rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  &:last-child {
+    margin-right: none;
   }
 }
