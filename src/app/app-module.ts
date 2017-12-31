@@ -20,12 +20,14 @@ import { InputTreeComponent } from './components/input-tree/input-tree-component
 import { HomeView } from './views/home/home-view';
 import { UserLoginView } from './views/user-login/user-login-view';
 import { UserRegisterView } from './views/user-register/user-register-view';
+import { CategoryNewView } from './views/category-new/category-new';
 import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
 // controllers
 import { UserLoginController } from './controllers/user-login-controller';
 import { LogoutController } from './controllers/logout-controller';
 import { HomeController } from './controllers/home-controller';
+import { CategoryNewController } from './controllers/category-new-controller';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { HomeController } from './controllers/home-controller';
     HomeView,
     UserLoginView,
     UserRegisterView,
+    CategoryNewView,
     PageNotFoundView
   ],
   imports: [
@@ -54,7 +57,8 @@ import { HomeController } from './controllers/home-controller';
   providers: [
     UserLoginController,
     LogoutController,
-    HomeController
+    HomeController,
+    CategoryNewController
   ],
   bootstrap: [AppComponent]
 })

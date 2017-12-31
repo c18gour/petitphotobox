@@ -1,0 +1,26 @@
+<div class="header">
+  <h1>Photobox</h1>
+</div>
+
+<div class="container" *ngIf="entity">
+  <h3>Create a new Category</h3>
+  <form (ngSubmit)="onSubmit()">
+    <fieldset>
+      <label for="parentCategoryId">Parent Category</label>
+      <app-input-tree #parentCategoryInput name="parentCategoryId"
+        [items]="entity.categories" [value]="entity.parentCategoryId"></app-input-tree>
+      <label for="name">Category title</label>
+      <input #inputTitle="ngModel" autofocus type="text" id="title" required
+        name="title" [(ngModel)]="entity.title" />
+      <div [hidden]="inputTitle.valid || inputTitle.pristine" class="error-box">
+        Title is required
+      </div>
+      <button type="submit" class="button-primary">Accept</button>
+      <button type="button" (click)="goBack()">Cancel</button>
+    </fieldset>
+  </form>
+</div>
+
+<app-modal-loading [hidden]="!isRequesting"></app-modal-loading>
+<!-- TODO: create an app-modal-error (read header) -->
+<app-modal-alert [hidden]="!errorMessage" [message]="errorMessage"></app-modal-alert>

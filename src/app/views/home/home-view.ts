@@ -15,6 +15,7 @@ import { HomeEntity } from '../../entities/home-entity';
 export class HomeView implements OnInit {
   entity: HomeEntity;
   isRequesting = false;
+  categoryId = '';
 
   constructor(
     private _controller: HomeController,
@@ -28,11 +29,14 @@ export class HomeView implements OnInit {
 
   ngOnInit() {
     this._route.params.subscribe(async (params) => {
-      const categoryId = params.id ? params.id : '';
+      this.categoryId = params.id ? params.id : '';
 
+      // TODO: check for 'category not found'
       this.isRequesting = true;
       try {
-        this.entity = await this._controller.get({ categoryId });
+        this.entity = await this._controller.get({
+          categoryId: this.categoryId
+        });
       } catch (e) {
         if (e instanceof SessionError) {
           this._router.navigate(['/login']);
