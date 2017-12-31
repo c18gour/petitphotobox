@@ -15,6 +15,7 @@ import { HomeEntity } from '../../entities/home-entity';
 export class HomeView implements OnInit {
   entity: HomeEntity;
   isRequesting = false;
+  errorMessage = '';
   categoryId = '';
 
   constructor(
@@ -31,7 +32,6 @@ export class HomeView implements OnInit {
     this._route.params.subscribe(async (params) => {
       this.categoryId = params.id ? params.id : '';
 
-      // TODO: check for 'category not found'
       this.isRequesting = true;
       try {
         this.entity = await this._controller.get({
@@ -40,6 +40,8 @@ export class HomeView implements OnInit {
       } catch (e) {
         if (e instanceof SessionError) {
           this._router.navigate(['/login']);
+        } else {
+          this.errorMessage = e.message;
         }
 
         throw e;
@@ -50,7 +52,6 @@ export class HomeView implements OnInit {
   }
 
   async logout() {
-    // TODO: check status response
     this.isRequesting = true;
     try {
       await this._logoutController.post();
@@ -66,7 +67,7 @@ export class HomeView implements OnInit {
     this._router.navigate(['/home', categoryId]);
   }
 
-  toggleMenu() {
-    this.menu.toggle();
+  goHome() {
+    this._router.navigate(['/home']);
   }
 }
