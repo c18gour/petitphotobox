@@ -30,6 +30,7 @@ class CategoryEditDocument extends BaseDocument
     $parent = $this->_record->getParent();
 
     return [
+      "id" => $this->_record->getId(),
       "title" => $this->_record->getTitle(),
       "parentCategoryId" => $parent->getId(),
       "categories" => $mainCategory->getTree($parent->getId())
