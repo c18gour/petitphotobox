@@ -14,7 +14,6 @@ import { ModalWindowSystem } from '../../core/modal/modal-window-system';
   styleUrls: ['./user-login-view.scss']
 })
 export class UserLoginView implements OnInit {
-  isRequesting = false;
   entity: UserLoginEntity;
   errorMessage = '';
   modal: ModalWindowSystem;
@@ -30,30 +29,30 @@ export class UserLoginView implements OnInit {
   async ngOnInit() {
     this.modal = new ModalWindowSystem(this._resolver, this.modalContainer);
 
-    this.isRequesting = true;
-    try {
-      this.entity = await this._controller.get();
-    } catch (e) {
-      if (e instanceof SessionError) {
-        this._router.navigate(['/home']);
+    this.modal.loading(async () => {
+      try {
+        this.entity = await this._controller.get();
+      } catch (e) {
+        if (e instanceof SessionError) {
+          this._router.navigate(['/home']);
+        }
+
+        throw e;
       }
-    } finally {
-      this.isRequesting = false;
-    }
+    });
   }
 
   async onSubmit() {
-    this.isRequesting = true;
-    try {
-      this.entity = await this._controller.post(
-        { username: this.entity.username, password: this.entity.password });
-    } catch (e) {
-      this.modal.error(e.message);
-      throw e;
-    } finally {
-      this.isRequesting = false;
-    }
+    this.modal.loading(async () => {
+      try {
+        this.entity = await this._controller.post(
+          { username: this.entity.username, password: this.entity.password });
+      } catch (e) {
+        this.modal.error(e.message);
+        throw e;
+      }
 
-    this._router.navigate(['/home']);
+      this._router.navigate(['/home']);
+    });
   }
 }

@@ -10,6 +10,9 @@ import {
 import {
   ModalErrorComponent
 } from '../../components/modal-error/modal-error-component';
+import {
+  ModalLoadingComponent
+} from '../../components/modal-loading/modal-loading-component';
 
 type Class<T> = new (...args: any[]) => T;
 
@@ -18,7 +21,22 @@ export class ModalWindowSystem {
     private _resolver: ComponentFactoryResolver,
     private _container: ViewContainerRef) { }
 
-  alert(message: string): Promise<any> {
+  async loading(exec: () => void): Promise<void> {
+    this._container.clear();
+
+    const factory = this._resolver.resolveComponentFactory(
+      ModalLoadingComponent);
+    const ref = this._container.createComponent(factory);
+    const instance = ref.instance;
+
+    try {
+      await exec();
+    } finally {
+      ref.destroy();
+    }
+  }
+
+  alert(message: string): Promise<boolean> {
     return this._createComponent(ModalAlertComponent, message);
   }
 
@@ -30,7 +48,7 @@ export class ModalWindowSystem {
     return this._createComponent(ModalConfirmComponent, message, accept, data);
   }
 
-  error(message: string): Promise<any> {
+  error(message: string): Promise<boolean> {
     return this._createComponent(ModalErrorComponent, message);
   }
 
