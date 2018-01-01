@@ -28,9 +28,13 @@ class HomeDocument extends BaseDocument
    */
   protected function getJsonObject()
   {
+    $mainCategory = $this->_user->getMainCategory();
     $items = $this->_getCategoriesTree();
 
     return [
+      "id" => $this->_category->getId(),
+      "title" => $this->_category->getTitle(),
+      "main" => $this->_category->getId() == $mainCategory->getId(),
       "categories" => $items,
       "pictures" => $this->_getPictures()
     ];

@@ -2,8 +2,8 @@
   <a title="Home" routerLink="/home" ><i class="fa fa-home"></i></a>
   <h1>Photobox</h1>
   <!-- TODO: <div class="button" *ngIf="entity">...</div> -->
-  <a *ngIf="entity" [routerLink]="'/category/new/' + categoryId" title="New category"><i class="fa fa-plus"></i></a>
   <a *ngIf="entity" (click)="menu.visible = !menu.visible" title="Toggle menu" ><i class="fa fa-bars"></i></a>
+  <a *ngIf="entity" [routerLink]="'/category/new/' + categoryId" title="New category"><i class="fa fa-plus"></i></a>
   <a (click)="modal.confirm('Do you want exit the system?', exit)" title="Sign out"><i class="fa fa-sign-out"></i></a>
 </div>
 
@@ -11,7 +11,12 @@
   <app-menu #menu [entries]="entity.categories"
     (deleteEntry)="modal.confirm('Are you sure?', deleteCategory, $event)"
     (selectEntry)="onSelectEntry($event)" [visible]="false"></app-menu>
-  <div>
+  <div class="pictures">
+    <h3 *ngIf="!entity.main">
+      <a (click)="modal.confirm('Are you sure?', deleteCategory)"><i class="fa fa-trash-o"></i></a>
+      <span>{{entity.title}}</span>
+      <a [routerLink]="'/category/edit/' + entity.id"><i class="fa fa-pencil"></i></a>
+    </h3>
     <p *ngFor="let picture of entity.pictures">{{picture.path}}</p>
   </div>
 </div>

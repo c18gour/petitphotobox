@@ -2,6 +2,7 @@
 namespace petitphotobox\controllers;
 use petitphotobox\core\controller\AuthController;
 use petitphotobox\core\exception\AppError;
+use petitphotobox\core\exception\ClientException;
 use petitphotobox\model\documents\EmptyDocument;
 use petitphotobox\model\records\DbCategory;
 use soloproyectos\text\Text;
@@ -51,8 +52,14 @@ class CategoryDeleteController extends AuthController
    *
    * @return void
    */
+  // TODO: the main category can't be deleted
   public function onPostRequest()
   {
+    $mainCategory = $this->user->getMainCategory();
+    if ($this->_record->getId() == $mainCategory->getId()) {
+      throw new ClientException("Main category cannot be deleted");
+    }
+
     DbCategory::delete($this->db, $this->_record->getId());
   }
 }

@@ -78,8 +78,17 @@ export class HomeView implements OnInit {
     this._router.navigate(['/home', categoryId]);
   }
 
-  deleteCategory(categoryId: string) {
-    this._categoryDeleteController.post({ categoryId });
+  deleteCategory() {
+    this.modal.loading(async () => {
+      try {
+        await this._categoryDeleteController.post(
+          { categoryId: this.entity.id });
+      } catch (e) {
+        this.modal.error(e.message);
+      }
+
+      this._router.navigate(['/home']);
+    });
   }
 
   goHome() {
