@@ -1,6 +1,13 @@
-# PetitPhotoBox.com
+# Petit Photobox.com
 
-PetitPhotoBox.com is a picture manager oriented to photographers.  
+A picture manager application.
+
+Since ancient times photographers and enthusiasts have felt the need to classify their photos. And for that purpose they have developed a variety of techniques. Just do a Google search to realize that there is no a universal consensus and that every photographer has its own techniques and tricks.
+
+The basic problem is that, if we try to classify our pictures in folders, immediately we realize that the same picture could belong to different folders, in the same way that a movie could belong to different genres.
+
+To solve this problem, instead of classifying pictures in folders, we dump them into the same directory and sort them in database categories and tags. That way, we can easily locate and sort any picture by different topics.
+ 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
 
 ## Development server
