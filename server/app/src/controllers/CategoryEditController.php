@@ -40,9 +40,13 @@ class CategoryEditController extends AuthController
   public function onOpenRequest()
   {
     $id = $this->getParam("categoryId");
+    if (Text::isEmpty($id)) {
+      throw new AppError("Category ID is required");
+    }
 
     $this->_record = new DbCategory($this->db, $id);
-    $this->_document = new CategoryEditDocument($this->_record, $this->user);
+    $this->_document = new CategoryEditDocument(
+      $this->_record, $this->user->getMainCategory());
   }
 
   /**
@@ -59,13 +63,9 @@ class CategoryEditController extends AuthController
       throw new ClientException("Title is required");
     }
 
-    $parent = new DbCategory($this->db, $parentId);
-    if (Text::isEmpty($parentId)) {
-      $parent = Text::isEmpty($this->_record->getId())
-        ? $this->user->getMainCategory()
-        : $this->_record->getParent();
-    }
-
+    $parent = Text::isEmpty($parentId)
+      ? $this->_record->getParent()
+      : new DbCategory($this->db, $parentId);
     if (Text::isEmpty($parent->getId())) {
       throw new ClientException("Parent category not found");
     }
