@@ -3,7 +3,7 @@ namespace petitphotobox\controllers;
 use petitphotobox\core\controller\AuthController;
 use petitphotobox\core\exception\AppError;
 use petitphotobox\core\exception\ClientException;
-use petitphotobox\model\documents\CategoryEditDocument;
+use petitphotobox\model\documents\CategoryDocument;
 use petitphotobox\model\records\DbCategory;
 use soloproyectos\text\Text;
 
@@ -25,7 +25,7 @@ class CategoryEditController extends AuthController
   /**
    * {@inheritdoc}
    *
-   * @return CategoryEditDocument
+   * @return CategoryDocument
    */
   public function getDocument()
   {
@@ -45,7 +45,7 @@ class CategoryEditController extends AuthController
     }
 
     $this->_record = new DbCategory($this->db, $id);
-    $this->_document = new CategoryEditDocument(
+    $this->_document = new CategoryDocument(
       $this->_record, $this->user->getMainCategory());
   }
 
