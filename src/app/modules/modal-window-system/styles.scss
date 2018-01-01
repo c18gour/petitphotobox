@@ -1,0 +1,45 @@
+@import '~compass-mixins/lib/compass/css3';
+@import '../../../config/css/palette';
+
+.modal {
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 100%;
+
+  .modal-dialog {
+    @include box-shadow(0 0 1.6rem 0 rgba($primary-text-color, .7));
+    background-color: $primary-color-text;
+    border-radius: .6rem;
+    display: inline-flex;
+    flex-direction: column;
+    margin-top: 8rem;
+  }
+
+  .modal-dialog-header {
+    background-color: $primary-color-dark;
+    border-radius: .6rem .6rem 0 0;
+    color: $primary-color-text;
+    font-weight: 400;
+    padding: .6rem 1rem;
+
+    &.error {
+      background-color: $accent-color;
+    }
+  }
+
+  .modal-dialog-body {
+    padding: 1rem 1.6rem;
+  }
+
+  .modal-dialog-footer {
+    border-radius: 0 0 .6rem .6rem;
+    padding: .4rem 1rem 1rem;
+
+    & > * {
+      margin-bottom: 0;
+    }
+  }
+}
