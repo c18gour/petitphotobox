@@ -65,7 +65,6 @@ export class CategoryNewView implements OnInit {
       try {
         this.entity = await this._controller.post({
           parentCategoryId: this.parentCategoryInput.value,
-          categoryId: '',
           title: this.entity.title
         });
       } catch (e) {
