@@ -1,19 +1,18 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-modal-loading',
   templateUrl: './modal-loading-component.html',
   styleUrls: ['./modal-loading-component.scss']
 })
-export class ModalLoadingComponent {
+export class ModalLoadingComponent implements OnInit {
   @Input()
   hidden = false;
 
-  open() {
-    this.hidden = false;
-  }
+  @ViewChild('modalDialog')
+  modalDialog: ElementRef;
 
-  close() {
-    this.hidden = true;
+  ngOnInit() {
+    this.modalDialog.nativeElement.focus();
   }
 }
