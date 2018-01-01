@@ -140,4 +140,14 @@ class DbCategory extends DbRecord
       $this->getCategories()
     );
   }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @param DbConnector $db Database connection
+   * @param string      $id Record ID
+   */
+  public static function delete($db, $id) {
+    parent::delete($db, "category", $id);
+  }
 }

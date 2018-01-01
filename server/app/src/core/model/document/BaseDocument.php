@@ -72,7 +72,6 @@ abstract class BaseDocument
    *
    * @return void
    */
-  // TODO: should be abstract method
   protected function setProperty($name, $value)
   {
     $this->_body[$name] = $value;
@@ -83,6 +82,7 @@ abstract class BaseDocument
    *
    * @return object
    */
+  // TODO: should be abstract method
   protected function getJsonObject()
   {
     return $this->_body;
