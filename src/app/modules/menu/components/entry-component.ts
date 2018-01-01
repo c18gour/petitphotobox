@@ -32,9 +32,6 @@ export class EntryComponent {
   selectEntry = new EventEmitter<string>();
 
   @Output()
-  deleteEntry = new EventEmitter<string>();
-
-  @Output()
   toggleEntry = new EventEmitter<EntryComponent>();
 
   get selected() {
@@ -48,10 +45,6 @@ export class EntryComponent {
     return this.menu !== undefined
       ? this.menu.items
       : new QueryList<EntryComponent>();
-  }
-
-  onSelectEntry(categoryId: string) {
-    this.selectEntry.emit(categoryId);
   }
 
   toggle() {

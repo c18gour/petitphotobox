@@ -44,15 +44,8 @@ export class MenuComponent {
   @Output()
   selectEntry = new EventEmitter<string>();
 
-  @Output()
-  deleteEntry = new EventEmitter<string>();
-
   @ViewChildren('entries')
   items = new QueryList<EntryComponent>();
-
-  onSelectEntry(categoryId) {
-    this.selectEntry.emit(categoryId);
-  }
 
   toggle() {
     this.open = !this.open;
