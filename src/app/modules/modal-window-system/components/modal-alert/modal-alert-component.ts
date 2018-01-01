@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { ModalDialog } from '../../core/modal/modal-dialog';
+import { ModalDialog } from '../../core/modal-dialog';
 
 @Component({
   selector: 'app-modal-alert',

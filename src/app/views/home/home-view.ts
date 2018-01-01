@@ -8,7 +8,9 @@ import { MenuComponent } from '../../modules/menu/components/menu-component';
 import { HomeController } from '../../controllers/home-controller';
 import { LogoutController } from '../../controllers/logout-controller';
 import { HomeEntity } from '../../entities/home-entity';
-import { ModalWindowSystem } from '../../core/modal/modal-window-system';
+import {
+  ModalWindowSystem
+} from '../../modules/modal-window-system/modal-window-system';
 
 @Component({
   selector: 'app-home',

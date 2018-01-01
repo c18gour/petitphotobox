@@ -11,7 +11,9 @@ import { CategoryNewEntity } from '../../entities/category-new-entity';
 import {
   InputTreeComponent
 } from '../../components/input-tree/input-tree-component';
-import { ModalWindowSystem } from '../../core/modal/modal-window-system';
+import {
+  ModalWindowSystem
+} from '../../modules/modal-window-system/modal-window-system';
 
 @Component({
   selector: 'app-edit-category',

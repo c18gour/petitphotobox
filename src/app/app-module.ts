@@ -9,20 +9,11 @@ import { AppComponent } from './app-component';
 
 // modules
 import { MenuModule } from './modules/menu/menu-module';
+import {
+  ModalWindowSytemModule
+} from './modules/modal-window-system/modal-window-system-module';
 
 // components
-import {
-  ModalLoadingComponent
-} from './components/modal-loading/modal-loading-component';
-import {
-  ModalAlertComponent
-} from './components/modal-alert/modal-alert-component';
-import {
-  ModalConfirmComponent
-} from './components/modal-confirm/modal-confirm-component';
-import {
-  ModalErrorComponent
-} from './components/modal-error/modal-error-component';
 import {
   InputTreeComponent
 } from './components/input-tree/input-tree-component';
@@ -45,10 +36,6 @@ import { CategoryNewController } from './controllers/category-new-controller';
     AppComponent,
 
     // components
-    ModalLoadingComponent,
-    ModalAlertComponent,
-    ModalConfirmComponent,
-    ModalErrorComponent,
     InputTreeComponent,
 
     // views
@@ -64,6 +51,7 @@ import { CategoryNewController } from './controllers/category-new-controller';
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    ModalWindowSytemModule,
     MenuModule
   ],
   providers: [
@@ -71,12 +59,6 @@ import { CategoryNewController } from './controllers/category-new-controller';
     LogoutController,
     HomeController,
     CategoryNewController
-  ],
-  entryComponents: [
-    ModalLoadingComponent,
-    ModalAlertComponent,
-    ModalConfirmComponent,
-    ModalErrorComponent
   ],
   bootstrap: [AppComponent]
 })
