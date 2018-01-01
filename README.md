@@ -1,6 +1,6 @@
 # Petit Photobox.com
 
-A picture manager application.
+*A picture manager application.*
 
 Since ancient times photographers and enthusiasts have felt the need to organize their photos. And for that purpose they have created a variety of techniques. Just do a Google search to realize that there is no a universal consensus and that every photographer has its own techniques and tricks.
 
