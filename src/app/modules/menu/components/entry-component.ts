@@ -32,6 +32,9 @@ export class EntryComponent {
   selectEntry = new EventEmitter<string>();
 
   @Output()
+  deleteEntry = new EventEmitter<string>();
+
+  @Output()
   toggleEntry = new EventEmitter<EntryComponent>();
 
   get selected() {

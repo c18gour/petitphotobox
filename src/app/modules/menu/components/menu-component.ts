@@ -44,6 +44,9 @@ export class MenuComponent {
   @Output()
   selectEntry = new EventEmitter<string>();
 
+  @Output()
+  deleteEntry = new EventEmitter<string>();
+
   @ViewChildren('entries')
   items = new QueryList<EntryComponent>();
 

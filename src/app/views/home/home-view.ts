@@ -4,13 +4,20 @@ import {
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { SessionError } from '../../core/exception/session-error';
-import { MenuComponent } from '../../modules/menu/components/menu-component';
-import { HomeController } from '../../controllers/home-controller';
-import { LogoutController } from '../../controllers/logout-controller';
 import { HomeEntity } from '../../entities/home-entity';
 import {
   ModalWindowSystem
 } from '../../modules/modal-window-system/modal-window-system';
+
+// components
+import { MenuComponent } from '../../modules/menu/components/menu-component';
+
+// controllers
+import { HomeController } from '../../controllers/home-controller';
+import { LogoutController } from '../../controllers/logout-controller';
+import {
+  CategoryDeleteController
+} from '../../controllers/category-delete-controller';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +32,7 @@ export class HomeView implements OnInit {
   constructor(
     private _controller: HomeController,
     private _logoutController: LogoutController,
+    private _categoryDeleteController: CategoryDeleteController,
     private _router: Router,
     private _route: ActivatedRoute,
     private _resolver: ComponentFactoryResolver
@@ -68,6 +76,10 @@ export class HomeView implements OnInit {
   onSelectEntry(categoryId: string) {
     this.menu.visible = false;
     this._router.navigate(['/home', categoryId]);
+  }
+
+  deleteCategory(categoryId: string) {
+    this._categoryDeleteController.post({ categoryId });
   }
 
   goHome() {

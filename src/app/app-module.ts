@@ -32,6 +32,9 @@ import { LogoutController } from './controllers/logout-controller';
 import { HomeController } from './controllers/home-controller';
 import { CategoryNewController } from './controllers/category-new-controller';
 import { CategoryEditController } from './controllers/category-edit-controller';
+import {
+  CategoryDeleteController
+} from './controllers/category-delete-controller';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,8 @@ import { CategoryEditController } from './controllers/category-edit-controller';
     LogoutController,
     HomeController,
     CategoryNewController,
-    CategoryEditController
+    CategoryEditController,
+    CategoryDeleteController
   ],
   bootstrap: [AppComponent]
 })
