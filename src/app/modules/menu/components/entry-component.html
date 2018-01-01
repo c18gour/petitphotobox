@@ -1,10 +1,6 @@
 <li>
   <div>
     <a [ngClass]="{'selected': entry.selected}" class="title" (click)="onSelectEntry(entry.id)"><span>{{entry.title}}</span></a>
-    <a (click)="deleteEntry.emit(entry.id)"><i class="fa fa-trash-o"></i></a>
-    <!-- TODO: this should be onEditEntry(entry.id) -->
-    <!-- TODO: remove Router module -->
-    <a [routerLink]="'/category/edit/' + entry.id"><i class="fa fa-pencil-square-o"></i></a>
     <a *ngIf="entry.items.length > 0" (click)="toggle()"><i class="fa" [ngClass]="{'fa-chevron-down': open, 'fa-chevron-right': !open}"></i></a>
   </div>
   <app-menu #menu [entries]="entry.items" *ngIf="entry.items.length > 0" (selectEntry)="onSelectEntry($event)" [open]="open"></app-menu>
