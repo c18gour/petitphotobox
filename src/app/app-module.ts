@@ -62,6 +62,12 @@ import { CategoryNewController } from './controllers/category-new-controller';
     HomeController,
     CategoryNewController
   ],
+  entryComponents: [
+    ModalLoadingComponent,
+    ModalAlertComponent,
+    ModalConfirmComponent,
+    ModalErrorComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

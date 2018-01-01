@@ -1,23 +1,19 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
+import { ModalDialog } from '../../core/modal/modal-dialog';
+
 @Component({
   selector: 'app-modal-alert',
   templateUrl: './modal-alert-component.html',
   styleUrls: ['./modal-alert-component.scss']
 })
-export class ModalAlertComponent {
-  @Input()
-  hidden = false;
-
+export class ModalAlertComponent extends ModalDialog {
   @Input()
   title = 'Alert';
-
-  @Input()
-  data: any;
 
   @Input()
   message = '';
 
   @Output()
-  accept = new EventEmitter<any>();
+  accept = new EventEmitter<boolean>();
 }

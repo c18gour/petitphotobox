@@ -1,23 +1,19 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
+import { ModalDialog } from '../../core/modal/modal-dialog';
+
 @Component({
   selector: 'app-modal-error',
   templateUrl: './modal-error-component.html',
   styleUrls: ['./modal-error-component.scss']
 })
-export class ModalErrorComponent {
-  @Input()
-  hidden = false;
-
+export class ModalErrorComponent extends ModalDialog {
   @Input()
   title = 'Error';
-
-  @Input()
-  data: any;
 
   @Input()
   message = '';
 
   @Output()
-  accept = new EventEmitter<any>();
+  accept = new EventEmitter<boolean>();
 }
