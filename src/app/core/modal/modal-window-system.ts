@@ -18,6 +18,7 @@ type Class<T> = new (...args: any[]) => T;
 
 export class ModalWindowSystem {
   constructor(
+    private _context: Object,
     private _resolver: ComponentFactoryResolver,
     private _container: ViewContainerRef) { }
 
@@ -67,7 +68,7 @@ export class ModalWindowSystem {
       instance.message = message;
       instance.accept.subscribe((response: boolean) => {
         if (response && accept) {
-          accept(data);
+          accept.call(this._context, data);
         }
 
         ref.destroy();

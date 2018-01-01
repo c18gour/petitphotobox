@@ -15,7 +15,6 @@ import { ModalWindowSystem } from '../../core/modal/modal-window-system';
 })
 export class UserLoginView implements OnInit {
   entity: UserLoginEntity;
-  errorMessage = '';
   modal: ModalWindowSystem;
 
   constructor(
@@ -27,7 +26,8 @@ export class UserLoginView implements OnInit {
   modalContainer: ViewContainerRef;
 
   async ngOnInit() {
-    this.modal = new ModalWindowSystem(this._resolver, this.modalContainer);
+    this.modal = new ModalWindowSystem(
+      this, this._resolver, this.modalContainer);
 
     this.modal.loading(async () => {
       try {
@@ -35,6 +35,8 @@ export class UserLoginView implements OnInit {
       } catch (e) {
         if (e instanceof SessionError) {
           this._router.navigate(['/home']);
+        } else {
+          this.modal.error(e.message);
         }
 
         throw e;

@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver
+} from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -9,6 +11,7 @@ import { CategoryNewEntity } from '../../entities/category-new-entity';
 import {
   InputTreeComponent
 } from '../../components/input-tree/input-tree-component';
+import { ModalWindowSystem } from '../../core/modal/modal-window-system';
 
 @Component({
   selector: 'app-edit-category',
@@ -17,32 +20,37 @@ import {
 })
 export class CategoryNewView implements OnInit {
   entity: CategoryNewEntity;
-  isRequesting = false;
-  errorMessage = '';
+  modal: ModalWindowSystem;
 
   constructor(
     private _controller: CategoryNewController,
     private _router: Router,
     private _route: ActivatedRoute,
-    private _location: Location
+    private _location: Location,
+    private _resolver: ComponentFactoryResolver
   ) { }
 
   @ViewChild('parentCategoryInput')
   parentCategoryInput: InputTreeComponent;
 
+  @ViewChild('modalContainer', { read: ViewContainerRef })
+  modalContainer: ViewContainerRef;
+
   async ngOnInit() {
-    this._route.params.subscribe(async (params) => {
+    this.modal = new ModalWindowSystem(
+      this, this._resolver, this.modalContainer);
+
+    this._route.params.subscribe((params) => {
       const parentCategoryId = params.parentCategoryId;
 
-      this.isRequesting = true;
-      try {
-        this.entity = await this._controller.get({ parentCategoryId });
-      } catch (e) {
-        this.errorMessage = e.message;
-        throw e;
-      } finally {
-        this.isRequesting = false;
-      }
+      this.modal.loading(async () => {
+        try {
+          this.entity = await this._controller.get({ parentCategoryId });
+        } catch (e) {
+          this.modal.error(e.message);
+          throw e;
+        }
+      });
     });
   }
 
@@ -51,21 +59,19 @@ export class CategoryNewView implements OnInit {
   }
 
   async onSubmit() {
-    this.isRequesting = true;
-    this.errorMessage = '';
-    try {
-      this.entity = await this._controller.post({
-        parentCategoryId: this.parentCategoryInput.value,
-        categoryId: '',
-        title: this.entity.title
-      });
-    } catch (e) {
-      this.errorMessage = e.message;
-      throw e;
-    } finally {
-      this.isRequesting = false;
-    }
+    this.modal.loading(async () => {
+      try {
+        this.entity = await this._controller.post({
+          parentCategoryId: this.parentCategoryInput.value,
+          categoryId: '',
+          title: this.entity.title
+        });
+      } catch (e) {
+        this.modal.error(e.message);
+        throw e;
+      }
 
-    this._router.navigate([`/home/${this.entity.id}`]);
+      this._router.navigate([`/home/${this.entity.id}`]);
+    });
   }
 }
