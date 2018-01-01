@@ -6,16 +6,15 @@ import { BaseController } from '../core/controller/base-controller';
 import { CategoryNewEntity } from '../entities/category-new-entity';
 
 @Injectable()
-export class CategoryNewController extends BaseController<CategoryNewEntity> {
+export class CategoryEditController extends BaseController<CategoryNewEntity> {
   constructor(http: Http) {
-    super(http, `${env.apiUrl}/category-new.php`);
+    super(http, `${env.apiUrl}/category-edit.php`);
   }
 
-  get(args?: { parentCategoryId: string }) {
+  get(args?: { categoryId: string }) {
     return super.get(args);
   }
 
-  // TODO: remove categoryId parameter
   post(args: { parentCategoryId: string, categoryId: string, title: string }) {
     return super.post(args);
   }

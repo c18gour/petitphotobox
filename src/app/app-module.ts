@@ -23,6 +23,7 @@ import { HomeView } from './views/home/home-view';
 import { UserLoginView } from './views/user-login/user-login-view';
 import { UserRegisterView } from './views/user-register/user-register-view';
 import { CategoryNewView } from './views/category-new/category-new';
+import { CategoryEditView } from './views/category-edit/category-edit';
 import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
 // controllers
@@ -30,6 +31,7 @@ import { UserLoginController } from './controllers/user-login-controller';
 import { LogoutController } from './controllers/logout-controller';
 import { HomeController } from './controllers/home-controller';
 import { CategoryNewController } from './controllers/category-new-controller';
+import { CategoryEditController } from './controllers/category-edit-controller';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { CategoryNewController } from './controllers/category-new-controller';
     UserLoginView,
     UserRegisterView,
     CategoryNewView,
+    CategoryEditView,
     PageNotFoundView
   ],
   imports: [
@@ -58,7 +61,8 @@ import { CategoryNewController } from './controllers/category-new-controller';
     UserLoginController,
     LogoutController,
     HomeController,
-    CategoryNewController
+    CategoryNewController,
+    CategoryEditController
   ],
   bootstrap: [AppComponent]
 })

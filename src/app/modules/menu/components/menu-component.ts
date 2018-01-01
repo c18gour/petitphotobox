@@ -1,3 +1,4 @@
+// TODO: move this class to menu/
 import {
   Component, Input, Output, EventEmitter, ViewChildren, QueryList
 } from '@angular/core';
