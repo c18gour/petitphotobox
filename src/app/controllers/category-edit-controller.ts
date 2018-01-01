@@ -3,10 +3,10 @@ import { Http } from '@angular/http';
 
 import { environment as env } from '../../environments/environment';
 import { BaseController } from '../core/controller/base-controller';
-import { CategoryNewEntity } from '../entities/category-new-entity';
+import { CategoryEntity } from '../entities/category-entity';
 
 @Injectable()
-export class CategoryEditController extends BaseController<CategoryNewEntity> {
+export class CategoryEditController extends BaseController<CategoryEntity> {
   constructor(http: Http) {
     super(http, `${env.apiUrl}/category-edit.php`);
   }

@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {
   CategoryEditController
 } from '../../controllers/category-edit-controller';
-import { CategoryNewEntity } from '../../entities/category-new-entity';
+import { CategoryEntity } from '../../entities/category-entity';
 import {
   InputTreeComponent
 } from '../../components/input-tree/input-tree-component';
@@ -21,7 +21,7 @@ import {
   styleUrls: ['./category-edit.scss']
 })
 export class CategoryEditView implements OnInit {
-  entity: CategoryNewEntity;
+  entity: CategoryEntity;
   modal: ModalWindowSystem;
   private _categoryId: string;
 
