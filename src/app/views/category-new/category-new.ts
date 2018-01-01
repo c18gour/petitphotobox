@@ -2,9 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { CategoryNewController } from '../../controllers/category-new-controller';
+import {
+  CategoryNewController
+} from '../../controllers/category-new-controller';
 import { CategoryNewEntity } from '../../entities/category-new-entity';
-import { InputTreeComponent } from '../../components/input-tree/input-tree-component';
+import {
+  InputTreeComponent
+} from '../../components/input-tree/input-tree-component';
 
 @Component({
   selector: 'app-edit-category',

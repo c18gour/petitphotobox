@@ -11,11 +11,21 @@ import { AppComponent } from './app-component';
 import { MenuModule } from './modules/menu/menu-module';
 
 // components
-import { ModalLoadingComponent } from './components/modal-loading/modal-loading-component';
-import { ModalAlertComponent } from './components/modal-alert/modal-alert-component';
-import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm-component';
-import { ModalErrorComponent } from './components/modal-error/modal-error-component';
-import { InputTreeComponent } from './components/input-tree/input-tree-component';
+import {
+  ModalLoadingComponent
+} from './components/modal-loading/modal-loading-component';
+import {
+  ModalAlertComponent
+} from './components/modal-alert/modal-alert-component';
+import {
+  ModalConfirmComponent
+} from './components/modal-confirm/modal-confirm-component';
+import {
+  ModalErrorComponent
+} from './components/modal-error/modal-error-component';
+import {
+  InputTreeComponent
+} from './components/input-tree/input-tree-component';
 
 // views
 import { HomeView } from './views/home/home-view';
