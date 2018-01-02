@@ -24,7 +24,7 @@ class CategoryDeleteController extends AuthController
   /**
    * {@inheritdoc}
    *
-   * @return CategoryDocument
+   * @return EmptyDocument
    */
   public function getDocument()
   {
