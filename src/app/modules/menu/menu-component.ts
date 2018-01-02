@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 
 import { MenuEntry } from './entities/menu-entry';
-import { EntryComponent } from './components/entry-component';
+import { MenuEntryComponent } from './components/menu-entry-component';
 
 @Component({
   selector: 'app-menu',
@@ -44,7 +44,7 @@ export class MenuComponent {
   selectEntry = new EventEmitter<string>();
 
   @ViewChildren('entries')
-  items = new QueryList<EntryComponent>();
+  items = new QueryList<MenuEntryComponent>();
 
   toggle() {
     this.open = !this.open;

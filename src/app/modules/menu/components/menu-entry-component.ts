@@ -7,11 +7,10 @@ import { MenuComponent } from './../menu-component';
 
 @Component({
   selector: 'app-entry',
-  templateUrl: './entry-component.html',
-  styleUrls: ['./entry-component.scss']
+  templateUrl: './menu-entry-component.html',
+  styleUrls: ['./menu-entry-component.scss']
 })
-// TODO: rename by MenuEntryComponent
-export class EntryComponent {
+export class MenuEntryComponent {
   @Input()
   entry: MenuEntry;
 
@@ -32,7 +31,7 @@ export class EntryComponent {
   selectEntry = new EventEmitter<string>();
 
   @Output()
-  toggleEntry = new EventEmitter<EntryComponent>();
+  toggleEntry = new EventEmitter<MenuEntryComponent>();
 
   get selected() {
     return this.entry.selected === true;
@@ -44,7 +43,7 @@ export class EntryComponent {
   get items() {
     return this.menu !== undefined
       ? this.menu.items
-      : new QueryList<EntryComponent>();
+      : new QueryList<MenuEntryComponent>();
   }
 
   toggle() {

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MenuComponent } from './menu-component';
-import { EntryComponent } from './components/entry-component';
+import { MenuEntryComponent } from './components/menu-entry-component';
 
 @NgModule({
   imports: [
@@ -10,7 +10,7 @@ import { EntryComponent } from './components/entry-component';
   ],
   declarations: [
     MenuComponent,
-    EntryComponent
+    MenuEntryComponent
   ],
   exports: [
     MenuComponent
