@@ -7,6 +7,7 @@ use soloproyectos\db\record\DbRecordTable;
 /**
  * Implements the 'active record' approach.
  */
+// TODO: create isNew() method
 abstract class DbRecord
 {
   protected $db;
