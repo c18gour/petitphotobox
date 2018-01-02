@@ -82,11 +82,7 @@ abstract class BaseDocument
    *
    * @return object
    */
-  // TODO: should be abstract method
-  protected function getJsonObject()
-  {
-    return $this->_body;
-  }
+  abstract protected function getJsonObject();
 
   /**
    * Gets a string representation of the current instance.
