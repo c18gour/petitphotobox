@@ -2,6 +2,7 @@
 namespace petitphotobox\model\records;
 use petitphotobox\core\model\record\DbRecord;
 use petitphotobox\model\records\DbPicture;
+use soloproyectos\text\Text;
 
 class DbCategory extends DbRecord
 {
@@ -142,12 +143,23 @@ class DbCategory extends DbRecord
   }
 
   /**
+   * Is this category a 'main category'?
+   *
+   * @return boolean
+   */
+  public function isMain()
+  {
+    return Text::isEmpty($this->get("parent_category_id"));
+  }
+
+  /**
    * {@inheritdoc}
    *
    * @param DbConnector $db Database connection
    * @param string      $id Record ID
    */
-  public static function delete($db, $id) {
+  public static function delete($db, $id)
+  {
     parent::delete($db, "category", $id);
   }
 }

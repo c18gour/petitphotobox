@@ -58,7 +58,6 @@ class CategoryEditController extends AuthController
    *
    * @return void
    */
-  // TODO: la categoría principal no se puede editar
   public function onPostRequest()
   {
     $parentId = $this->getParam("parentCategoryId");
@@ -66,6 +65,10 @@ class CategoryEditController extends AuthController
 
     if (Text::isEmpty($title)) {
       throw new ClientException("Title is required");
+    }
+
+    if ($this->_record->isMain()) {
+      throw new ClientException("Main category cannot be edited");
     }
 
     $parent = Text::isEmpty($parentId)

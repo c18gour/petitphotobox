@@ -54,8 +54,7 @@ class CategoryDeleteController extends AuthController
    */
   public function onPostRequest()
   {
-    $mainCategory = $this->user->getMainCategory();
-    if ($this->_record->getId() == $mainCategory->getId()) {
+    if ($this->_record->isMain()) {
       throw new ClientException("Main category cannot be deleted");
     }
 
