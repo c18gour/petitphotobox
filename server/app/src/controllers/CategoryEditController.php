@@ -45,6 +45,10 @@ class CategoryEditController extends AuthController
     }
 
     $this->_record = new DbCategory($this->db, $id);
+    if (!Text::isEmpty($id) && Text::isEmpty($this->_record->getId())) {
+      throw new AppError("Category not found");
+    }
+
     $this->_document = new CategoryDocument(
       $this->_record, $this->user->getMainCategory());
   }
@@ -54,6 +58,7 @@ class CategoryEditController extends AuthController
    *
    * @return void
    */
+  // TODO: la categoría principal no se puede editar
   public function onPostRequest()
   {
     $parentId = $this->getParam("parentCategoryId");
