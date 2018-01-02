@@ -2,6 +2,7 @@
 namespace petitphotobox\model\records;
 use petitphotobox\core\model\record\DbRecord;
 use petitphotobox\model\records\DbPicture;
+use petitphotobox\model\records\DbUser;
 use soloproyectos\text\Text;
 
 class DbCategory extends DbRecord
@@ -155,6 +156,28 @@ class DbCategory extends DbRecord
   public function isMain()
   {
     return Text::isEmpty($this->get("parent_category_id"));
+  }
+
+  /**
+   * Removes a picture from this category.
+   *
+   * @param DbPicture $picture A picture
+   *
+   * @return void
+   */
+  public function deletePicture($picture)
+  {
+    $sql = "
+    delete
+    from category_picture
+    where category_id = ?
+    and picture_id = ?";
+    $this->db->exec($sql, [$this->getId(), $picture->getId()]);
+
+    // removes the picture if it doesn't belong to any other category
+    if (count($picture->getCategories()) == 0) {
+      DbPicture::delete($this->db, $picture->getId());
+    }
   }
 
   /**

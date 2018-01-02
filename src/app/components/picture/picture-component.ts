@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-picture',
@@ -6,7 +6,12 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./picture-component.scss']
 })
 export class PictureComponent {
+  @Input()
+  id: string;
 
   @Input()
   path: string;
+
+  @Output()
+  deletePicture = new EventEmitter<string>();
 }

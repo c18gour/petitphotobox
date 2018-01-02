@@ -1,9 +1,9 @@
 <?php
 namespace petitphotobox\controllers;
 use petitphotobox\core\controller\AuthController;
-use petitphotobox\core\exception\AppError;
 use petitphotobox\core\exception\ClientException;
 use petitphotobox\model\documents\EmptyDocument;
+use petitphotobox\model\records\DbCategory;
 use petitphotobox\model\records\DbPicture;
 use soloproyectos\text\Text;
 
@@ -38,21 +38,6 @@ class PictureDeleteController extends AuthController
    */
   public function onOpenRequest()
   {
-    $id = $this->getParam("pictureId");
-    if (Text::isEmpty($id)) {
-      throw new AppError("Picture ID is required");
-    }
-
-    $this->_record = new DbPicture($this->db, $id);
-    $owner = $this->_record->getOwner();
-    if (
-      !$this->_record->isFound() ||
-      $owner == null ||
-      $owner->getId() != $this->user->getId()
-    ) {
-      throw new AppError("Image not found");
-    }
-
     $this->_document = new EmptyDocument();
   }
 
@@ -63,7 +48,30 @@ class PictureDeleteController extends AuthController
    */
   public function onPostRequest()
   {
-    // TODO: what happens if the image belongs to more than one category?
-    DbPicture::delete($this->db, $this->_record->getId());
+    $categoryId = $this->getParam("categoryId");
+    $id = $this->getParam("pictureId");
+
+    if (Text::isEmpty($categoryId) || Text::isEmpty($id)) {
+      throw new ClientException("Category ID and Picture ID is required");
+    }
+
+    $category = new DbCategory($this->db, $categoryId);
+    $user = $category->getUser();
+    if (
+      !$category->isFound() ||
+      $user->getId() != $this->user->getId()
+    ) {
+      throw new ClientException("Category not found");
+    }
+
+    $picture = new DbPicture($this->db, $id);
+    if (
+      !$picture->isFound() ||
+      !$picture->isInCategory($category)
+    ) {
+      throw new ClientException("Picture not found");
+    }
+
+    $category->deletePicture($picture);
   }
 }

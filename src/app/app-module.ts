@@ -36,6 +36,9 @@ import { CategoryEditController } from './controllers/category-edit-controller';
 import {
   CategoryDeleteController
 } from './controllers/category-delete-controller';
+import {
+  PictureDeleteController
+} from './controllers/picture-delete-controller';
 
 @NgModule({
   declarations: [
@@ -68,7 +71,8 @@ import {
     HomeController,
     CategoryNewController,
     CategoryEditController,
-    CategoryDeleteController
+    CategoryDeleteController,
+    PictureDeleteController
   ],
   bootstrap: [AppComponent]
 })

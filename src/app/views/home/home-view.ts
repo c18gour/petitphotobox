@@ -18,6 +18,9 @@ import { LogoutController } from '../../controllers/logout-controller';
 import {
   CategoryDeleteController
 } from '../../controllers/category-delete-controller';
+import {
+  PictureDeleteController
+} from '../../controllers/picture-delete-controller';
 
 @Component({
   selector: 'app-home',
@@ -33,6 +36,7 @@ export class HomeView implements OnInit {
     private _controller: HomeController,
     private _logoutController: LogoutController,
     private _categoryDeleteController: CategoryDeleteController,
+    private _pictureDeleteController: PictureDeleteController,
     private _router: Router,
     private _route: ActivatedRoute,
     private _resolver: ComponentFactoryResolver
@@ -51,20 +55,7 @@ export class HomeView implements OnInit {
     this._route.params.subscribe(async (params) => {
       this.categoryId = params.id ? params.id : '';
 
-      this.modal.loading(async () => {
-        try {
-          this.entity = await this._controller.get(
-            { categoryId: this.categoryId });
-        } catch (e) {
-          if (e instanceof SessionError) {
-            this._router.navigate(['/login']);
-          } else {
-            this.modal.error(e.message);
-          }
-
-          throw e;
-        }
-      });
+      this.modal.loading(() => this._refresh());
     });
   }
 
@@ -91,7 +82,35 @@ export class HomeView implements OnInit {
     });
   }
 
+  deletePicture(pictureId: string) {
+    this.modal.loading(async () => {
+      try {
+        await this._pictureDeleteController.post(
+          { categoryId: this.categoryId, pictureId });
+      } catch (e) {
+        this.modal.error(e.message);
+      }
+
+      this._refresh();
+    });
+  }
+
   goHome() {
     this._router.navigate(['/home']);
+  }
+
+  private async _refresh() {
+    try {
+      this.entity = await this._controller.get(
+        { categoryId: this.categoryId });
+    } catch (e) {
+      if (e instanceof SessionError) {
+        this._router.navigate(['/login']);
+      } else {
+        this.modal.error(e.message);
+      }
+
+      throw e;
+    }
   }
 }

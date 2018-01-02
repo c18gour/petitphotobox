@@ -83,15 +83,22 @@ class DbPicture extends DbRecord
   }
 
   /**
-   * Gets picture's owner.
+   * Is this picture in a category?
    *
-   * @return DbUser
+   * @param DbCategory $category Category
+   *
+   * @return boolean
    */
-  public function getOwner()
+  public function isInCategory($category)
   {
-    $categories = $this->getCategories();
-
-    return count($categories) > 0 ? $categories[0]->getUser() : null;
+    return count(
+      array_filter(
+        $category->getPictures(),
+        function ($picture) {
+          return $picture->getId() == $this->getId();
+        }
+      )
+    ) > 0;
   }
 
   /**
