@@ -39,9 +39,10 @@ class UserLoginController extends BaseController
    */
   public function onOpenRequest()
   {
-    $this->_document = new UserLoginDocument();
-    $this->_document->setUsername($this->getParam("username", ""));
-    $this->_document->setPassword($this->getParam("password"));
+    $username = $this->getParam("username", "");
+    $password = $this->getParam("password");
+
+    $this->_document = new UserLoginDocument($username, $password);
   }
 
   /**

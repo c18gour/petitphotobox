@@ -25,7 +25,7 @@ class UserRegisterController extends BaseController
   /**
    * {@inheritdoc}
    *
-   * @return UserLoginDocument
+   * @return UserRegisterDocument
    */
   public function getDocument()
   {
@@ -39,14 +39,17 @@ class UserRegisterController extends BaseController
    */
   public function onOpenRequest()
   {
+    $username = $this->getParam("username", "");
+    $password = $this->getParam("password");
+    $rePassword = $this->getParam("rePassword");
+
     if (UserAuth::isLogged($this->db)) {
       throw new AccessDeniedError("The user has already logged");
     }
 
-    $this->_document = new UserRegisterDocument();
-    $this->_document->setUsername($this->getParam("username", ""));
-    $this->_document->setPassword($this->getParam("password"));
-    $this->_document->setRePassword($this->getParam("rePassword"));
+    $this->_document = new UserRegisterDocument(
+      $username, $password, $rePassword
+    );
   }
 
   /**

@@ -4,14 +4,18 @@ use petitphotobox\core\model\document\BaseDocument;
 
 class UserRegisterDocument extends BaseDocument
 {
+  private $_username;
+  private $_password;
+  private $_rePassword;
+
   /**
    * Creates an instance.
    */
-  public function __construct()
+  public function __construct($username, $password, $rePassword)
   {
-    $this->setProperty("username", "");
-    $this->setProperty("password", "");
-    $this->setProperty("rePassword", "");
+    $this->_username = $username;
+    $this->_password = $password;
+    $this->_rePassword = $rePassword;
   }
 
   /**
@@ -21,19 +25,7 @@ class UserRegisterDocument extends BaseDocument
    */
   public function getUsername()
   {
-    return $this->getProperty("username");
-  }
-
-  /**
-   * Sets the username.
-   *
-   * @param string $value Username
-   *
-   * @return void
-   */
-  public function setUsername($value)
-  {
-    $this->setProperty("username", $value);
+    return $this->_username;
   }
 
   /**
@@ -43,19 +35,7 @@ class UserRegisterDocument extends BaseDocument
    */
   public function getPassword()
   {
-    return $this->getProperty("password");
-  }
-
-  /**
-   * Sets the password.
-   *
-   * @param string $value Password
-   *
-   * @return void
-   */
-  public function setPassword($value)
-  {
-    $this->setProperty("password", $value);
+    return $this->_password;
   }
 
   /**
@@ -65,19 +45,7 @@ class UserRegisterDocument extends BaseDocument
    */
   public function getRePassword()
   {
-    return $this->getProperty("rePassword");
-  }
-
-  /**
-   * Sets the password.
-   *
-   * @param string $value Password
-   *
-   * @return void
-   */
-  public function setRePassword($value)
-  {
-    $this->setProperty("rePassword", $value);
+    return $this->_rePassword;
   }
 
   /**
@@ -88,7 +56,7 @@ class UserRegisterDocument extends BaseDocument
   protected function getJsonObject()
   {
     return [
-      "username" => $this->getUsername(),
+      "username" => $this->_username,
       "password" => "",
       "rePassword" => ""
     ];

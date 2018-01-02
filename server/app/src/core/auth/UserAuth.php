@@ -68,12 +68,16 @@ class UserAuth
   {
     $user = DbUser::searchByName($db, $username);
     if ($user === null) {
-        throw new AuthException("User not found");
+        throw new AuthException(
+          "The user was not found or the password is wrong..."
+        );
     }
 
     // verifies the password
     if (!password_verify($password, $user->getPassword())) {
-      throw new AuthException("Invalid password");
+      throw new AuthException(
+        "The user was not found or the password is wrong"
+      );
     }
 
     // registers the user in the system

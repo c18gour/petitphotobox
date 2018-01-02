@@ -21,7 +21,7 @@ class UserLogoutController extends AuthController
   /**
    * {@inheritdoc}
    *
-   * @return UserLoginDocument
+   * @return UserLogoutDocument
    */
   public function getDocument()
   {

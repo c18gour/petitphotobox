@@ -23,7 +23,7 @@ class HomeController extends AuthController
   /**
    * {@inheritdoc}
    *
-   * @return UserLoginDocument
+   * @return HomeDocument
    */
   public function getDocument()
   {

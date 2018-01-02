@@ -4,13 +4,19 @@ use petitphotobox\core\model\document\BaseDocument;
 
 class UserLoginDocument extends BaseDocument
 {
+  private $_username;
+  private $_password;
+
   /**
    * Creates an instance.
+   *
+   * @param string $username Username
+   * @param string $password Password
    */
-  public function __construct()
+  public function __construct($username, $password)
   {
-    $this->setProperty("username", "");
-    $this->setProperty("password", "");
+    $this->_username = $username;
+    $this->_password = $password;
   }
 
   /**
@@ -20,19 +26,7 @@ class UserLoginDocument extends BaseDocument
    */
   public function getUsername()
   {
-    return $this->getProperty("username");
-  }
-
-  /**
-   * Sets the username.
-   *
-   * @param string $value Username
-   *
-   * @return void
-   */
-  public function setUsername($value)
-  {
-    $this->setProperty("username", $value);
+    return $this->_username;
   }
 
   /**
@@ -42,19 +36,7 @@ class UserLoginDocument extends BaseDocument
    */
   public function getPassword()
   {
-    return $this->getProperty("password");
-  }
-
-  /**
-   * Sets the password.
-   *
-   * @param string $value Password
-   *
-   * @return void
-   */
-  public function setPassword($value)
-  {
-    $this->setProperty("password", $value);
+    return $this->_password;
   }
 
   /**
@@ -65,7 +47,7 @@ class UserLoginDocument extends BaseDocument
   protected function getJsonObject()
   {
     return [
-      "username" => $this->getUsername(),
+      "username" => $this->_username,
       "password" => ""
     ];
   }

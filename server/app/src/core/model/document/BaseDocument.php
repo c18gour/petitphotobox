@@ -1,12 +1,10 @@
 <?php
 namespace petitphotobox\core\model\document;
 
-// TODO: remove getProperty() and setProperty()
 abstract class BaseDocument
 {
   private $_statusCode = 0;
   private $_statusMessage = "";
-  private $_body = [];
 
   /**
    * Gets status code.
@@ -50,31 +48,6 @@ abstract class BaseDocument
   public function setStatusMessage($message)
   {
     $this->_statusMessage = $message;
-  }
-
-  /**
-   * Gets a property.
-   *
-   * @param string $name Property name
-   *
-   * @return mixed
-   */
-  protected function getProperty($name)
-  {
-    return $this->_body[$name];
-  }
-
-  /**
-   * Sets a property.
-   *
-   * @param string $name  Property name
-   * @param mixed  $value Property value
-   *
-   * @return void
-   */
-  protected function setProperty($name, $value)
-  {
-    $this->_body[$name] = $value;
   }
 
   /**
