@@ -96,7 +96,7 @@ class DbCategory extends DbRecord
       id
     from category
     where parent_category_id = ?
-    order by id";
+    order by title";
     $rows = iterator_to_array($this->db->query($sql, $this->getId()));
 
     return array_map(
