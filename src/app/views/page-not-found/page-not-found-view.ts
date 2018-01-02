@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component, OnInit, ViewChild, ComponentFactoryResolver, ViewContainerRef
+} from '@angular/core';
+import { Router } from '@angular/router';
+
+import {
+  ModalWindowSystem
+} from '../../modules/modal-window-system/modal-window-system';
 
 @Component({
   selector: 'app-page-not-found',
@@ -6,10 +13,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page-not-found-view.scss']
 })
 export class PageNotFoundView implements OnInit {
+  modal: ModalWindowSystem;
 
-  constructor() { }
+  constructor(
+    private _router: Router,
+    private _resolver: ComponentFactoryResolver) { }
 
-  ngOnInit() {
+  @ViewChild('modalContainer', { read: ViewContainerRef })
+  modalContainer: ViewContainerRef;
+
+  async ngOnInit() {
+    this.modal = new ModalWindowSystem(
+      this, this._resolver, this.modalContainer);
+
+    if (await this.modal.alert('Page not found. Redirect to Home')) {
+      this._router.navigate(['/home']);
+    }
   }
 
 }
