@@ -8,7 +8,6 @@ use soloproyectos\text\Text;
 /**
  * Implements the 'active record' approach.
  */
-// TODO: create isNew() method
 abstract class DbRecord
 {
   protected $db;
