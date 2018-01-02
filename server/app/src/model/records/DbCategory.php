@@ -118,7 +118,8 @@ class DbCategory extends DbRecord
     select
       picture_id
     from category_picture
-    where category_id = ?";
+    where category_id = ?
+    order by ord";
     $rows = iterator_to_array($this->db->query($sql, $this->getId()));
 
     return array_map(
