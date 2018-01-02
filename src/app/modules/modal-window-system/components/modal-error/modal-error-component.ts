@@ -1,4 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component, OnInit, ViewChild, Input, Output, EventEmitter, ElementRef
+} from '@angular/core';
 
 import { ModalDialog } from '../../core/modal-dialog';
 
@@ -7,7 +9,7 @@ import { ModalDialog } from '../../core/modal-dialog';
   templateUrl: './modal-error-component.html',
   styleUrls: ['./modal-error-component.scss']
 })
-export class ModalErrorComponent extends ModalDialog {
+export class ModalErrorComponent extends ModalDialog implements OnInit {
   @Input()
   title = 'Error';
 
@@ -16,4 +18,11 @@ export class ModalErrorComponent extends ModalDialog {
 
   @Output()
   accept = new EventEmitter<boolean>();
+
+  @ViewChild('acceptButton')
+  acceptButton: ElementRef;
+
+  ngOnInit() {
+    this.acceptButton.nativeElement.focus();
+  }
 }

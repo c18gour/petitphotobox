@@ -1,4 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component, OnInit, ViewChild, Input, Output, EventEmitter, ElementRef
+} from '@angular/core';
 
 import { ModalDialog } from '../../core/modal-dialog';
 
@@ -7,7 +9,7 @@ import { ModalDialog } from '../../core/modal-dialog';
   templateUrl: './modal-confirm-component.html',
   styleUrls: ['./modal-confirm-component.scss']
 })
-export class ModalConfirmComponent extends ModalDialog {
+export class ModalConfirmComponent extends ModalDialog implements OnInit {
   @Input()
   title = 'Confirm';
 
@@ -16,4 +18,11 @@ export class ModalConfirmComponent extends ModalDialog {
 
   @Output()
   accept = new EventEmitter<boolean>();
+
+  @ViewChild('acceptButton')
+  acceptButton: ElementRef;
+
+  ngOnInit() {
+    this.acceptButton.nativeElement.focus();
+  }
 }
