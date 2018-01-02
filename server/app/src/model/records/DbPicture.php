@@ -1,6 +1,7 @@
 <?php
 namespace petitphotobox\model\records;
 use petitphotobox\core\model\record\DbRecord;
+use petitphotobox\model\records\DbCategory;
 use petitphotobox\model\records\DbSnapshot;
 
 class DbPicture extends DbRecord
@@ -56,5 +57,53 @@ class DbPicture extends DbRecord
     $row = $this->db->query($sql, $this->getId());
 
     return new DbSnapshot($this->db, $row["id"]);
+  }
+
+  /**
+   * Gets picture's categories.
+   *
+   *
+   * @return DbCategory[]
+   */
+  public function getCategories()
+  {
+    $sql = "
+    select
+      category_id
+    from category_picture
+    where picture_id = ?";
+    $rows = iterator_to_array($this->db->query($sql, $this->getId()));
+
+    return array_map(
+      function ($row) {
+        return new DbCategory($this->db, $row["category_id"]);
+      },
+      $rows
+    );
+  }
+
+  /**
+   * Gets picture's owner.
+   *
+   * @return DbUser
+   */
+  public function getOwner()
+  {
+    $categories = $this->getCategories();
+
+    return count($categories) > 0 ? $categories[0]->getUser() : null;
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @param DbConnector $db Database connection
+   * @param string      $id Record ID
+   *
+   * @return void
+   */
+  public static function delete($db, $id)
+  {
+    parent::delete($db, "picture", $id);
   }
 }
