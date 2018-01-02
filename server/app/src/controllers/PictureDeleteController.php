@@ -63,6 +63,7 @@ class PictureDeleteController extends AuthController
    */
   public function onPostRequest()
   {
+    // TODO: what happens if the image belongs to more than one category?
     DbPicture::delete($this->db, $this->_record->getId());
   }
 }
