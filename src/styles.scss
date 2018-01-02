@@ -31,32 +31,15 @@ div {
   }
 
   .header {
-    align-items: center;
     background: $primary-text-color;
     color: $primary-color-text;
-    display: flex;
-    flex-direction: row;
     margin-bottom: 2rem;
     padding: 1rem 1.6rem;
 
-    & > * {
-      line-height: normal;
-      padding-left: 1.6rem;
-
-      &:first-child {
-        padding-left: 0;
-      }
-    }
-
-    a {
-      color: $primary-color-text;
-      font-size: $font-size-h3;
-    }
-
     h1 {
-      flex-grow: 1;
       font-size: $font-size-h3;
-      margin: 0;
+      line-height: normal;
+      margin-bottom: 0;
     }
   }
 }

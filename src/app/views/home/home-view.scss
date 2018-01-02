@@ -1,10 +1,37 @@
+@import '../../../config/css/palette';
+@import '../../../config/css/metrics';
+
 .container {
   max-width: none;
   padding: 0;
 }
 
 .header {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
   margin-bottom: 0;
+
+  h1 {
+    flex-grow: 1;
+    padding-left: 1.6rem;
+  }
+
+  a {
+    color: $primary-color-text;
+    font-size: $font-size-h3;
+    line-height: normal;
+  }
+
+  .buttons {
+    & > * {
+      padding-left: 1.6rem;
+    }
+
+    &:first-child {
+      padding-left: 0;
+    }
+  }
 }
 
 h3 {
