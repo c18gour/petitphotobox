@@ -20,12 +20,17 @@
     </h3>
     <!-- else: -->
     <h3 *ngIf="!entity.main">
+      <!-- TODO: all links must have 'title' attribute -->
       <a (click)="modal.confirm('Are you sure?', deleteCategory)"><i class="fa fa-trash-o"></i></a>
       <span>{{entity.title}}</span>
       <a [routerLink]="'/category/edit/' + entity.id"><i class="fa fa-pencil"></i></a>
+      <a title="Search pictures"><i class="fa fa-search"></i></a>
+      <a title="Upload picture"><i class="fa fa-upload"></i></a>
     </h3>
     <!-- endif -->
 
+    <!-- TODO: navigation bar -->
+    <!-- TODO: show 'this category is empty' when no pictures found -->
     <app-picture *ngFor="let picture of entity.pictures"
       [id]="picture.id"
       [path]="picture.path"
