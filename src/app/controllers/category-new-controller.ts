@@ -15,7 +15,6 @@ export class CategoryNewController extends BaseController<CategoryEntity> {
     return super.get(args);
   }
 
-  // TODO: remove categoryId parameter
   post(args: { parentCategoryId: string, title: string }) {
     return super.post(args);
   }
