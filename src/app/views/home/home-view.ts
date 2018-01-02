@@ -10,7 +10,7 @@ import {
 } from '../../modules/modal-window-system/modal-window-system';
 
 // components
-import { MenuComponent } from '../../modules/menu/components/menu-component';
+import { MenuComponent } from '../../modules/menu/menu-component';
 
 // controllers
 import { HomeController } from '../../controllers/home-controller';

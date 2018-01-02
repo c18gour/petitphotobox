@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 
 import { MenuEntry } from './../entities/menu-entry';
-import { MenuComponent } from './menu-component';
+import { MenuComponent } from './../menu-component';
 
 @Component({
   selector: 'app-entry',

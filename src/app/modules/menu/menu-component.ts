@@ -1,10 +1,9 @@
-// TODO: move this class to menu/
 import {
   Component, Input, Output, EventEmitter, ViewChildren, QueryList
 } from '@angular/core';
 
-import { MenuEntry } from './../entities/menu-entry';
-import { EntryComponent } from './entry-component';
+import { MenuEntry } from './entities/menu-entry';
+import { EntryComponent } from './components/entry-component';
 
 @Component({
   selector: 'app-menu',
