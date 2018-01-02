@@ -52,7 +52,6 @@ class CategoryDeleteController extends AuthController
    *
    * @return void
    */
-  // TODO: the main category can't be deleted
   public function onPostRequest()
   {
     $mainCategory = $this->user->getMainCategory();
