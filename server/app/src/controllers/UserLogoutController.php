@@ -2,7 +2,7 @@
 namespace petitphotobox\controllers;
 use petitphotobox\core\auth\UserAuth;
 use petitphotobox\core\controller\AuthController;
-use petitphotobox\model\documents\UserLogoutDocument;
+use petitphotobox\model\documents\EmptyDocument;
 
 class UserLogoutController extends AuthController
 {
@@ -21,7 +21,7 @@ class UserLogoutController extends AuthController
   /**
    * {@inheritdoc}
    *
-   * @return UserLogoutDocument
+   * @return EmptyDocument
    */
   public function getDocument()
   {
@@ -35,7 +35,7 @@ class UserLogoutController extends AuthController
    */
   public function onOpenRequest()
   {
-    $this->_document = new UserLogoutDocument();
+    $this->_document = new EmptyDocument();
   }
 
   /**
