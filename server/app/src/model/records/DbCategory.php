@@ -128,6 +128,11 @@ class DbCategory extends DbRecord
     );
   }
 
+  /**
+   * Gets the category tree.
+   *
+   * @return array Associative array
+   */
   public function getTree()
   {
     return array_map(
@@ -157,6 +162,8 @@ class DbCategory extends DbRecord
    *
    * @param DbConnector $db Database connection
    * @param string      $id Record ID
+   *
+   * @return void
    */
   public static function delete($db, $id)
   {

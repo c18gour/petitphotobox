@@ -40,6 +40,7 @@ class HomeDocument extends BaseDocument
     ];
   }
 
+  // TODO: user DbCategory::getTree()
   /**
    * Gets the categories tree.
    *
@@ -47,7 +48,6 @@ class HomeDocument extends BaseDocument
    *
    * @return array An associative array
    */
-  // TODO: user DbCategory::getTree()
   private function _getCategoriesTree($category = null)
   {
     if ($category === null) {

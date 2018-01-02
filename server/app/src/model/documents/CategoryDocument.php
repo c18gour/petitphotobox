@@ -11,8 +11,9 @@ class CategoryDocument extends BaseDocument
   /**
    * Creates an instance.
    *
-   * @param DbUser     $user     Current user
-   * @param DbCategory $category Current category
+   * @param DbCategory $record       A category
+   * @param DbCategory $mainCategory The main category
+   * @param DbCategory $parent       Parent category
    */
   public function __construct($record, $mainCategory, $parent = null)
   {
