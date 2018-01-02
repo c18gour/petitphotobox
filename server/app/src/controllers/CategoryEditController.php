@@ -45,7 +45,7 @@ class CategoryEditController extends AuthController
     }
 
     $this->_record = new DbCategory($this->db, $id);
-    if (!Text::isEmpty($id) && Text::isEmpty($this->_record->getId())) {
+    if (!$this->_record->isFound()) {
       throw new AppError("Category not found");
     }
 
@@ -74,7 +74,7 @@ class CategoryEditController extends AuthController
     $parent = Text::isEmpty($parentId)
       ? $this->_record->getParent()
       : new DbCategory($this->db, $parentId);
-    if (Text::isEmpty($parent->getId())) {
+    if (!$parent->isFound()) {
       throw new ClientException("Parent category not found");
     }
 

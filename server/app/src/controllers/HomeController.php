@@ -42,7 +42,7 @@ class HomeController extends AuthController
       ? $this->user->getMainCategory()
       : new DbCategory($this->db, $categoryId);
 
-    if (Text::isEmpty($category->getId())) {
+    if (!$category->isFound()) {
       throw new AppError("Category not found");
     }
 

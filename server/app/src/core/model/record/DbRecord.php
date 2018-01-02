@@ -3,6 +3,7 @@ namespace petitphotobox\core\model\record;
 use soloproyectos\db\Db;
 use soloproyectos\db\DbConnector;
 use soloproyectos\db\record\DbRecordTable;
+use soloproyectos\text\Text;
 
 /**
  * Implements the 'active record' approach.
@@ -33,6 +34,16 @@ abstract class DbRecord
     if ($id !== null) {
       $this->_fetchRecord();
     }
+  }
+
+  /**
+   * Was the record found in the database?
+   *
+   * @return boolean [description]
+   */
+  public function isFound()
+  {
+    return !Text::isEmpty($this->getId());
   }
 
   /**
