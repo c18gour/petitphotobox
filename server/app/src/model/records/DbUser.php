@@ -106,4 +106,17 @@ class DbUser extends DbRecord
 
     return $ret;
   }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @param DbConnector $db Database connection
+   * @param string      $id Record ID
+   *
+   * @return void
+   */
+  public static function delete($db, $id)
+  {
+    parent::delete($db, "user", $id);
+  }
 }

@@ -61,7 +61,6 @@ class PictureUpController extends AuthController
       throw new ClientException("Category not found");
     }
 
-    // TODO: revisar
     $picture = new DbPicture($this->db, $id);
     if (!$picture->isFound() || !$picture->isInCategory($category)) {
       throw new ClientException("Picture not found");

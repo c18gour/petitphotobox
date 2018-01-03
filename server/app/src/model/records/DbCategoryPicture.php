@@ -62,4 +62,14 @@ class DbCategoryPicture extends DbSortableRecord
       $rows
     );
   }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @var [type]
+   */
+  static public function delete($db, $id)
+  {
+    parent::delete($db, "category_picture", $id);
+  }
 }

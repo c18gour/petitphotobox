@@ -210,13 +210,12 @@ class DbCategory extends DbRecord
    */
   public function deletePicture($picture)
   {
-    // TODO: recode
-    $sql = "
-    delete
-    from category_picture
-    where category_id = ?
-    and picture_id = ?";
-    $this->db->exec($sql, [$this->getId(), $picture->getId()]);
+    $r = $this->_searchCategoryPicture($picture);
+    if ($r == null) {
+      throw new DatabaseError("Picture not found");
+    }
+
+    DbCategoryPicture::delete($this->db, $r->getId());
 
     // removes the picture if it doesn't belong to any other category
     if (count($picture->getCategories()) == 0) {

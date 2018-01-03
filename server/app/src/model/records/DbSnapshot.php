@@ -36,4 +36,17 @@ class DbSnapshot extends DbRecord
   {
     $this->set("path", $value);
   }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @param DbConnector $db Database connection
+   * @param string      $id Record ID
+   *
+   * @return void
+   */
+  public static function delete($db, $id)
+  {
+    parent::delete($db, "snapshot", $id);
+  }
 }
