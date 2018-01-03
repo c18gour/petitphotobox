@@ -11,7 +11,7 @@ use soloproyectos\text\Text;
 class DbRecord
 {
   protected $db;
-  protected $tableName;
+  private $_tableName;
   private $_id;
   private $_columns;
   private $_isRecordFetched = false;
@@ -20,13 +20,13 @@ class DbRecord
    * Creates a new instance.
    *
    * @param DbConnector $db        Database connection
-   * @param string      $tableName Table namespace
+   * @param string      $_tableName Table namespace
    * @param string      $id        Record ID (optional)
    */
-  public function __construct($db, $tableName, $id = null)
+  public function __construct($db, $_tableName, $id = null)
   {
     $this->db = $db;
-    $this->tableName = $tableName;
+    $this->_tableName = $_tableName;
     $this->_id = $id;
 
     $this->_fetchColumns();
@@ -99,7 +99,7 @@ class DbRecord
    */
   public function save()
   {
-    $r = new DbRecordTable($this->db, $this->tableName);
+    $r = new DbRecordTable($this->db, $this->_tableName);
 
     // gets the modified columns
     $columns = [];
@@ -117,14 +117,14 @@ class DbRecord
    * Deletes a record.
    *
    * @param DbConnector $db        Database connection
-   * @param string      $tableName Table name
+   * @param string      $_tableName Table name
    * @param string      $id        Record ID
    *
    * @return void
    */
-  static public function delete($db, $tableName, $id)
+  static public function delete($db, $_tableName, $id)
   {
-    $r = new DbRecordTable($db, $tableName);
+    $r = new DbRecordTable($db, $_tableName);
     $r->delete($id);
   }
 
@@ -136,7 +136,7 @@ class DbRecord
   private function _fetchColumns()
   {
     $rows = $this->db->query(
-      "show columns from " . Db::quoteId($this->tableName)
+      "show columns from " . Db::quoteId($this->_tableName)
     );
 
     foreach ($rows as $row) {
@@ -155,7 +155,7 @@ class DbRecord
     $colNames = array_keys($this->_columns);
 
     // fetches column values
-    $r = new DbRecordTable($this->db, $this->tableName);
+    $r = new DbRecordTable($this->db, $this->_tableName);
     $cols = $r->select($colNames, $this->_id);
     foreach ($colNames as $i => $colName) {
       $this->_columns[$colName]->setInitialValue($cols[$i]);
