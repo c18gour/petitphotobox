@@ -19,6 +19,16 @@ class DbCategory extends DbRecord
   }
 
   /**
+   * Is this category a 'main category'?
+   *
+   * @return boolean
+   */
+  public function isMain()
+  {
+    return Text::isEmpty($this->get("parent_category_id"));
+  }
+
+  /**
    * Gets the user.
    *
    * @return DbUser
@@ -147,16 +157,6 @@ class DbCategory extends DbRecord
       },
       $this->getCategories()
     );
-  }
-
-  /**
-   * Is this category a 'main category'?
-   *
-   * @return boolean
-   */
-  public function isMain()
-  {
-    return Text::isEmpty($this->get("parent_category_id"));
   }
 
   /**
