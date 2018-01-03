@@ -35,8 +35,8 @@ class HomeDocument extends BaseDocument
       "id" => $this->_category->getId(),
       "title" => $this->_category->getTitle(),
       "main" => $this->_category->getId() == $mainCategory->getId(),
-      "categories" => $items,
-      "pictures" => $this->_getPictures()
+      "pictures" => $this->_getCategoryPictures(),
+      "categories" => $items
     ];
   }
 
@@ -88,19 +88,20 @@ class HomeDocument extends BaseDocument
    *
    * @return array Associative array
    */
-  private function _getPictures()
+  private function _getCategoryPictures()
   {
     $category = $this->_category === null
       ? $this->user->getMainCategory()
       : $this->_category;
 
     return array_map(
-      function ($picture) {
+      function ($row) {
+        $picture = $row->getPicture();
         $snapshot = $picture->getMainSnapshot();
 
-        return ["id" => $picture->getId(), "path" => $snapshot->getPath()];
+        return ["id" => $row->getId(), "path" => $snapshot->getPath()];
       },
-      $category->getPictures()
+      $category->getCategoryPictures()
     );
   }
 }
