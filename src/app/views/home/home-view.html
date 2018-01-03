@@ -31,11 +31,13 @@
 
     <!-- TODO: navigation bar -->
     <!-- TODO: show 'this category is empty' when no pictures found -->
+    <!-- TODO: when moving a picture, scroll to that picture -->
     <app-picture *ngFor="let picture of entity.pictures"
       [id]="picture.id"
       [path]="picture.path"
       (deletePicture)="modal.confirm('Are you sure?', deletePicture, picture.id)"
-      (upPicture)="movePictureUp(picture.id)"></app-picture>
+      (upPicture)="movePictureUp(picture.id)"
+      (downPicture)="movePictureDown(picture.id)"></app-picture>
   </div>
 </div>
 

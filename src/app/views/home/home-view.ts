@@ -24,6 +24,9 @@ import {
 import {
   PictureUpController
 } from '../../controllers/picture-up-controller';
+import {
+  PictureDownController
+} from '../../controllers/picture-down-controller';
 
 @Component({
   selector: 'app-home',
@@ -41,6 +44,7 @@ export class HomeView implements OnInit {
     private _categoryDeleteController: CategoryDeleteController,
     private _pictureDeleteController: PictureDeleteController,
     private _pictureUpController: PictureUpController,
+    private _pictureDownController: PictureDownController,
     private _router: Router,
     private _route: ActivatedRoute,
     private _resolver: ComponentFactoryResolver
@@ -103,6 +107,19 @@ export class HomeView implements OnInit {
     this.modal.loading(async () => {
       try {
         await this._pictureUpController.post(
+          { categoryId: this.categoryId, pictureId });
+      } catch (e) {
+        this.modal.error(e.message);
+      }
+
+      this._refresh();
+    });
+  }
+
+  movePictureDown(pictureId: string) {
+    this.modal.loading(async () => {
+      try {
+        await this._pictureDownController.post(
           { categoryId: this.categoryId, pictureId });
       } catch (e) {
         this.modal.error(e.message);

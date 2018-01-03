@@ -17,4 +17,7 @@ export class PictureComponent {
 
   @Output()
   upPicture = new EventEmitter<string>();
+
+  @Output()
+  downPicture = new EventEmitter<string>();
 }
