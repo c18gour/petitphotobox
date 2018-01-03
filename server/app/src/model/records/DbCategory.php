@@ -1,8 +1,10 @@
 <?php
 namespace petitphotobox\model\records;
 use petitphotobox\core\model\record\DbRecord;
+use petitphotobox\exceptions\DatabaseError;
 use petitphotobox\model\records\DbPicture;
 use petitphotobox\model\records\DbUser;
+use soloproyectos\db\DbConnector;
 use soloproyectos\text\Text;
 
 class DbCategory extends DbRecord
@@ -160,6 +162,46 @@ class DbCategory extends DbRecord
   }
 
   /**
+   * Moves a picture 'up'.
+   *
+   * @param DbPicture $picture A picture
+   *
+   * @return void
+   */
+  public function movePictureUp($picture)
+  {
+    $r = $this->_searchCategoryPicture($picture);
+    if ($r == null) {
+      throw new DatabaseError("Picture not found");
+    }
+
+    $prev = $r->getPrevRecord();
+    if ($prev != null) {
+      $r->swap($prev);
+    }
+  }
+
+  /**
+   * Moves a picture 'down'.
+   *
+   * @param DbPicture $picture A picture
+   *
+   * @return void
+   */
+  public function movePictureDown($picture)
+  {
+    $r = $this->_searchCategoryPicture($picture);
+    if ($r == null) {
+      throw new DatabaseError("Picture not found");
+    }
+
+    $next = $r->getNextRecord();
+    if ($next != null) {
+      $r->swap($next);
+    }
+  }
+
+  /**
    * Removes a picture from this category.
    *
    * @param DbPicture $picture A picture
@@ -168,6 +210,7 @@ class DbCategory extends DbRecord
    */
   public function deletePicture($picture)
   {
+    // TODO: recode
     $sql = "
     delete
     from category_picture
@@ -192,5 +235,30 @@ class DbCategory extends DbRecord
   public static function delete($db, $id)
   {
     parent::delete($db, "category", $id);
+  }
+
+  /**
+   * Searches a 'category picture' by picture.
+   *
+   * @param DbPicture $picture A picture
+   *
+   * @return DbCategoryPicture
+   */
+  private function _searchCategoryPicture($picture)
+  {
+    $ret = null;
+
+    $sql = "
+    select
+      id
+    from category_picture
+    where category_id = ?
+    and picture_id = ?";
+    $row = $this->db->query($sql, [$this->getId(), $picture->getId()]);
+    if (count($row) > 0) {
+      $ret = new DbCategoryPicture($this->db, $row["id"]);
+    }
+
+    return $ret;
   }
 }

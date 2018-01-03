@@ -21,6 +21,9 @@ import {
 import {
   PictureDeleteController
 } from '../../controllers/picture-delete-controller';
+import {
+  PictureUpController
+} from '../../controllers/picture-up-controller';
 
 @Component({
   selector: 'app-home',
@@ -37,6 +40,7 @@ export class HomeView implements OnInit {
     private _logoutController: LogoutController,
     private _categoryDeleteController: CategoryDeleteController,
     private _pictureDeleteController: PictureDeleteController,
+    private _pictureUpController: PictureUpController,
     private _router: Router,
     private _route: ActivatedRoute,
     private _resolver: ComponentFactoryResolver
@@ -86,6 +90,19 @@ export class HomeView implements OnInit {
     this.modal.loading(async () => {
       try {
         await this._pictureDeleteController.post(
+          { categoryId: this.categoryId, pictureId });
+      } catch (e) {
+        this.modal.error(e.message);
+      }
+
+      this._refresh();
+    });
+  }
+
+  movePictureUp(pictureId: string) {
+    this.modal.loading(async () => {
+      try {
+        await this._pictureUpController.post(
           { categoryId: this.categoryId, pictureId });
       } catch (e) {
         this.modal.error(e.message);

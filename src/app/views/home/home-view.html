@@ -34,7 +34,8 @@
     <app-picture *ngFor="let picture of entity.pictures"
       [id]="picture.id"
       [path]="picture.path"
-      (deletePicture)="modal.confirm('Are you sure?', deletePicture, picture.id)"></app-picture>
+      (deletePicture)="modal.confirm('Are you sure?', deletePicture, picture.id)"
+      (upPicture)="movePictureUp(picture.id)"></app-picture>
   </div>
 </div>
 

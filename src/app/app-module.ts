@@ -39,6 +39,9 @@ import {
 import {
   PictureDeleteController
 } from './controllers/picture-delete-controller';
+import {
+  PictureUpController
+} from './controllers/picture-up-controller';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,8 @@ import {
     CategoryNewController,
     CategoryEditController,
     CategoryDeleteController,
-    PictureDeleteController
+    PictureDeleteController,
+    PictureUpController
   ],
   bootstrap: [AppComponent]
 })

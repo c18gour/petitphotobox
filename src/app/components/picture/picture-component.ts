@@ -14,4 +14,7 @@ export class PictureComponent {
 
   @Output()
   deletePicture = new EventEmitter<string>();
+
+  @Output()
+  upPicture = new EventEmitter<string>();
 }
