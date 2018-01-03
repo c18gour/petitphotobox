@@ -114,18 +114,16 @@ class DbRecord
   }
 
   /**
-   * Deletes a record.
-   *
-   * @param DbConnector $db         Database connection
-   * @param string      $_tableName Table name
-   * @param string      $id         Record ID
+   * Deletes this record.
    *
    * @return void
    */
-  static public function delete($db, $_tableName, $id)
+  public function delete()
   {
-    $r = new DbRecordTable($db, $_tableName);
-    $r->delete($id);
+    $r = new DbRecordTable($this->db, $this->_tableName);
+    $r->delete($this->_id);
+
+    $this->_fetchRecord();
   }
 
   /**

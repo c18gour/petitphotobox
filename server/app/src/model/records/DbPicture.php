@@ -47,69 +47,40 @@ class DbPicture extends DbRecord
    */
   public function getMainSnapshot()
   {
-    $sql = "
-    select
-      id
-    from snapshot
-    where picture_id = ?
-    order by ord desc
-    limit 1";
-    $row = $this->db->query($sql, $this->getId());
-
-    return new DbSnapshot($this->db, $row["id"]);
+    return array_shift($this->getSnapshots());
   }
 
+  // TODO: rmeove this?
   /**
    * Gets picture's categories.
    *
    * @return DbCategory[]
    */
-  public function getCategories()
+  public function getCategoryPictures()
   {
     $sql = "
     select
-      category_id
+      id
     from category_picture
     where picture_id = ?";
     $rows = iterator_to_array($this->db->query($sql, $this->getId()));
 
     return array_map(
       function ($row) {
-        return new DbCategory($this->db, $row["category_id"]);
+        return new DbCategoryPicture($this->db, $row["id"]);
       },
       $rows
     );
   }
 
-  /**
-   * Is this picture in a category?
-   *
-   * @param DbCategory $category Category
-   *
-   * @return boolean
-   */
-  public function isInCategory($category)
+  public function delete()
   {
-    return count(
-      array_filter(
-        $category->getPictures(),
-        function ($picture) {
-          return $picture->getId() == $this->getId();
-        }
-      )
-    ) > 0;
-  }
+    // deletes snapshots
+    $rows = $this->getSnapshots();
+    foreach ($rows as $row) {
+      $row->delete();
+    }
 
-  /**
-   * {@inheritdoc}
-   *
-   * @param DbConnector $db Database connection
-   * @param string      $id Record ID
-   *
-   * @return void
-   */
-  public static function delete($db, $id)
-  {
-    parent::delete($db, "picture", $id);
+    parent::delete();
   }
 }

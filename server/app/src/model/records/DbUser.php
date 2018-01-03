@@ -82,6 +82,14 @@ class DbUser extends DbRecord
     return new DbCategory($this->db, $row["id"]);
   }
 
+  public function delete()
+  {
+    $category = $this->getMainCategory();
+    $category->delete();
+
+    parent::delete();
+  }
+
   /**
    * Searches an user by name.
    *
@@ -105,18 +113,5 @@ class DbUser extends DbRecord
     }
 
     return $ret;
-  }
-
-  /**
-   * {@inheritdoc}
-   *
-   * @param DbConnector $db Database connection
-   * @param string      $id Record ID
-   *
-   * @return void
-   */
-  public static function delete($db, $id)
-  {
-    parent::delete($db, "user", $id);
   }
 }

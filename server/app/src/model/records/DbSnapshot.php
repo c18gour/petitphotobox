@@ -15,6 +15,14 @@ class DbSnapshot extends DbRecord
     parent::__construct($db, "snapshot", $id);
   }
 
+  public function isMain()
+  {
+    $picture = $this->getPicture();
+    $snapshot = $picture->getMainSnapshot();
+
+    return $this->getId() == $snapshot->getId();
+  }
+
   /**
    * Gets the image path.
    *
@@ -37,16 +45,8 @@ class DbSnapshot extends DbRecord
     $this->set("path", $value);
   }
 
-  /**
-   * {@inheritdoc}
-   *
-   * @param DbConnector $db Database connection
-   * @param string      $id Record ID
-   *
-   * @return void
-   */
-  public static function delete($db, $id)
+  public function getPicture()
   {
-    parent::delete($db, "snapshot", $id);
+    return new DbPicture($this->db, $this->get("picture_id"));
   }
 }

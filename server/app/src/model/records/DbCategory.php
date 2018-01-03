@@ -120,15 +120,15 @@ class DbCategory extends DbRecord
   }
 
   /**
-   * Gets the list of pictures.
+   * Gets the list of 'category pictures' sorted by 'ord'.
    *
-   * @return DbPicture[]
+   * @return DbCategoryPicture[]
    */
-  public function getPictures()
+  public function getCategoryPictures()
   {
     $sql = "
     select
-      picture_id
+      id
     from category_picture
     where category_id = ?
     order by ord";
@@ -136,7 +136,7 @@ class DbCategory extends DbRecord
 
     return array_map(
       function ($row) {
-        return new DbPicture($this->db, $row["picture_id"]);
+        return new DbCategoryPicture($this->db, $row["id"]);
       },
       $rows
     );
@@ -161,103 +161,20 @@ class DbCategory extends DbRecord
     );
   }
 
-  /**
-   * Moves a picture 'up'.
-   *
-   * @param DbPicture $picture A picture
-   *
-   * @return void
-   */
-  public function movePictureUp($picture)
+  public function delete()
   {
-    $r = $this->_searchCategoryPicture($picture);
-    if ($r == null) {
-      throw new DatabaseError("Picture not found");
+    // deletes 'category pictures'
+    $rows = $this->getCategoryPictures();
+    foreach ($rows as $row) {
+      $row->delete();
     }
 
-    $prev = $r->getPrevRecord();
-    if ($prev != null) {
-      $r->swap($prev);
-    }
-  }
-
-  /**
-   * Moves a picture 'down'.
-   *
-   * @param DbPicture $picture A picture
-   *
-   * @return void
-   */
-  public function movePictureDown($picture)
-  {
-    $r = $this->_searchCategoryPicture($picture);
-    if ($r == null) {
-      throw new DatabaseError("Picture not found");
+    // delete subcategories
+    $rows = $this->getCategories();
+    foreach ($rows as $row) {
+      $row->delete();
     }
 
-    $next = $r->getNextRecord();
-    if ($next != null) {
-      $r->swap($next);
-    }
-  }
-
-  /**
-   * Removes a picture from this category.
-   *
-   * @param DbPicture $picture A picture
-   *
-   * @return void
-   */
-  public function deletePicture($picture)
-  {
-    $r = $this->_searchCategoryPicture($picture);
-    if ($r == null) {
-      throw new DatabaseError("Picture not found");
-    }
-
-    DbCategoryPicture::delete($this->db, $r->getId());
-
-    // removes the picture if it doesn't belong to any other category
-    if (count($picture->getCategories()) == 0) {
-      DbPicture::delete($this->db, $picture->getId());
-    }
-  }
-
-  /**
-   * {@inheritdoc}
-   *
-   * @param DbConnector $db Database connection
-   * @param string      $id Record ID
-   *
-   * @return void
-   */
-  public static function delete($db, $id)
-  {
-    parent::delete($db, "category", $id);
-  }
-
-  /**
-   * Searches a 'category picture' by picture.
-   *
-   * @param DbPicture $picture A picture
-   *
-   * @return DbCategoryPicture
-   */
-  private function _searchCategoryPicture($picture)
-  {
-    $ret = null;
-
-    $sql = "
-    select
-      id
-    from category_picture
-    where category_id = ?
-    and picture_id = ?";
-    $row = $this->db->query($sql, [$this->getId(), $picture->getId()]);
-    if (count($row) > 0) {
-      $ret = new DbCategoryPicture($this->db, $row["id"]);
-    }
-
-    return $ret;
+    parent::delete();
   }
 }
