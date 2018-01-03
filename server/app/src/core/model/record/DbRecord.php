@@ -8,11 +8,11 @@ use soloproyectos\text\Text;
 /**
  * Implements the 'active record' approach.
  */
-abstract class DbRecord
+class DbRecord
 {
   protected $db;
+  protected $tableName;
   private $_id;
-  private $_tableName;
   private $_columns;
   private $_isRecordFetched = false;
 
@@ -26,7 +26,7 @@ abstract class DbRecord
   public function __construct($db, $tableName, $id = null)
   {
     $this->db = $db;
-    $this->_tableName = $tableName;
+    $this->tableName = $tableName;
     $this->_id = $id;
 
     $this->_fetchColumns();
@@ -99,7 +99,7 @@ abstract class DbRecord
    */
   public function save()
   {
-    $r = new DbRecordTable($this->db, $this->_tableName);
+    $r = new DbRecordTable($this->db, $this->tableName);
 
     // gets the modified columns
     $columns = [];
@@ -136,7 +136,7 @@ abstract class DbRecord
   private function _fetchColumns()
   {
     $rows = $this->db->query(
-      "show columns from " . Db::quoteId($this->_tableName)
+      "show columns from " . Db::quoteId($this->tableName)
     );
 
     foreach ($rows as $row) {
@@ -155,7 +155,7 @@ abstract class DbRecord
     $colNames = array_keys($this->_columns);
 
     // fetches column values
-    $r = new DbRecordTable($this->db, $this->_tableName);
+    $r = new DbRecordTable($this->db, $this->tableName);
     $cols = $r->select($colNames, $this->_id);
     foreach ($colNames as $i => $colName) {
       $this->_columns[$colName]->setInitialValue($cols[$i]);
