@@ -10,6 +10,10 @@ class UserRegisterDocument extends BaseDocument
 
   /**
    * Creates an instance.
+   *
+   * @param string $username   Username
+   * @param string $password   password
+   * @param string $rePassword Repeated password
    */
   public function __construct($username, $password, $rePassword)
   {

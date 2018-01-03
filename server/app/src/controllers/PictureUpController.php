@@ -7,7 +7,7 @@ use petitphotobox\model\records\DbCategory;
 use petitphotobox\model\records\DbPicture;
 use soloproyectos\text\Text;
 
-class PictureDeleteController extends AuthController
+class PictureUpController extends AuthController
 {
   private $_document;
 
@@ -66,6 +66,6 @@ class PictureDeleteController extends AuthController
       throw new ClientException("Picture not found");
     }
 
-    $category->deletePicture($picture);
+    // $category->upPicture($picture);
   }
 }

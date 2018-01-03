@@ -19,9 +19,9 @@ class DbRecord
   /**
    * Creates a new instance.
    *
-   * @param DbConnector $db        Database connection
+   * @param DbConnector $db         Database connection
    * @param string      $_tableName Table namespace
-   * @param string      $id        Record ID (optional)
+   * @param string      $id         Record ID (optional)
    */
   public function __construct($db, $_tableName, $id = null)
   {
@@ -116,9 +116,9 @@ class DbRecord
   /**
    * Deletes a record.
    *
-   * @param DbConnector $db        Database connection
+   * @param DbConnector $db         Database connection
    * @param string      $_tableName Table name
-   * @param string      $id        Record ID
+   * @param string      $id         Record ID
    *
    * @return void
    */

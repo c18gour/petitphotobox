@@ -5,11 +5,23 @@ use soloproyectos\db\Db;
 
 abstract class DbSortableRecord extends DbRecord
 {
+  /**
+   * Gets the 'ord' value.
+   *
+   * @return int
+   */
   public function getOrd()
   {
     return $this->get("ord");
   }
 
+  /**
+   * Sets the 'ord' value.
+   *
+   * @param int $value Order value
+   *
+   * @return void
+   */
   public function setOrd($value)
   {
     $this->set("ord", $value);
@@ -18,7 +30,7 @@ abstract class DbSortableRecord extends DbRecord
   /**
    * Gets the list of records sorted by the 'ord' column in ascendent order
    *
-   * @var DbSortableRecord[]
+   * @return DbSortableRecord[]
    */
   abstract protected function getSortedRecords();
 
