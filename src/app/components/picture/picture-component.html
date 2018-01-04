@@ -1,7 +1,7 @@
 <!-- TODO: show a preloader and the show the image -->
 <div class="picture" [style.background-image]="backgroundImage">
   <div class="buttons left">
-    <a (click)="deletePicture.emit(id)"><i class="fa fa-trash"></i></a>
+    <a (click)="deletePicture.emit(id)" title="Delete picture"><i class="fa fa-trash"></i></a>
   </div>
   <div class="buttons right">
     <a title="Move picture up" (click)="upPicture.emit(id)"><i class="fa fa-chevron-circle-up"></i></a>
