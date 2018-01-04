@@ -58,7 +58,7 @@ class CategoryPictureDownController extends AuthController
     }
 
     // moves the record one position 'up'
-    $next = $row->getPrevRecord();
+    $next = $row->getNextRecord();
     if ($next != null) {
       $row->swap($next);
     }
