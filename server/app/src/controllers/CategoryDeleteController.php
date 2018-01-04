@@ -38,12 +38,6 @@ class CategoryDeleteController extends AuthController
    */
   public function onOpenRequest()
   {
-    $id = $this->getParam("categoryId");
-    if (Text::isEmpty($id)) {
-      throw new AppError("Category ID is required");
-    }
-
-    $this->_record = new DbCategory($this->db, $this->user, $id);
     $this->_document = new EmptyDocument();
   }
 
@@ -54,10 +48,20 @@ class CategoryDeleteController extends AuthController
    */
   public function onPostRequest()
   {
-    if ($this->_record->isMain()) {
+    $id = $this->getParam("categoryId");
+    if (Text::isEmpty($id)) {
+      throw new ClientException("Category ID is required");
+    }
+
+    $category = new DbCategory($this->db, $this->user, $id);
+    if (!$category->isFound()) {
+      throw new ClientException("Category not found");
+    }
+
+    if ($category->isMain()) {
       throw new ClientException("Main category cannot be deleted");
     }
 
-    DbCategory::delete($this->db, $this->_record->getId());
+    $category->delete();
   }
 }
