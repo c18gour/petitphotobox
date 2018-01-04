@@ -78,6 +78,7 @@ class CategoryEditController extends AuthController
       throw new ClientException("Parent category not found");
     }
 
+    // TODO: check for duplicate category titles
     $this->_record->parentCategoryId = $parent->getId();
     $this->_record->title = $title;
     $this->_record->save();
