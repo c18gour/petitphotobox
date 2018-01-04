@@ -22,8 +22,8 @@ import {
   CategoryPictureDeleteController
 } from '../../controllers/category-picture-delete-controller';
 import {
-  PictureUpController
-} from '../../controllers/picture-up-controller';
+  CategoryPictureUpController
+} from '../../controllers/category-picture-up-controller';
 import {
   PictureDownController
 } from '../../controllers/picture-down-controller';
@@ -43,7 +43,7 @@ export class HomeView implements OnInit {
     private _logoutController: LogoutController,
     private _categoryDeleteController: CategoryDeleteController,
     private _pictureDeleteController: CategoryPictureDeleteController,
-    private _pictureUpController: PictureUpController,
+    private _pictureUpController: CategoryPictureUpController,
     private _pictureDownController: PictureDownController,
     private _router: Router,
     private _route: ActivatedRoute,
@@ -102,11 +102,10 @@ export class HomeView implements OnInit {
     });
   }
 
-  movePictureUp(pictureId: string) {
+  movePictureUp(id: string) {
     this.modal.loading(async () => {
       try {
-        await this._pictureUpController.post(
-          { categoryId: this.categoryId, pictureId });
+        await this._pictureUpController.post({ id });
       } catch (e) {
         this.modal.error(e.message);
       }

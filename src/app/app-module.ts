@@ -40,8 +40,8 @@ import {
   CategoryPictureDeleteController
 } from './controllers/category-picture-delete-controller';
 import {
-  PictureUpController
-} from './controllers/picture-up-controller';
+  CategoryPictureUpController
+} from './controllers/category-picture-up-controller';
 import {
   PictureDownController
 } from './controllers/picture-down-controller';
@@ -79,7 +79,7 @@ import {
     CategoryEditController,
     CategoryDeleteController,
     CategoryPictureDeleteController,
-    PictureUpController,
+    CategoryPictureUpController,
     PictureDownController
   ],
   bootstrap: [AppComponent]
