@@ -11,7 +11,6 @@ export class UserLoginController extends BaseController<UserLoginEntity> {
     super(http, `${env.apiUrl}/user-login.php`);
   }
 
-  // TODO: checks the response agains a JSON standard document
   post(args: { username: string, password: string }) {
     return super.post(args);
   }
