@@ -9,7 +9,7 @@ class DbUser extends DbRecord
 {
   /**
    * User name.
-   * @var s
+   * @var string
    */
   public $username;
 

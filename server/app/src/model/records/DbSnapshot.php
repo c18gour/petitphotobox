@@ -28,21 +28,10 @@ class DbSnapshot extends DbSortableRecord
    */
   public function isMain()
   {
-    $picture = $this->getPicture();
+    $picture = new DbPicture($this->db, $this->_user, $this->pictureId):
     $snapshot = $picture->getMainSnapshot();
 
     return $this->id == $snapshot->getId();
-  }
-
-
-  /**
-   * Gets picture.
-   *
-   * @return DbPicture
-   */
-  public function getPicture()
-  {
-    return new DbPicture($this->db, $this->pictureId);
   }
 
   /**
