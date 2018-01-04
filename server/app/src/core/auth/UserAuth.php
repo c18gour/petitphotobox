@@ -74,7 +74,7 @@ class UserAuth
     }
 
     // verifies the password
-    if (!password_verify($password, $user->getPassword())) {
+    if (!password_verify($password, $user->password)) {
       throw new AuthException(
         "The user was not found or the password is wrong"
       );
