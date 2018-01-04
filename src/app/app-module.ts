@@ -43,8 +43,8 @@ import {
   CategoryPictureUpController
 } from './controllers/category-picture-up-controller';
 import {
-  PictureDownController
-} from './controllers/picture-down-controller';
+  CategoryPictureDownController
+} from './controllers/category-picture-down-controller';
 
 @NgModule({
   declarations: [
@@ -80,7 +80,7 @@ import {
     CategoryDeleteController,
     CategoryPictureDeleteController,
     CategoryPictureUpController,
-    PictureDownController
+    CategoryPictureDownController
   ],
   bootstrap: [AppComponent]
 })

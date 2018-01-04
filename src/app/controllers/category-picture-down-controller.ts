@@ -6,12 +6,13 @@ import { BaseController } from '../core/controller/base-controller';
 import { PictureEntity } from '../entities/picture-entity';
 
 @Injectable()
-export class PictureDownController extends BaseController<PictureEntity> {
+export class CategoryPictureDownController
+  extends BaseController<PictureEntity> {
   constructor(http: Http) {
-    super(http, `${env.apiUrl}/picture-down.php`);
+    super(http, `${env.apiUrl}/category-picture-down.php`);
   }
 
-  post(args: { categoryId: string, pictureId: string }) {
+  post(args: { id: string }) {
     return super.post(args);
   }
 }
