@@ -1,41 +1,27 @@
 <?php
 namespace petitphotobox\model\records;
 use petitphotobox\core\model\record\DbSortableRecord;
+use petitphotobox\core\model\record\DbTable;
 use petitphotobox\model\records\DbPicture;
 use petitphotobox\model\records\DbCategory;
 use soloproyectos\db\Db;
 
 class DbCategoryPicture extends DbSortableRecord
 {
+  private $_user;
+  public $categoryId;
+  public $pictureId;
+
   /**
    * Creates a new instance.
    *
    * @param DbConnector $db Database connection
    * @param string      $id Record ID (not required)
    */
-  public function __construct($db, $id = null)
+  public function __construct($db, $user, $id = null)
   {
-    parent::__construct($db, "category_picture", $id);
-  }
-
-  /**
-   * Gets category.
-   *
-   * @return DbCategory
-   */
-  public function getCategory()
-  {
-    return new DbCategory($this->db, $this->get("category_id"));
-  }
-
-  /**
-   * Gets picture.
-   *
-   * @return DbPicture
-   */
-  public function getPicture()
-  {
-    return new DbPicture($this->db, $this->get("picture_id"));
+    $this->_user = $user;
+    parent::__construct($db, $id);
   }
 
   /**
@@ -65,13 +51,71 @@ class DbCategoryPicture extends DbSortableRecord
 
   public function delete()
   {
-    $picture = $this->getPicture();
-    parent::delete();
+    $sql = "
+    delete cp
+    from category_picture as cp
+    inner join category as c
+      on c.user_id = ?
+      and c.id = cp.category_id
+    where cp.id = ?";
+    $this->db->exec($sql, [$this->_user->getId(), $this->id]);
+  }
 
-    // deletes orphan picture
-    $rows = $picture->getCategoryPictures();
-    if (count($rows) < 1) {
-      $picture->delete();
-    }
+  protected function select()
+  {
+    $sql = "
+    select
+      cp.id,
+      cp.category_id,
+      cp.picture_id,
+      cp.ord
+    from category_picture as cp
+    inner join category as c
+      on c.user_id = ?
+      and c.id = cp.category_id
+    where cp.id = ?";
+    $row = $this->db->query($sql, [$this->_user->getId(), $this->id]);
+    $this->categoryId = $row["category_id"];
+    $this->pictureId = $row["picture_id"];
+    $this->ord = $row["ord"];
+
+    return $row["id"];
+  }
+
+  protected function update()
+  {
+    $sql = "
+    update category_picture as cp
+    inner join category as p
+      on p.user_id = ?
+      and p.id = cp.category_id
+    set
+      cp.category_id = ?,
+      cp.picture_id = ?,
+      cp.ord = ?
+    where cp.id = ?";
+    $row = $this->db->exec(
+      $sql,
+      [
+        $this->_user->getId(),
+        $this->categoryId,
+        $this->pictureId,
+        $this->ord,
+        $this->id
+      ]
+    );
+  }
+
+  protected function insert()
+  {
+    return DbTable::insert(
+      $this->db,
+      "category_picture",
+      [
+        "category_id" => $this->categoryId,
+        "picture_id" => $this->pictureId,
+        "ord" => $this->ord
+      ]
+    );
   }
 }

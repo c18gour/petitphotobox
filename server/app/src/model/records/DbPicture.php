@@ -1,20 +1,25 @@
 <?php
 namespace petitphotobox\model\records;
 use petitphotobox\core\model\record\DbRecord;
+use petitphotobox\core\model\record\DbTable;
+use petitphotobox\exceptions\DatabaseError;
 use petitphotobox\model\records\DbCategory;
 use petitphotobox\model\records\DbSnapshot;
 
 class DbPicture extends DbRecord
 {
+  private $_user;
+
   /**
    * Creates a new instance.
    *
    * @param DbConnector $db Database connection
    * @param string      $id Record ID
    */
-  public function __construct($db, $id = null)
+  public function __construct($db, $user, $id = null)
   {
-    parent::__construct($db, "picture", $id);
+    $this->_user = $user;
+    parent::__construct($db, $id);
   }
 
   /**
@@ -75,12 +80,42 @@ class DbPicture extends DbRecord
 
   public function delete()
   {
-    // deletes snapshots
-    $rows = $this->getSnapshots();
-    foreach ($rows as $row) {
-      $row->delete();
-    }
+    $sql = "
+    delete p
+    from picture as p
+    inner join category_picture as cp
+      on cp.picture_id = p.id
+    inner join category as c
+      on c.user_id = ?
+      and c.id = cp.category_id
+    where p.id = ?";
+    $this->db->exec($sql, [$this->_user->getId(), $this->id]);
+  }
 
-    parent::delete();
+  protected function select()
+  {
+    $sql = "
+    select
+      p.id
+    from picture as p
+    inner join category_picture as cp
+      on cp.picture_id = p.id
+    inner join category as c
+      on c.user_id = ?
+      and c.id = cp.category_id
+    where p.id = ?";
+    $row = $this->db->query($sql, [$this->_user->getId(), $this->id]);
+
+    return $row["id"];
+  }
+
+  protected function update()
+  {
+    throw new DatabaseError("Method not implemented");
+  }
+
+  protected function insert()
+  {
+    return DbTable::insert($this->db, "picture", []);
   }
 }

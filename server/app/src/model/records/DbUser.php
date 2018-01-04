@@ -1,11 +1,24 @@
 <?php
 namespace petitphotobox\model\records;
 use petitphotobox\core\model\record\DbRecord;
+use petitphotobox\core\model\record\DbTable;
 use soloproyectos\db\DbConnector;
 use petitphotobox\model\records\DbCategory;
 
 class DbUser extends DbRecord
 {
+  /**
+   * User name.
+   * @var s
+   */
+  public $username;
+
+  /**
+   * Password.
+   * @var string
+   */
+  public $password;
+
   /**
    * Creates a new instance.
    *
@@ -14,51 +27,7 @@ class DbUser extends DbRecord
    */
   public function __construct($db, $id = null)
   {
-    parent::__construct($db, "user", $id);
-  }
-
-  /**
-   * Gets the user name.
-   *
-   * @return string
-   */
-  public function getUsername()
-  {
-    return $this->get("username");
-  }
-
-  /**
-   * Sets the user name.
-   *
-   * @param string $value User name
-   *
-   * @return void
-   */
-  public function setUsername($value)
-  {
-    $this->set("username", $value);
-  }
-
-  /**
-   * Gets the encrypted password.
-   *
-   * @return string
-   */
-  public function getPassword()
-  {
-    return $this->get("password");
-  }
-
-  /**
-   * Sets the encrypted password.
-   *
-   * @param string $value Encrypted password
-   *
-   * @return void
-   */
-  public function setPassword($value)
-  {
-    $this->set("password", $value);
+    parent::__construct($db, $id);
   }
 
   /**
@@ -80,14 +49,6 @@ class DbUser extends DbRecord
     $row = $this->db->query($sql, $this->getId());
 
     return new DbCategory($this->db, $row["id"]);
-  }
-
-  public function delete()
-  {
-    $category = $this->getMainCategory();
-    $category->delete();
-
-    parent::delete();
   }
 
   /**
@@ -113,5 +74,42 @@ class DbUser extends DbRecord
     }
 
     return $ret;
+  }
+
+  public function delete()
+  {
+    DbTable::delete($this->db, "user", $this->id);
+  }
+
+  protected function select()
+  {
+    list(
+      $id,
+      $this->username,
+      $this->password
+    ) = DbTable::select(
+      $this->db, "user", ["id", "username", "password"], $this->id
+    );
+
+    return $id;
+  }
+
+  protected function update()
+  {
+    DbTable::update(
+      $this->db,
+      "user",
+      ["username" => $this->username, "password" => $this->password],
+      $this->id
+    );
+  }
+
+  protected function insert()
+  {
+    return DbTable::insert(
+      $this->db,
+      "user",
+      ["username" => $this->username, "password" => $this->password]
+    );
   }
 }

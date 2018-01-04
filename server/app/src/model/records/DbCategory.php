@@ -1,23 +1,27 @@
 <?php
 namespace petitphotobox\model\records;
 use petitphotobox\core\model\record\DbRecord;
-use petitphotobox\exceptions\DatabaseError;
-use petitphotobox\model\records\DbPicture;
+use petitphotobox\core\model\record\DbTable;
 use petitphotobox\model\records\DbUser;
 use soloproyectos\db\DbConnector;
 use soloproyectos\text\Text;
 
 class DbCategory extends DbRecord
 {
+  private $_user;
+  public $parentCategoryId;
+  public $title;
+
   /**
    * Creates a new instance.
    *
    * @param DbConnector $db Database connection
    * @param string      $id Record ID (not required)
    */
-  public function __construct($db, $id = null)
+  public function __construct($db, $user, $id = null)
   {
-    parent::__construct($db, "category", $id);
+    $this->_user = $user;
+    parent::__construct($db, $id);
   }
 
   /**
@@ -27,73 +31,7 @@ class DbCategory extends DbRecord
    */
   public function isMain()
   {
-    return Text::isEmpty($this->get("parent_category_id"));
-  }
-
-  /**
-   * Gets the user.
-   *
-   * @return DbUser
-   */
-  public function getUser()
-  {
-    return new DbUser($this->db, $this->get("user_id"));
-  }
-
-  /**
-   * Sets the user.
-   *
-   * @param DbUser $user User
-   *
-   * @return void
-   */
-  public function setUser($user)
-  {
-    $this->set("user_id", $user->getId());
-  }
-
-  /**
-   * Gets the parent category.
-   *
-   * @return DbCategory
-   */
-  public function getParent()
-  {
-    return new DbCategory($this->db, $this->get("parent_category_id"));
-  }
-
-  /**
-   * Sets the parent category.
-   *
-   * @param DbCategory $parent Parent category
-   *
-   * @return void
-   */
-  public function setParent($parent)
-  {
-    $this->set("parent_category_id", $parent->getId());
-  }
-
-  /**
-   * Gets the title.
-   *
-   * @return string
-   */
-  public function getTitle()
-  {
-    return $this->get("title");
-  }
-
-  /**
-   * Sets the title.
-   *
-   * @param string $value Title
-   *
-   * @return void
-   */
-  public function setTitle($value)
-  {
-    $this->set("title", $value);
+    return Text::isEmpty($this->parentCategoryId);
   }
 
   /**
@@ -153,7 +91,7 @@ class DbCategory extends DbRecord
       function ($category) {
         return [
           "value" => $category->getId(),
-          "label" => $category->getTitle(),
+          "label" => $category->title,
           "items" => $category->getTree()
         ];
       },
@@ -163,18 +101,59 @@ class DbCategory extends DbRecord
 
   public function delete()
   {
-    // deletes 'category pictures'
-    $rows = $this->getCategoryPictures();
-    foreach ($rows as $row) {
-      $row->delete();
-    }
+    $sql = "
+    delete from category
+    where user_id = ?
+    and id = ?";
+    $this->db->exec($sql, [$this->_user->getId(), $this->id]);
+  }
 
-    // delete subcategories
-    $rows = $this->getCategories();
-    foreach ($rows as $row) {
-      $row->delete();
-    }
+  protected function select()
+  {
+    $sql = "
+    select
+      id,
+      parent_category_id,
+      title
+    from category
+    where user_id = ?
+    and id = ?";
+    $row = $this->db->query($sql, [$this->_user->getId(), $this->id]);
+    $this->parentCategoryId = $row["parent_category_id"];
+    $this->title = $row["title"];
 
-    parent::delete();
+    return $row["id"];
+  }
+
+  protected function update()
+  {
+    $sql = "
+    update category set
+      parent_category_id = ?,
+      title = ?
+    where user_id = ?
+    and id = ?";
+    $this->db->exec(
+        $sql,
+        [
+          $this->parentCategoryId,
+          $this->title,
+          $this->_user->getId(),
+          $this->id
+        ]
+    );
+  }
+
+  protected function insert()
+  {
+    return DbTable::insert(
+      $this->db,
+      "category",
+      [
+        "user_id" => $this->_user->getId(),
+        "parent_category_id" => $this->parentCategoryId,
+        "title" => $this->title
+      ]
+    );
   }
 }

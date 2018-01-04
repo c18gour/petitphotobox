@@ -6,26 +6,10 @@ use soloproyectos\db\Db;
 abstract class DbSortableRecord extends DbRecord
 {
   /**
-   * Gets the 'ord' value.
-   *
-   * @return int
+   * Order.
+   * @var int
    */
-  public function getOrd()
-  {
-    return $this->get("ord");
-  }
-
-  /**
-   * Sets the 'ord' value.
-   *
-   * @param int $value Order value
-   *
-   * @return void
-   */
-  public function setOrd($value)
-  {
-    $this->set("ord", $value);
-  }
+  public $ord;
 
   /**
    * Gets the list of records sorted by the 'ord' column in ascendent order
@@ -67,7 +51,7 @@ abstract class DbSortableRecord extends DbRecord
       array_filter(
         $records,
         function ($record) {
-          return $record->getOrd() < $this->get("ord");
+          return $record->ord < $this->get("ord");
         }
       )
     );
@@ -86,7 +70,7 @@ abstract class DbSortableRecord extends DbRecord
       array_filter(
         $records,
         function ($record) {
-          return $record->getOrd() > $this->get("ord");
+          return $record->ord > $this->get("ord");
         }
       )
     );
@@ -106,7 +90,7 @@ abstract class DbSortableRecord extends DbRecord
 
     if ($len > 0) {
       $lastRecord = $records[$len - 1];
-      $maxOrd = $lastRecord->getOrd();
+      $maxOrd = $lastRecord->ord;
 
       // swaps current record by selected record
       $records = array_map(
@@ -125,14 +109,14 @@ abstract class DbSortableRecord extends DbRecord
       // sorts records
       for ($i = 0; $i < $len; $i++) {
         $record = $records[$i];
-        $record->setOrd($maxOrd + $i + 1);
+        $record->ord = $maxOrd + $i + 1;
         $record->save();
       }
 
       // re-sort records
       for ($i = 0; $i < $len; $i++) {
         $record = $records[$i];
-        $record->setOrd($record->getOrd() - $maxOrd);
+        $record->ord = $record->ord - $maxOrd;
         $record->save();
       }
     }

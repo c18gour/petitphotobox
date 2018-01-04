@@ -1,18 +1,23 @@
 <?php
 namespace petitphotobox\model\records;
-use petitphotobox\core\model\record\DbRecord;
+use petitphotobox\core\model\record\DbSortableRecord;
 
-class DbSnapshot extends DbRecord
+class DbSnapshot extends DbSortableRecord
 {
+  private $_user;
+  public $pictureId;
+  public $path;
+
   /**
    * Creates a new instance.
    *
    * @param DbConnector $db Database connection
    * @param string      $id Record ID (not required)
    */
-  public function __construct($db, $id = null)
+  public function __construct($db, $user, $id = null)
   {
-    parent::__construct($db, "snapshot", $id);
+    $this->_user = $user;
+    parent::__construct($db, $id);
   }
 
   public function isMain()
@@ -23,30 +28,112 @@ class DbSnapshot extends DbRecord
     return $this->getId() == $snapshot->getId();
   }
 
-  /**
-   * Gets the image path.
-   *
-   * @return string
-   */
-  public function getPath()
-  {
-    return $this->get("path");
-  }
-
-  /**
-   * Sets the image path.
-   *
-   * @param string $value Image path
-   *
-   * @return void
-   */
-  public function setPath($value)
-  {
-    $this->set("path", $value);
-  }
-
   public function getPicture()
   {
-    return new DbPicture($this->db, $this->get("picture_id"));
+    return new DbPicture($this->db, $this->pictureId);
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @return DbSnapshot[]
+   */
+  protected function getSortedRecords()
+  {
+    $sql = "
+    select
+      id
+    from snapshot
+    where picture_id = ?
+    order by ord";
+    $rows = iterator_to_array(
+      $this->db->query($sql, $this->pictureId)
+    );
+
+    return array_map(
+      function ($row) {
+        return new DbSnapshot($this->db, $row["id"]);
+      },
+      $rows
+    );
+  }
+
+  public function delete()
+  {
+    $sql = "
+    delete s
+    from snapshot as s
+    inner join picture as p
+      on p.id = s.picture_id
+    inner join category_picture as cp
+      on cp.picture_id = p.id
+    inner join category as c
+      on c.user_id = ?
+      and c.id = cp.category_id
+    where s.id = ?";
+    $this->db->exec($sql, [$this->_user->getId(), $this->id]);
+  }
+
+  protected function select()
+  {
+    $sql = "
+    select
+      s.id,
+      s.picture_id,
+      s.path
+    from snapshot as s
+    inner join picture as p
+      on p.id = s.picture_id
+    inner join category_picture as cp
+      on cp.picture_id = p.id
+    inner join category as c
+      on c.user_id = ?
+      and c.id = cp.category_id
+    where s.id = ?";
+    $row = $this->db->query($sql, [$this->_user->getId(), $this->id]);
+    $this->pictureId = $row["picture_id"];
+    $this->path = $row["path"];
+
+    return $row["id"];
+  }
+
+  protected function update()
+  {
+    $sql = "
+    update snapshot as s
+    inner join picture as p
+      on p.id = s.picture_id
+    inner join category_picture as cp
+      on cp.picture_id = p.id
+    inner join category as c
+      on c.user_id = ?
+      and c.id = cp.picture_id
+    set
+      s.picture_id = ?,
+      s.path = ?,
+      s.ord = ?
+    where s.id = ?";
+    $row = $this->db->exec(
+      $sql,
+      [
+        $this->_user->getId(),
+        $this->pictureId,
+        $this->path,
+        $this->ord,
+        $this->id
+      ]
+    );
+  }
+
+  protected function insert()
+  {
+    return DbTable::insert(
+      $this->db,
+      [
+        "picture_id" => $this->pictureId,
+        "path" => $this->path,
+        "ord" => $htis->ord
+      ]
+    );
   }
 }
