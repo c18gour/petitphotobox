@@ -3,8 +3,8 @@
   <h1>Photobox</h1>
   <div class="buttons" *ngIf="entity">
     <a (click)="menu.visible = !menu.visible" title="Toggle menu" ><i class="fa fa-bars"></i></a>
-    <a title="Find pictures"><i class="fa fa-search"></i></a>
     <a [routerLink]="'/category/new'" title="New category"><i class="fa fa-plus"></i></a>
+    <a title="Find pictures"><i class="fa fa-search"></i></a>
     <a (click)="modal.confirm('Do you want exit the system?', exit)" title="Sign out"><i class="fa fa-sign-out"></i></a>
   </div>
 </div>
@@ -16,7 +16,9 @@
   <div class="pictures">
     <!-- if 'main category': -->
     <h3 *ngIf="entity.main">
-      Uncategorized pictures
+      <span>Uncategorized pictures</span>
+      <a [routerLink]="'/category/new/' + categoryId" title="New category"><i class="fa fa-plus"></i></a>
+      <a title="Upload picture"><i class="fa fa-upload"></i></a>
     </h3>
     <!-- else: -->
     <h3 *ngIf="!entity.main">
@@ -24,15 +26,18 @@
         <i class="fa fa-trash-o"></i>
       </a>
       <span>{{entity.title}}</span>
-      <a title="Search pictures"><i class="fa fa-search"></i></a>
       <a [routerLink]="'/category/edit/' + entity.id" title="Edit category"><i class="fa fa-pencil"></i></a>
       <a [routerLink]="'/category/new/' + categoryId" title="New subcategory"><i class="fa fa-plus"></i></a>
       <a title="Upload picture"><i class="fa fa-upload"></i></a>
+      <a title="Search pictures"><i class="fa fa-search"></i></a>
     </h3>
     <!-- endif -->
 
     <!-- TODO: navigation bar -->
-    <!-- TODO: show 'this category is empty' when no pictures found -->
+    <p *ngIf="entity.pictures.length === 0">
+      <em>This category is empty.</em>
+    </p>
+
     <!-- TODO: (low) when moving a picture, scroll to that picture -->
     <app-picture *ngFor="let picture of entity.pictures"
       [id]="picture.id"
