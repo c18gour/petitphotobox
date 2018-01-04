@@ -1,7 +1,6 @@
 <?php
 namespace petitphotobox\controllers;
 use petitphotobox\core\controller\AuthController;
-use petitphotobox\core\exception\AppError;
 use petitphotobox\core\exception\ClientException;
 use petitphotobox\model\documents\EmptyDocument;
 use petitphotobox\model\records\DbCategory;
