@@ -25,6 +25,11 @@ class DbCategory extends DbRecord
     parent::__construct($db, $id);
   }
 
+  public function getParent()
+  {
+    return new DbCategory($this->db, $this->_user, $this->parentCategoryId);
+  }
+
   /**
    * Is this category a 'main category'?
    *

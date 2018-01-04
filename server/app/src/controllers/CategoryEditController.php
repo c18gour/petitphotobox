@@ -73,14 +73,13 @@ class CategoryEditController extends AuthController
 
     $parent = Text::isEmpty($parentId)
       ? $this->_record->getParent()
-      : new DbCategory($this->db, $parentId);
+      : new DbCategory($this->db, $this->user, $parentId);
     if (!$parent->isFound()) {
       throw new ClientException("Parent category not found");
     }
 
-    $this->_record->setUser($this->user);
-    $this->_record->setParent($parent);
-    $this->_record->setTitle($title);
+    $this->_record->parentCategoryId = $parent->getId();
+    $this->_record->title = $title;
     $this->_record->save();
   }
 }

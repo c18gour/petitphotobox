@@ -35,7 +35,7 @@ class CategoryDocument extends BaseDocument
   {
     return [
       "id" => $this->_record->getId(),
-      "title" => $this->_record->getTitle(),
+      "title" => $this->_record->title,
       "parentCategoryId" => $this->_parent->getId(),
       "categories" => $this->_mainCategory->getTree()
     ];
