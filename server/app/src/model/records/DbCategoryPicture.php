@@ -15,8 +15,9 @@ class DbCategoryPicture extends DbSortableRecord
   /**
    * Creates a new instance.
    *
-   * @param DbConnector $db Database connection
-   * @param string      $id Record ID (not required)
+   * @param DbConnector $db   Database connection
+   * @param DbUser      $user Owner
+   * @param string      $id   Record ID (not required)
    */
   public function __construct($db, $user, $id = null)
   {
@@ -49,6 +50,11 @@ class DbCategoryPicture extends DbSortableRecord
     );
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   public function delete()
   {
     $sql = "
@@ -61,6 +67,11 @@ class DbCategoryPicture extends DbSortableRecord
     $this->db->exec($sql, [$this->_user->getId(), $this->id]);
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return string Record ID
+   */
   protected function select()
   {
     $sql = "
@@ -82,6 +93,11 @@ class DbCategoryPicture extends DbSortableRecord
     return $row["id"];
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   protected function update()
   {
     $sql = "
@@ -106,6 +122,11 @@ class DbCategoryPicture extends DbSortableRecord
     );
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   protected function insert()
   {
     return DbTable::insert(

@@ -15,8 +15,9 @@ class DbCategory extends DbRecord
   /**
    * Creates a new instance.
    *
-   * @param DbConnector $db Database connection
-   * @param string      $id Record ID (not required)
+   * @param DbConnector $db   Database connection
+   * @param DbUser      $user Owner
+   * @param string      $id   Record ID (not required)
    */
   public function __construct($db, $user, $id = null)
   {
@@ -99,6 +100,11 @@ class DbCategory extends DbRecord
     );
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   public function delete()
   {
     $sql = "
@@ -108,6 +114,11 @@ class DbCategory extends DbRecord
     $this->db->exec($sql, [$this->_user->getId(), $this->id]);
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return string Record ID
+   */
   protected function select()
   {
     $sql = "
@@ -125,6 +136,11 @@ class DbCategory extends DbRecord
     return $row["id"];
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   protected function update()
   {
     $sql = "
@@ -144,6 +160,11 @@ class DbCategory extends DbRecord
     );
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   protected function insert()
   {
     return DbTable::insert(

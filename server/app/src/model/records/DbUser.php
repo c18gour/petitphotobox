@@ -76,11 +76,21 @@ class DbUser extends DbRecord
     return $ret;
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   public function delete()
   {
     DbTable::delete($this->db, "user", $this->id);
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return string Record ID
+   */
   protected function select()
   {
     list(
@@ -94,6 +104,11 @@ class DbUser extends DbRecord
     return $id;
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   protected function update()
   {
     DbTable::update(
@@ -104,6 +119,11 @@ class DbUser extends DbRecord
     );
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   protected function insert()
   {
     return DbTable::insert(

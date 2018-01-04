@@ -11,8 +11,9 @@ class DbSnapshot extends DbSortableRecord
   /**
    * Creates a new instance.
    *
-   * @param DbConnector $db Database connection
-   * @param string      $id Record ID (not required)
+   * @param DbConnector $db   Database connection
+   * @param DbUser      $user Owner
+   * @param string      $id   Record ID (not required)
    */
   public function __construct($db, $user, $id = null)
   {
@@ -20,14 +21,25 @@ class DbSnapshot extends DbSortableRecord
     parent::__construct($db, $id);
   }
 
+  /**
+   * Is this snapshot main?
+   *
+   * @return boolean
+   */
   public function isMain()
   {
     $picture = $this->getPicture();
     $snapshot = $picture->getMainSnapshot();
 
-    return $this->getId() == $snapshot->getId();
+    return $this->id == $snapshot->getId();
   }
 
+
+  /**
+   * Gets picture.
+   *
+   * @return DbPicture
+   */
   public function getPicture()
   {
     return new DbPicture($this->db, $this->pictureId);
@@ -58,6 +70,11 @@ class DbSnapshot extends DbSortableRecord
     );
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   public function delete()
   {
     $sql = "
@@ -74,6 +91,11 @@ class DbSnapshot extends DbSortableRecord
     $this->db->exec($sql, [$this->_user->getId(), $this->id]);
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return string Record ID
+   */
   protected function select()
   {
     $sql = "
@@ -97,6 +119,11 @@ class DbSnapshot extends DbSortableRecord
     return $row["id"];
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   protected function update()
   {
     $sql = "
@@ -125,6 +152,11 @@ class DbSnapshot extends DbSortableRecord
     );
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   protected function insert()
   {
     return DbTable::insert(

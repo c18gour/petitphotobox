@@ -13,8 +13,9 @@ class DbPicture extends DbRecord
   /**
    * Creates a new instance.
    *
-   * @param DbConnector $db Database connection
-   * @param string      $id Record ID
+   * @param DbConnector $db   Database connection
+   * @param DbUser      $user Owner
+   * @param string      $id   Record ID
    */
   public function __construct($db, $user, $id = null)
   {
@@ -78,6 +79,11 @@ class DbPicture extends DbRecord
     );
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   public function delete()
   {
     $sql = "
@@ -92,6 +98,11 @@ class DbPicture extends DbRecord
     $this->db->exec($sql, [$this->_user->getId(), $this->id]);
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return string Record ID
+   */
   protected function select()
   {
     $sql = "
@@ -109,11 +120,21 @@ class DbPicture extends DbRecord
     return $row["id"];
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   protected function update()
   {
     throw new DatabaseError("Method not implemented");
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   protected function insert()
   {
     return DbTable::insert($this->db, "picture", []);

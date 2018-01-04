@@ -25,16 +25,31 @@ abstract class DbRecord
     }
   }
 
+  /**
+   * Gets the record ID.
+   *
+   * @return string
+   */
   public function getId()
   {
     return $this->id;
   }
 
+  /**
+   * Was the record found?
+   *
+   * @return boolean
+   */
   public function isFound()
   {
     return !Text::isEmpty($this->id);
   }
 
+  /**
+   * Saves this record.
+   *
+   * @return void
+   */
   public function save()
   {
     if (Text::isEmpty($this->id)) {
@@ -44,6 +59,11 @@ abstract class DbRecord
     }
   }
 
+  /**
+   * Refreshes this record.
+   *
+   * @return void
+   */
   public function refresh()
   {
     $this->id = $this->select();
@@ -52,28 +72,28 @@ abstract class DbRecord
   /**
    * Deletes a record from a table.
    *
-   * @var void
+   * @return void
    */
   abstract public function delete();
 
   /**
    * Selects a record from a table.
    *
-   * @var string Record ID
+   * @return string Record ID
    */
   abstract protected function select();
 
   /**
    * Updates a record from a table.
    *
-   * @var void
+   * @return void
    */
   abstract protected function update();
 
   /**
    * Inserts a record into a table.
    *
-   * @var string Last inserted id
+   * @return string Last inserted id
    */
   abstract protected function insert();
 }

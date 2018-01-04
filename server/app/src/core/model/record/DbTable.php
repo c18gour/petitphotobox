@@ -74,7 +74,6 @@ class DbTable
    * @param DbConnector $db        Database connection
    * @param string      $tableName Table name
    * @param array[]     $cols      Pairs of column names and values
-   * @param string      $id        Record ID
    *
    * @return int Last inserted ID.
    */
