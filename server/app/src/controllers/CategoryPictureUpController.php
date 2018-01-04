@@ -3,11 +3,10 @@ namespace petitphotobox\controllers;
 use petitphotobox\core\controller\AuthController;
 use petitphotobox\core\exception\ClientException;
 use petitphotobox\model\documents\EmptyDocument;
-use petitphotobox\model\records\DbCategory;
-use petitphotobox\model\records\DbPicture;
+use petitphotobox\model\records\DbCategoryPicture;
 use soloproyectos\text\Text;
 
-class PictureUpController extends AuthController
+class CategoryPictureUpController extends AuthController
 {
   private $_document;
 
@@ -48,24 +47,20 @@ class PictureUpController extends AuthController
    */
   public function onPostRequest()
   {
-    $categoryId = $this->getParam("categoryId");
-    $id = $this->getParam("pictureId");
-
-    if (Text::isEmpty($categoryId) || Text::isEmpty($id)) {
-      throw new ClientException("Category ID and Picture ID is required");
+    $id = $this->getParam("id");
+    if (Text::isEmpty($id)) {
+      throw new ClientException("ID is required");
     }
 
-    $category = new DbCategory($this->db, $this->user, $categoryId);
-    $user = $category->getUser();
-    if (!$category->isFound() || $user->getId() != $this->user->getId()) {
-      throw new ClientException("Category not found");
+    $row = new DbCategoryPicture($this->db, $this->user, $id);
+    if (!$row->isFound()) {
+      throw new ClientException("Record not found");
     }
 
-    $picture = new DbPicture($this->db, $this->user, $id);
-    if (!$picture->isFound() || !$picture->isInCategory($category)) {
-      throw new ClientException("Picture not found");
+    // moves the record one position 'up'
+    $prev = $row->getPrevRecord();
+    if ($prev != null) {
+      $row->swap($prev);
     }
-
-    $category->movePictureUp($picture);
   }
 }

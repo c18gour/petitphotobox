@@ -51,7 +51,7 @@ abstract class DbSortableRecord extends DbRecord
       array_filter(
         $records,
         function ($record) {
-          return $record->ord < $this->get("ord");
+          return $record->ord < $this->ord;
         }
       )
     );
@@ -70,7 +70,7 @@ abstract class DbSortableRecord extends DbRecord
       array_filter(
         $records,
         function ($record) {
-          return $record->ord > $this->get("ord");
+          return $record->ord > $this->ord;
         }
       )
     );

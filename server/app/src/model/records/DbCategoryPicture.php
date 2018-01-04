@@ -49,7 +49,7 @@ class DbCategoryPicture extends DbSortableRecord
     where category_id = ?
     order by ord";
     $rows = iterator_to_array(
-      $this->db->query($sql, $this->get("category_id"))
+      $this->db->query($sql, $this->categoryId)
     );
 
     return array_map(
