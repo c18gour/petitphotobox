@@ -19,8 +19,8 @@ import {
   CategoryDeleteController
 } from '../../controllers/category-delete-controller';
 import {
-  PictureDeleteController
-} from '../../controllers/picture-delete-controller';
+  CategoryPictureDeleteController
+} from '../../controllers/category-picture-delete-controller';
 import {
   PictureUpController
 } from '../../controllers/picture-up-controller';
@@ -42,7 +42,7 @@ export class HomeView implements OnInit {
     private _controller: HomeController,
     private _logoutController: LogoutController,
     private _categoryDeleteController: CategoryDeleteController,
-    private _pictureDeleteController: PictureDeleteController,
+    private _pictureDeleteController: CategoryPictureDeleteController,
     private _pictureUpController: PictureUpController,
     private _pictureDownController: PictureDownController,
     private _router: Router,
@@ -90,11 +90,10 @@ export class HomeView implements OnInit {
     });
   }
 
-  deletePicture(pictureId: string) {
+  deletePicture(id: string) {
     this.modal.loading(async () => {
       try {
-        await this._pictureDeleteController.post(
-          { categoryId: this.categoryId, pictureId });
+        await this._pictureDeleteController.post({ id });
       } catch (e) {
         this.modal.error(e.message);
       }
