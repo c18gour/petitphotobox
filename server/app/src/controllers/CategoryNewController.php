@@ -49,7 +49,7 @@ class CategoryNewController extends AuthController
       throw new AppError("Parent category not found");
     }
 
-    $this->_record = new DbCategory($this->db);
+    $this->_record = new DbCategory($this->db, $this->user);
     $this->_document = new CategoryDocument(
       $this->_record, $this->user->getMainCategory(), $this->_parent);
   }
@@ -67,9 +67,8 @@ class CategoryNewController extends AuthController
       throw new ClientException("Title is required");
     }
 
-    $this->_record->setUser($this->user);
-    $this->_record->setParent($this->_parent);
-    $this->_record->setTitle($title);
+    $this->_record->parentCategoryId = $this->_parent->getId();
+    $this->_record->title = $title;
     $this->_record->save();
   }
 }
