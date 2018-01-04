@@ -48,13 +48,12 @@ export abstract class BaseController<Type extends BaseEntity> {
       doc = reply.json();
     } catch (e) {
       const errorDoc = e.json();
-      const message = e.message ||
-        'Unknown error.\nPlease contact technical support';
+      const defaultError = 'Unknown error.\nPlease contact technical support';
 
       // rethrows the exception with addition information
       const status = errorDoc.status;
       const statusCode = status ? errorDoc.status.code : 500;
-      const statusMessage = status ? errorDoc.status.message : message;
+      const statusMessage = status ? errorDoc.status.message : defaultError;
       throw this._createException(statusCode, statusMessage);
     }
 
