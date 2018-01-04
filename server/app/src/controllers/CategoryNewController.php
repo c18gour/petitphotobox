@@ -44,7 +44,7 @@ class CategoryNewController extends AuthController
 
     $this->_parent = Text::isEmpty($parentId)
       ? $this->user->getMainCategory()
-      : new DbCategory($this->db, $parentId);
+      : new DbCategory($this->db, $this->user, $parentId);
     if (!$this->_parent->isFound()) {
       throw new AppError("Parent category not found");
     }

@@ -43,7 +43,7 @@ class CategoryDeleteController extends AuthController
       throw new AppError("Category ID is required");
     }
 
-    $this->_record = new DbCategory($this->db, $id);
+    $this->_record = new DbCategory($this->db, $this->user, $id);
     $this->_document = new EmptyDocument();
   }
 

@@ -28,7 +28,7 @@ class DbSnapshot extends DbSortableRecord
    */
   public function isMain()
   {
-    $picture = new DbPicture($this->db, $this->_user, $this->pictureId):
+    $picture = new DbPicture($this->db, $this->_user, $this->pictureId);
     $snapshot = $picture->getMainSnapshot();
 
     return $this->id == $snapshot->getId();
@@ -53,7 +53,7 @@ class DbSnapshot extends DbSortableRecord
 
     return array_map(
       function ($row) {
-        return new DbSnapshot($this->db, $row["id"]);
+        return new DbSnapshot($this->db, $this->_user, $row["id"]);
       },
       $rows
     );

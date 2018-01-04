@@ -44,7 +44,7 @@ class CategoryEditController extends AuthController
       throw new AppError("Category ID is required");
     }
 
-    $this->_record = new DbCategory($this->db, $id);
+    $this->_record = new DbCategory($this->db, $this->user, $id);
     if (!$this->_record->isFound()) {
       throw new AppError("Category not found");
     }

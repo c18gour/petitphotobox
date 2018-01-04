@@ -33,7 +33,7 @@ class HomeDocument extends BaseDocument
 
     return [
       "id" => $this->_category->getId(),
-      "title" => $this->_category->getTitle(),
+      "title" => $this->_category->title,
       "main" => $this->_category->getId() == $mainCategory->getId(),
       "pictures" => $this->_getCategoryPictures(),
       "categories" => $items
@@ -73,7 +73,7 @@ class HomeDocument extends BaseDocument
 
         return [
           "id" => $category->getId(),
-          "title" => $category->getTitle(),
+          "title" => $category->title,
           "open" => $isOpen,
           "selected" => $isSelected,
           "items" => $items
@@ -99,7 +99,7 @@ class HomeDocument extends BaseDocument
         $picture = $row->getPicture();
         $snapshot = $picture->getMainSnapshot();
 
-        return ["id" => $row->getId(), "path" => $snapshot->getPath()];
+        return ["id" => $row->getId(), "path" => $snapshot->path];
       },
       $category->getCategoryPictures()
     );

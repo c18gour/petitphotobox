@@ -48,7 +48,7 @@ class DbUser extends DbRecord
     and user_id = ?";
     $row = $this->db->query($sql, $this->getId());
 
-    return new DbCategory($this->db, $row["id"]);
+    return new DbCategory($this->db, $this, $row["id"]);
   }
 
   /**

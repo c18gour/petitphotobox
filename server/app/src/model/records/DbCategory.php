@@ -52,7 +52,7 @@ class DbCategory extends DbRecord
 
     return array_map(
       function ($row) {
-        return new DbCategory($this->db, $row["id"]);
+        return new DbCategory($this->db, $this->_user, $row["id"]);
       },
       $rows
     );
@@ -75,7 +75,7 @@ class DbCategory extends DbRecord
 
     return array_map(
       function ($row) {
-        return new DbCategoryPicture($this->db, $row["id"]);
+        return new DbCategoryPicture($this->db, $this->_user, $row["id"]);
       },
       $rows
     );

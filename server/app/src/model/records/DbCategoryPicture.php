@@ -26,6 +26,16 @@ class DbCategoryPicture extends DbSortableRecord
   }
 
   /**
+   * Gets picture.
+   *
+   * @return DbPicture
+   */
+  public function getPicture()
+  {
+    return new DbPicture($this->db, $this->_user, $this->pictureId);
+  }
+
+  /**
    * {@inheritdoc}
    *
    * @return DbCategoryPicture[]
@@ -44,7 +54,7 @@ class DbCategoryPicture extends DbSortableRecord
 
     return array_map(
       function ($row) {
-        return new DbCategoryPicture($this->db, $row["id"]);
+        return new DbCategoryPicture($this->db, $this->_user, $row["id"]);
       },
       $rows
     );

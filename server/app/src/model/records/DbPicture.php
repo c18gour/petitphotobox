@@ -40,7 +40,7 @@ class DbPicture extends DbRecord
 
     return array_map(
       function ($row) {
-        return new DbSnapshot($this->db, $row["id"]);
+        return new DbSnapshot($this->db, $this->_user, $row["id"]);
       },
       $rows
     );
@@ -73,7 +73,7 @@ class DbPicture extends DbRecord
 
     return array_map(
       function ($row) {
-        return new DbCategoryPicture($this->db, $row["id"]);
+        return new DbCategoryPicture($this->db, $this->_user, $row["id"]);
       },
       $rows
     );

@@ -55,13 +55,13 @@ class PictureUpController extends AuthController
       throw new ClientException("Category ID and Picture ID is required");
     }
 
-    $category = new DbCategory($this->db, $categoryId);
+    $category = new DbCategory($this->db, $this->user, $categoryId);
     $user = $category->getUser();
     if (!$category->isFound() || $user->getId() != $this->user->getId()) {
       throw new ClientException("Category not found");
     }
 
-    $picture = new DbPicture($this->db, $id);
+    $picture = new DbPicture($this->db, $this->user, $id);
     if (!$picture->isFound() || !$picture->isInCategory($category)) {
       throw new ClientException("Picture not found");
     }
