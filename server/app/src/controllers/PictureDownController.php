@@ -6,7 +6,7 @@ use petitphotobox\model\documents\EmptyDocument;
 use petitphotobox\model\records\DbCategoryPicture;
 use soloproyectos\text\Text;
 
-class CategoryPictureDownController extends AuthController
+class PictureDownController extends AuthController
 {
   private $_document;
 

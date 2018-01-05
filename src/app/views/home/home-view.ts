@@ -25,8 +25,8 @@ import {
   CategoryPictureUpController
 } from '../../controllers/category-picture-up-controller';
 import {
-  CategoryPictureDownController
-} from '../../controllers/category-picture-down-controller';
+  PictureDownController
+} from '../../controllers/picture-down-controller';
 
 @Component({
   selector: 'app-home',
@@ -44,7 +44,7 @@ export class HomeView implements OnInit {
     private _categoryDeleteController: CategoryDeleteController,
     private _pictureDeleteController: PictureDeleteController,
     private _pictureUpController: CategoryPictureUpController,
-    private _pictureDownController: CategoryPictureDownController,
+    private _pictureDownController: PictureDownController,
     private _router: Router,
     private _route: ActivatedRoute,
     private _resolver: ComponentFactoryResolver
