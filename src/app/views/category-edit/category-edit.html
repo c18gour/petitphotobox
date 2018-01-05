@@ -9,7 +9,7 @@
       <label for="parentCategoryId">Parent Category</label>
       <app-input-tree #parentCategoryInput name="parentCategoryId"
         [items]="entity.categories" [value]="entity.parentCategoryId"></app-input-tree>
-      <label for="name">Category title</label>
+      <label for="name">Title</label>
       <input #inputTitle="ngModel" autofocus type="text" id="title" required
         name="title" [(ngModel)]="entity.title" />
       <div [hidden]="inputTitle.valid || inputTitle.pristine" class="error-box">
