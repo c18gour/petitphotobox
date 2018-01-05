@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
+import { environment as env } from '../../../environments/environment';
+
 @Component({
   selector: 'app-picture',
   templateUrl: './picture-component.html',
@@ -20,4 +22,8 @@ export class PictureComponent {
 
   @Output()
   downPicture = new EventEmitter<string>();
+
+  get fullPath(): string {
+    return [env.apiUrl, this.path].join('/');
+  }
 }
