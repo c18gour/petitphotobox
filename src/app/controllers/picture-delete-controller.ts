@@ -6,10 +6,10 @@ import { BaseController } from '../core/controller/base-controller';
 import { PictureEntity } from '../entities/picture-entity';
 
 @Injectable()
-export class CategoryPictureDeleteController
+export class PictureDeleteController
   extends BaseController<PictureEntity> {
   constructor(http: Http) {
-    super(http, `${env.apiUrl}/category-picture-delete.php`);
+    super(http, `${env.apiUrl}/picture-delete.php`);
   }
 
   post(args: { id: string }) {

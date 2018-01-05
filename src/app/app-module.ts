@@ -38,8 +38,8 @@ import {
   CategoryDeleteController
 } from './controllers/category-delete-controller';
 import {
-  CategoryPictureDeleteController
-} from './controllers/category-picture-delete-controller';
+  PictureDeleteController
+} from './controllers/picture-delete-controller';
 import {
   CategoryPictureUpController
 } from './controllers/category-picture-up-controller';
@@ -80,7 +80,7 @@ import {
     CategoryNewController,
     CategoryEditController,
     CategoryDeleteController,
-    CategoryPictureDeleteController,
+    PictureDeleteController,
     CategoryPictureUpController,
     CategoryPictureDownController
   ],
