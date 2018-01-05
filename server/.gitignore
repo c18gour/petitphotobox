@@ -1,4 +1,4 @@
-/app/data
 /logs
+/app/data
 /app/config.php
 /app/src/vendor
