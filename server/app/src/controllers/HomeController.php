@@ -23,6 +23,11 @@ class HomeController extends AuthController
   /**
    * {@inheritdoc}
    *
+   * NOTE: las cosas que tienen que ver deben estar cerca. Y, siguiendo esa
+   * premisa, el documento no debería estar en una carpeta diferente, sino
+   * en el propipio controlador. Por ejemplo:
+   *   return new Document({... json object ...});
+   *
    * @return HomeDocument
    */
   public function getDocument()
