@@ -6,7 +6,7 @@ import { UserLoginView } from './views/user-login/user-login-view';
 import { UserRegisterView } from './views/user-register/user-register-view';
 import { CategoryNewView } from './views/category-new/category-new';
 import { CategoryEditView } from './views/category-edit/category-edit';
-import { UploadPictureView } from './views/upload-picture/upload-picture';
+import { PictureNewView } from './views/picture-new/picture-new';
 import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
 const routes: Routes = [
@@ -17,8 +17,8 @@ const routes: Routes = [
   { path: 'category/new', component: CategoryNewView },
   { path: 'category/new/:parentCategoryId', component: CategoryNewView },
   { path: 'category/edit/:categoryId', component: CategoryEditView },
-  { path: 'picture/new', component: UploadPictureView },
-  { path: 'picture/new/:id', component: UploadPictureView },
+  { path: 'picture/new', component: PictureNewView },
+  { path: 'picture/new/:id', component: PictureNewView },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundView }
 ];

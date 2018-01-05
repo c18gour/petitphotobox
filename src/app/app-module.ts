@@ -25,7 +25,7 @@ import { UserLoginView } from './views/user-login/user-login-view';
 import { UserRegisterView } from './views/user-register/user-register-view';
 import { CategoryNewView } from './views/category-new/category-new';
 import { CategoryEditView } from './views/category-edit/category-edit';
-import { UploadPictureView } from './views/upload-picture/upload-picture';
+import { PictureNewView } from './views/picture-new/picture-new';
 import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
 // controllers
@@ -61,7 +61,7 @@ import {
     UserRegisterView,
     CategoryNewView,
     CategoryEditView,
-    UploadPictureView,
+    PictureNewView,
     PageNotFoundView
   ],
   imports: [
