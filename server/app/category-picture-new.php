@@ -1,10 +1,10 @@
 <?php
-// TODO: rename this controller by picture-delete
+// TODO: rename this controller by picture-new
 header("Content-Type: application/json; charset=utf-8");
 require_once "src/vendor/autoload.php";
 require_once "app-config.php";
 require_once "config.php";
-use petitphotobox\controllers\CategoryPictureDeleteController;
+use petitphotobox\controllers\CategoryPictureNewController;
 
-$c = new CategoryPictureDeleteController();
+$c = new CategoryPictureNewController();
 $c->processRequest();

@@ -1,0 +1,24 @@
+<div class="header">
+  <h1>Photobox</h1>
+</div>
+
+<div class="container" *ngIf="entity">
+  <h3>Upload Picture</h3>
+  <form (ngSubmit)="onSubmit()">
+    <fieldset>
+      <label for="categoryId">Category</label>
+      <app-input-tree #categoryIdInput name="categoryId"
+        [items]="entity.categories" [value]="entity.categoryId"></app-input-tree>
+      <label for="name">Title</label>
+      <input #inputTitle="ngModel" autofocus type="text" id="title" required
+        name="title" [(ngModel)]="entity.title" />
+      <div [hidden]="inputTitle.valid || inputTitle.pristine" class="error-box">
+        Title is required
+      </div>
+      <button type="submit" class="button-primary">Accept</button>
+      <button type="button" (click)="goBack()">Cancel</button>
+    </fieldset>
+  </form>
+</div>
+
+<template #modalContainer></template>

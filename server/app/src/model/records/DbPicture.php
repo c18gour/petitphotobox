@@ -9,6 +9,7 @@ use petitphotobox\model\records\DbSnapshot;
 class DbPicture extends DbRecord
 {
   private $_user;
+  public $title;
 
   /**
    * Creates a new instance.
@@ -107,7 +108,8 @@ class DbPicture extends DbRecord
   {
     $sql = "
     select
-      p.id
+      p.id,
+      p.title
     from picture as p
     inner join category_picture as cp
       on cp.picture_id = p.id
@@ -137,6 +139,6 @@ class DbPicture extends DbRecord
    */
   protected function insert()
   {
-    return DbTable::insert($this->db, "picture", []);
+    return DbTable::insert($this->db, "picture", ["title" => $this->title]);
   }
 }
