@@ -3,12 +3,12 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserLoginController } from '../../controllers/user-login-controller';
-import { UserLoginEntity } from '../../entities/user-login-entity';
 import { SessionError } from '../../core/exception/session-error';
 import {
   ModalWindowSystem
 } from '../../modules/modal-window-system/modal-window-system';
+import { UserLoginController } from './controllers/user-login-controller';
+import { UserLoginEntity } from './entities/user-login-entity';
 
 @Component({
   selector: 'app-user-login',

@@ -29,7 +29,9 @@ import { PictureNewView } from './views/picture-new/picture-new';
 import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
 // controllers
-import { UserLoginController } from './controllers/user-login-controller';
+import {
+  UserLoginController
+} from './views/user-login/controllers/user-login-controller';
 import { CategoryNewController } from './controllers/category-new-controller';
 import { CategoryEditController } from './controllers/category-edit-controller';
 
