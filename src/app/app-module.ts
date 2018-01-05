@@ -32,8 +32,12 @@ import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 import {
   UserLoginController
 } from './views/user-login/controllers/user-login-controller';
-import { CategoryNewController } from './controllers/category-new-controller';
-import { CategoryEditController } from './controllers/category-edit-controller';
+import {
+  CategoryNewController
+} from './views/category-new/controllers/category-new-controller';
+import {
+  CategoryEditController
+} from './views/category-edit/controllers/category-edit-controller';
 
 // home controllers
 import { HomeController } from './views/home/controllers/home-controller';

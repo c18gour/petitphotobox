@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { environment as env } from '../../environments/environment';
-import { BaseController } from '../core/controller/base-controller';
-import { CategoryEntity } from '../entities/category-entity';
+import { environment as env } from '../../../../environments/environment';
+import { BaseController } from '../../../core/controller/base-controller';
+import { CategoryEditEntity } from '../entities/category-edit-entity';
 
 @Injectable()
-export class CategoryEditController extends BaseController<CategoryEntity> {
+export class CategoryEditController extends BaseController<CategoryEditEntity> {
   constructor(http: Http) {
     super(http, `${env.apiUrl}/category-edit.php`);
   }

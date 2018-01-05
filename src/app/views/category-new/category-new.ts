@@ -6,8 +6,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import {
   CategoryNewController
-} from '../../controllers/category-new-controller';
-import { CategoryEntity } from '../../entities/category-entity';
+} from './controllers/category-new-controller';
+import { CategoryNewEntity } from './entities/category-new-entity';
 import {
   InputTreeComponent
 } from '../../components/input-tree/input-tree-component';
@@ -21,7 +21,7 @@ import {
   styleUrls: ['./category-new.scss']
 })
 export class CategoryNewView implements OnInit {
-  entity: CategoryEntity;
+  entity: CategoryNewEntity;
   modal: ModalWindowSystem;
 
   constructor(

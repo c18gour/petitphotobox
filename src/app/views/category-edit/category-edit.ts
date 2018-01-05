@@ -5,15 +5,15 @@ import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import {
-  CategoryEditController
-} from '../../controllers/category-edit-controller';
-import { CategoryEntity } from '../../entities/category-entity';
+  ModalWindowSystem
+} from '../../modules/modal-window-system/modal-window-system';
 import {
   InputTreeComponent
 } from '../../components/input-tree/input-tree-component';
 import {
-  ModalWindowSystem
-} from '../../modules/modal-window-system/modal-window-system';
+  CategoryEditController
+} from './controllers/category-edit-controller';
+import { CategoryEditEntity } from './entities/category-edit-entity';
 
 @Component({
   selector: 'app-category-edit',
@@ -21,7 +21,7 @@ import {
   styleUrls: ['./category-edit.scss']
 })
 export class CategoryEditView implements OnInit {
-  entity: CategoryEntity;
+  entity: CategoryEditEntity;
   modal: ModalWindowSystem;
   private _categoryId: string;
 
