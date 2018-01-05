@@ -3,11 +3,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { environment as env } from '../../../../../environments/environment';
 
 @Component({
-  selector: 'app-picture',
+  selector: 'app-home-picture',
   templateUrl: './picture-component.html',
   styleUrls: ['./picture-component.scss']
 })
-export class PictureComponent {
+export class HomePictureComponent {
   @Input()
   id: string;
 

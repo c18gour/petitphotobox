@@ -40,12 +40,12 @@
     </p>
 
     <!-- TODO: (low) when moving a picture, scroll to that picture -->
-    <app-picture *ngFor="let picture of entity.pictures"
+    <app-home-picture *ngFor="let picture of entity.pictures"
       [id]="picture.id"
       [path]="picture.path"
       (deletePicture)="modal.confirm('Are you sure?', deletePicture, picture.id)"
       (upPicture)="movePictureUp(picture.id)"
-      (downPicture)="movePictureDown(picture.id)"></app-picture>
+      (downPicture)="movePictureDown(picture.id)"></app-home-picture>
   </div>
 </div>
 

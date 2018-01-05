@@ -20,7 +20,7 @@ import {
 
 // home components
 import {
-  PictureComponent
+  HomePictureComponent
 } from './views/home/components/picture/picture-component';
 
 // views
@@ -65,7 +65,7 @@ import {
 
     // components
     InputTreeComponent,
-    PictureComponent,
+    HomePictureComponent,
 
     // views
     HomeView,
