@@ -17,7 +17,11 @@ import {
 import {
   InputTreeComponent
 } from './components/input-tree/input-tree-component';
-import { PictureComponent } from './components/picture/picture-component';
+
+// home components
+import {
+  PictureComponent
+} from './views/home/components/picture/picture-component';
 
 // views
 import { HomeView } from './views/home/home-view';
