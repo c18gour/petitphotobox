@@ -8,7 +8,7 @@ use petitphotobox\model\records\DbCategory;
 use petitphotobox\model\records\DbCategoryPicture;
 use soloproyectos\text\Text;
 
-class CategoryPictureNewController extends AuthController
+class PictureNewController extends AuthController
 {
   private $_document;
   private $_record;
