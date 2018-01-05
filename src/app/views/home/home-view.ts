@@ -22,8 +22,8 @@ import {
   PictureDeleteController
 } from '../../controllers/picture-delete-controller';
 import {
-  CategoryPictureUpController
-} from '../../controllers/category-picture-up-controller';
+  PictureUpController
+} from '../../controllers/picture-up-controller';
 import {
   PictureDownController
 } from '../../controllers/picture-down-controller';
@@ -43,7 +43,7 @@ export class HomeView implements OnInit {
     private _logoutController: LogoutController,
     private _categoryDeleteController: CategoryDeleteController,
     private _pictureDeleteController: PictureDeleteController,
-    private _pictureUpController: CategoryPictureUpController,
+    private _pictureUpController: PictureUpController,
     private _pictureDownController: PictureDownController,
     private _router: Router,
     private _route: ActivatedRoute,
