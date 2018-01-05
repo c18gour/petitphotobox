@@ -30,22 +30,24 @@ import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
 // controllers
 import { UserLoginController } from './controllers/user-login-controller';
-import { LogoutController } from './controllers/logout-controller';
-import { HomeController } from './controllers/home-controller';
 import { CategoryNewController } from './controllers/category-new-controller';
 import { CategoryEditController } from './controllers/category-edit-controller';
+
+// home controllers
+import { HomeController } from './views/home/controllers/home-controller';
+import { LogoutController } from './views/home/controllers/logout-controller';
 import {
   CategoryDeleteController
-} from './controllers/category-delete-controller';
+} from './views/home/controllers/category-delete-controller';
 import {
   PictureDeleteController
-} from './controllers/picture-delete-controller';
+} from './views/home/controllers/picture-delete-controller';
 import {
   PictureUpController
-} from './controllers/picture-up-controller';
+} from './views/home/controllers/picture-up-controller';
 import {
   PictureDownController
-} from './controllers/picture-down-controller';
+} from './views/home/controllers/picture-down-controller';
 
 @NgModule({
   declarations: [

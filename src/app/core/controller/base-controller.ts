@@ -5,7 +5,7 @@ import { AppError } from '../../core/exception/app-error';
 import { SessionError } from '../../core/exception/session-error';
 import { ClientException } from '../../core/exception/client-exception';
 
-export abstract class BaseController<Type extends BaseEntity> {
+export abstract class BaseController<Type extends BaseEntity = {}> {
   private _sessionErrorCode = 501;
 
   constructor(private _http: Http, private _url: string) { }

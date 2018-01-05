@@ -4,29 +4,27 @@ import {
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { SessionError } from '../../core/exception/session-error';
-import { HomeEntity } from '../../entities/home-entity';
+import { HomeEntity } from './entities/home-entity';
+import { MenuComponent } from '../../modules/menu/menu-component';
 import {
   ModalWindowSystem
 } from '../../modules/modal-window-system/modal-window-system';
 
-// components
-import { MenuComponent } from '../../modules/menu/menu-component';
-
 // controllers
-import { HomeController } from '../../controllers/home-controller';
-import { LogoutController } from '../../controllers/logout-controller';
+import { HomeController } from './controllers/home-controller';
+import { LogoutController } from './controllers/logout-controller';
 import {
   CategoryDeleteController
-} from '../../controllers/category-delete-controller';
+} from './controllers/category-delete-controller';
 import {
   PictureDeleteController
-} from '../../controllers/picture-delete-controller';
+} from './controllers/picture-delete-controller';
 import {
   PictureUpController
-} from '../../controllers/picture-up-controller';
+} from './controllers/picture-up-controller';
 import {
   PictureDownController
-} from '../../controllers/picture-down-controller';
+} from './controllers/picture-down-controller';
 
 @Component({
   selector: 'app-home',
