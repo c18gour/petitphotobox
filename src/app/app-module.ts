@@ -29,6 +29,7 @@ import { PictureNewView } from './views/picture-new/picture-new';
 import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
 // controllers
+import { LogoutController } from './controllers/logout-controller';
 import {
   UserLoginController
 } from './views/user-login/controllers/user-login-controller';
@@ -41,7 +42,6 @@ import {
 
 // home controllers
 import { HomeController } from './views/home/controllers/home-controller';
-import { LogoutController } from './views/home/controllers/logout-controller';
 import {
   CategoryDeleteController
 } from './views/home/controllers/category-delete-controller';

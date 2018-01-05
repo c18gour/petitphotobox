@@ -11,8 +11,8 @@ import {
 } from '../../modules/modal-window-system/modal-window-system';
 
 // controllers
+import { LogoutController } from './../../controllers/logout-controller';
 import { HomeController } from './controllers/home-controller';
-import { LogoutController } from './controllers/logout-controller';
 import {
   CategoryDeleteController
 } from './controllers/category-delete-controller';
