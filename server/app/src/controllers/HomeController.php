@@ -1,15 +1,15 @@
 <?php
 namespace petitphotobox\controllers;
 use petitphotobox\core\controller\AuthController;
-use petitphotobox\core\exception\AppError;
-use petitphotobox\model\documents\HomeDocument;
+use petitphotobox\core\exception\ClientException;
+use petitphotobox\core\model\Document;
 use petitphotobox\model\records\DbCategory;
 use petitphotobox\model\records\DbUser;
 use soloproyectos\text\Text;
 
 class HomeController extends AuthController
 {
-  private $_document;
+  private $_category;
 
   /**
    * Creates a new instance..
@@ -23,16 +23,29 @@ class HomeController extends AuthController
   /**
    * {@inheritdoc}
    *
-   * NOTE: las cosas que tienen que ver deben estar cerca. Y, siguiendo esa
-   * premisa, el documento no debería estar en una carpeta diferente, sino
-   * en el propipio controlador. Por ejemplo:
-   *   return new Document({... json object ...});
-   *
-   * @return HomeDocument
+   * @return Document
    */
   public function getDocument()
   {
-    return $this->_document;
+    $mainCategory = $this->user->getMainCategory();
+
+    return new Document(
+      [
+        "id" => $this->_category->getId(),
+        "title" => $this->_category->title,
+        "main" => $this->_category->getId() == $mainCategory->getId(),
+        "pictures" => array_map(
+          function ($row) {
+            $picture = $row->getPicture();
+            $snapshot = $picture->getMainSnapshot();
+
+            return ["id" => $row->getId(), "path" => $snapshot->path];
+          },
+          $this->_category->getCategoryPictures()
+        ),
+        "categories" => $this->_getCategoryTree($mainCategory)
+      ]
+    );
   }
 
   /**
@@ -43,14 +56,72 @@ class HomeController extends AuthController
   public function onOpenRequest()
   {
     $categoryId = $this->getParam("categoryId");
-    $category = Text::isEmpty($categoryId)
+    $this->_category = Text::isEmpty($categoryId)
       ? $this->user->getMainCategory()
       : new DbCategory($this->db, $this->user, $categoryId);
 
-    if (!$category->isFound()) {
-      throw new AppError("Category not found");
+    if (!$this->_category->isFound()) {
+      throw new ClientException("Category not found");
     }
+  }
 
-    $this->_document = new HomeDocument($this->user, $category);
+  /**
+   * Gets the list of pictures.
+   *
+   * @return array Associative array
+   */
+  private function _getCategoryPictures()
+  {
+    $category = $this->_category === null
+      ? $this->user->getMainCategory()
+      : $this->_category;
+
+    return array_map(
+      function ($row) {
+        $picture = $row->getPicture();
+        $snapshot = $picture->getMainSnapshot();
+
+        return ["id" => $row->getId(), "path" => $snapshot->path];
+      },
+      $category->getCategoryPictures()
+    );
+  }
+
+  /**
+   * Gets the categories tree.
+   *
+   * @param DbCategory $category Category
+   *
+   * @return array An associative array
+   */
+  private function _getCategoryTree($category)
+  {
+    return array_map(
+      function ($category) {
+        $items = $this->_getCategoryTree($category);
+
+        // an item is 'open' if it is 'selected' or any of its childs is 'open'
+        $isSelected =  ($category->getId() === $this->_category->getId());
+        $isOpen = $isSelected;
+        if (!$isOpen) {
+          $selectedItems = array_filter(
+            $items,
+            function ($item) {
+              return $item["open"];
+            }
+          );
+          $isOpen = count($selectedItems) > 0;
+        }
+
+        return [
+          "id" => $category->getId(),
+          "title" => $category->title,
+          "open" => $isOpen,
+          "selected" => $isSelected,
+          "items" => $items
+        ];
+      },
+      $category->getCategories()
+    );
   }
 }

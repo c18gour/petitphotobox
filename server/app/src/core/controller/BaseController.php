@@ -46,50 +46,24 @@ abstract class BaseController extends HttpController
       parent::processRequest();
     } catch (ClientException $e) {
       header("HTTP/1.0 400 Client Error");
-      $this->_setStatus($e->getCode(), $e->getMessage());
-      echo $this->getDocument();
+
+      // prints the document and re-throws the exception
+      $doc = $this->getDocument();
+      $doc->setStatusCode($e->getCode());
+      $doc->setStatusMessage($e->getMessage());
+      echo $doc;
       throw $e;
     } catch (AppError $e) {
       header("HTTP/1.0 500 Application Error");
-      $this->_printAppError($e->getCode(), $e->getMessage());
+
+      // prints an empty document and re-throws the exception
+      $doc = new Document();
+      $doc->setStatusCode($e->getCode());
+      $doc->setStatusMessage($e->getMessage());
+      echo $doc;
       throw $e;
     }
 
     echo $this->getDocument();
-  }
-
-  /**
-   * Set code and message status.
-   *
-   * @param int    $code    Status code
-   * @param string $message Status message
-   *
-   * @return void;
-   */
-  private function _setStatus($code, $message)
-  {
-    $doc = $this->getDocument();
-    $doc->setStatusCode($code);
-    $doc->setStatusMessage($message);
-  }
-
-  /**
-   * Prints a document showing an 'application error'.
-   *
-   * @param int    $code    Status code
-   * @param string $message Status message
-   *
-   * @return void
-   */
-  private function _printAppError($code, $message)
-  {
-    echo json_encode(
-      [
-        "status" => [
-          "code" => $code,
-          "message" => $message
-        ]
-      ]
-    );
   }
 }

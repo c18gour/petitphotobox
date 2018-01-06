@@ -1,10 +1,21 @@
 <?php
-namespace petitphotobox\core\model\document;
+namespace petitphotobox\core\model;
 
-abstract class Document
+class Document
 {
   private $_statusCode = 0;
   private $_statusMessage = "";
+  private $_body = [];
+
+  /**
+   * Constructor.
+   *
+   * @param array $body A serializable body (optional).
+   */
+  public function __construct($body = [])
+  {
+    $this->_body = $body;
+  }
 
   /**
    * Gets status code.
@@ -51,13 +62,6 @@ abstract class Document
   }
 
   /**
-   * Gets a 'plain object' representing the current instance.
-   *
-   * @return object
-   */
-  abstract protected function getJsonObject();
-
-  /**
    * Gets a string representation of the current instance.
    *
    * @return string
@@ -70,7 +74,7 @@ abstract class Document
           "code" => $this->_statusCode,
           "message" => $this->_statusMessage
         ],
-        "body" => (object) $this->getJsonObject()
+        "body" => (object) $this->_body
       ]
     );
   }
