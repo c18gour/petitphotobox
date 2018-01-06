@@ -119,6 +119,7 @@ class DbPicture extends DbRecord
       and c.id = cp.category_id
     where p.id = ?";
     $row = $this->db->query($sql, [$this->_user->getId(), $this->id]);
+    $this->title = $row["title"];
 
     return $row["id"];
   }

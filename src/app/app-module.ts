@@ -43,6 +43,9 @@ import {
 import {
   CategoryEditController
 } from './views/category-edit/controllers/category-edit-controller';
+import {
+  PictureNewController
+} from './views/picture-new/controllers/picture-new-controller';
 
 // home controllers
 import { HomeController } from './views/home/controllers/home-controller';
@@ -94,7 +97,8 @@ import {
     CategoryDeleteController,
     PictureDeleteController,
     PictureUpController,
-    PictureDownController
+    PictureDownController,
+    PictureNewController
   ],
   bootstrap: [AppComponent]
 })

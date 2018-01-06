@@ -1,0 +1,21 @@
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+
+import { environment as env } from '../../../../environments/environment';
+import { BaseController } from '../../../core/controller/base-controller';
+import { PictureNewEntity } from '../entities/picture-new-entity';
+
+@Injectable()
+export class PictureNewController extends BaseController<PictureNewEntity> {
+  constructor(http: Http) {
+    super(http, `${env.apiUrl}/picture-new.php`);
+  }
+
+  get(args?: { categoryId: string }) {
+    return super.get(args);
+  }
+
+  post(args: { categoryId: string, title: string }) {
+    return super.post(args);
+  }
+}

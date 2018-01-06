@@ -19,7 +19,7 @@
     <h3 *ngIf="entity.main">
       <span>Uncategorized pictures</span>
       <a [routerLink]="'/category/new/' + categoryId" title="New category"><i class="fa fa-plus"></i></a>
-      <a title="Upload picture"><i class="fa fa-upload"></i></a>
+      <a [routerLink]="'/picture/new/' + categoryId" title="Upload picture"><i class="fa fa-upload"></i></a>
     </h3>
     <!-- else: -->
     <h3 *ngIf="!entity.main">

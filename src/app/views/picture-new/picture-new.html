@@ -7,6 +7,7 @@
   <form (ngSubmit)="onSubmit()">
     <fieldset>
       <label for="categoryId">Category</label>
+      <!-- TODO: a picture can belong to multiple categories -->
       <app-input-tree #categoryIdInput name="categoryId"
         [items]="entity.categories" [value]="entity.categoryId"></app-input-tree>
       <label for="name">Title</label>

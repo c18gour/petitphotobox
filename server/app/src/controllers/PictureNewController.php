@@ -10,7 +10,8 @@ use soloproyectos\text\Text;
 
 class PictureNewController extends AuthController
 {
-  private $_picture;
+  private $_category;
+  private $_record;
 
   /**
    * Creates a new instance..
@@ -19,6 +20,21 @@ class PictureNewController extends AuthController
   {
     parent::__construct();
     $this->addOpenRequestHandler([$this, "onOpenRequest"]);
+  }
+
+  public function getDocument()
+  {
+    $mainCategory = $this->user->getMainCategory();
+    $picture = $this->_record->getPicture();
+
+    return new Document(
+      [
+        "id" => $this->_record->getId(),
+        "title" => $picture->title,
+        "categoryId" => $this->_category->getId(),
+        "categories" => $mainCategory->getTree()
+      ]
+    );
   }
 
   /**
@@ -33,11 +49,11 @@ class PictureNewController extends AuthController
       throw new AppError("Category ID is required");
     }
 
-    $category = new DbCategory($this->db, $this->user, $categoryId);
-    if (!$category->isFound()) {
+    $this->_category = new DbCategory($this->db, $this->user, $categoryId);
+    if (!$this->_category->isFound()) {
       throw new AppError("Category not found");
     }
 
-    $this->_picture = new DbCategoryPicture($this->db, $this->user);
+    $this->_record = new DbCategoryPicture($this->db, $this->user);
   }
 }
