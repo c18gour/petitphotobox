@@ -3,8 +3,8 @@ import {
   OnInit
 } from '@angular/core';
 import {
-  InputCheckboxOptionEntity
-} from '../../entities/input-checkbox-option-entity';
+  InputOptionEntity
+} from '../../entities/input-option-entity';
 import { InputCheckboxTreeComponent } from './input-checkbox-tree-component';
 
 @Component({
@@ -16,7 +16,7 @@ export class InputCheckboxItemComponent implements OnInit {
   _isVisible: boolean = null;
 
   @Input()
-  item: InputCheckboxOptionEntity;
+  item: InputOptionEntity;
 
   @Input()
   value: string[] = [];

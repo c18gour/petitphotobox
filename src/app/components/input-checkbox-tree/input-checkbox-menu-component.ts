@@ -2,8 +2,8 @@ import {
   Component, Input, Output, EventEmitter, ViewChildren, QueryList, OnInit
 } from '@angular/core';
 import {
-  InputCheckboxOptionEntity
-} from '../../entities/input-checkbox-option-entity';
+  InputOptionEntity
+} from '../../entities/input-option-entity';
 import { InputCheckboxItemComponent } from './input-checkbox-item-component';
 
 @Component({
@@ -15,7 +15,7 @@ export class InputCheckboxMenuComponent implements OnInit {
   _isVisible: boolean = null;
 
   @Input()
-  items: InputCheckboxOptionEntity[];
+  items: InputOptionEntity[];
 
   @Input()
   value: string[] = [];

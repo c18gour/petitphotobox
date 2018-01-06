@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 
 import {
-  InputCheckboxOptionEntity
-} from '../../entities/input-checkbox-option-entity';
+  InputOptionEntity
+} from '../../entities/input-option-entity';
 
 @Component({
   selector: 'app-input-checkbox',
@@ -16,5 +16,5 @@ export class InputCheckboxTreeComponent {
   value: string[] = [];
 
   @Input()
-  items: InputCheckboxOptionEntity[];
+  items: InputOptionEntity[];
 }
