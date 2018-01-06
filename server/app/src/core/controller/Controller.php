@@ -9,8 +9,7 @@ use soloproyectos\db\DbConnector;
 use soloproyectos\db\exception\DbException;
 use soloproyectos\http\controller\HttpController;
 
-// TODO: is not longer abstract
-abstract class Controller extends HttpController
+class Controller extends HttpController
 {
   protected $db;
   private $_document;
