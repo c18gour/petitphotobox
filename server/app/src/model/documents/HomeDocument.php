@@ -1,10 +1,10 @@
 <?php
 namespace petitphotobox\model\documents;
-use petitphotobox\core\model\document\BaseDocument;
+use petitphotobox\core\model\document\Document;
 use petitphotobox\model\records\DbCategory;
 use soloproyectos\db\DbConnector;
 
-class HomeDocument extends BaseDocument
+class HomeDocument extends Document
 {
   private $_user;
   private $_category;
