@@ -1,14 +1,14 @@
 <?php
 namespace petitphotobox\controllers;
 use petitphotobox\core\auth\UserAuth;
-use petitphotobox\core\controller\BaseController;
+use petitphotobox\core\controller\Controller;
 use petitphotobox\core\exception\ClientException;
 use petitphotobox\exceptions\AccessDeniedError;
 use petitphotobox\model\documents\UserRegisterDocument;
 use petitphotobox\model\records\DbUser;
 use soloproyectos\text\Text;
 
-class UserRegisterController extends BaseController
+class UserRegisterController extends Controller
 {
   private $_document;
 

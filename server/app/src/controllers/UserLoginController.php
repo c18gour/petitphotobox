@@ -1,13 +1,13 @@
 <?php
 namespace petitphotobox\controllers;
 use petitphotobox\core\auth\UserAuth;
-use petitphotobox\core\controller\BaseController;
+use petitphotobox\core\controller\Controller;
 use petitphotobox\core\exception\ClientException;
 use petitphotobox\exceptions\SessionError;
 use petitphotobox\model\documents\UserLoginDocument;
 use soloproyectos\text\Text;
 
-class UserLoginController extends BaseController
+class UserLoginController extends Controller
 {
   private $_document;
 

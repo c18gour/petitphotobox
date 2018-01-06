@@ -1,10 +1,10 @@
 <?php
 namespace petitphotobox\core\controller;
 use petitphotobox\core\auth\UserAuth;
-use petitphotobox\core\controller\BaseController;
+use petitphotobox\core\controller\Controller;
 use petitphotobox\exceptions\SessionError;
 
-abstract class AuthController extends BaseController
+abstract class AuthController extends Controller
 {
   public $user;
 
