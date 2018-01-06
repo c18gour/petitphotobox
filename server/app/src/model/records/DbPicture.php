@@ -9,6 +9,7 @@ use petitphotobox\model\records\DbSnapshot;
 class DbPicture extends DbRecord
 {
   private $_user;
+  // TODO: ensure it is a valid title
   public $title;
 
   /**

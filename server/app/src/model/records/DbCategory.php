@@ -10,6 +10,7 @@ class DbCategory extends DbRecord
 {
   private $_user;
   public $parentCategoryId;
+  // TODO: ensure that it is a valid title
   public $title;
 
   /**

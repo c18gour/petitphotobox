@@ -126,6 +126,7 @@ class DbUser extends DbRecord
    */
   protected function insert()
   {
+    // TODO: ensure that username and password are valids
     return DbTable::insert(
       $this->db,
       "user",
