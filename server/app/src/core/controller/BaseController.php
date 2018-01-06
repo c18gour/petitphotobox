@@ -9,9 +9,12 @@ use soloproyectos\db\DbConnector;
 use soloproyectos\db\exception\DbException;
 use soloproyectos\http\controller\HttpController;
 
+// TODO: rename BaseController by Controller
+// TODO: is not longer abstract
 abstract class BaseController extends HttpController
 {
   protected $db;
+  private $_document;
 
   /**
    * Creates a new instance..
@@ -19,6 +22,8 @@ abstract class BaseController extends HttpController
   public function __construct()
   {
     parent::__construct();
+    $this->_document = new Document();
+
     $this->addOpenRequestHandler(function () {
       try {
         $this->db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
@@ -33,7 +38,10 @@ abstract class BaseController extends HttpController
    *
    * @return Document
    */
-  abstract public function getDocument();
+  public function getDocument()
+  {
+    return $this->_document;
+  }
 
   /**
    * {@inheritdoc}
@@ -47,20 +55,20 @@ abstract class BaseController extends HttpController
     } catch (ClientException $e) {
       header("HTTP/1.0 400 Client Error");
 
-      // prints the document and re-throws the exception
       $doc = $this->getDocument();
       $doc->setStatusCode($e->getCode());
       $doc->setStatusMessage($e->getMessage());
       echo $doc;
+
       throw $e;
     } catch (AppError $e) {
       header("HTTP/1.0 500 Application Error");
 
-      // prints an empty document and re-throws the exception
       $doc = new Document();
       $doc->setStatusCode($e->getCode());
       $doc->setStatusMessage($e->getMessage());
       echo $doc;
+
       throw $e;
     }
 
