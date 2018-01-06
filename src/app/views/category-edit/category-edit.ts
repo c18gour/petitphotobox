@@ -8,8 +8,8 @@ import {
   ModalWindowSystem
 } from '../../modules/modal-window-system/modal-window-system';
 import {
-  InputTreeComponent
-} from '../../components/input-tree/input-tree-component';
+  InputSelectTreeComponent
+} from '../../components/input-select-tree/input-select-tree-component';
 import {
   CategoryEditController
 } from './controllers/category-edit-controller';
@@ -34,7 +34,7 @@ export class CategoryEditView implements OnInit {
   ) { }
 
   @ViewChild('parentCategoryInput')
-  parentCategoryInput: InputTreeComponent;
+  parentCategoryInput: InputSelectTreeComponent;
 
   @ViewChild('modalContainer', { read: ViewContainerRef })
   modalContainer: ViewContainerRef;

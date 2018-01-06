@@ -3,10 +3,10 @@ import { InputOptionEntity } from '../../entities/input-option-entity';
 
 @Component({
   selector: 'app-input-tree',
-  templateUrl: './input-tree-component.html',
-  styleUrls: ['./input-tree-component.scss']
+  templateUrl: './input-select-tree-component.html',
+  styleUrls: ['./input-select-tree-component.scss']
 })
-export class InputTreeComponent {
+export class InputSelectTreeComponent {
   @Input()
   name = '';
 

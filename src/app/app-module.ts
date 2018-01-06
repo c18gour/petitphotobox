@@ -15,8 +15,8 @@ import {
 
 // components
 import {
-  InputTreeComponent
-} from './components/input-tree/input-tree-component';
+  InputSelectTreeComponent
+} from './components/input-select-tree/input-select-tree-component';
 
 // home components
 import {
@@ -67,7 +67,7 @@ import {
     AppComponent,
 
     // components
-    InputTreeComponent,
+    InputSelectTreeComponent,
     HomePictureComponent,
 
     // views

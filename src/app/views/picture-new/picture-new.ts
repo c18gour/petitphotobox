@@ -8,8 +8,8 @@ import {
   ModalWindowSystem
 } from '../../modules/modal-window-system/modal-window-system';
 import {
-  InputTreeComponent
-} from '../../components/input-tree/input-tree-component';
+  InputSelectTreeComponent
+} from '../../components/input-select-tree/input-select-tree-component';
 
 import { PictureNewController } from './controllers/picture-new-controller';
 import { PictureNewEntity } from './entities/picture-new-entity';
@@ -32,7 +32,7 @@ export class PictureNewView implements OnInit {
   ) { }
 
   @ViewChild('categoryInput')
-  parentCategoryInput: InputTreeComponent;
+  parentCategoryInput: InputSelectTreeComponent;
 
   @ViewChild('modalContainer', { read: ViewContainerRef })
   modalContainer: ViewContainerRef;
