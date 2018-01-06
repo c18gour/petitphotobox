@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { InputTreeOptionEntity } from '../../entities/input-tree-option-entity';
+import { InputOptionEntity } from '../../entities/input-option-entity';
 
 @Component({
   selector: 'app-input-tree',
@@ -14,7 +14,7 @@ export class InputTreeComponent {
   value = '';
 
   @Input()
-  items: InputTreeOptionEntity[] = [];
+  items: InputOptionEntity[] = [];
 
   @Output()
   select = new EventEmitter<string>();

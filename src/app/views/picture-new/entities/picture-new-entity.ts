@@ -1,11 +1,11 @@
 import { BaseEntity } from '../../../core/entity/base-entity';
 import {
-  InputTreeOptionEntity
-} from '../../../entities/input-tree-option-entity';
+  InputOptionEntity
+} from '../../../entities/input-option-entity';
 
 export class PictureNewEntity extends BaseEntity {
   readonly id: string;
   title: string;
   categoryId: string;
-  categories: InputTreeOptionEntity[];
+  categories: InputOptionEntity[];
 }
