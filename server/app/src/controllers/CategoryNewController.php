@@ -3,15 +3,14 @@ namespace petitphotobox\controllers;
 use petitphotobox\core\controller\AuthController;
 use petitphotobox\core\exception\AppError;
 use petitphotobox\core\exception\ClientException;
-use petitphotobox\model\documents\CategoryDocument;
+use petitphotobox\core\model\Document;
 use petitphotobox\model\records\DbCategory;
 use soloproyectos\text\Text;
 
 class CategoryNewController extends AuthController
 {
-  private $_document;
-  private $_record;
-  private $_parent;
+  private $_parentCategory;
+  private $_category;
 
   /**
    * Creates a new instance..
@@ -26,11 +25,20 @@ class CategoryNewController extends AuthController
   /**
    * {@inheritdoc}
    *
-   * @return CategoryDocument
+   * @return Document
    */
   public function getDocument()
   {
-    return $this->_document;
+    $mainCategory = $this->user->getMainCategory();
+
+    return new Document(
+      [
+        "id" => $this->_category->getId(),
+        "title" => $this->_category->title,
+        "parentCategoryId" => $this->_parentCategory->getId(),
+        "categories" => $mainCategory->getTree()
+      ]
+    );
   }
 
   /**
@@ -42,16 +50,14 @@ class CategoryNewController extends AuthController
   {
     $parentId = $this->getParam("parentCategoryId");
 
-    $this->_parent = Text::isEmpty($parentId)
+    $this->_parentCategory = Text::isEmpty($parentId)
       ? $this->user->getMainCategory()
       : new DbCategory($this->db, $this->user, $parentId);
-    if (!$this->_parent->isFound()) {
+    if (!$this->_parentCategory->isFound()) {
       throw new AppError("Parent category not found");
     }
 
-    $this->_record = new DbCategory($this->db, $this->user);
-    $this->_document = new CategoryDocument(
-      $this->_record, $this->user->getMainCategory(), $this->_parent);
+    $this->_category = new DbCategory($this->db, $this->user);
   }
 
   /**
@@ -68,8 +74,8 @@ class CategoryNewController extends AuthController
     }
 
     // TODO: check for duplicate category titles
-    $this->_record->parentCategoryId = $this->_parent->getId();
-    $this->_record->title = $title;
-    $this->_record->save();
+    $this->_category->parentCategoryId = $this->_parentCategory->getId();
+    $this->_category->title = $title;
+    $this->_category->save();
   }
 }

@@ -3,14 +3,13 @@ namespace petitphotobox\controllers;
 use petitphotobox\core\controller\AuthController;
 use petitphotobox\core\exception\AppError;
 use petitphotobox\core\exception\ClientException;
-use petitphotobox\model\documents\CategoryDocument;
+use petitphotobox\core\model\Document;
 use petitphotobox\model\records\DbCategory;
 use soloproyectos\text\Text;
 
 class CategoryEditController extends AuthController
 {
-  private $_document;
-  private $_record;
+  private $_category;
 
   /**
    * Creates a new instance..
@@ -25,11 +24,21 @@ class CategoryEditController extends AuthController
   /**
    * {@inheritdoc}
    *
-   * @return CategoryDocument
+   * @return Document
    */
   public function getDocument()
   {
-    return $this->_document;
+    $mainCategory = $this->user->getMainCategory();
+    $parentCategory = $this->_category->getParent();
+
+    return new Document(
+      [
+        "id" => $this->_category->getId(),
+        "title" => $this->_category->title,
+        "parentCategoryId" => $parentCategory->getId(),
+        "categories" => $mainCategory->getTree()
+      ]
+    );
   }
 
   /**
@@ -44,13 +53,10 @@ class CategoryEditController extends AuthController
       throw new AppError("Category ID is required");
     }
 
-    $this->_record = new DbCategory($this->db, $this->user, $id);
-    if (!$this->_record->isFound()) {
-      throw new AppError("Category not found");
+    $this->_category = new DbCategory($this->db, $this->user, $id);
+    if (!$this->_category->isFound()) {
+      throw new ClientException("Category not found");
     }
-
-    $this->_document = new CategoryDocument(
-      $this->_record, $this->user->getMainCategory());
   }
 
   /**
@@ -67,20 +73,20 @@ class CategoryEditController extends AuthController
       throw new ClientException("Title is required");
     }
 
-    if ($this->_record->isMain()) {
+    if ($this->_category->isMain()) {
       throw new ClientException("Main category cannot be edited");
     }
 
     $parent = Text::isEmpty($parentId)
-      ? $this->_record->getParent()
+      ? $this->_category->getParent()
       : new DbCategory($this->db, $this->user, $parentId);
     if (!$parent->isFound()) {
       throw new ClientException("Parent category not found");
     }
 
     // TODO: check for duplicate category titles
-    $this->_record->parentCategoryId = $parent->getId();
-    $this->_record->title = $title;
-    $this->_record->save();
+    $this->_category->parentCategoryId = $parent->getId();
+    $this->_category->title = $title;
+    $this->_category->save();
   }
 }
