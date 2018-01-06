@@ -3,13 +3,13 @@ namespace petitphotobox\controllers;
 use petitphotobox\core\auth\UserAuth;
 use petitphotobox\core\controller\Controller;
 use petitphotobox\core\exception\ClientException;
+use petitphotobox\core\model\Document;
 use petitphotobox\exceptions\SessionError;
-use petitphotobox\model\documents\UserLoginDocument;
 use soloproyectos\text\Text;
 
 class UserLoginController extends Controller
 {
-  private $_document;
+  private $_username = "";
 
   /**
    * Creates a new instance.
@@ -17,7 +17,6 @@ class UserLoginController extends Controller
   public function __construct()
   {
     parent::__construct();
-    $this->addOpenRequestHandler([$this, "onOpenRequest"]);
     $this->addOpenRequestHandler([$this, "onGetRequest"]);
     $this->addPostRequestHandler([$this, "onPostRequest"]);
   }
@@ -25,24 +24,15 @@ class UserLoginController extends Controller
   /**
    * {@inheritdoc}
    *
-   * @return UserLoginDocument
+   * @return Document
    */
   public function getDocument()
   {
-    return $this->_document;
-  }
-
-  /**
-   * Processes OPEN requests.
-   *
-   * @return void
-   */
-  public function onOpenRequest()
-  {
-    $username = $this->getParam("username", "");
-    $password = $this->getParam("password");
-
-    $this->_document = new UserLoginDocument($username, $password);
+    return new Document(
+      [
+        "username" => $this->_username
+      ]
+    );
   }
 
   /**
@@ -64,13 +54,13 @@ class UserLoginController extends Controller
    */
   public function onPostRequest()
   {
-    $username = $this->_document->getUsername();
-    $password = $this->_document->getPassword();
+    $this->_username = $this->getParam("username", "");
+    $password = $this->getParam("password");
 
-    if (Text::isEmpty($username) || Text::isEmpty($password)) {
+    if (Text::isEmpty($this->_username) || Text::isEmpty($password)) {
       throw new ClientException("Username and Password are required");
     }
 
-    UserAuth::login($this->db, $username, $password);
+    UserAuth::login($this->db, $this->_username, $password);
   }
 }
