@@ -7,8 +7,8 @@ import {
 @Component({
   selector: 'app-input-checkbox',
   template: `
-  <app-input-menu-tree
-    [items]="items" [value]="value" [visible]="true"></app-input-menu-tree>
+  <app-input-checkbox-menu
+    [items]="items" [value]="value" [visible]="true"></app-input-checkbox-menu>
   `
 })
 export class InputCheckboxTreeComponent {

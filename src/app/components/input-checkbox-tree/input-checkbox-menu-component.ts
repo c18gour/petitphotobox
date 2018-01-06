@@ -7,7 +7,7 @@ import {
 import { InputCheckboxItemComponent } from './input-checkbox-item-component';
 
 @Component({
-  selector: 'app-input-menu-tree',
+  selector: 'app-input-checkbox-menu',
   templateUrl: './input-checkbox-menu-component.html',
   styleUrls: ['./input-checkbox-menu-component.scss']
 })
