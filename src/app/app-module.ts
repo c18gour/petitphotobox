@@ -23,6 +23,9 @@ import {
   InputCheckboxTreeComponent
 } from './components/input-checkbox-tree/input-checkbox-tree-component';
 import {
+  InputCheckboxMenuComponent
+} from './components/input-checkbox-tree/input-checkbox-menu-component';
+import {
   InputCheckboxItemComponent
 } from './components/input-checkbox-tree/input-checkbox-item-component';
 
@@ -80,6 +83,7 @@ import {
 
     // input-checkbox-item component
     InputCheckboxTreeComponent,
+    InputCheckboxMenuComponent,
     InputCheckboxItemComponent,
 
     // views

@@ -9,5 +9,5 @@
       <i class="fa" [ngClass]="{'fa-chevron-down': visible, 'fa-chevron-right': !visible}"></i>
     </a>
   </div>
-  <app-input-checkbox-tree *ngIf="item.items.length > 0" [value]="value" [items]="item.items" [visible]="visible"></app-input-checkbox-tree>
+  <app-input-menu-tree *ngIf="item.items.length > 0" [value]="value" [items]="item.items" [visible]="visible"></app-input-menu-tree>
 </li>
