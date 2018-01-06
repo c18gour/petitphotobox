@@ -1,14 +1,13 @@
 <li>
   <div>
     <label>
-      <input #input type="checkbox" [value]="item.value"
-        [checked]="item.selected" (change)="onChange(input.value)">
+      <input type="checkbox" [value]="item.value"
+        [checked]="selected" (change)="onChange($event)">
       <span>{{item.label}}</span>
     </label>
     <a *ngIf="item.items.length > 0" title="Toggle" (click)="toggle()">
-      <i class="fa" [ngClass]="{'fa-chevron-down': open, 'fa-chevron-right': !open}"></i>
+      <i class="fa" [ngClass]="{'fa-chevron-down': visible, 'fa-chevron-right': !visible}"></i>
     </a>
   </div>
-  <app-input-checkbox-tree #menu *ngIf="item.items.length > 0"
-    [items]="item.items" [open]="open"></app-input-checkbox-tree>
+  <app-input-checkbox-tree *ngIf="item.items.length > 0" [value]="value" [items]="item.items" [visible]="visible"></app-input-checkbox-tree>
 </li>

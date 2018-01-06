@@ -1,5 +1,6 @@
 import {
-  Component, Input, Output, EventEmitter, ViewChild, QueryList
+  Component, Input, Output, EventEmitter, ViewChild, QueryList, ElementRef,
+  OnInit
 } from '@angular/core';
 import {
   InputCheckboxOptionEntity
@@ -11,41 +12,88 @@ import { InputCheckboxTreeComponent } from './input-checkbox-tree-component';
   templateUrl: './input-checkbox-item-component.html',
   styleUrls: ['./input-checkbox-item-component.scss']
 })
-export class InputCheckboxItemComponent {
-  @Input()
-  set open(value) {
-    this.entries.forEach((entry) => {
-      entry.open = false;
-    });
-
-    this.item.open = value;
-  }
-
-  get open(): boolean {
-    return this.item.open;
-  }
+export class InputCheckboxItemComponent implements OnInit {
+  _isVisible: boolean = null;
 
   @Input()
   item: InputCheckboxOptionEntity;
 
-  @ViewChild('menu')
-  menu: InputCheckboxTreeComponent;
+  @Input()
+  value: string[] = [];
 
   @Output()
-  toggleEntry = new EventEmitter<InputCheckboxItemComponent>();
+  selectEntry = new EventEmitter<string[]>();
 
-  get entries() {
-    return this.menu !== undefined
-      ? this.menu.entries
-      : new QueryList<InputCheckboxItemComponent>();
+  @ViewChild('input')
+  input: ElementRef;
+
+  @Input()
+  set visible(value: boolean) {
+    this._isVisible = value;
   }
 
-  onChange(value: string) {
-    console.log(value);
+  get visible(): boolean {
+    return this._isVisible !== null ? this._isVisible : this.open;
+  }
+
+  get open(): boolean {
+    for (const v of this.value) {
+      const item = this.searchItem(v.toString());
+
+      if (item !== null) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  get selected(): boolean {
+    return this.value.indexOf(this.item.value) > -1;
+  }
+
+  searchItem(value: string, items?: any[]) {
+    if (!items) {
+      items = this.item.items;
+    }
+
+    for (const item of items) {
+      if (item.value === value || this.searchItem(value, item.items)) {
+        return item;
+      }
+    }
+
+    return null;
+  }
+
+  ngOnInit() {
+    if (this.open) {
+      this._isVisible = true;
+    }
+  }
+
+  onSelect(value: string[]) {
+    this.value = value;
+    this.selectEntry.emit(this.value);
+  }
+
+  onChange(event: Event) {
+    const input = <HTMLInputElement>event.target;
+
+    if (!input.checked) {
+      const pos = this.value.indexOf(input.value);
+
+      if (pos > -1) {
+        this.value.splice(pos, 1);
+      }
+    } else {
+      this.value.push(input.value);
+    }
+
+    this.selectEntry.emit(this.value);
   }
 
   toggle() {
-    this.open = !this.open;
-    this.toggleEntry.emit(this);
+    this._isVisible = !this._isVisible;
   }
 }

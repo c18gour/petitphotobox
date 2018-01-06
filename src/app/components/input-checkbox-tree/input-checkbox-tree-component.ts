@@ -1,5 +1,5 @@
 import {
-  Component, Input, Output, EventEmitter, ViewChildren, QueryList
+  Component, Input, Output, EventEmitter, ViewChildren, QueryList, OnInit
 } from '@angular/core';
 import {
   InputCheckboxOptionEntity
@@ -11,49 +11,61 @@ import { InputCheckboxItemComponent } from './input-checkbox-item-component';
   templateUrl: './input-checkbox-tree-component.html',
   styleUrls: ['./input-checkbox-tree-component.scss']
 })
-export class InputCheckboxTreeComponent {
-  private _isVisible = null;
-  private _isOpen = true;
-
-  @Input()
-  set open(value) {
-    this.entries.forEach((entry) => {
-      entry.open = false;
-    });
-
-    this._isOpen = value;
-  }
-
-  get open(): boolean {
-    return this._isOpen;
-  }
-
-  @Input()
-  set visible(value) {
-    this._isVisible = value;
-  }
-
-  get visible() {
-    return (this._isVisible !== null && this._isVisible) || this.open;
-  }
-
-  @Input()
-  value = new Array<String>();
+export class InputCheckboxTreeComponent implements OnInit {
+  _isVisible: boolean = null;
 
   @Input()
   items: InputCheckboxOptionEntity[];
 
+  @Input()
+  value: string[] = [];
+
   @Output()
-  select = new EventEmitter<string>();
+  selectEntry = new EventEmitter<string[]>();
 
-  @ViewChildren('entries')
-  entries = new QueryList<InputCheckboxItemComponent>();
-
-  onChange(value: string) {
-    console.log('changed!');
+  @Input()
+  set visible(value: boolean) {
+    this._isVisible = value;
   }
 
-  toggle() {
-    this.open = !this.open;
+  get visible(): boolean {
+    return this._isVisible !== null ? this._isVisible : this.open;
+  }
+
+  get open(): boolean {
+    for (const v of this.value) {
+      const item = this.searchItem(v.toString());
+
+      if (item !== null) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  searchItem(value: string, items?: any[]) {
+    if (!items) {
+      items = this.items;
+    }
+
+    for (const item of items) {
+      if (item.value === value || this.searchItem(value, item.items)) {
+        return item;
+      }
+    }
+
+    return null;
+  }
+
+  ngOnInit() {
+    if (this.open) {
+      this._isVisible = true;
+    }
+  }
+
+  onSelect(value: string[]) {
+    this.value = value;
+    this.selectEntry.emit(this.value);
   }
 }
