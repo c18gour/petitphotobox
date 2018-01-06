@@ -18,6 +18,14 @@ import {
   InputSelectTreeComponent
 } from './components/input-select-tree/input-select-tree-component';
 
+// input-checkbox-tree component
+import {
+  InputCheckboxTreeComponent
+} from './components/input-checkbox-tree/input-checkbox-tree-component';
+import {
+  InputCheckboxItemComponent
+} from './components/input-checkbox-tree/input-checkbox-item-component';
+
 // home components
 import {
   HomePictureComponent
@@ -69,6 +77,10 @@ import {
     // components
     InputSelectTreeComponent,
     HomePictureComponent,
+
+    // input-checkbox-item component
+    InputCheckboxTreeComponent,
+    InputCheckboxItemComponent,
 
     // views
     HomeView,

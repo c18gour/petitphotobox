@@ -30,9 +30,6 @@ export class MenuEntryComponent {
   @Output()
   selectEntry = new EventEmitter<string>();
 
-  @Output()
-  toggleEntry = new EventEmitter<MenuEntryComponent>();
-
   get selected() {
     return this.entry.selected === true;
   }
@@ -48,6 +45,5 @@ export class MenuEntryComponent {
 
   toggle() {
     this.open = !this.open;
-    this.toggleEntry.emit(this);
   }
 }

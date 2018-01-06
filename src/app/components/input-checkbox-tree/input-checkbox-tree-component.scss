@@ -1,0 +1,8 @@
+ul {
+  display: none;
+  list-style: none;
+
+  &.open {
+    display: block;
+  }
+}

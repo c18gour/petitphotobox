@@ -1,0 +1,3 @@
+<ul [ngClass]="{'open': visible}">
+  <app-input-checkbox-item #entries *ngFor="let item of items" [item]="item"></app-input-checkbox-item>
+</ul>
