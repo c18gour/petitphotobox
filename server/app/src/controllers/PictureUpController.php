@@ -2,42 +2,18 @@
 namespace petitphotobox\controllers;
 use petitphotobox\core\controller\AuthController;
 use petitphotobox\core\exception\ClientException;
-use petitphotobox\model\documents\EmptyDocument;
 use petitphotobox\model\records\DbCategoryPicture;
 use soloproyectos\text\Text;
 
 class PictureUpController extends AuthController
 {
-  private $_document;
-
   /**
    * Creates a new instance..
    */
   public function __construct()
   {
     parent::__construct();
-    $this->addOpenRequestHandler([$this, "onOpenRequest"]);
     $this->addPostRequestHandler([$this, "onPostRequest"]);
-  }
-
-  /**
-   * {@inheritdoc}
-   *
-   * @return EmptyDocument
-   */
-  public function getDocument()
-  {
-    return $this->_document;
-  }
-
-  /**
-   * Processes OPEN requests.
-   *
-   * @return void
-   */
-  public function onOpenRequest()
-  {
-    $this->_document = new EmptyDocument();
   }
 
   /**
