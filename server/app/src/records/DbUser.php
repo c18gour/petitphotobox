@@ -1,9 +1,9 @@
 <?php
-namespace petitphotobox\model\records;
+namespace  petitphotobox\records;
 use petitphotobox\core\model\record\DbRecord;
 use petitphotobox\core\model\record\DbTable;
 use soloproyectos\db\DbConnector;
-use petitphotobox\model\records\DbCategory;
+use petitphotobox\records\DbCategory;
 
 class DbUser extends DbRecord
 {

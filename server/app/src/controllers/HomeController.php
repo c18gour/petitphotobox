@@ -3,8 +3,8 @@ namespace petitphotobox\controllers;
 use petitphotobox\core\controller\AuthController;
 use petitphotobox\core\exception\ClientException;
 use petitphotobox\core\model\Document;
-use petitphotobox\model\records\DbCategory;
-use petitphotobox\model\records\DbUser;
+use petitphotobox\records\DbCategory;
+use petitphotobox\records\DbUser;
 use soloproyectos\text\Text;
 
 class HomeController extends AuthController

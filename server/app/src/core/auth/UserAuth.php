@@ -1,7 +1,7 @@
 <?php
 namespace petitphotobox\core\auth;
 use petitphotobox\exceptions\AuthException;
-use petitphotobox\model\records\DbUser;
+use petitphotobox\records\DbUser;
 use soloproyectos\db\DbConnector;
 use soloproyectos\db\record\DbRecordTable;
 use soloproyectos\http\data\HttpSession;

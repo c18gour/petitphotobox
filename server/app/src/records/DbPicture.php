@@ -1,10 +1,10 @@
 <?php
-namespace petitphotobox\model\records;
+namespace  petitphotobox\records;
 use petitphotobox\core\model\record\DbRecord;
 use petitphotobox\core\model\record\DbTable;
 use petitphotobox\exceptions\DatabaseError;
-use petitphotobox\model\records\DbCategory;
-use petitphotobox\model\records\DbSnapshot;
+use petitphotobox\records\DbCategory;
+use petitphotobox\records\DbSnapshot;
 
 class DbPicture extends DbRecord
 {

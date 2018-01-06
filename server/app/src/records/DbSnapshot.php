@@ -1,5 +1,5 @@
 <?php
-namespace petitphotobox\model\records;
+namespace  petitphotobox\records;
 use petitphotobox\core\model\record\DbSortableRecord;
 
 class DbSnapshot extends DbSortableRecord

@@ -5,7 +5,7 @@ use petitphotobox\core\controller\Controller;
 use petitphotobox\core\exception\ClientException;
 use petitphotobox\core\model\Document;
 use petitphotobox\exceptions\AccessDeniedError;
-use petitphotobox\model\records\DbUser;
+use petitphotobox\records\DbUser;
 use soloproyectos\text\Text;
 
 class UserRegisterController extends Controller

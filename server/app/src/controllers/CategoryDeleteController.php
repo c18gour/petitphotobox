@@ -2,7 +2,7 @@
 namespace petitphotobox\controllers;
 use petitphotobox\core\controller\AuthController;
 use petitphotobox\core\exception\ClientException;
-use petitphotobox\model\records\DbCategory;
+use petitphotobox\records\DbCategory;
 use soloproyectos\text\Text;
 
 class CategoryDeleteController extends AuthController

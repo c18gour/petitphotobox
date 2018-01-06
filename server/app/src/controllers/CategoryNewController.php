@@ -4,7 +4,7 @@ use petitphotobox\core\controller\AuthController;
 use petitphotobox\core\exception\AppError;
 use petitphotobox\core\exception\ClientException;
 use petitphotobox\core\model\Document;
-use petitphotobox\model\records\DbCategory;
+use petitphotobox\records\DbCategory;
 use soloproyectos\text\Text;
 
 class CategoryNewController extends AuthController

@@ -1,8 +1,8 @@
 <?php
-namespace petitphotobox\model\records;
+namespace  petitphotobox\records;
 use petitphotobox\core\model\record\DbRecord;
 use petitphotobox\core\model\record\DbTable;
-use petitphotobox\model\records\DbUser;
+use petitphotobox\records\DbUser;
 use soloproyectos\db\DbConnector;
 use soloproyectos\text\Text;
 

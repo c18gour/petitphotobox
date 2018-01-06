@@ -2,7 +2,7 @@
 namespace petitphotobox\controllers;
 use petitphotobox\core\controller\AuthController;
 use petitphotobox\core\exception\ClientException;
-use petitphotobox\model\records\DbCategoryPicture;
+use petitphotobox\records\DbCategoryPicture;
 use soloproyectos\text\Text;
 
 class PictureUpController extends AuthController

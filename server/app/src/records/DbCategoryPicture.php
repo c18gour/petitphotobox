@@ -1,9 +1,9 @@
 <?php
-namespace petitphotobox\model\records;
+namespace  petitphotobox\records;
 use petitphotobox\core\model\record\DbSortableRecord;
 use petitphotobox\core\model\record\DbTable;
-use petitphotobox\model\records\DbPicture;
-use petitphotobox\model\records\DbCategory;
+use petitphotobox\records\DbPicture;
+use petitphotobox\records\DbCategory;
 use soloproyectos\db\Db;
 
 class DbCategoryPicture extends DbSortableRecord
