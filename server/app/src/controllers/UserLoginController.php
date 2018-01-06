@@ -17,7 +17,7 @@ class UserLoginController extends Controller
   public function __construct()
   {
     parent::__construct();
-    $this->addOpenRequestHandler([$this, "onGetRequest"]);
+    $this->addOpenRequestHandler([$this, "onOpenRequest"]);
     $this->addPostRequestHandler([$this, "onPostRequest"]);
   }
 
@@ -40,7 +40,7 @@ class UserLoginController extends Controller
    *
    * @return void
    */
-  public function onGetRequest()
+  public function onOpenRequest()
   {
     if (UserAuth::isLogged($this->db)) {
       throw new SessionError("User has already logged");
