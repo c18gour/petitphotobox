@@ -18,6 +18,7 @@ import { UserLoginEntity } from './entities/user-login-entity';
 export class UserLoginView implements OnInit {
   entity: UserLoginEntity;
   modal: ModalWindowSystem;
+  password = '';
 
   constructor(
     private _controller: UserLoginController,
@@ -50,8 +51,9 @@ export class UserLoginView implements OnInit {
     this.modal.loading(async () => {
       try {
         this.entity = await this._controller.post(
-          { username: this.entity.username, password: this.entity.password });
+          { username: this.entity.username, password: this.password });
       } catch (e) {
+        this.password = '';
         this.modal.error(e.message);
         throw e;
       }
