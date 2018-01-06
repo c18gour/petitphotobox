@@ -1,8 +1,8 @@
 <?php
 namespace petitphotobox\model\documents;
-use petitphotobox\core\model\document\BaseDocument;
+use petitphotobox\core\model\document\Document;
 
-class UserRegisterDocument extends BaseDocument
+class UserRegisterDocument extends Document
 {
   private $_username;
   private $_password;

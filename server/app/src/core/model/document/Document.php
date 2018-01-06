@@ -1,7 +1,7 @@
 <?php
 namespace petitphotobox\core\model\document;
 
-abstract class BaseDocument
+abstract class Document
 {
   private $_statusCode = 0;
   private $_statusMessage = "";

@@ -32,6 +32,16 @@ class HomeController extends AuthController
    */
   public function getDocument()
   {
+    return new Document(
+      // body
+      [
+        "id" => $this->_entity->getId(),
+        "title" => $this->_entity->title,
+        "main" => $this->_entity->isMain(),
+        "pictures" => $this->_getCategoryPictures(),
+        "categories" => $this->_getCategoryTree()
+      ]
+    );
     return $this->_document;
   }
 

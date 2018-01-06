@@ -1,8 +1,8 @@
 <?php
 namespace petitphotobox\model\documents;
-use petitphotobox\core\model\document\BaseDocument;
+use petitphotobox\core\model\document\Document;
 
-class CategoryDocument extends BaseDocument
+class CategoryDocument extends Document
 {
   private $_record;
   private $_parent;

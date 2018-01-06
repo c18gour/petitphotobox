@@ -4,7 +4,7 @@ use \Exception;
 use petitphotobox\core\exception\AppError;
 use petitphotobox\core\exception\ClientException;
 use petitphotobox\exceptions\DatabaseError;
-use petitphotobox\core\model\BaseDocument;
+use petitphotobox\core\model\Document;
 use soloproyectos\db\DbConnector;
 use soloproyectos\db\exception\DbException;
 use soloproyectos\http\controller\HttpController;
@@ -31,7 +31,7 @@ abstract class BaseController extends HttpController
   /**
    * Gets the current document.
    *
-   * @return BaseDocument
+   * @return Document
    */
   abstract public function getDocument();
 

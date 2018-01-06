@@ -1,8 +1,8 @@
 <?php
 namespace petitphotobox\model\documents;
-use petitphotobox\core\model\document\BaseDocument;
+use petitphotobox\core\model\document\Document;
 
-class EmptyDocument extends BaseDocument
+class EmptyDocument extends Document
 {
   /**
    * {@inheritdoc}
