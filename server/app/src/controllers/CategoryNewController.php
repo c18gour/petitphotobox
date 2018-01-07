@@ -73,7 +73,13 @@ class CategoryNewController extends AuthController
       throw new ClientException("Title is required");
     }
 
-    // TODO: check for duplicate category titles
+    $category = DbCategory::searchByTitle(
+      $this->db, $this->_parentCategory->getId(), $title
+    );
+    if ($category != null) {
+      throw new ClientException("The category already exist");
+    }
+
     $this->_category->parentCategoryId = $this->_parentCategory->getId();
     $this->_category->title = $title;
     $this->_category->save();

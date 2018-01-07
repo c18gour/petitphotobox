@@ -182,4 +182,31 @@ class DbCategory extends DbRecord
       ]
     );
   }
+
+  /**
+   * Searches a category by title.
+   *
+   * @param DbConnector $db               Database connection
+   * @param string      $parentCategoryId Parent category id
+   * @param string      $title            Title
+   *
+   * @return DbCategory
+   */
+  public static function searchByTitle($db, $parentCategoryId, $title)
+  {
+    $ret = null;
+
+    $sql = "
+    select
+      id
+    from category
+    where parent_category_id = ?
+    and title = ?";
+    $row = $db->query($sql, [$parentCategoryId, $title]);
+    if (count($row) > 0) {
+      $ret = new DbCategory($db, $row["id"]);
+    }
+
+    return $ret;
+  }
 }
