@@ -20,6 +20,13 @@ class UserAuth
    */
   public static function create($db, $username, $password)
   {
+    if (!preg_match('/^[a-z1-9_]+$/', $username)) {
+      throw new AuthException(
+        "The username must be written in lowercase " .
+        "and can only contain the following characters: a..z, 1..10, _"
+      );
+    }
+
     if (strlen($password) < MIN_PASSWORD_LENGTH) {
       throw new AuthException(
         "Password must have at least " . MIN_PASSWORD_LENGTH . " characters"
