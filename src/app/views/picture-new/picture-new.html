@@ -8,8 +8,8 @@
     <fieldset>
       <label for="categoryId">Category</label>
       <!-- TODO: a picture can belong to multiple categories -->
-      <app-input-select-tree #categoryIdInput name="categoryId"
-        [items]="entity.categories" [value]="entity.categoryId"></app-input-select-tree>
+      <app-input-select #categoryIdInput name="categoryId"
+        [items]="entity.categories" [value]="entity.categoryId"></app-input-select>
       <label for="name">Title</label>
       <input #inputTitle="ngModel" autofocus type="text" id="title" required
         name="title" [(ngModel)]="entity.title" />

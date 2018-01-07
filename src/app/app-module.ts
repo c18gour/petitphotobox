@@ -16,7 +16,7 @@ import {
 // components
 import {
   InputSelectTreeComponent
-} from './components/input-select-tree/input-select-tree-component';
+} from './components/input-select/input-select-component';
 
 // input-checkbox-tree component
 import {

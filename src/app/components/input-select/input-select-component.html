@@ -2,6 +2,6 @@
   <option value=""></option>
   <option *ngFor="let item of items" [value]="item.value">{{item.label}}</option>
 </select>
-<app-input-select-tree
+<app-input-select
   *ngIf="selectedItem && selectedItem.items.length > 0" [value]="value"
-  [items]="selectedItem.items" (select)="onSelect($event)"></app-input-select-tree>
+  [items]="selectedItem.items" (select)="onSelect($event)"></app-input-select>

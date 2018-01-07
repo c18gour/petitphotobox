@@ -10,7 +10,7 @@ import {
 import { CategoryNewEntity } from './entities/category-new-entity';
 import {
   InputSelectTreeComponent
-} from '../../components/input-select-tree/input-select-tree-component';
+} from '../../components/input-select/input-select-component';
 import {
   ModalWindowSystem
 } from '../../modules/modal-window-system/modal-window-system';

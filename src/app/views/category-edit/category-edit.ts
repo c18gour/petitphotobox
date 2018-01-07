@@ -9,7 +9,7 @@ import {
 } from '../../modules/modal-window-system/modal-window-system';
 import {
   InputSelectTreeComponent
-} from '../../components/input-select-tree/input-select-tree-component';
+} from '../../components/input-select/input-select-component';
 import {
   CategoryEditController
 } from './controllers/category-edit-controller';

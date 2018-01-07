@@ -2,9 +2,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { InputOptionEntity } from '../../entities/input-option-entity';
 
 @Component({
-  selector: 'app-input-select-tree',
-  templateUrl: './input-select-tree-component.html',
-  styleUrls: ['./input-select-tree-component.scss']
+  selector: 'app-input-select',
+  templateUrl: './input-select-component.html',
+  styleUrls: ['./input-select-component.scss']
 })
 export class InputSelectTreeComponent {
   @Input()

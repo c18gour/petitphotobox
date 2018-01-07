@@ -7,8 +7,8 @@
   <form (ngSubmit)="onSubmit()">
     <fieldset>
       <label for="parentCategoryId">Parent Category</label>
-      <app-input-select-tree #parentCategoryInput name="parentCategoryId"
-        [items]="entity.categories" [value]="entity.parentCategoryId"></app-input-select-tree>
+      <app-input-select #parentCategoryInput name="parentCategoryId"
+        [items]="entity.categories" [value]="entity.parentCategoryId"></app-input-select>
       <label for="name">Title</label>
       <input #inputTitle="ngModel" autofocus type="text" id="title" required
         name="title" [(ngModel)]="entity.title" />
