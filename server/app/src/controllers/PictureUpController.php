@@ -34,9 +34,9 @@ class PictureUpController extends AuthController
     }
 
     // moves the record one position 'up'
-    $prev = $row->getPrevRecord();
-    if ($prev != null) {
-      $row->swap($prev);
+    $next = $row->getNextRecord();
+    if ($next != null) {
+      $row->swap($next);
     }
   }
 }

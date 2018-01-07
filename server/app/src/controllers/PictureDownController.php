@@ -34,7 +34,7 @@ class PictureDownController extends AuthController
     }
 
     // moves the record one position 'up'
-    $next = $row->getNextRecord();
+    $next = $row->getPrevRecord();
     if ($next != null) {
       $row->swap($next);
     }

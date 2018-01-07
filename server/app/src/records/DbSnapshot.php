@@ -46,7 +46,7 @@ class DbSnapshot extends DbSortableRecord
       id
     from snapshot
     where picture_id = ?
-    order by ord";
+    order by ord desc";
     $rows = iterator_to_array(
       $this->db->query($sql, $this->pictureId)
     );

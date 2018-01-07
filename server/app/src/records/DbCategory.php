@@ -76,7 +76,7 @@ class DbCategory extends DbRecord
       id
     from category_picture
     where category_id = ?
-    order by ord";
+    order by ord desc";
     $rows = iterator_to_array($this->db->query($sql, $this->getId()));
 
     return array_map(
