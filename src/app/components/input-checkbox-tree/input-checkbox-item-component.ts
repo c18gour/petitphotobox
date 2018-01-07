@@ -1,11 +1,9 @@
 import {
-  Component, Input, Output, EventEmitter, ViewChild, QueryList, ElementRef,
-  OnInit
+  Component, Input, Output, EventEmitter, ViewChild, ElementRef, OnInit
 } from '@angular/core';
 import {
   InputOptionEntity
 } from '../../entities/input-option-entity';
-import { InputCheckboxTreeComponent } from './input-checkbox-tree-component';
 
 @Component({
   selector: 'app-input-checkbox-item',
@@ -52,6 +50,12 @@ export class InputCheckboxItemComponent implements OnInit {
     return this.value.indexOf(this.item.value) > -1;
   }
 
+  ngOnInit() {
+    if (this.open) {
+      this._isVisible = true;
+    }
+  }
+
   searchItem(value: string, items?: any[]) {
     if (!items) {
       items = this.item.items;
@@ -66,19 +70,13 @@ export class InputCheckboxItemComponent implements OnInit {
     return null;
   }
 
-  ngOnInit() {
-    if (this.open) {
-      this._isVisible = true;
-    }
-  }
-
   onSelect(value: string[]) {
     this.value = value;
     this.selectEntry.emit(this.value);
   }
 
-  onChange(event: Event) {
-    const input = <HTMLInputElement>event.target;
+  onChange(value: string) {
+    const input = this.input.nativeElement;
 
     if (!input.checked) {
       const pos = this.value.indexOf(input.value);

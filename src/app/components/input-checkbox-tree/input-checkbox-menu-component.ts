@@ -1,6 +1,4 @@
-import {
-  Component, Input, Output, EventEmitter, ViewChildren, QueryList, OnInit
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import {
   InputOptionEntity
 } from '../../entities/input-option-entity';
@@ -14,14 +12,14 @@ import { InputCheckboxItemComponent } from './input-checkbox-item-component';
 export class InputCheckboxMenuComponent implements OnInit {
   _isVisible: boolean = null;
 
+  @Output()
+  selectEntry = new EventEmitter<string[]>();
+
   @Input()
   items: InputOptionEntity[];
 
   @Input()
   value: string[] = [];
-
-  @Output()
-  selectEntry = new EventEmitter<string[]>();
 
   @Input()
   set visible(value: boolean) {
@@ -44,6 +42,12 @@ export class InputCheckboxMenuComponent implements OnInit {
     return false;
   }
 
+  ngOnInit() {
+    if (this.open) {
+      this._isVisible = true;
+    }
+  }
+
   searchItem(value: string, items?: any[]) {
     if (!items) {
       items = this.items;
@@ -56,12 +60,6 @@ export class InputCheckboxMenuComponent implements OnInit {
     }
 
     return null;
-  }
-
-  ngOnInit() {
-    if (this.open) {
-      this._isVisible = true;
-    }
   }
 
   onSelect(value: string[]) {
