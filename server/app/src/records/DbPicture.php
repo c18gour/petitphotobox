@@ -58,29 +58,6 @@ class DbPicture extends DbRecord
     return array_shift($this->getSnapshots());
   }
 
-  // TODO: rmeove this?
-  /**
-   * Gets picture's categories.
-   *
-   * @return DbCategory[]
-   */
-  public function getCategoryPictures()
-  {
-    $sql = "
-    select
-      id
-    from category_picture
-    where picture_id = ?";
-    $rows = iterator_to_array($this->db->query($sql, $this->getId()));
-
-    return array_map(
-      function ($row) {
-        return new DbCategoryPicture($this->db, $this->_user, $row["id"]);
-      },
-      $rows
-    );
-  }
-
   /**
    * {@inheritdoc}
    *
