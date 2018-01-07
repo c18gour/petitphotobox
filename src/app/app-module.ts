@@ -15,19 +15,19 @@ import {
 
 // components
 import {
-  InputSelectTreeComponent
+  InputSelectComponent
 } from './components/input-select/input-select-component';
 
-// input-checkbox-tree component
+// input-checkbox component
 import {
-  InputCheckboxTreeComponent
-} from './components/input-checkbox-tree/input-checkbox-tree-component';
+  InputCheckboxComponent
+} from './components/input-checkbox/input-checkbox-component';
 import {
   InputCheckboxMenuComponent
-} from './components/input-checkbox-tree/input-checkbox-menu-component';
+} from './components/input-checkbox/input-checkbox-menu-component';
 import {
   InputCheckboxItemComponent
-} from './components/input-checkbox-tree/input-checkbox-item-component';
+} from './components/input-checkbox/input-checkbox-item-component';
 
 // home components
 import {
@@ -78,11 +78,11 @@ import {
     AppComponent,
 
     // components
-    InputSelectTreeComponent,
+    InputSelectComponent,
     HomePictureComponent,
 
-    // input-checkbox-item component
-    InputCheckboxTreeComponent,
+    // input-checkbox component
+    InputCheckboxComponent,
     InputCheckboxMenuComponent,
     InputCheckboxItemComponent,
 

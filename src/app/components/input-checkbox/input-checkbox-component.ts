@@ -11,7 +11,7 @@ import {
       [items]="items" [value]="value"
       [visible]="true"></app-input-checkbox-menu>`
 })
-export class InputCheckboxTreeComponent {
+export class InputCheckboxComponent {
   @Input()
   value: string[] = [];
 

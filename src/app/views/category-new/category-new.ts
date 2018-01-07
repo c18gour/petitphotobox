@@ -9,7 +9,7 @@ import {
 } from './controllers/category-new-controller';
 import { CategoryNewEntity } from './entities/category-new-entity';
 import {
-  InputSelectTreeComponent
+  InputSelectComponent
 } from '../../components/input-select/input-select-component';
 import {
   ModalWindowSystem
@@ -33,7 +33,7 @@ export class CategoryNewView implements OnInit {
   ) { }
 
   @ViewChild('parentCategoryInput')
-  parentCategoryInput: InputSelectTreeComponent;
+  parentCategoryInput: InputSelectComponent;
 
   @ViewChild('modalContainer', { read: ViewContainerRef })
   modalContainer: ViewContainerRef;

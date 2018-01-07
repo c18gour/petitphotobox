@@ -8,7 +8,7 @@ import {
   ModalWindowSystem
 } from '../../modules/modal-window-system/modal-window-system';
 import {
-  InputSelectTreeComponent
+  InputSelectComponent
 } from '../../components/input-select/input-select-component';
 
 import { PictureNewController } from './controllers/picture-new-controller';
@@ -32,7 +32,7 @@ export class PictureNewView implements OnInit {
   ) { }
 
   @ViewChild('categoryInput')
-  parentCategoryInput: InputSelectTreeComponent;
+  parentCategoryInput: InputSelectComponent;
 
   @ViewChild('modalContainer', { read: ViewContainerRef })
   modalContainer: ViewContainerRef;

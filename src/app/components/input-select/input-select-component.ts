@@ -6,7 +6,7 @@ import { InputOptionEntity } from '../../entities/input-option-entity';
   templateUrl: './input-select-component.html',
   styleUrls: ['./input-select-component.scss']
 })
-export class InputSelectTreeComponent {
+export class InputSelectComponent {
   @Input()
   name = '';
 
