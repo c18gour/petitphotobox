@@ -82,6 +82,7 @@ export class HomeView implements OnInit {
           { categoryId: this.entity.id });
       } catch (e) {
         this.modal.error(e.message);
+        throw e;
       }
 
       this._router.navigate(['/home']);
@@ -94,6 +95,7 @@ export class HomeView implements OnInit {
         await this._pictureDeleteController.post({ id });
       } catch (e) {
         this.modal.error(e.message);
+        throw e;
       }
 
       this._refresh();
@@ -106,6 +108,7 @@ export class HomeView implements OnInit {
         await this._pictureUpController.post({ id });
       } catch (e) {
         this.modal.error(e.message);
+        throw e;
       }
 
       this._refresh();
@@ -118,6 +121,7 @@ export class HomeView implements OnInit {
         await this._pictureDownController.post({ id });
       } catch (e) {
         this.modal.error(e.message);
+        throw e;
       }
 
       this._refresh();
