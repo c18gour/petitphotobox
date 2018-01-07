@@ -32,6 +32,16 @@ class Controller extends HttpController
   }
 
   /**
+   * {@inheritdoc}
+   *
+   * @return mixed
+   */
+  public function getParam($name, $defValue = null)
+  {
+      return trim(parent::getParam($name, $defValue));
+  }
+
+  /**
    * Gets the current document.
    *
    * @return Document
