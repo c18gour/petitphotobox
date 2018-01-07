@@ -3,6 +3,7 @@ namespace petitphotobox\core\auth;
 use petitphotobox\exceptions\AuthException;
 use petitphotobox\records\DbUser;
 use soloproyectos\db\DbConnector;
+// TODO: remove DbRecordTable package
 use soloproyectos\db\record\DbRecordTable;
 use soloproyectos\http\data\HttpSession;
 
@@ -19,15 +20,18 @@ class UserAuth
    */
   public static function create($db, $username, $password)
   {
-    $r = new DbRecordTable($db, "user");
-    $userId = $r->save(
-      [
-        "username" => $username,
-        "password" => password_hash($password, PASSWORD_BCRYPT)
-      ]
-    );
+    if (strlen($password) < MIN_PASSWORD_LENGTH) {
+      throw new AuthException(
+        "Password must have at least " . MIN_PASSWORD_LENGTH . " characters"
+      );
+    }
 
-    return new DbUser($db, $userId);
+    $user = new DbUser($db);
+    $user->username = $username;
+    $user->password = password_hash($password, PASSWORD_BCRYPT);
+    $user->save();
+
+    return $user;
   }
 
   /**

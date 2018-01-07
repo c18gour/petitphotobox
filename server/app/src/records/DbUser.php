@@ -2,8 +2,8 @@
 namespace  petitphotobox\records;
 use petitphotobox\core\model\record\DbRecord;
 use petitphotobox\core\model\record\DbTable;
-use soloproyectos\db\DbConnector;
 use petitphotobox\records\DbCategory;
+use soloproyectos\db\DbConnector;
 
 class DbUser extends DbRecord
 {
@@ -126,7 +126,6 @@ class DbUser extends DbRecord
    */
   protected function insert()
   {
-    // TODO: ensure that username and password are valids
     return DbTable::insert(
       $this->db,
       "user",

@@ -74,13 +74,6 @@ class UserRegisterController extends Controller
       throw new ClientException("The user already exist");
     }
 
-    // TODO: move this code to DbUser
-    if (strlen($password) < MIN_PASSWORD_LENGTH) {
-      throw new ClientException(
-        "Password must have at least " . MIN_PASSWORD_LENGTH . " characters"
-      );
-    }
-
     if ($password !== $rePassword) {
       throw new ClientException("Passwords do not match");
     }
