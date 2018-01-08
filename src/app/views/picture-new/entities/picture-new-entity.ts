@@ -6,6 +6,6 @@ import {
 export class PictureNewEntity extends BaseEntity {
   readonly id: string;
   title: string;
-  categoryId: string;
+  categoryIds: string[];
   categories: InputOptionEntity[];
 }

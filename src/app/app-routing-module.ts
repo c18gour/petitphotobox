@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'category/new/:parentCategoryId', component: CategoryNewView },
   { path: 'category/edit/:categoryId', component: CategoryEditView },
   { path: 'picture/new', component: PictureNewView },
-  { path: 'picture/new/:id', component: PictureNewView },
+  { path: 'picture/new/:categoryId', component: PictureNewView },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundView }
 ];

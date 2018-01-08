@@ -6,10 +6,11 @@
   <h3>Upload Picture</h3>
   <form (ngSubmit)="onSubmit()">
     <fieldset>
-      <label for="categoryId">Category</label>
-      <!-- TODO: a picture can belong to multiple categories -->
-      <app-input-select #categoryIdInput name="categoryId"
-        [items]="entity.categories" [value]="entity.categoryId"></app-input-select>
+      <div [hidden]="entity.categories.length === 0">
+        <label for="categoryId">Select one or more categories</label>
+        <app-input-checkbox #categoriesInput name="categoryId"
+          [items]="entity.categories" [value]="entity.categoryIds"></app-input-checkbox>
+      </div>
       <label for="name">Title</label>
       <input #inputTitle="ngModel" autofocus type="text" id="title" required
         name="title" [(ngModel)]="entity.title" />

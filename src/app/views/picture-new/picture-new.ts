@@ -8,8 +8,8 @@ import {
   ModalWindowSystem
 } from '../../modules/modal-window-system/modal-window-system';
 import {
-  InputSelectComponent
-} from '../../components/input-select/input-select-component';
+  InputCheckboxComponent
+} from '../../components/input-checkbox/input-checkbox-component';
 
 import { PictureNewController } from './controllers/picture-new-controller';
 import { PictureNewEntity } from './entities/picture-new-entity';
@@ -20,6 +20,7 @@ import { PictureNewEntity } from './entities/picture-new-entity';
   styleUrls: ['./picture-new.scss']
 })
 export class PictureNewView implements OnInit {
+  private _categoryId: string;
   entity: PictureNewEntity;
   modal: ModalWindowSystem;
 
@@ -31,8 +32,8 @@ export class PictureNewView implements OnInit {
     private _resolver: ComponentFactoryResolver
   ) { }
 
-  @ViewChild('categoryInput')
-  parentCategoryInput: InputSelectComponent;
+  @ViewChild('categoriesInput')
+  categoriesInput: InputCheckboxComponent;
 
   @ViewChild('modalContainer', { read: ViewContainerRef })
   modalContainer: ViewContainerRef;
@@ -42,16 +43,38 @@ export class PictureNewView implements OnInit {
       this, this._resolver, this.modalContainer);
 
     this._route.params.subscribe((params) => {
-      const categoryId = params.categoryId;
+      this._categoryId = params.categoryId;
 
       this.modal.loading(async () => {
         try {
-          this.entity = await this._controller.get({ categoryId });
+          this.entity = await this._controller.get({
+            categoryIds: [this._categoryId]
+          });
         } catch (e) {
           this.modal.error(e.message);
           throw e;
         }
       });
+    });
+  }
+
+  onSubmit() {
+    this.modal.loading(async () => {
+      const categoryIds = this.categoriesInput.value;
+
+      try {
+        this.entity = await this._controller.post({
+          categoryIds, title: this.entity.title
+        });
+      } catch (e) {
+        this.modal.error(e.message);
+        throw e;
+      }
+
+      const categoryId = categoryIds.indexOf(this._categoryId) < 0
+        ? categoryIds.shift()
+        : this._categoryId;
+      this._router.navigate([`/home/${categoryId}`]);
     });
   }
 }

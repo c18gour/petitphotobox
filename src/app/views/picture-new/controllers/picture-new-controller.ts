@@ -11,11 +11,11 @@ export class PictureNewController extends BaseController<PictureNewEntity> {
     super(http, `${env.apiUrl}/picture-new.php`);
   }
 
-  get(args?: { categoryId: string }) {
+  get(args?: { categoryIds: string[] }) {
     return super.get(args);
   }
 
-  post(args: { categoryId: string, title: string }) {
+  post(args: { categoryIds: string[], title: string }) {
     return super.post(args);
   }
 }
