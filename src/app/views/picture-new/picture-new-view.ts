@@ -16,8 +16,8 @@ import { PictureNewEntity } from './entities/picture-new-entity';
 
 @Component({
   selector: 'app-picture-new',
-  templateUrl: './picture-new.html',
-  styleUrls: ['./picture-new.scss']
+  templateUrl: './picture-new-view.html',
+  styleUrls: ['./picture-new-view.scss']
 })
 export class PictureNewView implements OnInit {
   private _categoryId: string;

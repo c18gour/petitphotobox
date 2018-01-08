@@ -40,7 +40,7 @@ import { UserLoginView } from './views/user-login/user-login-view';
 import { UserRegisterView } from './views/user-register/user-register-view';
 import { CategoryNewView } from './views/category-new/category-new';
 import { CategoryEditView } from './views/category-edit/category-edit';
-import { PictureNewView } from './views/picture-new/picture-new';
+import { PictureNewView } from './views/picture-new/picture-new-view';
 import { PictureEditView } from './views/picture-edit/picture-edit-view';
 import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
