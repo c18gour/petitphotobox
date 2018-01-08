@@ -89,14 +89,55 @@ class PictureEditController extends AuthController
     }
 
     // creates a new picture
+    // TODO: don't forget the path
     $this->_picture->title = $title;
-    // TODO: fix it
-    $this->_picture->path = "/data/images/not-found.png";
     $this->_picture->save();
 
-    // ...and adds it to the category
-    foreach ($this->_categories as $category) {
+    // add the picture to the categories
+    // that are not in the picture's categories
+    $categories1 = $this->_subtract(
+      $this->_categories,
+      $this->_picture->getCategories()
+    );
+
+    foreach ($categories1 as $category) {
       $category->addPicture($this->_picture);
     }
+
+    // removes the picture from the categories
+    // that are not in the provided list
+    $categories2 = $this->_subtract(
+      $this->_picture->getCategories(),
+      $this->_categories
+    );
+
+    foreach ($categories2 as $category) {
+      $category->removePicture($this->_picture);
+    }
+  }
+
+  /**
+   * Gets the list of items that are in $items1 but not in $items2.
+   *
+   * @param DbRecord[] $items1 A list of items
+   * @param DbRecord[] $items2 A list of items
+   *
+   * @return [type] Returns the $items1 - $items2
+   */
+  private function _subtract($items1, $items2)
+  {
+    return array_filter(
+      $items1,
+      function ($row1) use ($items2) {
+        return count(
+          array_filter(
+            $items2,
+            function ($row2) use ($row1) {
+              return $row1->getId() == $row2->getId();
+            }
+          )
+        ) == 0;
+      }
+    );
   }
 }

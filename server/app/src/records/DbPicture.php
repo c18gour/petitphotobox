@@ -25,6 +25,23 @@ class DbPicture extends DbRecord
     parent::__construct($db, $id);
   }
 
+  public function getCategories()
+  {
+    $sql = "
+    select
+      category_id
+    from category_picture
+    where picture_id = ?";
+    $rows = iterator_to_array($this->db->query($sql, $this->getId()));
+
+    return array_map(
+      function ($row) {
+        return new DbCategory($this->db, $this->_user, $row["category_id"]);
+      },
+      $rows
+    );
+  }
+
   /**
    * Gets the list of snapshots.
    *
