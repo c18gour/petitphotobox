@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'category/edit/:categoryId', component: CategoryEditView },
   { path: 'picture/new', component: PictureNewView },
   { path: 'picture/new/:categoryId', component: PictureNewView },
-  { path: 'picture/edit/:categoryId/:pictureId', component: PictureEditView },
+  { path: 'picture/edit/:pictureId', component: PictureEditView },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundView }
 ];

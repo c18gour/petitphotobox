@@ -20,7 +20,6 @@ import { PictureEditEntity } from './entities/picture-edit-entity';
   styleUrls: ['./picture-edit-view.scss']
 })
 export class PictureEditView implements OnInit {
-  private _categoryId: string;
   entity: PictureEditEntity;
   modal: ModalWindowSystem;
 
@@ -45,7 +44,6 @@ export class PictureEditView implements OnInit {
     this._route.params.subscribe((params) => {
       const pictureId = params.pictureId;
 
-      this._categoryId = params.categoryId;
       this.modal.loading(async () => {
         try {
           this.entity = await this._controller.get({ pictureId });
@@ -80,11 +78,7 @@ export class PictureEditView implements OnInit {
         throw e;
       }
 
-      // TODO: should return to the previous page
-      const categoryId = categoryIds.indexOf(this._categoryId) < 0
-        ? categoryIds.shift()
-        : this._categoryId;
-      this._router.navigate([`/home/${categoryId}`]);
+      this._location.back();
     });
   }
 }
