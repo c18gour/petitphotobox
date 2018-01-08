@@ -117,10 +117,12 @@ export class HomeView implements OnInit {
     });
   }
 
-  movePictureDown(id: string) {
+  movePictureDown(pictureId: string) {
     this.modal.loading(async () => {
       try {
-        await this._pictureDownController.post({ id });
+        await this._pictureDownController.post({
+          categoryId: this.categoryId, pictureId
+        });
       } catch (e) {
         this.modal.error(e.message);
         throw e;

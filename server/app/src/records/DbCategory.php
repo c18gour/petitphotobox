@@ -199,6 +199,28 @@ class DbCategory extends DbRecord
     }
   }
 
+  public function movePictureDown($picture)
+  {
+    $sql = "
+    select
+      cp.id
+    from category_picture as cp
+    inner join category as c
+      on c.user_id = ?
+      and c.id = cp.category_id
+    where cp.picture_id = ?";
+    $row = $this->db->query($sql, [$this->_user->getId(), $picture->getId()]);
+    if (count($row) > 0) {
+      $cp = new DbCategoryPicture($this->db, $this->_user, $row["id"]);
+
+      // moves the record 'down'
+      $next = $cp->getPrevRecord();
+      if ($next != null) {
+        $cp->swap($next);
+      }
+    }
+  }
+
   /**
    * {@inheritdoc}
    *

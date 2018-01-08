@@ -11,7 +11,7 @@ export class PictureDownController
     super(http, `${env.apiUrl}/picture-down.php`);
   }
 
-  post(args: { id: string }) {
+  post(args: { categoryId: string, pictureId: string }) {
     return super.post(args);
   }
 }
