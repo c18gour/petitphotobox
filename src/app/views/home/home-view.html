@@ -45,7 +45,8 @@
       [path]="picture.path"
       (deletePicture)="modal.confirm('Are you sure?', deletePicture, picture.id)"
       (upPicture)="movePictureUp(picture.id)"
-      (downPicture)="movePictureDown(picture.id)"></app-home-picture>
+      (downPicture)="movePictureDown(picture.id)"
+      (editPicture)="editPicture(picture.id)"></app-home-picture>
   </div>
 </div>
 

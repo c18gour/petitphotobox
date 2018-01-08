@@ -23,6 +23,9 @@ export class HomePictureComponent {
   @Output()
   downPicture = new EventEmitter<string>();
 
+  @Output()
+  editPicture = new EventEmitter<string>();
+
   get fullPath(): string {
     return [env.apiUrl, this.path].join('/');
   }

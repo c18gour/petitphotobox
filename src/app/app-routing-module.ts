@@ -7,6 +7,7 @@ import { UserRegisterView } from './views/user-register/user-register-view';
 import { CategoryNewView } from './views/category-new/category-new';
 import { CategoryEditView } from './views/category-edit/category-edit';
 import { PictureNewView } from './views/picture-new/picture-new';
+import { PictureEditView } from './views/picture-edit/picture-edit-view';
 import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'category/edit/:categoryId', component: CategoryEditView },
   { path: 'picture/new', component: PictureNewView },
   { path: 'picture/new/:categoryId', component: PictureNewView },
+  { path: 'picture/edit/:categoryId/:pictureId', component: PictureEditView },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundView }
 ];

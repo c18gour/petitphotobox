@@ -1,0 +1,84 @@
+import {
+  Component, ViewChild, OnInit, ComponentFactoryResolver, ViewContainerRef
+} from '@angular/core';
+import { Location } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import {
+  ModalWindowSystem
+} from '../../modules/modal-window-system/modal-window-system';
+import {
+  InputCheckboxComponent
+} from '../../components/input-checkbox/input-checkbox-component';
+
+import { PictureEditController } from './controllers/picture-edit-controller';
+import { PictureEditEntity } from './entities/picture-edit-entity';
+
+@Component({
+  selector: 'app-picture-edit-view',
+  templateUrl: './picture-edit-view.html',
+  styleUrls: ['./picture-edit-view.scss']
+})
+export class PictureEditView implements OnInit {
+  private _categoryId: string;
+  entity: PictureEditEntity;
+  modal: ModalWindowSystem;
+
+  constructor(
+    private _controller: PictureEditController,
+    private _router: Router,
+    private _route: ActivatedRoute,
+    private _location: Location,
+    private _resolver: ComponentFactoryResolver
+  ) { }
+
+  @ViewChild('categoriesInput')
+  categoriesInput: InputCheckboxComponent;
+
+  @ViewChild('modalContainer', { read: ViewContainerRef })
+  modalContainer: ViewContainerRef;
+
+  async ngOnInit() {
+    this.modal = new ModalWindowSystem(
+      this, this._resolver, this.modalContainer);
+
+    this._route.params.subscribe((params) => {
+      const pictureId = params.pictureId;
+
+      this._categoryId = params.categoryId;
+      this.modal.loading(async () => {
+        try {
+          this.entity = await this._controller.get({ pictureId });
+        } catch (e) {
+          this.modal.error(e.message);
+          throw e;
+        }
+      });
+    });
+  }
+
+  goBack() {
+    this._location.back();
+  }
+
+  onSubmit() {
+    this.modal.loading(async () => {
+      const categoryIds = this.categoriesInput.value;
+      const pictureId = this.entity.id;
+
+      try {
+        this.entity = await this._controller.post({
+          pictureId, categoryIds, title: this.entity.title
+        });
+      } catch (e) {
+        this.modal.error(e.message);
+        throw e;
+      }
+
+      const categoryId = categoryIds.indexOf(this._categoryId) < 0
+        ? categoryIds.shift()
+        : this._categoryId;
+      this._router.navigate([`/home/${categoryId}`]);
+    });
+  }
+}

@@ -41,6 +41,7 @@ import { UserRegisterView } from './views/user-register/user-register-view';
 import { CategoryNewView } from './views/category-new/category-new';
 import { CategoryEditView } from './views/category-edit/category-edit';
 import { PictureNewView } from './views/picture-new/picture-new';
+import { PictureEditView } from './views/picture-edit/picture-edit-view';
 import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
 // controllers
@@ -57,6 +58,9 @@ import {
 import {
   PictureNewController
 } from './views/picture-new/controllers/picture-new-controller';
+import {
+  PictureEditController
+} from './views/picture-edit/controllers/picture-edit-controller';
 
 // home controllers
 import { HomeController } from './views/home/controllers/home-controller';
@@ -93,6 +97,7 @@ import {
     CategoryNewView,
     CategoryEditView,
     PictureNewView,
+    PictureEditView,
     PageNotFoundView
   ],
   imports: [
@@ -114,7 +119,8 @@ import {
     PictureDeleteController,
     PictureUpController,
     PictureDownController,
-    PictureNewController
+    PictureNewController,
+    PictureEditController
   ],
   bootstrap: [AppComponent]
 })

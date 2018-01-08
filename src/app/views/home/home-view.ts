@@ -128,6 +128,10 @@ export class HomeView implements OnInit {
     });
   }
 
+  editPicture(id: string) {
+    this._router.navigate([`/picture/edit/${this.categoryId}/${id}`]);
+  }
+
   goHome() {
     this._router.navigate(['/home']);
   }

@@ -3,7 +3,7 @@
 </div>
 
 <div class="container" *ngIf="entity">
-  <h3>Upload Picture</h3>
+  <h3>Edit Picture</h3>
   <form (ngSubmit)="onSubmit()">
     <fieldset>
       <div [hidden]="entity.categories.length === 0">
@@ -19,7 +19,6 @@
         Title is required
       </div>
       <button type="submit" class="button-primary">Accept</button>
-      <!-- TODO: implement goBack() -->
       <button type="button" (click)="goBack()">Cancel</button>
     </fieldset>
   </form>
