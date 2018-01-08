@@ -58,6 +58,10 @@ export class PictureNewView implements OnInit {
     });
   }
 
+  goBack() {
+    this._location.back();
+  }
+
   onSubmit() {
     this.modal.loading(async () => {
       const categoryIds = this.categoriesInput.value;
