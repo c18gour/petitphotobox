@@ -5,13 +5,13 @@ use petitphotobox\core\exception\AppError;
 use petitphotobox\core\exception\ClientException;
 use petitphotobox\core\model\Document;
 use petitphotobox\records\DbCategory;
-use petitphotobox\records\DbCategoryPicture;
+use petitphotobox\records\DbPicture;
 use soloproyectos\text\Text;
 
 class PictureNewController extends AuthController
 {
   private $_category;
-  private $_record;
+  private $_picture;
 
   /**
    * Creates a new instance..
@@ -20,19 +20,18 @@ class PictureNewController extends AuthController
   {
     parent::__construct();
     $this->addOpenRequestHandler([$this, "onOpenRequest"]);
+    $this->addPostRequestHandler([$this, "onPostRequest"]);
   }
 
   public function getDocument()
   {
     $mainCategory = $this->user->getMainCategory();
-    $picture = $this->_record->getPicture();
 
     return new Document(
       [
-        "id" => $this->_record->getId(),
-        "title" => $picture->title,
-        "categoryId" => $this->_category->getId(),
-        "categories" => $mainCategory->getTree()
+        "id" => $this->_picture->getId(),
+        "title" => $this->_picture->title,
+        "categoryId" => $this->_category->getId()
       ]
     );
   }
@@ -45,15 +44,38 @@ class PictureNewController extends AuthController
   public function onOpenRequest()
   {
     $categoryId = $this->getParam("categoryId");
-    if (Text::isEmpty($categoryId)) {
-      throw new AppError("Category ID is required");
-    }
 
-    $this->_category = new DbCategory($this->db, $this->user, $categoryId);
+    $this->_category = Text::isEmpty($categoryId)
+      ? $this->user->getMainCategory()
+      : new DbCategory($this->db, $this->user, $categoryId);
+
     if (!$this->_category->isFound()) {
       throw new AppError("Category not found");
     }
 
-    $this->_record = new DbCategoryPicture($this->db, $this->user);
+    $this->_picture = new DbPicture($this->db, $this->user);
+  }
+
+  /**
+   * Processes POST requests.
+   *
+   * @return void
+   */
+  public function onPostRequest()
+  {
+    $title = $this->getParam("title");
+
+    if (Text::isEmpty($title)) {
+      throw new ClientException("Title is required");
+    }
+
+    // creates a new picture
+    $this->_picture->title = $title;
+    // TODO: fix it
+    $this->_picture->path = "/data/images/not-found.jpg";
+    $this->_picture->save();
+
+    // ...and adds it to the category
+    $this->_category->addPicture($this->_picture);
   }
 }

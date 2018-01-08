@@ -2,6 +2,9 @@
 namespace  petitphotobox\records;
 use petitphotobox\core\model\record\DbRecord;
 use petitphotobox\core\model\record\DbTable;
+use petitphotobox\exceptions\DatabaseError;
+use petitphotobox\records\DbCategoryPicture;
+use petitphotobox\records\DbPicture;
 use petitphotobox\records\DbUser;
 use soloproyectos\db\DbConnector;
 use soloproyectos\text\Text;
@@ -87,6 +90,31 @@ class DbCategory extends DbRecord
   }
 
   /**
+   * Gets the list of pictures of this category.
+   *
+   * @return [type] [description]
+   */
+  public function getPictures()
+  {
+    $sql = "
+    select
+      p.id
+    from picture as p
+    inner join category_picture as cp
+      on cp.picture_id = p.id
+    where cp.category_id = ?
+    order by cp.ord desc";
+    $rows = iterator_to_array($this->db->query($sql, $this->getId()));
+
+    return array_map(
+      function ($row) {
+        return new DbPicture($this->db, $this->_user, $row["id"]);
+      },
+      $rows
+    );
+  }
+
+  /**
    * Gets the category tree.
    *
    * @return array Associative array
@@ -103,6 +131,62 @@ class DbCategory extends DbRecord
       },
       $this->getCategories()
     );
+  }
+
+  /**
+   * Has this category a picture?
+   *
+   * @param DbPicture $picture A picture
+   *
+   * @return boolean
+   */
+  public function hasPicture($picture)
+  {
+    $pictures = $this->getPictures();
+
+    return count(
+      array_filter(
+        $pictures,
+        function ($row) use ($picture) {
+          return $picture->getId() == $row->getId();
+        }
+      )
+    ) > 0;
+  }
+
+  /**
+   * Adds a new picture to this category.
+   *
+   * @param DbPicture $picture A picture
+   *
+   * @return DbCategoryPicture
+   */
+  public function addPicture($picture)
+  {
+    if ($this->hasPicture($picture)) {
+      throw new DatabaseError("Picture already added");
+    }
+
+    $cp = new DbCategoryPicture($this->db, $this->_user);
+    $cp->categoryId = $this->getId();
+    $cp->pictureId = $picture->getId();
+    $cp->save();
+
+    return $cp;
+  }
+
+  public function removePicture($picture)
+  {
+    if (!$this->hasPicture($picture)) {
+      throw new DatabaseError("Picture not found");
+    }
+
+    $rows = $this->getCategoryPictures();
+    foreach ($rows as $row) {
+      if ($row->pictureId == $picture->getId()) {
+        $row->delete();
+      }
+    }
   }
 
   /**
