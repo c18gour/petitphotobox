@@ -10,7 +10,6 @@ use soloproyectos\text\Text;
 
 class PictureNewController extends AuthController
 {
-  private $_category;
   private $_picture;
 
   /**
@@ -30,8 +29,7 @@ class PictureNewController extends AuthController
     return new Document(
       [
         "id" => $this->_picture->getId(),
-        "title" => $this->_picture->title,
-        "categoryId" => $this->_category->getId()
+        "title" => $this->_picture->title
       ]
     );
   }
@@ -43,16 +41,6 @@ class PictureNewController extends AuthController
    */
   public function onOpenRequest()
   {
-    $categoryId = $this->getParam("categoryId");
-
-    $this->_category = Text::isEmpty($categoryId)
-      ? $this->user->getMainCategory()
-      : new DbCategory($this->db, $this->user, $categoryId);
-
-    if (!$this->_category->isFound()) {
-      throw new AppError("Category not found");
-    }
-
     $this->_picture = new DbPicture($this->db, $this->user);
   }
 
@@ -63,10 +51,19 @@ class PictureNewController extends AuthController
    */
   public function onPostRequest()
   {
+    $categoryId = $this->getParam("categoryId");
     $title = $this->getParam("title");
 
     if (Text::isEmpty($title)) {
-      throw new ClientException("Title is required");
+      throw new ClientException("Title are required");
+    }
+
+    $category = Text::isEmpty($categoryId)
+      ? $this->user->getMainCategory()
+      : new DbCategory($this->db, $this->user, $categoryId);
+
+    if (!$category->isFound()) {
+      throw new AppError("Category not found");
     }
 
     // creates a new picture
@@ -76,6 +73,6 @@ class PictureNewController extends AuthController
     $this->_picture->save();
 
     // ...and adds it to the category
-    $this->_category->addPicture($this->_picture);
+    $category->addPicture($this->_picture);
   }
 }
