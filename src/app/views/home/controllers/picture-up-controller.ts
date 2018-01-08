@@ -10,7 +10,7 @@ export class PictureUpController extends BaseController {
     super(http, `${env.apiUrl}/picture-up.php`);
   }
 
-  post(args: { id: string }) {
+  post(args: { categoryId: string, pictureId: string }) {
     return super.post(args);
   }
 }

@@ -5,8 +5,7 @@ import { environment as env } from '../../../../environments/environment';
 import { BaseController } from '../../../core/controller/base-controller';
 
 @Injectable()
-export class PictureDownController
-  extends BaseController {
+export class PictureDownController extends BaseController {
   constructor(http: Http) {
     super(http, `${env.apiUrl}/picture-down.php`);
   }
