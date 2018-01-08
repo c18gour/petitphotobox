@@ -81,7 +81,7 @@ class PictureNewController extends AuthController
     $title = $this->getParam("title");
 
     if (Text::isEmpty($title)) {
-      throw new ClientException("Title are required");
+      throw new ClientException("Title is required");
     }
 
     // creates a new picture
