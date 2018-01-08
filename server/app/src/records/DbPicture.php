@@ -10,6 +10,7 @@ class DbPicture extends DbRecord
 {
   private $_user;
   public $title;
+  public $path;
 
   /**
    * Creates a new instance.
@@ -86,8 +87,11 @@ class DbPicture extends DbRecord
     $sql = "
     select
       p.id,
-      p.title
+      p.title,
+      s.path
     from picture as p
+    inner join snapshot as s
+      on s.picture_id = p.id
     inner join category_picture as cp
       on cp.picture_id = p.id
     inner join category as c
@@ -96,6 +100,7 @@ class DbPicture extends DbRecord
     where p.id = ?";
     $row = $this->db->query($sql, [$this->_user->getId(), $this->id]);
     $this->title = $row["title"];
+    $this->path = $row["path"];
 
     return $row["id"];
   }
@@ -107,7 +112,21 @@ class DbPicture extends DbRecord
    */
   protected function update()
   {
-    throw new DatabaseError("Method not implemented");
+    $snapshot = $this->getMainSnapshot();
+    $snapshot->path = $this->path;
+    $snapshot->save();
+
+    $sql = "
+    update picture as p
+    inner join category_picture as cp
+      on cp.picture_id = p.id
+    inner join category as c
+      on c.user_id = ?
+      and c.id = cp.category_id
+    set
+      p.title = ?
+    where p.id = ?";
+    $this->db->exec($sql, [$this->_user->getId(), $this->title, $this->id]);
   }
 
   /**
@@ -117,6 +136,15 @@ class DbPicture extends DbRecord
    */
   protected function insert()
   {
-    return DbTable::insert($this->db, "picture", ["title" => $this->title]);
+    $pictureId = DbTable::insert(
+      $this->db, "picture", ["title" => $this->title]
+    );
+
+    $snapshot = new DbSnapshot($this->db, $this->_user);
+    $snapshot->pictureId = $pictureId;
+    $snapshot->path = $this->path;
+    $snapshot->save();
+
+    return $pictureId;
   }
 }
