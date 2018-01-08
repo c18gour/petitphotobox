@@ -3,7 +3,6 @@
     <label>
       <input #input type="checkbox" [value]="item.value"
         [checked]="selected" (change)="onChange(input.value)">
-      <!-- TODO: large titles -->
       <span>{{item.label}}</span>
     </label>
     <a *ngIf="item.items.length > 0" title="Toggle" (click)="toggle()">
