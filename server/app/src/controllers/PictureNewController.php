@@ -76,10 +76,6 @@ class PictureNewController extends AuthController
   {
     $title = $this->getParam("title");
 
-    if (Text::isEmpty($title)) {
-      throw new ClientException("Title is required");
-    }
-
     if (count($this->_categories) < 1) {
       throw new AppError("Add one or more categories");
     }
