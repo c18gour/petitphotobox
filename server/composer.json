@@ -5,7 +5,6 @@
     "require": {
         "soloproyectos-php/http-controller": "^2.1",
         "soloproyectos-php/db": "^1.2",
-        "soloproyectos-php/db-record": "^4.4",
         "soloproyectos-php/http": "^1.1",
         "soloproyectos-php/text": "^1.0"
     },

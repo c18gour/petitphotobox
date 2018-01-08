@@ -3,8 +3,6 @@ namespace petitphotobox\core\auth;
 use petitphotobox\exceptions\AuthException;
 use petitphotobox\records\DbUser;
 use soloproyectos\db\DbConnector;
-// TODO: remove DbRecordTable package
-use soloproyectos\db\record\DbRecordTable;
 use soloproyectos\http\data\HttpSession;
 
 class UserAuth

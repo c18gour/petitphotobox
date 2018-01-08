@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2d17f7de737c8806b749ca4353cec23b",
-    "content-hash": "4b875ec20717dd2c4004d564988ebd18",
+    "hash": "6f21c6254a6081be368848c3f29db464",
+    "content-hash": "dc4e5a1bde5f4353f7ea872156a39540",
     "packages": [
         {
             "name": "soloproyectos-php/array",
@@ -80,45 +80,6 @@
             ],
             "description": "Database library. This library is part of the SoloProyectos PHP API.",
             "time": "2016-04-01 18:07:21"
-        },
-        {
-            "name": "soloproyectos-php/db-record",
-            "version": "4.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/soloproyectos-php/db-record.git",
-                "reference": "ac44c2ad6930f7b89e3596f648199a3b342420ca"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/soloproyectos-php/db-record/zipball/ac44c2ad6930f7b89e3596f648199a3b342420ca",
-                "reference": "ac44c2ad6930f7b89e3596f648199a3b342420ca",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.0",
-                "soloproyectos-php/array": "~1.0",
-                "soloproyectos-php/db": "~1.1",
-                "soloproyectos-php/text": "~1.0"
-            },
-            "type": "php-library",
-            "autoload": {
-                "psr-4": {
-                    "soloproyectos\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "The MIT License (MIT)"
-            ],
-            "authors": [
-                {
-                    "name": "Gonzalo Chumillas",
-                    "email": "gchumillas@email.com"
-                }
-            ],
-            "description": "Manage database records. This library is part of the SoloProyectos PHP API.",
-            "time": "2016-09-07 15:58:49"
         },
         {
             "name": "soloproyectos-php/event",
