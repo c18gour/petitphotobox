@@ -36,12 +36,11 @@ class HomeController extends AuthController
         "main" => $this->_category->getId() == $mainCategory->getId(),
         "pictures" => array_map(
           function ($row) {
-            $picture = $row->getPicture();
-            $snapshot = $picture->getMainSnapshot();
+            $snapshot = $row->getMainSnapshot();
 
             return ["id" => $row->getId(), "path" => $snapshot->path];
           },
-          $this->_category->getCategoryPictures()
+          $this->_category->getPictures()
         ),
         "categories" => $this->_getCategoryTree($mainCategory)
       ]
