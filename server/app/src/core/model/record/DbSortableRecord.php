@@ -9,7 +9,7 @@ abstract class DbSortableRecord extends DbRecord
    * Order.
    * @var int
    */
-  public $ord;
+  protected $ord;
 
   /**
    * Gets the list of records sorted by the 'ord' column in ascendent order
@@ -120,5 +120,22 @@ abstract class DbSortableRecord extends DbRecord
         $record->save();
       }
     }
+  }
+
+  /**
+   * Gets next ord.
+   *
+   * @return int
+   */
+  protected function getNextOrd()
+  {
+    $ret = 0;
+
+    $record = $this->getLastRecord();
+    if ($record != null) {
+      $ret = $record->ord + 1;
+    }
+
+    return $ret;
   }
 }

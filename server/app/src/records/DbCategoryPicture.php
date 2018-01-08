@@ -145,7 +145,7 @@ class DbCategoryPicture extends DbSortableRecord
       [
         "category_id" => $this->categoryId,
         "picture_id" => $this->pictureId,
-        "ord" => $this->ord
+        "ord" => $this->getNextOrd()
       ]
     );
   }

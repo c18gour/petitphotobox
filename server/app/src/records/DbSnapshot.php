@@ -1,6 +1,7 @@
 <?php
 namespace  petitphotobox\records;
 use petitphotobox\core\model\record\DbSortableRecord;
+use petitphotobox\core\model\record\DbTable;
 
 class DbSnapshot extends DbSortableRecord
 {
@@ -46,7 +47,7 @@ class DbSnapshot extends DbSortableRecord
       id
     from snapshot
     where picture_id = ?
-    order by ord desc";
+    order by ord";
     $rows = iterator_to_array(
       $this->db->query($sql, $this->pictureId)
     );
@@ -91,7 +92,8 @@ class DbSnapshot extends DbSortableRecord
     select
       s.id,
       s.picture_id,
-      s.path
+      s.path,
+      s.ord
     from snapshot as s
     inner join picture as p
       on p.id = s.picture_id
@@ -104,6 +106,7 @@ class DbSnapshot extends DbSortableRecord
     $row = $this->db->query($sql, [$this->_user->getId(), $this->id]);
     $this->pictureId = $row["picture_id"];
     $this->path = $row["path"];
+    $this->ord = $row["ord"];
 
     return $row["id"];
   }
@@ -126,8 +129,7 @@ class DbSnapshot extends DbSortableRecord
       and c.id = cp.picture_id
     set
       s.picture_id = ?,
-      s.path = ?,
-      s.ord = ?
+      s.path = ?
     where s.id = ?";
     $this->db->exec(
       $sql,
@@ -135,7 +137,6 @@ class DbSnapshot extends DbSortableRecord
         $this->_user->getId(),
         $this->pictureId,
         $this->path,
-        $this->ord,
         $this->id
       ]
     );
@@ -150,10 +151,11 @@ class DbSnapshot extends DbSortableRecord
   {
     return DbTable::insert(
       $this->db,
+      "snapshot",
       [
         "picture_id" => $this->pictureId,
         "path" => $this->path,
-        "ord" => $htis->ord
+        "ord" => $this->getNextOrd()
       ]
     );
   }
