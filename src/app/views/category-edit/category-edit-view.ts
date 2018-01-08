@@ -17,8 +17,8 @@ import { CategoryEditEntity } from './entities/category-edit-entity';
 
 @Component({
   selector: 'app-category-edit',
-  templateUrl: './category-edit.html',
-  styleUrls: ['./category-edit.scss']
+  templateUrl: './category-edit-view.html',
+  styleUrls: ['./category-edit-view.scss']
 })
 export class CategoryEditView implements OnInit {
   entity: CategoryEditEntity;
