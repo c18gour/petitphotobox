@@ -44,7 +44,7 @@ class UserRegisterController extends Controller
   public function onOpenRequest()
   {
     if (UserAuth::isLogged($this->db)) {
-      // TODO: shouldn't it be a SessionError?
+      // TODO: (low) shouldn't it be a SessionError?
       throw new AccessDeniedError("The user has already logged");
     }
   }
