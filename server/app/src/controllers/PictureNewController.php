@@ -10,6 +10,7 @@ use soloproyectos\text\Text;
 
 class PictureNewController extends AuthController
 {
+  private $_categories;
   private $_picture;
 
   /**
@@ -29,7 +30,14 @@ class PictureNewController extends AuthController
     return new Document(
       [
         "id" => $this->_picture->getId(),
-        "title" => $this->_picture->title
+        "title" => $this->_picture->title,
+        "categoryIds" => array_map(
+          function ($row) {
+            return $row->getId();
+          },
+          $this->_categories
+        ),
+        "categories" => $mainCategory->getTree()
       ]
     );
   }
@@ -41,6 +49,25 @@ class PictureNewController extends AuthController
    */
   public function onOpenRequest()
   {
+    $categoryIds = array_filter(explode(",", $this->getParam("categoryIds")));
+
+    $this->_categories = array_map(
+      function ($id) {
+        return new DbCategory($this->db, $this->user, $id);
+      },
+      $categoryIds
+    );
+
+    if (count($this->_categories) < 1) {
+      throw new AppError("Add one or more categories");
+    }
+
+    foreach ($this->_categories as $category) {
+      if (!$category->isFound()) {
+        throw new AppError("Category not found");
+      }
+    }
+
     $this->_picture = new DbPicture($this->db, $this->user);
   }
 
@@ -51,19 +78,10 @@ class PictureNewController extends AuthController
    */
   public function onPostRequest()
   {
-    $categoryId = $this->getParam("categoryId");
     $title = $this->getParam("title");
 
     if (Text::isEmpty($title)) {
       throw new ClientException("Title are required");
-    }
-
-    $category = Text::isEmpty($categoryId)
-      ? $this->user->getMainCategory()
-      : new DbCategory($this->db, $this->user, $categoryId);
-
-    if (!$category->isFound()) {
-      throw new AppError("Category not found");
     }
 
     // creates a new picture
@@ -73,6 +91,8 @@ class PictureNewController extends AuthController
     $this->_picture->save();
 
     // ...and adds it to the category
-    $category->addPicture($this->_picture);
+    foreach ($this->_categories as $category) {
+      $category->addPicture($this->_picture);
+    }
   }
 }
