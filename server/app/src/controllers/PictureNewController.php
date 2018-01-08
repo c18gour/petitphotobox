@@ -87,7 +87,7 @@ class PictureNewController extends AuthController
     // creates a new picture
     $this->_picture->title = $title;
     // TODO: fix it
-    $this->_picture->path = "/data/images/not-found.jpg";
+    $this->_picture->path = "/data/images/not-found.png";
     $this->_picture->save();
 
     // ...and adds it to the category
