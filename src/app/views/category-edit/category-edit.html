@@ -7,6 +7,7 @@
   <form (ngSubmit)="onSubmit()">
     <fieldset>
       <label for="parentCategoryId">Parent Category</label>
+      <!-- TODO: create a move-category view -->
       <app-input-select #parentCategoryInput name="parentCategoryId"
         [items]="entity.categories" [value]="entity.parentCategoryId"></app-input-select>
       <label for="name">Title</label>
