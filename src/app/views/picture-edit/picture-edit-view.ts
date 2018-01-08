@@ -80,6 +80,7 @@ export class PictureEditView implements OnInit {
         throw e;
       }
 
+      // TODO: should return to the previous page
       const categoryId = categoryIds.indexOf(this._categoryId) < 0
         ? categoryIds.shift()
         : this._categoryId;
