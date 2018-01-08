@@ -10,7 +10,6 @@ use soloproyectos\text\Text;
 
 class PictureEditController extends AuthController
 {
-  private $_categories;
   private $_picture;
 
   /**
@@ -35,7 +34,7 @@ class PictureEditController extends AuthController
           function ($row) {
             return $row->getId();
           },
-          $this->_categories
+          $this->_picture->getCategories()
         ),
         "categories" => $mainCategory->getTree()
       ]
@@ -49,7 +48,6 @@ class PictureEditController extends AuthController
    */
   public function onOpenRequest()
   {
-    $categoryIds = array_filter(explode(",", $this->getParam("categoryIds")));
     $pictureId = $this->getParam("pictureId");
 
     if (Text::isEmpty($pictureId)) {
@@ -60,19 +58,6 @@ class PictureEditController extends AuthController
     if (!$this->_picture->isFound()) {
       throw new AppError("Picture not found");
     }
-
-    $this->_categories = array_map(
-      function ($id) {
-        return new DbCategory($this->db, $this->user, $id);
-      },
-      $categoryIds
-    );
-
-    foreach ($this->_categories as $category) {
-      if (!$category->isFound()) {
-        throw new AppError("Category not found");
-      }
-    }
   }
 
   /**
@@ -82,10 +67,24 @@ class PictureEditController extends AuthController
    */
   public function onPostRequest()
   {
+    $categoryIds = array_filter(explode(",", $this->getParam("categoryIds")));
     $title = $this->getParam("title");
 
-    if (count($this->_categories) < 1) {
-      throw new AppError("Add one or more categories");
+    $categories = array_map(
+      function ($id) {
+        return new DbCategory($this->db, $this->user, $id);
+      },
+      $categoryIds
+    );
+
+    foreach ($categories as $category) {
+      if (!$category->isFound()) {
+        throw new ClientException("Category not found");
+      }
+    }
+
+    if (count($categories) < 1) {
+      throw new ClientException("Add one or more categories");
     }
 
     // creates a new picture
@@ -96,7 +95,7 @@ class PictureEditController extends AuthController
     // add the picture to the categories
     // that are not in the picture's categories
     $categories1 = $this->_subtract(
-      $this->_categories,
+      $categories,
       $this->_picture->getCategories()
     );
 
@@ -108,7 +107,7 @@ class PictureEditController extends AuthController
     // that are not in the provided list
     $categories2 = $this->_subtract(
       $this->_picture->getCategories(),
-      $this->_categories
+      $categories
     );
 
     foreach ($categories2 as $category) {
