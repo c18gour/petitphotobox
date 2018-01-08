@@ -62,6 +62,11 @@ export class PictureNewView implements OnInit {
     this.modal.loading(async () => {
       const categoryIds = this.categoriesInput.value;
 
+      if (categoryIds.length === 0) {
+        this.modal.error('Select at least a category');
+        return;
+      }
+
       try {
         this.entity = await this._controller.post({
           categoryIds, title: this.entity.title

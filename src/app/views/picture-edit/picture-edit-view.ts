@@ -66,6 +66,11 @@ export class PictureEditView implements OnInit {
       const categoryIds = this.categoriesInput.value;
       const pictureId = this.entity.id;
 
+      if (categoryIds.length === 0) {
+        this.modal.error('Select at least a category');
+        return;
+      }
+
       try {
         this.entity = await this._controller.post({
           pictureId, categoryIds, title: this.entity.title

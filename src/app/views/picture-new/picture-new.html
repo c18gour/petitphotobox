@@ -8,7 +8,6 @@
     <fieldset>
       <div [hidden]="entity.categories.length === 0">
         <label for="categoryId">Select one or more categories</label>
-        <!-- TODO: the user must select at least one category -->
         <app-input-checkbox #categoriesInput name="categoryId"
           [items]="entity.categories" [value]="entity.categoryIds"></app-input-checkbox>
       </div>
