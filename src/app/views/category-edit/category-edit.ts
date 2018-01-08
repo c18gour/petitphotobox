@@ -39,7 +39,7 @@ export class CategoryEditView implements OnInit {
   @ViewChild('modalContainer', { read: ViewContainerRef })
   modalContainer: ViewContainerRef;
 
-  async ngOnInit() {
+  ngOnInit() {
     this.modal = new ModalWindowSystem(
       this, this._resolver, this.modalContainer);
 
@@ -62,7 +62,7 @@ export class CategoryEditView implements OnInit {
     this._location.back();
   }
 
-  async onSubmit() {
+  onSubmit() {
     this.modal.loading(async () => {
       try {
         this.entity = await this._controller.post({
