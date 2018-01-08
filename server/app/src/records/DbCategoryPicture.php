@@ -120,7 +120,7 @@ class DbCategoryPicture extends DbSortableRecord
       cp.picture_id = ?,
       cp.ord = ?
     where cp.id = ?";
-    $row = $this->db->exec(
+    $this->db->exec(
       $sql,
       [
         $this->_user->getId(),

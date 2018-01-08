@@ -129,7 +129,7 @@ class DbSnapshot extends DbSortableRecord
       s.path = ?,
       s.ord = ?
     where s.id = ?";
-    $row = $this->db->exec(
+    $this->db->exec(
       $sql,
       [
         $this->_user->getId(),
