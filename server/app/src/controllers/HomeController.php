@@ -65,28 +65,6 @@ class HomeController extends AuthController
   }
 
   /**
-   * Gets the list of pictures.
-   *
-   * @return array Associative array
-   */
-  private function _getCategoryPictures()
-  {
-    $category = $this->_category === null
-      ? $this->user->getMainCategory()
-      : $this->_category;
-
-    return array_map(
-      function ($row) {
-        $picture = $row->getPicture();
-        $snapshot = $picture->getMainSnapshot();
-
-        return ["id" => $row->getId(), "path" => $snapshot->path];
-      },
-      $category->getCategoryPictures()
-    );
-  }
-
-  /**
    * Gets the categories tree.
    *
    * @param DbCategory $category Category

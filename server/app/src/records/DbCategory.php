@@ -54,9 +54,12 @@ class DbCategory extends DbRecord
     select
       id
     from category
-    where parent_category_id = ?
+    where user_id = ?
+    and parent_category_id = ?
     order by title";
-    $rows = iterator_to_array($this->db->query($sql, $this->getId()));
+    $rows = iterator_to_array(
+      $this->db->query($sql, [$this->_user->getId(), $this->getId()])
+    );
 
     return array_map(
       function ($row) {
@@ -100,11 +103,18 @@ class DbCategory extends DbRecord
     select
       p.id
     from picture as p
+    inner join snapshot as s
+      on s.picture_id = p.id
     inner join category_picture as cp
       on cp.picture_id = p.id
+    inner join category as c
+      on c.user_id = ?
+      and c.id = cp.category_id
     where cp.category_id = ?
     order by cp.ord desc";
-    $rows = iterator_to_array($this->db->query($sql, $this->getId()));
+    $rows = iterator_to_array(
+      $this->db->query($sql, [$this->_user->getId(), $this->getId()])
+    );
 
     return array_map(
       function ($row) {

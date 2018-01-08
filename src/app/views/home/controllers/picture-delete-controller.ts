@@ -11,7 +11,7 @@ export class PictureDeleteController
     super(http, `${env.apiUrl}/picture-delete.php`);
   }
 
-  post(args: { id: string }) {
+  post(args: { categoryId: string, pictureId: string }) {
     return super.post(args);
   }
 }

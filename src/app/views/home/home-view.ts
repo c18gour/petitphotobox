@@ -89,10 +89,12 @@ export class HomeView implements OnInit {
     });
   }
 
-  deletePicture(id: string) {
+  deletePicture(pictureId: string) {
     this.modal.loading(async () => {
       try {
-        await this._pictureDeleteController.post({ id });
+        await this._pictureDeleteController.post({
+          categoryId: this.categoryId, pictureId
+        });
       } catch (e) {
         this.modal.error(e.message);
         throw e;
