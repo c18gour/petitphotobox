@@ -8,7 +8,7 @@ use petitphotobox\records\DbCategory;
 use petitphotobox\records\DbPicture;
 use soloproyectos\text\Text;
 
-class PictureNewController extends AuthController
+class PictureEditController extends AuthController
 {
   private $_categories;
   private $_picture;
@@ -50,6 +50,16 @@ class PictureNewController extends AuthController
   public function onOpenRequest()
   {
     $categoryIds = array_filter(explode(",", $this->getParam("categoryIds")));
+    $pictureId = $this->getParam("pictureId");
+
+    if (Text::isEmpty($pictureId)) {
+      throw new AppError("Picture ID is required");
+    }
+
+    $this->_picture = new DbPicture($this->db, $this->user, $pictureId);
+    if (!$this->_picture->isFound()) {
+      throw new AppError("Picture not found");
+    }
 
     $this->_categories = array_map(
       function ($id) {
@@ -63,8 +73,6 @@ class PictureNewController extends AuthController
         throw new AppError("Category not found");
       }
     }
-
-    $this->_picture = new DbPicture($this->db, $this->user);
   }
 
   /**
