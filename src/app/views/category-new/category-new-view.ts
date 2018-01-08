@@ -17,8 +17,8 @@ import {
 
 @Component({
   selector: 'app-edit-category',
-  templateUrl: './category-new.html',
-  styleUrls: ['./category-new.scss']
+  templateUrl: './category-new-view.html',
+  styleUrls: ['./category-new-view.scss']
 })
 export class CategoryNewView implements OnInit {
   entity: CategoryNewEntity;
