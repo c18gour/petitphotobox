@@ -3,6 +3,7 @@ namespace  petitphotobox\records;
 use petitphotobox\core\model\record\DbRecord;
 use petitphotobox\core\model\record\DbTable;
 use petitphotobox\records\DbCategory;
+use petitphotobox\records\DbPicture;
 use soloproyectos\db\DbConnector;
 
 class DbUser extends DbRecord
@@ -49,6 +50,28 @@ class DbUser extends DbRecord
     $row = $this->db->query($sql, $this->getId());
 
     return new DbCategory($this->db, $this, $row["id"]);
+  }
+
+  public function getPictures()
+  {
+    $sql = "
+    select distinct
+      p.id
+    from picture as p
+    inner join category_picture as cp
+      on cp.picture_id = p.id
+    inner join category as c
+      on c.user_id = ?
+      and c.id = cp.category_id
+    order by cp.ord desc";
+    $rows = iterator_to_array($this->db->query($sql, $this->getId()));
+
+    return array_map(
+      function ($row) {
+        return new DbPicture($this->db, $this, $row["id"]);
+      },
+      $rows
+    );
   }
 
   /**
