@@ -12,11 +12,7 @@
           [items]="entity.categories" [value]="entity.categoryIds"></app-input-checkbox>
       </div>
       <label for="name">Title</label>
-      <input #inputTitle="ngModel" autofocus type="text" id="title" required
-        name="title" [(ngModel)]="entity.title" />
-      <div [hidden]="inputTitle.valid || inputTitle.pristine" class="error-box">
-        Title is required
-      </div>
+      <input autofocus type="text" id="title" name="title" [(ngModel)]="entity.title" />
       <button type="submit" class="button-primary">Accept</button>
       <button type="button" (click)="goBack()">Cancel</button>
     </fieldset>
