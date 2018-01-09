@@ -63,7 +63,7 @@ class DbUser extends DbRecord
     inner join category as c
       on c.user_id = ?
       and c.id = cp.category_id
-    order by cp.ord desc";
+    order by p.created_at desc";
     $rows = iterator_to_array($this->db->query($sql, $this->getId()));
 
     return array_map(
