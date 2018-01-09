@@ -11,6 +11,7 @@ export class CategoryEditController extends BaseController<CategoryEditEntity> {
     super(http, `${env.apiUrl}/category-edit.php`);
   }
 
+  // TODO: args is required
   get(args?: { categoryId: string }) {
     return super.get(args);
   }

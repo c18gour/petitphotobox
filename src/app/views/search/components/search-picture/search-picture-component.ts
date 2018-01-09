@@ -2,13 +2,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { environment as env } from '../../../../../environments/environment';
 
-// TODO: rename picture by home-picture
 @Component({
-  selector: 'app-home-picture',
-  templateUrl: './picture-component.html',
-  styleUrls: ['./picture-component.scss']
+  selector: 'app-search-picture',
+  templateUrl: './search-picture-component.html',
+  styleUrls: ['./search-picture-component.scss']
 })
-export class HomePictureComponent {
+export class SearchPictureComponent {
   @Input()
   id: string;
 
@@ -17,12 +16,6 @@ export class HomePictureComponent {
 
   @Output()
   deletePicture = new EventEmitter<string>();
-
-  @Output()
-  upPicture = new EventEmitter<string>();
-
-  @Output()
-  downPicture = new EventEmitter<string>();
 
   @Output()
   editPicture = new EventEmitter<string>();

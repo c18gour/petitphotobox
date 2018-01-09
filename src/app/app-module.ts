@@ -34,6 +34,11 @@ import {
   HomePictureComponent
 } from './views/home/components/picture/picture-component';
 
+// search components
+import {
+  SearchPictureComponent
+} from './views/search/components/search-picture/search-picture-component';
+
 // views
 import { HomeView } from './views/home/home-view';
 import { UserLoginView } from './views/user-login/user-login-view';
@@ -42,6 +47,7 @@ import { CategoryNewView } from './views/category-new/category-new-view';
 import { CategoryEditView } from './views/category-edit/category-edit-view';
 import { PictureNewView } from './views/picture-new/picture-new-view';
 import { PictureEditView } from './views/picture-edit/picture-edit-view';
+import { SearchView } from './views/search/search-view';
 import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
 // controllers
@@ -61,6 +67,7 @@ import {
 import {
   PictureEditController
 } from './views/picture-edit/controllers/picture-edit-controller';
+import { SearchController } from './views/search/controllers/search-controller';
 
 // home controllers
 import { HomeController } from './views/home/controllers/home-controller';
@@ -84,6 +91,7 @@ import {
     // components
     InputSelectComponent,
     HomePictureComponent,
+    SearchPictureComponent,
 
     // input-checkbox component
     InputCheckboxComponent,
@@ -98,6 +106,7 @@ import {
     CategoryEditView,
     PictureNewView,
     PictureEditView,
+    SearchView,
     PageNotFoundView
   ],
   imports: [
@@ -120,7 +129,8 @@ import {
     PictureUpController,
     PictureDownController,
     PictureNewController,
-    PictureEditController
+    PictureEditController,
+    SearchController
   ],
   bootstrap: [AppComponent]
 })

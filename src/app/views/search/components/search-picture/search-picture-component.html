@@ -1,0 +1,11 @@
+<!-- TODO: (low) show a preloader and the show the image -->
+<div class="picture" [style.background-image]="backgroundImage">
+  <div class="buttons left">
+    <a (click)="deletePicture.emit(id)" title="Delete picture"><i class="fa fa-trash"></i></a>
+  </div>
+  <div class="buttons right">
+    <a title="Download picture"><i class="fa fa-download"></i></a>
+    <a title="Edit picture" (click)="editPicture.emit(id)"><i class="fa fa-pencil-square"></i></a>
+  </div>
+  <img [src]="fullPath">
+</div>

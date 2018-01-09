@@ -1,0 +1,28 @@
+<div class="header">
+  <h1>Photobox</h1>
+</div>
+
+<div class="container" *ngIf="entity">
+  <h3>Search Pictures</h3>
+  <form (ngSubmit)="onSubmit()">
+    <fieldset>
+      <div [hidden]="entity.categories.length === 0">
+        <label for="categoryId">Select a category</label>
+        <app-input-checkbox #categoriesInput name="categoryId"
+          [items]="entity.categories" [value]="entity.categoryIds"></app-input-checkbox>
+      </div>
+      <button type="submit" class="button-primary">Accept</button>
+      <button type="button" (click)="goBack()">Cancel</button>
+    </fieldset>
+  </form>
+
+  <div class="pictures">
+    <app-search-picture *ngFor="let picture of entity.pictures"
+      [id]="picture.id"
+      [path]="picture.path"
+      (deletePicture)="modal.confirm('Are you sure?', deletePicture, picture.id)"
+      (editPicture)="editPicture(picture.id)"></app-search-picture>
+  </div>
+</div>
+
+<template #modalContainer></template>

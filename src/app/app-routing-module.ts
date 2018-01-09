@@ -8,6 +8,7 @@ import { CategoryNewView } from './views/category-new/category-new-view';
 import { CategoryEditView } from './views/category-edit/category-edit-view';
 import { PictureNewView } from './views/picture-new/picture-new-view';
 import { PictureEditView } from './views/picture-edit/picture-edit-view';
+import { SearchView } from './views/search/search-view';
 import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'picture/new', component: PictureNewView },
   { path: 'picture/new/:categoryId', component: PictureNewView },
   { path: 'picture/edit/:pictureId', component: PictureEditView },
+  { path: 'search', component: SearchView },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundView }
 ];
