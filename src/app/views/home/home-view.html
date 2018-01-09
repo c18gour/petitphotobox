@@ -11,9 +11,7 @@
 </div>
 
 <div class="container" *ngIf="entity">
-  <!-- TODO: deleteEntry is not necessary -->
   <app-menu #menu [entries]="entity.categories"
-    (deleteEntry)="modal.confirm('Are you sure?', deleteCategory, $event)"
     (selectEntry)="onSelectEntry($event)" [visible]="false"></app-menu>
   <div class="pictures">
     <!-- if 'main category': -->
