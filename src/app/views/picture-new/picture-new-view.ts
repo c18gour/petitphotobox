@@ -73,7 +73,7 @@ export class PictureNewView implements OnInit {
 
       try {
         this.entity = await this._controller.post({
-          categoryIds, title: this.entity.title
+          categoryIds, title: this.entity.title, tags: this.entity.tags
         });
       } catch (e) {
         this.modal.error(e.message);

@@ -13,6 +13,8 @@
       </div>
       <label for="name">Title</label>
       <input autofocus type="text" id="title" name="title" [(ngModel)]="entity.title" />
+      <label for="tags">Tags separated by comma</label>
+      <input type="text" id="tags" name="tags" [(ngModel)]="entity.tags" />
       <button type="submit" class="button-primary">Accept</button>
       <button type="button" (click)="goBack()">Cancel</button>
     </fieldset>

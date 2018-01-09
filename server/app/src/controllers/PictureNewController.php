@@ -31,6 +31,15 @@ class PictureNewController extends AuthController
       [
         "id" => $this->_picture->getId(),
         "title" => $this->_picture->title,
+        "tags" => implode(
+          ", ",
+          array_map(
+            function ($tag) {
+              return $tag->name;
+            },
+            $this->_picture->getTags()
+          )
+        ),
         "categoryIds" => array_map(
           function ($row) {
             return $row->getId();
@@ -75,6 +84,11 @@ class PictureNewController extends AuthController
   public function onPostRequest()
   {
     $title = $this->getParam("title");
+    $tagNames = array_filter(
+      array_map(
+        "strtolower", array_map("trim", explode(",", $this->getParam("tags")))
+      )
+    );
 
     if (count($this->_categories) < 1) {
       throw new AppError("Add one or more categories");
@@ -85,6 +99,11 @@ class PictureNewController extends AuthController
     // TODO: fix it
     $this->_picture->path = "/data/images/not-found.png";
     $this->_picture->save();
+
+    // adds tags
+    foreach ($tagNames as $name) {
+      $this->_picture->addTagName($name);
+    }
 
     // ...and adds it to the category
     foreach ($this->_categories as $category) {

@@ -15,7 +15,7 @@ export class PictureNewController extends BaseController<PictureNewEntity> {
     return super.get(args);
   }
 
-  post(args: { categoryIds: string[], title: string }) {
+  post(args: { categoryIds: string[], title?: string, tags?: string }) {
     return super.post(args);
   }
 }
