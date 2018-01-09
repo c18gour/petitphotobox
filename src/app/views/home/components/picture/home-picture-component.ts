@@ -2,11 +2,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { environment as env } from '../../../../../environments/environment';
 
-// TODO: rename picture by home-picture
 @Component({
   selector: 'app-home-picture',
-  templateUrl: './picture-component.html',
-  styleUrls: ['./picture-component.scss']
+  templateUrl: './home-picture-component.html',
+  styleUrls: ['./home-picture-component.scss']
 })
 export class HomePictureComponent {
   @Input()

@@ -32,7 +32,7 @@ import {
 // home components
 import {
   HomePictureComponent
-} from './views/home/components/picture/picture-component';
+} from './views/home/components/picture/home-picture-component';
 
 // search components
 import {
