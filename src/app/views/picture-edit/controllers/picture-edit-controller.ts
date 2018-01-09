@@ -15,7 +15,10 @@ export class PictureEditController extends BaseController<PictureEditEntity> {
     return super.get(args);
   }
 
-  post(args: { pictureId: string, categoryIds: string[], title?: string }) {
+  post(
+    args: {
+      pictureId: string, categoryIds: string[], title?: string, tags?: string
+    }) {
     return super.post(args);
   }
 }

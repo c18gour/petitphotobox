@@ -71,7 +71,10 @@ export class PictureEditView implements OnInit {
 
       try {
         this.entity = await this._controller.post({
-          pictureId, categoryIds, title: this.entity.title
+          pictureId,
+          categoryIds,
+          title: this.entity.title,
+          tags: this.entity.tags
         });
       } catch (e) {
         this.modal.error(e.message);
