@@ -77,6 +77,25 @@ class DbPicture extends DbRecord
     return array_shift($this->getSnapshots());
   }
 
+  public function getTags()
+  {
+    $sql = "
+    select
+      pt.tag_id
+    from picture_tag as pt
+    inner join tag as t
+      on t.id = pt.tag_id
+    where pt.picture_id = ?";
+    $rows = iterator_to_array($this->db->query($sql, $this->getId()));
+
+    return array_map(
+      function ($row) {
+        return new DbTag($this->db, $row["tag_id"]);
+      },
+      $rows
+    );
+  }
+
   /**
    * Has this picture a tag?
    *

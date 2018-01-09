@@ -30,6 +30,12 @@ class PictureEditController extends AuthController
       [
         "id" => $this->_picture->getId(),
         "title" => $this->_picture->title,
+        "tags" => array_map(
+          function ($tag) {
+            return $tag->name;
+          },
+          $this->_picture->getTags()
+        ),
         "categoryIds" => array_map(
           function ($row) {
             return $row->getId();
@@ -69,6 +75,11 @@ class PictureEditController extends AuthController
   {
     $categoryIds = array_filter(explode(",", $this->getParam("categoryIds")));
     $title = $this->getParam("title");
+    $tagNames = array_filter(
+      array_map(
+        "strtolower", array_map("trim", explode(",", $this->getParam("tags")))
+      )
+    );
 
     $categories = array_map(
       function ($id) {
@@ -91,6 +102,17 @@ class PictureEditController extends AuthController
     // TODO: don't forget the path
     $this->_picture->title = $title;
     $this->_picture->save();
+
+    // removes all tags
+    $tags = $this->_picture->getTags();
+    foreach ($tags as $tag) {
+      $this->_picture->removeTag($tag);
+    }
+
+    // adds tags
+    foreach ($tagNames as $name) {
+      $this->_picture->addTagName($name);
+    }
 
     // add the picture to the categories
     // that are not in the picture's categories
