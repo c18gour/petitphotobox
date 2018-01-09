@@ -4,7 +4,9 @@ use petitphotobox\core\model\record\DbRecord;
 use petitphotobox\core\model\record\DbTable;
 use petitphotobox\exceptions\DatabaseError;
 use petitphotobox\records\DbCategory;
+use petitphotobox\records\DbPictureTag;
 use petitphotobox\records\DbSnapshot;
+use petitphotobox\records\DbTag;
 
 class DbPicture extends DbRecord
 {
@@ -76,6 +78,118 @@ class DbPicture extends DbRecord
   }
 
   /**
+   * Has this picture a tag?
+   *
+   * @param DbTag $tag A tag
+   *
+   * @return boolean
+   */
+  public function hasTag($tag)
+  {
+    $sql = "
+    select
+      id
+    from picture_tag
+    where picture_id = ?
+    and tag_id = ?";
+    $row = $this->db->query($sql, [$this->getId(), $tag->getId()]);
+
+    return count($row) > 0;
+  }
+
+  /**
+   * Adds a tag.
+   *
+   * @param DbTag $tag A tag
+   *
+   * @return DbPictureTag
+   */
+  public function addTag($tag)
+  {
+    if ($this->hasTag($tag)) {
+      throw new DatabaseError("Tag already added");
+    }
+
+    $pt = new DbPictureTag($this->db);
+    $pt->tagId = $tag->getId();
+    $pt->pictureId = $this->getId();
+    $pt->save();
+
+    return $pt;
+  }
+
+  /**
+   * Removes a tag from this picture.
+   *
+   * @param DbTag $tag A tag
+   *
+   * @return void
+   */
+  public function removeTag($tag)
+  {
+    if (!$this->hasTag($tag)) {
+      throw new DatabaseError("Tag not found");
+    }
+
+    $sql = "
+    delete
+    from picture_tag
+    where picture_id = ?
+    and tag_id = ?";
+    $this->db->exec($sql, [$this->getId(), $tag->getId()]);
+  }
+
+  /**
+   * Has this picture a tag name.
+   *
+   * @param string $name A tag name
+   *
+   * @return boolean
+   */
+  public function hasTagName($name)
+  {
+    $tag = DbTag::searchByName($this->db, $name);
+
+    return $tag != null && $this->hasTag($tag);
+  }
+
+  /**
+   * Adds a tag name.
+   *
+   * @param string $name A tag name
+   *
+   * @return DbPictureTag
+   */
+  public function addTagName($name)
+  {
+    $tag = DbTag::searchByName($this->db, $name);
+    if ($tag == null) {
+      $tag = new DbTag($this->db);
+      $tag->name = $name;
+      $tag->save();
+    }
+
+    return $this->addTag($tag);
+  }
+
+  /**
+   * Removes a tag name.
+   *
+   * @param string $name A tag name
+   *
+   * @return void
+   */
+  public function removeTagName($name)
+  {
+    $tag = DbTag::searchByName($this->db, $name);
+    if ($tag == null) {
+      throw new DatabaseError("Tag not found");
+    }
+
+    $this->removeTag($tag);
+  }
+
+  /**
    * {@inheritdoc}
    *
    * @return void
@@ -102,13 +216,10 @@ class DbPicture extends DbRecord
   protected function select()
   {
     $sql = "
-    select
+    select distinct
       p.id,
-      p.title,
-      s.path
+      p.title
     from picture as p
-    inner join snapshot as s
-      on s.picture_id = p.id
     inner join category_picture as cp
       on cp.picture_id = p.id
     inner join category as c
@@ -117,7 +228,9 @@ class DbPicture extends DbRecord
     where p.id = ?";
     $row = $this->db->query($sql, [$this->_user->getId(), $this->id]);
     $this->title = $row["title"];
-    $this->path = $row["path"];
+
+    $snapshot = $this->getMainSnapshot();
+    $this->path = $snapshot != null ? $snapshot->path: null;
 
     return $row["id"];
   }
