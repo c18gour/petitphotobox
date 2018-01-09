@@ -11,7 +11,7 @@ use soloproyectos\text\Text;
 class SearchController extends AuthController
 {
   private $_categories;
-  private $_pictures;
+  private $_pictures = [];
 
   /**
    * Creates a new instance..
