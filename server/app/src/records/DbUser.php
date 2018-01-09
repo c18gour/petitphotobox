@@ -52,6 +52,11 @@ class DbUser extends DbRecord
     return new DbCategory($this->db, $this, $row["id"]);
   }
 
+  /**
+   * Gets the user's pictures.
+   *
+   * @return DbPicture[]
+   */
   public function getPictures()
   {
     $sql = "
