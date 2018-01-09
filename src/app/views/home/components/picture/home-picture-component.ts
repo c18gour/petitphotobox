@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { environment as env } from '../../../../../environments/environment';
+import { fullPath } from '../../../../core/utils';
 
 @Component({
   selector: 'app-home-picture',
@@ -26,8 +26,7 @@ export class HomePictureComponent {
   @Output()
   editPicture = new EventEmitter<string>();
 
-  // TODO: create App.fullPath
   get fullPath(): string {
-    return [env.apiUrl, this.path].join('/');
+    return fullPath(this.path);
   }
 }
