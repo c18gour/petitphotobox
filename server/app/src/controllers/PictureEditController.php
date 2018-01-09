@@ -30,11 +30,14 @@ class PictureEditController extends AuthController
       [
         "id" => $this->_picture->getId(),
         "title" => $this->_picture->title,
-        "tags" => array_map(
-          function ($tag) {
-            return $tag->name;
-          },
-          $this->_picture->getTags()
+        "tags" => implode(
+          ", ",
+          array_map(
+            function ($tag) {
+              return $tag->name;
+            },
+            $this->_picture->getTags()
+          )
         ),
         "categoryIds" => array_map(
           function ($row) {
