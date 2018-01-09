@@ -10,7 +10,7 @@ export class CategoryDeleteController extends BaseController {
     super(http, `${env.apiUrl}/category-delete.php`);
   }
 
-  get(args?: { categoryId: string }) {
+  get(args: { categoryId: string }) {
     return super.get(args);
   }
 

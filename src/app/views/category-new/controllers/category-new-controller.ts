@@ -11,7 +11,7 @@ export class CategoryNewController extends BaseController<CategoryNewEntity> {
     super(http, `${env.apiUrl}/category-new.php`);
   }
 
-  get(args?: { parentCategoryId: string }) {
+  get(args: { parentCategoryId: string }) {
     return super.get(args);
   }
 

@@ -11,7 +11,7 @@ export class PictureEditController extends BaseController<PictureEditEntity> {
     super(http, `${env.apiUrl}/picture-edit.php`);
   }
 
-  get(args?: { pictureId: string }) {
+  get(args: { pictureId: string }) {
     return super.get(args);
   }
 
