@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6f21c6254a6081be368848c3f29db464",
-    "content-hash": "dc4e5a1bde5f4353f7ea872156a39540",
+    "hash": "68c8834fca24f37766236bade5a9a4be",
+    "content-hash": "09d0daff6cd0a3db19fca93b573875b1",
     "packages": [
         {
             "name": "soloproyectos-php/array",
@@ -192,6 +192,120 @@
             ],
             "description": "A simple HTTP Controller. This library is part of the SoloProyectos PHP API.",
             "time": "2017-12-21 18:02:55"
+        },
+        {
+            "name": "soloproyectos-php/http-upload",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/soloproyectos-php/http-upload.git",
+                "reference": "0012c892bc892b78c2cace11518e31252547eff8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/soloproyectos-php/http-upload/zipball/0012c892bc892b78c2cace11518e31252547eff8",
+                "reference": "0012c892bc892b78c2cace11518e31252547eff8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0",
+                "soloproyectos-php/array": "~1.0",
+                "soloproyectos-php/http": "~1.0",
+                "soloproyectos-php/sys-file": "~1.0"
+            },
+            "type": "php-library",
+            "autoload": {
+                "psr-4": {
+                    "soloproyectos\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "The MIT License (MIT)"
+            ],
+            "authors": [
+                {
+                    "name": "Gonzalo Chumillas",
+                    "email": "gchumillas@email.com"
+                }
+            ],
+            "description": "A library for managing uploaded files. This library is part of the SoloProyectos PHP API.",
+            "time": "2016-04-01 18:13:10"
+        },
+        {
+            "name": "soloproyectos-php/sys",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/soloproyectos-php/sys.git",
+                "reference": "f88c09f740ebdd6fbba48195658b2564faae3c90"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/soloproyectos-php/sys/zipball/f88c09f740ebdd6fbba48195658b2564faae3c90",
+                "reference": "f88c09f740ebdd6fbba48195658b2564faae3c90",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "type": "php-library",
+            "autoload": {
+                "psr-4": {
+                    "soloproyectos\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "The MIT License (MIT)"
+            ],
+            "authors": [
+                {
+                    "name": "Gonzalo Chumillas",
+                    "email": "gchumillas@email.com"
+                }
+            ],
+            "description": "A library to interact with the OS. This library is part of the SoloProyectos PHP API.",
+            "time": "2015-10-09 19:25:19"
+        },
+        {
+            "name": "soloproyectos-php/sys-file",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/soloproyectos-php/sys-file.git",
+                "reference": "a921ed29476f80e645bdca99d3a71a40bfd6e170"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/soloproyectos-php/sys-file/zipball/a921ed29476f80e645bdca99d3a71a40bfd6e170",
+                "reference": "a921ed29476f80e645bdca99d3a71a40bfd6e170",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0",
+                "soloproyectos-php/array": "~1.0",
+                "soloproyectos-php/sys": "~1.0",
+                "soloproyectos-php/text": "~1.0"
+            },
+            "type": "php-library",
+            "autoload": {
+                "psr-4": {
+                    "soloproyectos\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "The MIT License (MIT)"
+            ],
+            "authors": [
+                {
+                    "name": "Gonzalo Chumillas",
+                    "email": "gchumillas@email.com"
+                }
+            ],
+            "description": "A library for managing files. This library is part of the SoloProyectos PHP API.",
+            "time": "2016-04-01 18:14:57"
         },
         {
             "name": "soloproyectos-php/text",

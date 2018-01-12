@@ -6,7 +6,10 @@
         "soloproyectos-php/http-controller": "^2.1",
         "soloproyectos-php/db": "^1.2",
         "soloproyectos-php/http": "^1.1",
-        "soloproyectos-php/text": "^1.0"
+        "soloproyectos-php/text": "^1.0",
+        "soloproyectos-php/http-upload": "^1.1",
+        "soloproyectos-php/sys-file": "^1.1",
+        "soloproyectos-php/array": "^1.0"
     },
     "autoload": {
         "psr-4": {

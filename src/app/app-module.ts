@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AutofocusModule } from 'angular-autofocus-fix';
+import { FileUploadModule } from 'ng2-file-upload';
+import { RoundProgressModule } from 'angular-svg-round-progressbar';
 
 import { AppRoutingModule } from './app-routing-module';
 import { AppComponent } from './app-component';
@@ -17,6 +19,9 @@ import {
 import {
   InputSelectComponent
 } from './components/input-select/input-select-component';
+import {
+  PictureUploaderComponent
+} from './components/picture-uploader/picture-uploader-component';
 
 // input-checkbox component
 import {
@@ -90,6 +95,7 @@ import {
 
     // components
     InputSelectComponent,
+    PictureUploaderComponent,
     HomePictureComponent,
     SearchPictureComponent,
 
@@ -116,7 +122,9 @@ import {
     HttpModule,
     AppRoutingModule,
     ModalWindowSytemModule,
-    MenuModule
+    MenuModule,
+    FileUploadModule,
+    RoundProgressModule
   ],
   providers: [
     UserLoginController,
