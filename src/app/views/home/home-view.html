@@ -38,13 +38,13 @@
     </p>
 
     <!-- TODO: (low) when moving a picture, scroll to that picture -->
-    <app-home-picture *ngFor="let picture of entity.pictures"
+    <app-picture *ngFor="let picture of entity.pictures"
       [id]="picture.id"
       [path]="picture.path"
       (deletePicture)="modal.confirm('Are you sure?', deletePicture, picture.id)"
       (upPicture)="movePictureUp(picture.id)"
       (downPicture)="movePictureDown(picture.id)"
-      (editPicture)="editPicture(picture.id)"></app-home-picture>
+      (editPicture)="editPicture(picture.id)"></app-picture>
   </div>
 </div>
 
