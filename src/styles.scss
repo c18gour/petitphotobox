@@ -2,8 +2,6 @@
 @import './config/css/palette';
 @import './config/css/metrics';
 
-$buttons-bg-color: rgba($primary-text-color, 1);
-
 div {
   %box {
     border-radius: .4rem;
@@ -34,7 +32,7 @@ div {
   }
 
   .buttons {
-    background-color: $buttons-bg-color;
+    background-color: $primary-text-color;
     border-radius: .7rem;
     display: flex;
     font-size: 2.8rem;
