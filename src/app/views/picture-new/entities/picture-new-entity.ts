@@ -1,4 +1,4 @@
-import { BaseEntity } from '../../../core/entity/base-entity';
+import { BaseEntity } from '../../../core/model/base-entity';
 import { InputOptionEntity } from '../../../entities/input-option-entity';
 
 export class PictureNewEntity extends BaseEntity {

@@ -1,6 +1,6 @@
 import { Http, Response, URLSearchParams, RequestOptions } from '@angular/http';
 
-import { BaseEntity } from '../../core/entity/base-entity';
+import { BaseEntity } from '../../core/model/base-entity';
 import { AppError } from '../../core/exception/app-error';
 import { SessionError } from '../../core/exception/session-error';
 import { ClientException } from '../../core/exception/client-exception';

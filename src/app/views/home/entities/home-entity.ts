@@ -1,4 +1,4 @@
-import { BaseEntity } from '../../../core/entity/base-entity';
+import { BaseEntity } from '../../../core/model/base-entity';
 import { MenuEntry } from '../../../modules/menu/entities/menu-entry';
 
 export class HomeEntity extends BaseEntity {
