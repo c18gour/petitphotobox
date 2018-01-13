@@ -1,13 +1,13 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { fullPath } from '../../core/utils';
+import { fullPath } from '../../../../core/utils';
 
 @Component({
-  selector: 'app-picture',
-  templateUrl: './picture-component.html',
-  styleUrls: ['./picture-component.scss']
+  selector: 'app-home-picture',
+  templateUrl: './home-picture-component.html',
+  styleUrls: ['./home-picture-component.scss']
 })
-export class PictureComponent {
+export class HomePictureComponent {
   @Input()
   id: string;
 

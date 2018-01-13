@@ -22,9 +22,6 @@ import {
 import {
   PictureUploaderComponent
 } from './components/picture-uploader/picture-uploader-component';
-import {
-  PictureComponent
-} from './components/picture/picture-component';
 
 // input-checkbox component
 import {
@@ -36,6 +33,11 @@ import {
 import {
   InputCheckboxItemComponent
 } from './components/input-checkbox/input-checkbox-item-component';
+
+// home components
+import {
+  HomePictureComponent
+} from './views/home/components/home-picture/home-picture-component';
 
 // search components
 import {
@@ -97,7 +99,7 @@ import {
     // components
     InputSelectComponent,
     PictureUploaderComponent,
-    PictureComponent,
+    HomePictureComponent,
     SearchPictureComponent,
 
     // input-checkbox component
