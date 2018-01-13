@@ -1,15 +1,9 @@
-import {
-  Component, ViewChild, OnInit, ComponentFactoryResolver, ViewContainerRef
-} from '@angular/core';
+import { Component, ViewChild, OnInit, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import {
-  ModalWindowSystem
-} from '../../modules/modal-window-system/modal-window-system';
-import {
-  InputCheckboxComponent
-} from '../../components/input-checkbox/input-checkbox-component';
+import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
+import { InputCheckboxComponent } from '../../components/input-checkbox/input-checkbox-component';
 
 import { PictureEditController } from './controllers/picture-edit-controller';
 import { PictureEditEntity } from './entities/picture-edit-entity';

@@ -1,19 +1,11 @@
-import {
-  Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver
-} from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import {
-  CategoryNewController
-} from './controllers/category-new-controller';
+import { CategoryNewController } from './controllers/category-new-controller';
 import { CategoryNewEntity } from './entities/category-new-entity';
-import {
-  InputSelectComponent
-} from '../../components/input-select/input-select-component';
-import {
-  ModalWindowSystem
-} from '../../modules/modal-window-system/modal-window-system';
+import { InputSelectComponent } from '../../components/input-select/input-select-component';
+import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
 
 @Component({
   selector: 'app-edit-category',

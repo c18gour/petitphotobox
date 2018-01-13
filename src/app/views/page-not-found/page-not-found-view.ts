@@ -1,11 +1,7 @@
-import {
-  Component, OnInit, ViewChild, ComponentFactoryResolver, ViewContainerRef
-} from '@angular/core';
+import { Component, OnInit, ViewChild, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 
-import {
-  ModalWindowSystem
-} from '../../modules/modal-window-system/modal-window-system';
+import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
 
 @Component({
   selector: 'app-page-not-found',

@@ -1,18 +1,10 @@
 import { ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 
 import { ModalDialog } from './core/modal-dialog';
-import {
-  ModalAlertComponent
-} from './components/modal-alert/modal-alert-component';
-import {
-  ModalConfirmComponent
-} from './components/modal-confirm/modal-confirm-component';
-import {
-  ModalErrorComponent
-} from './components/modal-error/modal-error-component';
-import {
-  ModalLoadingComponent
-} from './components/modal-loading/modal-loading-component';
+import { ModalAlertComponent } from './components/modal-alert/modal-alert-component';
+import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm-component';
+import { ModalErrorComponent } from './components/modal-error/modal-error-component';
+import { ModalLoadingComponent } from './components/modal-loading/modal-loading-component';
 
 type Class<T> = new (...args: any[]) => T;
 

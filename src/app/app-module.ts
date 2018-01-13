@@ -11,38 +11,22 @@ import { AppComponent } from './app-component';
 
 // modules
 import { MenuModule } from './modules/menu/menu-module';
-import {
-  ModalWindowSytemModule
-} from './modules/modal-window-system/modal-window-system-module';
+import { ModalWindowSytemModule } from './modules/modal-window-system/modal-window-system-module';
 
 // components
-import {
-  InputSelectComponent
-} from './components/input-select/input-select-component';
-import {
-  PictureUploaderComponent
-} from './components/picture-uploader/picture-uploader-component';
+import { InputSelectComponent } from './components/input-select/input-select-component';
+import { PictureUploaderComponent } from './components/picture-uploader/picture-uploader-component';
 
 // input-checkbox component
-import {
-  InputCheckboxComponent
-} from './components/input-checkbox/input-checkbox-component';
-import {
-  InputCheckboxMenuComponent
-} from './components/input-checkbox/input-checkbox-menu-component';
-import {
-  InputCheckboxItemComponent
-} from './components/input-checkbox/input-checkbox-item-component';
+import { InputCheckboxComponent } from './components/input-checkbox/input-checkbox-component';
+import { InputCheckboxMenuComponent } from './components/input-checkbox/input-checkbox-menu-component';
+import { InputCheckboxItemComponent } from './components/input-checkbox/input-checkbox-item-component';
 
 // home components
-import {
-  HomePictureComponent
-} from './views/home/components/home-picture/home-picture-component';
+import { HomePictureComponent } from './views/home/components/home-picture/home-picture-component';
 
 // search components
-import {
-  SearchPictureComponent
-} from './views/search/components/search-picture/search-picture-component';
+import { SearchPictureComponent } from './views/search/components/search-picture/search-picture-component';
 
 // picture-new components
 import { PictureNewSnapshotComponent } from './views/picture-new/components/picture-new-snapshot/picture-new-snapshot-component';
@@ -60,37 +44,19 @@ import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
 // controllers
 import { LogoutController } from './controllers/logout-controller';
-import {
-  UserLoginController
-} from './views/user-login/controllers/user-login-controller';
-import {
-  CategoryNewController
-} from './views/category-new/controllers/category-new-controller';
-import {
-  CategoryEditController
-} from './views/category-edit/controllers/category-edit-controller';
-import {
-  PictureNewController
-} from './views/picture-new/controllers/picture-new-controller';
-import {
-  PictureEditController
-} from './views/picture-edit/controllers/picture-edit-controller';
+import { UserLoginController } from './views/user-login/controllers/user-login-controller';
+import { CategoryNewController } from './views/category-new/controllers/category-new-controller';
+import { CategoryEditController } from './views/category-edit/controllers/category-edit-controller';
+import { PictureNewController } from './views/picture-new/controllers/picture-new-controller';
+import { PictureEditController } from './views/picture-edit/controllers/picture-edit-controller';
 import { SearchController } from './views/search/controllers/search-controller';
 
 // home controllers
 import { HomeController } from './views/home/controllers/home-controller';
-import {
-  CategoryDeleteController
-} from './views/home/controllers/category-delete-controller';
-import {
-  PictureDeleteController
-} from './views/home/controllers/picture-delete-controller';
-import {
-  PictureUpController
-} from './views/home/controllers/picture-up-controller';
-import {
-  PictureDownController
-} from './views/home/controllers/picture-down-controller';
+import { CategoryDeleteController } from './views/home/controllers/category-delete-controller';
+import { PictureDeleteController } from './views/home/controllers/picture-delete-controller';
+import { PictureUpController } from './views/home/controllers/picture-up-controller';
+import { PictureDownController } from './views/home/controllers/picture-down-controller';
 
 @NgModule({
   declarations: [

@@ -1,6 +1,4 @@
-import {
-  Component, OnInit, ViewChild, Input, Output, EventEmitter, ElementRef
-} from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ElementRef } from '@angular/core';
 
 import { ModalDialog } from '../../core/modal-dialog';
 

@@ -1,6 +1,4 @@
-import {
-  Component, Input, Output, EventEmitter, ViewChild, QueryList
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, QueryList } from '@angular/core';
 
 import { MenuEntry } from './../entities/menu-entry';
 import { MenuComponent } from './../menu-component';

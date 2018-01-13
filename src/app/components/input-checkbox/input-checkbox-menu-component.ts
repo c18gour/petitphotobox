@@ -1,7 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import {
-  InputOptionEntity
-} from '../../entities/input-option-entity';
+import { InputOptionEntity } from '../../entities/input-option-entity';
 import { InputCheckboxItemComponent } from './input-checkbox-item-component';
 
 @Component({
