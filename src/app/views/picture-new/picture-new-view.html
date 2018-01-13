@@ -16,7 +16,10 @@
       </div>
       <div class="pictures">
         <app-picture *ngFor="let path of paths"
-          [path]="path" [visibleButtons]="['delete', 'up', 'down']"></app-picture>
+          [id]="path" [path]="path" [visibleButtons]="['delete', 'up', 'down']"
+          (deletePicture)="onDeletePicture($event)"
+          (downPicture)="onDownPicture($event)"
+          (upPicture)="onUpPicture($event)"></app-picture>
         <app-picture-uploader (success)="onPictureUpload($event)" (error)="onUploadError($event)"></app-picture-uploader>
       </div>
       <label for="name">Title</label>

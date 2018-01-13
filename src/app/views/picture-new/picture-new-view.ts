@@ -59,6 +59,22 @@ export class PictureNewView implements OnInit {
     });
   }
 
+  onDeletePicture(path: string) {
+    const pos = this.paths.indexOf(path);
+
+    if (pos >= 0) {
+      this.paths.splice(pos, 1);
+    }
+  }
+
+  onUpPicture(path: string) {
+
+  }
+
+  onDownPicture(path: string) {
+
+  }
+
   onPictureUpload(path: string) {
     this.paths.push(path);
   }

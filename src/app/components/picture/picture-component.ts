@@ -35,7 +35,6 @@ export class PictureComponent {
   }
 
   get fullPath(): string {
-    console.log(this.visibleButtons);
     return fullPath(this.path);
   }
 }
