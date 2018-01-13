@@ -7,6 +7,7 @@ import { InputCheckboxComponent } from '../../components/input-checkbox/input-ch
 
 import { PictureNewController } from './controllers/picture-new-controller';
 import { PictureNewEntity } from './entities/picture-new-entity';
+import { SortableList } from '../../core/model/sortable-list';
 
 @Component({
   selector: 'app-picture-new',
@@ -17,7 +18,7 @@ export class PictureNewView implements OnInit {
   private _categoryId: string;
   entity: PictureNewEntity;
   modal: ModalWindowSystem;
-  paths = new Array<string>();
+  paths = new SortableList<string>();
   showMoreOptions = false;
 
   constructor(
@@ -52,30 +53,6 @@ export class PictureNewView implements OnInit {
         }
       });
     });
-  }
-
-  onDeletePicture(path: string) {
-    const pos = this.paths.indexOf(path);
-
-    if (pos >= 0) {
-      this.paths.splice(pos, 1);
-    }
-  }
-
-  onUpPicture(path: string) {
-
-  }
-
-  onDownPicture(path: string) {
-
-  }
-
-  onPictureUpload(path: string) {
-    this.paths.push(path);
-  }
-
-  onUploadError(message: string) {
-    this.modal.error(message);
   }
 
   goBack() {
