@@ -42,6 +42,9 @@ import {
   SearchPictureComponent
 } from './views/search/components/search-picture/search-picture-component';
 
+// picture-new components
+import { PictureNewSnapshotComponent } from './views/picture-new/components/picture-new-snapshot/picture-new-snapshot-component';
+
 // views
 import { HomeView } from './views/home/home-view';
 import { UserLoginView } from './views/user-login/user-login-view';
@@ -101,6 +104,9 @@ import {
     InputCheckboxComponent,
     InputCheckboxMenuComponent,
     InputCheckboxItemComponent,
+
+    // picture-new components
+    PictureNewSnapshotComponent,
 
     // views
     HomeView,
