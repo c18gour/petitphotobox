@@ -19,7 +19,8 @@
       <label for="tags">Tags separated by comma</label>
       <input type="text" id="tags" name="tags" [(ngModel)]="entity.tags" />
       <div class="pictures">
-        <app-picture-uploader></app-picture-uploader>
+        <app-picture *ngFor="let path of paths" [path]="path"></app-picture>
+        <app-picture-uploader (success)="onPictureUpload($event)" (error)="onUploadError($event)"></app-picture-uploader>
       </div>
       <button type="submit" class="button-primary">Accept</button>
       <button type="button" (click)="goBack()">Cancel</button>

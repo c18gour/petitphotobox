@@ -17,7 +17,7 @@ export class PictureUploaderComponent implements OnInit {
   success = new EventEmitter<string>();
 
   @Output()
-  error = new EventEmitter();
+  error = new EventEmitter<string>();
 
   ngOnInit() {
     const self = this;
@@ -42,12 +42,18 @@ export class PictureUploaderComponent implements OnInit {
       this.success.emit(document.body.path);
     };
 
-    this.uploader.onErrorItem = () => {
-      this.error.emit();
+    this.uploader.onErrorItem = (item, response, status, headers) => {
+      const document = JSON.parse(response);
+
+      this.error.emit(document.status.message);
     };
 
     this.uploader.onCompleteAll = () => {
       this.state = 'initial';
     };
+  }
+
+  onInputChange(input: HTMLInputElement) {
+    input.value = '';
   }
 }

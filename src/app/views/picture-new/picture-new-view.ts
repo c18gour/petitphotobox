@@ -23,6 +23,7 @@ export class PictureNewView implements OnInit {
   private _categoryId: string;
   entity: PictureNewEntity;
   modal: ModalWindowSystem;
+  paths = new Array<string>();
 
   constructor(
     private _controller: PictureNewController,
@@ -56,6 +57,14 @@ export class PictureNewView implements OnInit {
         }
       });
     });
+  }
+
+  onPictureUpload(path: string) {
+    this.paths.unshift(path);
+  }
+
+  onUploadError(message: string) {
+    this.modal.error(message);
   }
 
   goBack() {
