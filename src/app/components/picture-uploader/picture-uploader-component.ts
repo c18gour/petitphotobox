@@ -14,7 +14,7 @@ export class PictureUploaderComponent implements OnInit {
   state: 'initial' | 'uploading' = 'initial';
 
   @Output()
-  complete = new EventEmitter<string>();
+  success = new EventEmitter<string>();
 
   @Output()
   error = new EventEmitter();
@@ -39,7 +39,7 @@ export class PictureUploaderComponent implements OnInit {
     this.uploader.onSuccessItem = (item, response) => {
       const document = JSON.parse(response);
 
-      this.complete.emit(document.body.path);
+      this.success.emit(document.body.path);
     };
 
     this.uploader.onErrorItem = () => {
