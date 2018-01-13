@@ -15,7 +15,8 @@
           [items]="entity.categories" [value]="entity.categoryIds"></app-input-checkbox>
       </div>
       <div class="pictures">
-        <app-picture *ngFor="let path of paths" [path]="path"></app-picture>
+        <app-picture *ngFor="let path of paths"
+          [path]="path" [visibleButtons]="['delete', 'up', 'down']"></app-picture>
         <app-picture-uploader (success)="onPictureUpload($event)" (error)="onUploadError($event)"></app-picture-uploader>
       </div>
       <label for="name">Title</label>

@@ -60,7 +60,7 @@ export class PictureNewView implements OnInit {
   }
 
   onPictureUpload(path: string) {
-    this.paths.unshift(path);
+    this.paths.push(path);
   }
 
   onUploadError(message: string) {

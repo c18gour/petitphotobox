@@ -14,6 +14,9 @@ export class PictureComponent {
   @Input()
   path: string;
 
+  @Input()
+  visibleButtons: string[] = ['delete', 'up', 'down', 'download', 'edit'];
+
   @Output()
   deletePicture = new EventEmitter<string>();
 
@@ -26,7 +29,13 @@ export class PictureComponent {
   @Output()
   editPicture = new EventEmitter<string>();
 
+  get rightButtonsHidden() {
+    return !this.visibleButtons.some(
+      (item) => ['up', 'down', 'download', 'edit'].indexOf(item) >= 0);
+  }
+
   get fullPath(): string {
+    console.log(this.visibleButtons);
     return fullPath(this.path);
   }
 }

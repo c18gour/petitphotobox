@@ -1,13 +1,21 @@
 <!-- TODO: (low) show a preloader and the show the image -->
 <div class="picture" [style.background-image]="backgroundImage">
-  <div class="buttons left">
+  <div class="buttons left" [hidden]="visibleButtons.indexOf('delete') < 0">
     <a (click)="deletePicture.emit(id)" title="Delete picture"><i class="fa fa-trash"></i></a>
   </div>
-  <div class="buttons right">
-    <a title="Move picture up" (click)="upPicture.emit(id)"><i class="fa fa-chevron-circle-up"></i></a>
-    <a title="Move picture down" (click)="downPicture.emit(id)"><i class="fa fa-chevron-circle-down"></i></a>
-    <a title="Download picture"><i class="fa fa-download"></i></a>
-    <a title="Edit picture" (click)="editPicture.emit(id)"><i class="fa fa-pencil-square"></i></a>
+  <div class="buttons right" [hidden]="rightButtonsHidden">
+    <a title="Move picture up"
+      [hidden]="visibleButtons.indexOf('up') < 0"
+      (click)="upPicture.emit(id)"><i class="fa fa-chevron-circle-up"></i></a>
+    <a title="Move picture down"
+      [hidden]="visibleButtons.indexOf('down') < 0"
+      (click)="downPicture.emit(id)"><i class="fa fa-chevron-circle-down"></i></a>
+    <!-- TODO: download button -->
+    <a title="Download picture"
+      [hidden]="visibleButtons.indexOf('download') < 0"><i class="fa fa-download"></i></a>
+    <a title="Edit picture"
+      [hidden]="visibleButtons.indexOf('edit') < 0"
+      (click)="editPicture.emit(id)"><i class="fa fa-pencil-square"></i></a>
   </div>
   <img [src]="fullPath">
 </div>
