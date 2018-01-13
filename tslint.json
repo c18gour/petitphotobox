@@ -30,7 +30,7 @@
     "label-position": true,
     "max-line-length": [
       true,
-      80
+      {"limit": 120, "ignore-pattern": "^import |^export {(.*?)}"}
     ],
     "member-access": false,
     "member-ordering": [
