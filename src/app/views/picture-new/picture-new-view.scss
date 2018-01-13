@@ -1,3 +1,29 @@
+.options {
+  margin-bottom: 1.5rem;
+
+  & > label {
+    margin-bottom: 1.5rem;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .body {
+    display: none;
+
+    & > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &.open {
+    .body {
+      display: block;
+    }
+  }
+}
+
 .pictures {
-  margin-bottom: .6rem;
+  margin-bottom: 1.5rem;
 }

@@ -24,6 +24,7 @@ export class PictureNewView implements OnInit {
   entity: PictureNewEntity;
   modal: ModalWindowSystem;
   paths = new Array<string>();
+  showMoreOptions = false;
 
   constructor(
     private _controller: PictureNewController,

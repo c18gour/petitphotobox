@@ -9,10 +9,26 @@
   <h3>Upload Picture</h3>
   <form (ngSubmit)="onSubmit()">
     <fieldset>
-      <div [hidden]="entity.categories.length === 0">
-        <label for="categoryId">Select one or more categories</label>
-        <app-input-checkbox #categoriesInput name="categoryId"
-          [items]="entity.categories" [value]="entity.categoryIds"></app-input-checkbox>
+      <!-- TODO: (low) use css animations -->
+      <div class="options" [ngClass]="{'open': showMoreOptions}">
+        <label>
+          <a (click)="showMoreOptions = !showMoreOptions">
+            Show more options
+            <i class="fa fa-chevron-right"
+              [ngClass]="{'fa-chevron-down': showMoreOptions, 'fa-chevron-right': !showMoreOptions}"></i>
+          </a>
+        </label>
+        <div class="body">
+          <div [hidden]="entity.categories.length === 0">
+            <label for="categoryId">Select one or more categories</label>
+            <app-input-checkbox #categoriesInput name="categoryId"
+              [items]="entity.categories" [value]="entity.categoryIds"></app-input-checkbox>
+          </div>
+          <label for="name">Title</label>
+          <input autofocus type="text" id="title" name="title" [(ngModel)]="entity.title" />
+          <label for="tags">Tags separated by comma</label>
+          <input type="text" id="tags" name="tags" [(ngModel)]="entity.tags" />
+        </div>
       </div>
       <div class="pictures">
         <app-picture-new-snapshot *ngFor="let path of paths"
@@ -20,10 +36,6 @@
           (downPicture)="onDownPicture($event)" (upPicture)="onUpPicture($event)"></app-picture-new-snapshot>
         <app-picture-uploader (success)="onPictureUpload($event)" (error)="onUploadError($event)"></app-picture-uploader>
       </div>
-      <label for="name">Title</label>
-      <input autofocus type="text" id="title" name="title" [(ngModel)]="entity.title" />
-      <label for="tags">Tags separated by comma</label>
-      <input type="text" id="tags" name="tags" [(ngModel)]="entity.tags" />
       <button type="submit" class="button-primary">Accept</button>
       <button type="button" (click)="goBack()">Cancel</button>
     </fieldset>
