@@ -14,14 +14,14 @@
         <app-input-checkbox #categoriesInput name="categoryId"
           [items]="entity.categories" [value]="entity.categoryIds"></app-input-checkbox>
       </div>
-      <label for="name">Title</label>
-      <input autofocus type="text" id="title" name="title" [(ngModel)]="entity.title" />
-      <label for="tags">Tags separated by comma</label>
-      <input type="text" id="tags" name="tags" [(ngModel)]="entity.tags" />
       <div class="pictures">
         <app-picture *ngFor="let path of paths" [path]="path"></app-picture>
         <app-picture-uploader (success)="onPictureUpload($event)" (error)="onUploadError($event)"></app-picture-uploader>
       </div>
+      <label for="name">Title</label>
+      <input autofocus type="text" id="title" name="title" [(ngModel)]="entity.title" />
+      <label for="tags">Tags separated by comma</label>
+      <input type="text" id="tags" name="tags" [(ngModel)]="entity.tags" />
       <button type="submit" class="button-primary">Accept</button>
       <button type="button" (click)="goBack()">Cancel</button>
     </fieldset>
