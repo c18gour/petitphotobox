@@ -247,10 +247,6 @@ class DbPicture extends DbRecord
     where p.id = ?";
     $row = $this->db->query($sql, [$this->_user->getId(), $this->id]);
     $this->title = $row["title"];
-
-    $snapshot = $this->getMainSnapshot();
-    $this->path = $snapshot != null ? $snapshot->path: null;
-
     return $row["id"];
   }
 
@@ -261,10 +257,6 @@ class DbPicture extends DbRecord
    */
   protected function update()
   {
-    $snapshot = $this->getMainSnapshot();
-    $snapshot->path = $this->path;
-    $snapshot->save();
-
     $sql = "
     update picture as p
     inner join category_picture as cp
@@ -285,15 +277,8 @@ class DbPicture extends DbRecord
    */
   protected function insert()
   {
-    $pictureId = DbTable::insert(
+    return DbTable::insert(
       $this->db, "picture", ["title" => $this->title]
     );
-
-    $snapshot = new DbSnapshot($this->db, $this->_user);
-    $snapshot->pictureId = $pictureId;
-    $snapshot->path = $this->path;
-    $snapshot->save();
-
-    return $pictureId;
   }
 }

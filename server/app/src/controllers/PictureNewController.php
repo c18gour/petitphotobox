@@ -6,6 +6,7 @@ use petitphotobox\core\exception\ClientException;
 use petitphotobox\core\model\Document;
 use petitphotobox\records\DbCategory;
 use petitphotobox\records\DbPicture;
+use petitphotobox\records\DbSnapshot;
 use soloproyectos\text\Text;
 
 class PictureNewController extends AuthController
@@ -89,15 +90,19 @@ class PictureNewController extends AuthController
         "strtolower", array_map("trim", explode(",", $this->getParam("tags")))
       )
     );
+    $snapshots = array_filter(
+      array_map("trim", explode(",", $this->getParam("snapshots")))
+    );
 
-    if (count($this->_categories) < 1) {
-      throw new AppError("Add one or more categories");
+    if (count($snapshots) < 1) {
+      throw new ClientException("Add one or more snapshots");
     }
 
     // creates a new picture
     $this->_picture->title = $title;
-    // TODO: fix it
-    $this->_picture->path = "/data/images/not-found.png";
+    foreach ($snapshot as $path) {
+      $this->_picture->addSnapshotPath($path);
+    }
     $this->_picture->save();
 
     // adds tags
