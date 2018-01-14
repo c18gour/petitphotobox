@@ -9,6 +9,8 @@ abstract class DbRecord
   protected $db;
   protected $id;
 
+  // TODO: la presencia del parámetro $id determina si estoy actualizando o
+  // insertando, no el hecho de que el $id esté vacío o no
   /**
    * Constructor.
    *

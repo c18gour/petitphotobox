@@ -100,19 +100,30 @@ class PictureNewController extends AuthController
 
     // creates a new picture
     $this->_picture->title = $title;
-    foreach ($snapshot as $path) {
-      $this->_picture->addSnapshotPath($path);
-    }
+    $this->_picture->paths = $snapshots;
     $this->_picture->save();
 
     // adds tags
+    // TODO: recode
     foreach ($tagNames as $name) {
       $this->_picture->addTagName($name);
     }
 
-    // ...and adds it to the category
+    // adds it to the categories
+    $isAddedToMainCategory = false;
+    $mainCategory = $this->user->getMainCategory();
     foreach ($this->_categories as $category) {
-      $category->addPicture($this->_picture);
+      $isMainCategory = $category->getId() == $mainCategory->getId();
+      $isAddedToMainCategory = $isAddedToMainCategory || $isMainCategory;
+
+      if (!$isMainCategory) {
+        $category->addPicture($this->_picture);
+      }
+    }
+
+    // removes it from the main category
+    if (count($this->_categories) > 0 && !$isAddedToMainCategory) {
+      $mainCategory->removePicture($this->_picture);
     }
   }
 }
