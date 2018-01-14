@@ -1,3 +1,4 @@
+// TODO: unsaved changes: Do you want to discard changes?
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -30,6 +31,9 @@ import { SearchPictureComponent } from './views/search/components/search-picture
 
 // picture-new components
 import { PictureNewSnapshotComponent } from './views/picture-new/components/picture-new-snapshot/picture-new-snapshot-component';
+
+// picture-edit components
+import { PictureEditSnapshotComponent } from './views/picture-edit/components/picture-edit-snapshot/picture-edit-snapshot-component';
 
 // views
 import { HomeView } from './views/home/home-view';
@@ -75,6 +79,9 @@ import { PictureDownController } from './views/home/controllers/picture-down-con
 
     // picture-new components
     PictureNewSnapshotComponent,
+
+    // picture-edit components
+    PictureEditSnapshotComponent,
 
     // views
     HomeView,

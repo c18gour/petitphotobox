@@ -1,0 +1,12 @@
+<!-- TODO: (low) show a preloader and the show the image -->
+<!-- TODO: doesn't work well on landscape -->
+<div class="picture" [style.background-image]="backgroundImage">
+  <div class="buttons left">
+    <a (click)="deletePicture.emit(path)" title="Delete picture"><i class="fa fa-trash"></i></a>
+  </div>
+  <div class="buttons right">
+    <a title="Move picture up" (click)="upPicture.emit(path)"><i class="fa fa-chevron-circle-up"></i></a>
+    <a title="Move picture down" (click)="downPicture.emit(path)"><i class="fa fa-chevron-circle-down"></i></a>
+  </div>
+  <img [src]="fullPath">
+</div>

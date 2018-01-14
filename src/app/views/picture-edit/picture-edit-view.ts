@@ -7,6 +7,7 @@ import { InputCheckboxComponent } from '../../components/input-checkbox/input-ch
 
 import { PictureEditController } from './controllers/picture-edit-controller';
 import { PictureEditEntity } from './entities/picture-edit-entity';
+import { SortableList } from '../../core/model/sortable-list';
 
 @Component({
   selector: 'app-picture-edit-view',
@@ -16,6 +17,8 @@ import { PictureEditEntity } from './entities/picture-edit-entity';
 export class PictureEditView implements OnInit {
   entity: PictureEditEntity;
   modal: ModalWindowSystem;
+  showMoreOptions = false;
+  paths = new SortableList<string>();
 
   constructor(
     private _controller: PictureEditController,
@@ -41,6 +44,7 @@ export class PictureEditView implements OnInit {
       this.modal.loading(async () => {
         try {
           this.entity = await this._controller.get({ pictureId });
+          this.paths = new SortableList<string>(this.entity.snapshots);
         } catch (e) {
           this.modal.error(e.message);
           throw e;
@@ -68,7 +72,8 @@ export class PictureEditView implements OnInit {
           pictureId,
           categoryIds,
           title: this.entity.title,
-          tags: this.entity.tags
+          tags: this.entity.tags,
+          snapshots: this.paths.items
         });
       } catch (e) {
         this.modal.error(e.message);

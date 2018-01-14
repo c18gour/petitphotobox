@@ -30,15 +30,8 @@ class PictureEditController extends AuthController
       [
         "id" => $this->_picture->getId(),
         "title" => $this->_picture->title,
-        "tags" => implode(
-          ", ",
-          array_map(
-            function ($tag) {
-              return $tag->name;
-            },
-            $this->_picture->getTags()
-          )
-        ),
+        "tags" => implode(", ", $this->_picture->tags),
+        "snapshots" => $this->_picture->paths,
         "categoryIds" => array_map(
           function ($row) {
             return $row->getId();
@@ -78,11 +71,18 @@ class PictureEditController extends AuthController
   {
     $categoryIds = array_filter(explode(",", $this->getParam("categoryIds")));
     $title = $this->getParam("title");
-    $tagNames = array_filter(
+    $tags = array_filter(
       array_map(
         "strtolower", array_map("trim", explode(",", $this->getParam("tags")))
       )
     );
+    $snapshots = array_filter(
+      array_map("trim", explode(",", $this->getParam("snapshots")))
+    );
+
+    if (count($snapshots) < 1) {
+      throw new ClientException("Add one or more snapshots");
+    }
 
     $categories = array_map(
       function ($id) {
@@ -91,34 +91,23 @@ class PictureEditController extends AuthController
       $categoryIds
     );
 
+    if (count($categories) < 1) {
+      $categories = [$this->user->getMainCategory()];
+    }
+
     foreach ($categories as $category) {
       if (!$category->isFound()) {
         throw new ClientException("Category not found");
       }
     }
 
-    if (count($categories) < 1) {
-      throw new ClientException("Add one or more categories");
-    }
-
-    // creates a new picture
-    // TODO: don't forget the path
+    // updates the picture
     $this->_picture->title = $title;
+    $this->_picture->tags = $tags;
+    $this->_picture->paths = $snapshots;
     $this->_picture->save();
 
-    // removes all tags
-    $tags = $this->_picture->getTags();
-    foreach ($tags as $tag) {
-      $this->_picture->removeTag($tag);
-    }
-
-    // adds tags
-    foreach ($tagNames as $name) {
-      $this->_picture->addTagName($name);
-    }
-
-    // add the picture to the categories
-    // that are not in the picture's categories
+    // add the picture to the 'new' categories
     $categories1 = $this->_subtract(
       $categories,
       $this->_picture->getCategories()
@@ -128,8 +117,7 @@ class PictureEditController extends AuthController
       $category->addPicture($this->_picture);
     }
 
-    // removes the picture from the categories
-    // that are not in the provided list
+    // removes the picture from the 'old' categories
     $categories2 = $this->_subtract(
       $this->_picture->getCategories(),
       $categories

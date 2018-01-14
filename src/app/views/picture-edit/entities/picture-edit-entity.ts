@@ -7,4 +7,5 @@ export class PictureEditEntity extends BaseEntity {
   tags: string;
   categoryIds: string[];
   categories: InputOptionEntity[];
+  snapshots: string[];
 }

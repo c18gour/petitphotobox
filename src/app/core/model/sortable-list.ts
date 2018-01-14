@@ -1,5 +1,5 @@
 export class SortableList<Type> {
-  private _items: Array<Type> = [];
+  constructor(private _items: Array<Type> = []) { }
 
   addItem(item: Type) {
     const pos = this._items.indexOf(item);
