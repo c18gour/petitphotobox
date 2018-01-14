@@ -6,6 +6,8 @@ use petitphotobox\records\DbCategory;
 use petitphotobox\records\DbPicture;
 use soloproyectos\db\DbConnector;
 
+// TODO: cada usuario debería tener su propio directorio
+// Además, debe existir un control de imágenes
 class DbUser extends DbRecord
 {
   /**

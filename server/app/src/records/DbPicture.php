@@ -4,6 +4,7 @@ use petitphotobox\core\model\record\DbRecord;
 use petitphotobox\core\model\record\DbTable;
 use petitphotobox\exceptions\DatabaseError;
 use petitphotobox\records\DbCategory;
+use petitphotobox\records\DbCategoryPicture;
 use petitphotobox\records\DbPictureTag;
 use petitphotobox\records\DbSnapshot;
 use petitphotobox\records\DbTag;
@@ -12,7 +13,7 @@ class DbPicture extends DbRecord
 {
   private $_user;
   public $title;
-  public $path;
+  public $paths = [];
 
   /**
    * Creates a new instance.
@@ -235,18 +236,23 @@ class DbPicture extends DbRecord
   protected function select()
   {
     $sql = "
-    select distinct
+    select
       p.id,
-      p.title
+      p.title,
+      group_concat(s.path) as paths
     from picture as p
+    left join snapshot as s
+      on s.picture_id = p.id
     inner join category_picture as cp
       on cp.picture_id = p.id
     inner join category as c
       on c.user_id = ?
       and c.id = cp.category_id
-    where p.id = ?";
+    where p.id = ?
+    group by p.id";
     $row = $this->db->query($sql, [$this->_user->getId(), $this->id]);
     $this->title = $row["title"];
+    $this->paths = array_filter(explode(",", $row["paths"]));
     return $row["id"];
   }
 
@@ -257,6 +263,24 @@ class DbPicture extends DbRecord
    */
   protected function update()
   {
+    if (count($this->paths) < 1) {
+      throw new DatabaseError("A picture must have at least one snapshot");
+    }
+
+    // removes snapshots
+    $snapshots = $this->getSnapshots();
+    foreach ($snapshots as $s) {
+      $s->delete();
+    }
+
+    // adds snapshots
+    foreach ($this->paths as $path) {
+      $s = new DbSnapshot($this->db, $this->_user);
+      $s->pictureId = $this->id;
+      $s->path = $path;
+      $s->save();
+    }
+
     $sql = "
     update picture as p
     inner join category_picture as cp
@@ -277,8 +301,30 @@ class DbPicture extends DbRecord
    */
   protected function insert()
   {
-    return DbTable::insert(
+    if (count($this->paths) < 1) {
+      throw new DatabaseError("A picture must have at least one snapshot");
+    }
+
+    // creates a picture
+    $pictureId = DbTable::insert(
       $this->db, "picture", ["title" => $this->title]
     );
+
+    // appends it to the main category
+    $mainCategory = $this->_user->getMainCategory();
+    $cp = new DbCategoryPicture($this->db, $this->_user);
+    $cp->categoryId = $mainCategory->getId();
+    $cp->pictureId = $pictureId;
+    $cp->save();
+
+    // adds snapshots
+    foreach ($this->paths as $path) {
+      $s = new DbSnapshot($this->db, $this->_user);
+      $s->pictureId = $pictureId;
+      $s->path = $path;
+      $s->save();
+    }
+
+    return $pictureId;
   }
 }
