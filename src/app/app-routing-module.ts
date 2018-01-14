@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'picture/new/:categoryId', component: PictureNewView },
   { path: 'picture/edit/:pictureId', component: PictureEditView },
   { path: 'search', component: SearchView },
+  { path: 'search/:categoryId', component: SearchView },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundView }
 ];

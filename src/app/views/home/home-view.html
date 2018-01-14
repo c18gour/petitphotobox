@@ -3,8 +3,6 @@
   <h1>Photobox</h1>
   <div class="buttons" *ngIf="entity">
     <a (click)="menu.visible = !menu.visible" title="Toggle menu" ><i class="fa fa-bars"></i></a>
-    <a routerLink="/category/new" title="New category"><i class="fa fa-plus"></i></a>
-    <a routerLink="/picture/new" title="Upload picture"><i class="fa fa-upload"></i></a>
     <a routerLink="/search" title="Find pictures"><i class="fa fa-search"></i></a>
     <a (click)="modal.confirm('Do you want exit the system?', exit)" title="Sign out"><i class="fa fa-sign-out"></i></a>
   </div>
@@ -19,6 +17,7 @@
       <span>Uncategorized pictures</span>
       <a [routerLink]="'/category/new/' + categoryId" title="New category"><i class="fa fa-plus"></i></a>
       <a [routerLink]="'/picture/new/' + categoryId" title="Upload picture"><i class="fa fa-upload"></i></a>
+      <a routerLink="/search" title="Find pictures"><i class="fa fa-search"></i></a>
     </h3>
     <!-- else: -->
     <h3 *ngIf="!entity.main">
@@ -29,6 +28,7 @@
       <a [routerLink]="'/category/edit/' + entity.id" title="Edit category"><i class="fa fa-pencil"></i></a>
       <a [routerLink]="'/category/new/' + categoryId" title="New subcategory"><i class="fa fa-plus"></i></a>
       <a [routerLink]="'/picture/new/' + categoryId" title="Upload picture"><i class="fa fa-upload"></i></a>
+      <a [routerLink]="'/search/' + categoryId" title="Find pictures"><i class="fa fa-search"></i></a>
     </h3>
     <!-- endif -->
 
