@@ -68,7 +68,7 @@ class ImageUploadController extends Controller
     // moves the uploaded file
     try {
       $path = $upload->move(UPLOAD_IMAGE_DIR);
-      $this->_path = "/" . ltrim($path, "/");
+      $this->_path = ltrim($path, "/");
     } catch (HttpException $e) {
       throw new ClientException($e->getMessage());
     }
