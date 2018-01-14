@@ -32,15 +32,7 @@ class PictureNewController extends AuthController
       [
         "id" => $this->_picture->getId(),
         "title" => $this->_picture->title,
-        "tags" => implode(
-          ", ",
-          array_map(
-            function ($tag) {
-              return $tag->name;
-            },
-            $this->_picture->getTags()
-          )
-        ),
+        "tags" => $this->_picture->tags,
         "categoryIds" => array_map(
           function ($row) {
             return $row->getId();
@@ -85,7 +77,7 @@ class PictureNewController extends AuthController
   public function onPostRequest()
   {
     $title = $this->getParam("title");
-    $tagNames = array_filter(
+    $tags = array_filter(
       array_map(
         "strtolower", array_map("trim", explode(",", $this->getParam("tags")))
       )
@@ -100,14 +92,9 @@ class PictureNewController extends AuthController
 
     // creates a new picture
     $this->_picture->title = $title;
+    $this->_picture->tags = $tags;
     $this->_picture->paths = $snapshots;
     $this->_picture->save();
-
-    // adds tags
-    // TODO: recode
-    foreach ($tagNames as $name) {
-      $this->_picture->addTagName($name);
-    }
 
     // adds it to the categories
     $isAddedToMainCategory = false;

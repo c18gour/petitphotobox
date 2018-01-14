@@ -13,6 +13,7 @@ class DbPicture extends DbRecord
 {
   private $_user;
   public $title;
+  public $tags = [];
   public $paths = [];
 
   /**
@@ -68,21 +69,11 @@ class DbPicture extends DbRecord
     );
   }
 
-  /**
-   * Gets the main snapshot.
-   *
-   * @return DbSnapshot
-   */
-  public function getMainSnapshot()
-  {
-    return array_shift($this->getSnapshots());
-  }
-
-  public function getTags()
+  public function getPictureTags()
   {
     $sql = "
     select
-      pt.tag_id
+      pt.id
     from picture_tag as pt
     inner join tag as t
       on t.id = pt.tag_id
@@ -91,122 +82,20 @@ class DbPicture extends DbRecord
 
     return array_map(
       function ($row) {
-        return new DbTag($this->db, $row["tag_id"]);
+        return new DbPictureTag($this->db, $row["id"]);
       },
       $rows
     );
   }
 
   /**
-   * Has this picture a tag?
+   * Gets the main snapshot.
    *
-   * @param DbTag $tag A tag
-   *
-   * @return boolean
+   * @return DbSnapshot
    */
-  public function hasTag($tag)
+  public function getMainSnapshot()
   {
-    $sql = "
-    select
-      id
-    from picture_tag
-    where picture_id = ?
-    and tag_id = ?";
-    $row = $this->db->query($sql, [$this->getId(), $tag->getId()]);
-
-    return count($row) > 0;
-  }
-
-  /**
-   * Adds a tag.
-   *
-   * @param DbTag $tag A tag
-   *
-   * @return DbPictureTag
-   */
-  public function addTag($tag)
-  {
-    if ($this->hasTag($tag)) {
-      throw new DatabaseError("Tag already added");
-    }
-
-    $pt = new DbPictureTag($this->db);
-    $pt->tagId = $tag->getId();
-    $pt->pictureId = $this->getId();
-    $pt->save();
-
-    return $pt;
-  }
-
-  /**
-   * Removes a tag from this picture.
-   *
-   * @param DbTag $tag A tag
-   *
-   * @return void
-   */
-  public function removeTag($tag)
-  {
-    if (!$this->hasTag($tag)) {
-      throw new DatabaseError("Tag not found");
-    }
-
-    $sql = "
-    delete
-    from picture_tag
-    where picture_id = ?
-    and tag_id = ?";
-    $this->db->exec($sql, [$this->getId(), $tag->getId()]);
-  }
-
-  /**
-   * Has this picture a tag name.
-   *
-   * @param string $name A tag name
-   *
-   * @return boolean
-   */
-  public function hasTagName($name)
-  {
-    $tag = DbTag::searchByName($this->db, $name);
-
-    return $tag != null && $this->hasTag($tag);
-  }
-
-  /**
-   * Adds a tag name.
-   *
-   * @param string $name A tag name
-   *
-   * @return DbPictureTag
-   */
-  public function addTagName($name)
-  {
-    $tag = DbTag::searchByName($this->db, $name);
-    if ($tag == null) {
-      $tag = new DbTag($this->db);
-      $tag->name = $name;
-      $tag->save();
-    }
-
-    return $this->addTag($tag);
-  }
-
-  /**
-   * Removes a tag name.
-   *
-   * @param string $name A tag name
-   *
-   * @return void
-   */
-  public function removeTagName($name)
-  {
-    $tag = DbTag::searchByName($this->db, $name);
-    if ($tag == null) {
-      throw new DatabaseError("Tag not found");
-    }
-
-    $this->removeTag($tag);
+    return array_shift($this->getSnapshots());
   }
 
   /**
@@ -239,8 +128,13 @@ class DbPicture extends DbRecord
     select
       p.id,
       p.title,
-      group_concat(s.path) as paths
+      group_concat(distinct t.name) as tags,
+      group_concat(distinct s.path) as paths
     from picture as p
+    left join picture_tag as pt
+      on pt.picture_id = p.id
+    left join tag as t
+      on t.id = pt.tag_id
     left join snapshot as s
       on s.picture_id = p.id
     inner join category_picture as cp
@@ -252,6 +146,7 @@ class DbPicture extends DbRecord
     group by p.id";
     $row = $this->db->query($sql, [$this->_user->getId(), $this->id]);
     $this->title = $row["title"];
+    $this->tags = array_filter(explode(",", $row["tags"]));
     $this->paths = array_filter(explode(",", $row["paths"]));
     return $row["id"];
   }
@@ -267,13 +162,36 @@ class DbPicture extends DbRecord
       throw new DatabaseError("A picture must have at least one snapshot");
     }
 
-    // removes snapshots
+    // removes all tags
+    $tags = $this->getPictureTags();
+    foreach ($tags as $t) {
+      $t->delete();
+    }
+
+    // adds tags
+    // TODO: duplicate tags
+    foreach ($this->tags as $name) {
+      $tag = DbTag::searchByName($this->db, $name);
+      if ($tag == null) {
+        $tag = new DbTag($this->db);
+        $tag->name = $name;
+        $tag->save();
+      }
+
+      $pt = new DbPictureTag($this->db);
+      $pt->tagId = $tag->getId();
+      $pt->pictureId = $this->getId();
+      $pt->save();
+    }
+
+    // removes all snapshots
     $snapshots = $this->getSnapshots();
     foreach ($snapshots as $s) {
       $s->delete();
     }
 
     // adds snapshots
+    // TODO: duplicate paths
     foreach ($this->paths as $path) {
       $s = new DbSnapshot($this->db, $this->_user);
       $s->pictureId = $this->id;
@@ -316,6 +234,21 @@ class DbPicture extends DbRecord
     $cp->categoryId = $mainCategory->getId();
     $cp->pictureId = $pictureId;
     $cp->save();
+
+    // adds tags
+    foreach ($this->tags as $name) {
+      $tag = DbTag::searchByName($this->db, $name);
+      if ($tag == null) {
+        $tag = new DbTag($this->db);
+        $tag->name = $name;
+        $tag->save();
+      }
+
+      $pt = new DbPictureTag($this->db);
+      $pt->tagId = $tag->getId();
+      $pt->pictureId = $pictureId;
+      $pt->save();
+    }
 
     // adds snapshots
     foreach ($this->paths as $path) {
