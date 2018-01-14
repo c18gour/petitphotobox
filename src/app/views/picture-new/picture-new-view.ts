@@ -40,7 +40,7 @@ export class PictureNewView implements OnInit {
       this, this._resolver, this.modalContainer);
 
     this._route.params.subscribe((params) => {
-      this._categoryId = params.categoryId;
+      this._categoryId = params.categoryId || '';
 
       this.modal.loading(async () => {
         try {
@@ -63,24 +63,19 @@ export class PictureNewView implements OnInit {
     this.modal.loading(async () => {
       const categoryIds = this.categoriesInput.value;
 
-      if (categoryIds.length === 0) {
-        this.modal.error('Select at least a category');
-        return;
-      }
-
       try {
         this.entity = await this._controller.post({
-          categoryIds, title: this.entity.title, tags: this.entity.tags
+          categoryIds,
+          title: this.entity.title,
+          tags: this.entity.tags,
+          snapshots: this.paths.items
         });
       } catch (e) {
         this.modal.error(e.message);
         throw e;
       }
 
-      const categoryId = categoryIds.indexOf(this._categoryId) < 0
-        ? categoryIds.shift()
-        : this._categoryId;
-      this._router.navigate([`/home/${categoryId}`]);
+      this._router.navigate([`/home/${this._categoryId}`]);
     });
   }
 }
