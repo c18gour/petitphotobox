@@ -169,7 +169,6 @@ class DbPicture extends DbRecord
     }
 
     // adds tags
-    // TODO: duplicate tags
     foreach ($this->tags as $name) {
       $tag = DbTag::searchByName($this->db, $name);
       if ($tag == null) {
@@ -191,7 +190,6 @@ class DbPicture extends DbRecord
     }
 
     // adds snapshots
-    // TODO: duplicate paths
     foreach ($this->paths as $path) {
       $s = new DbSnapshot($this->db, $this->_user);
       $s->pictureId = $this->id;

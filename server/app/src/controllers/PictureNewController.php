@@ -1,5 +1,6 @@
 <?php
 namespace petitphotobox\controllers;
+use petitphotobox\core\arr\Arr;
 use petitphotobox\core\controller\AuthController;
 use petitphotobox\core\exception\AppError;
 use petitphotobox\core\exception\ClientException;
@@ -77,9 +78,12 @@ class PictureNewController extends AuthController
   public function onPostRequest()
   {
     $title = $this->getParam("title");
-    $tags = array_filter(
-      array_map(
-        "strtolower", array_map("trim", explode(",", $this->getParam("tags")))
+    $tags = Arr::removeDuplicateItems(
+      array_filter(
+        array_map(
+          "strtolower",
+          array_map("trim", explode(",", $this->getParam("tags")))
+        )
       )
     );
     $snapshots = array_filter(
