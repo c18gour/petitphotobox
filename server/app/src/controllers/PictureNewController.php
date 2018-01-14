@@ -32,7 +32,7 @@ class PictureNewController extends AuthController
       [
         "id" => $this->_picture->getId(),
         "title" => $this->_picture->title,
-        "tags" => $this->_picture->tags,
+        "tags" => implode(", ", $this->_picture->tags),
         "categoryIds" => array_map(
           function ($row) {
             return $row->getId();
