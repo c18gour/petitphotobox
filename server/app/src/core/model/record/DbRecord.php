@@ -8,9 +8,8 @@ abstract class DbRecord
 {
   protected $db;
   protected $id;
+  private $_isInsertMode;
 
-  // TODO: la presencia del parámetro $id determina si estoy actualizando o
-  // insertando, no el hecho de que el $id esté vacío o no
   /**
    * Constructor.
    *
@@ -21,6 +20,7 @@ abstract class DbRecord
   {
     $this->db = $db;
     $this->id = $id;
+    $this->_isInsertMode = Text::isEmpty($id);
 
     if (!Text::isEmpty($id)) {
       $this->refresh();
@@ -54,7 +54,7 @@ abstract class DbRecord
    */
   public function save()
   {
-    if (Text::isEmpty($this->id)) {
+    if ($this->_isInsertMode) {
       $this->id = $this->insert();
     } else {
       $this->update($this->id);
