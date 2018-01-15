@@ -44,7 +44,7 @@ class Controller extends HttpController
   /**
    * Gets the current document.
    *
-   * @return Document
+   * @return mixed
    */
   public function getDocument()
   {
