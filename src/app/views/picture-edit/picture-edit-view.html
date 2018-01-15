@@ -1,5 +1,5 @@
-<!-- TODO: (low) leyend field -->
-<!-- TODO: (low) geolocalization field --->
+<!-- TODO: (low) leyend field (also in picture-new) -->
+<!-- TODO: (low) geolocalization field (also in picture-new) --->
 <div class="header">
   <h1>Photobox</h1>
 </div>
@@ -8,7 +8,6 @@
   <h3>Edit Picture</h3>
   <form (ngSubmit)="onSubmit()" (change)="hasChanged = true">
     <fieldset>
-      <!-- TODO: (low) use css animations -->
       <div class="options" [ngClass]="{'open': showMoreOptions}">
         <label>
           <a (click)="showMoreOptions = !showMoreOptions">

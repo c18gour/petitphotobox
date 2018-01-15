@@ -1,4 +1,3 @@
-<!-- TODO: (low) use css animations -->
 <ul [ngClass]="{'open': visible}">
   <app-entry #entries *ngFor="let entry of entries" [entry]="entry" (selectEntry)="selectEntry.emit($event)"></app-entry>
 </ul>
