@@ -111,6 +111,7 @@ class DbCategory extends DbRecord
       on c.user_id = ?
       and c.id = cp.category_id
     where cp.category_id = ?
+    group by p.id
     order by cp.ord desc";
     $rows = iterator_to_array(
       $this->db->query($sql, [$this->_user->getId(), $this->getId()])

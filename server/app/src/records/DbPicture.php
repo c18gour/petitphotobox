@@ -95,7 +95,7 @@ class DbPicture extends DbRecord
    */
   public function getMainSnapshot()
   {
-    return array_shift($this->getSnapshots());
+    return array_pop($this->getSnapshots());
   }
 
   /**
