@@ -84,11 +84,14 @@ class CategoryEditController extends AuthController
       throw new ClientException("Parent category not found");
     }
 
-    $category = DbCategory::searchByTitle($this->db, $parent->getId(), $title);
+    $category = DbCategory::searchByTitle(
+      $this->db, $this->user, $parent->getId(), $title
+    );
     if ($category != null && $category->getId() != $this->_category->getId()) {
       throw new ClientException("The category already exist");
     }
 
+    // TODO: the parent can't be the same category
     $this->_category->parentCategoryId = $parent->getId();
     $this->_category->title = $title;
     $this->_category->save();

@@ -74,7 +74,7 @@ class CategoryNewController extends AuthController
     }
 
     $category = DbCategory::searchByTitle(
-      $this->db, $this->_parentCategory->getId(), $title
+      $this->db, $this->user, $this->_parentCategory->getId(), $title
     );
     if ($category != null) {
       throw new ClientException("The category already exist");
