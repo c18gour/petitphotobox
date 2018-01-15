@@ -1,8 +1,22 @@
+@import '../../../config/css/palette';
+
 ul {
+  border: .1rem solid $divider-color;
+  border-radius: .4rem;
   display: none;
   list-style: none;
+  padding: 1rem 0 0 1.5rem;
 
   &.open {
     display: block;
+  }
+
+  &.required {
+    border-width: 1px 1px 1px .6rem;
+  }
+
+  ul {
+    border: 0;
+    padding: 0;
   }
 }

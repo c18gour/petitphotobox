@@ -8,6 +8,9 @@ import { InputOptionEntity } from '../../entities/input-option-entity';
 })
 export class InputSelectComponent {
   @Input()
+  required = false;
+
+  @Input()
   name = '';
 
   @Input()

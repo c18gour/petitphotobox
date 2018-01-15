@@ -8,10 +8,13 @@ import { InputCheckboxItemComponent } from './input-checkbox-item-component';
   styleUrls: ['./input-checkbox-menu-component.scss']
 })
 export class InputCheckboxMenuComponent implements OnInit {
-  _isVisible: boolean = null;
+  private _isVisible: boolean = null;
 
   @Output()
   selectEntry = new EventEmitter<string[]>();
+
+  @Input()
+  required = false;
 
   @Input()
   items: InputOptionEntity[];

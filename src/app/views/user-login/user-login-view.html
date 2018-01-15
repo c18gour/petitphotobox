@@ -6,7 +6,6 @@
   <form (ngSubmit)="onSubmit()">
     <fieldset>
       <label for="username">Username</label>
-      <!-- TODO: required inputs style -->
       <input autofocus
         type="text" id="username" name="username" required
         [(ngModel)]="entity.username" #name="ngModel">
