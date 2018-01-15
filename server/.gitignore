@@ -1,4 +1,7 @@
 /logs
-/app/data
 /app/config.php
 /app/src/vendor
+
+# ignore user's data
+/app/data/*
+!/app/data/.htaccess
