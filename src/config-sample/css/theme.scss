@@ -68,6 +68,12 @@
       color: $primary-text-color;
       margin-bottom: 0;
       padding: 0 1.1rem;
+
+      &[disabled] {
+        border-color: $divider-color;
+        color: $primary-text-color;
+        opacity: .5;
+      }
     }
 
     &.button-clear {
