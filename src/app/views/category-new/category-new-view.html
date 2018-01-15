@@ -3,13 +3,13 @@
 </div>
 
 <div class="container" *ngIf="entity">
-  <h3>Create a new Category</h3>
+  <h3>Create a new category</h3>
   <form (ngSubmit)="onSubmit()" (change)="hasChanged = true">
     <fieldset>
       <label for="parentCategoryId">Parent Category</label>
       <app-input-select #parentCategoryInput name="parentCategoryId"
         [items]="entity.categories" [value]="entity.parentCategoryId"></app-input-select>
-      <label for="name">Category title</label>
+      <label for="name">Title</label>
       <input #inputTitle="ngModel" autofocus type="text" id="title" required
         name="title" [(ngModel)]="entity.title" />
       <div [hidden]="inputTitle.valid || inputTitle.pristine" class="error-box">
