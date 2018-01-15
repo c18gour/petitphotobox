@@ -15,6 +15,7 @@ import { ModalWindowSystem } from '../../modules/modal-window-system/modal-windo
 export class CategoryNewView implements OnInit {
   entity: CategoryNewEntity;
   modal: ModalWindowSystem;
+  hasChanged = false;
 
   constructor(
     private _controller: CategoryNewController,
@@ -48,8 +49,10 @@ export class CategoryNewView implements OnInit {
     });
   }
 
-  goBack() {
-    this._location.back();
+  async goBack() {
+    if (!this.hasChanged || await this.modal.confirm('Discard changes?')) {
+      this._location.back();
+    }
   }
 
   async onSubmit() {

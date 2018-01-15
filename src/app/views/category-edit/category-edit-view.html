@@ -4,7 +4,7 @@
 
 <div class="container" *ngIf="entity">
   <h3>Edit Category</h3>
-  <form (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()" (change)="hasChanged = true">
     <fieldset>
       <label for="parentCategoryId">Parent Category</label>
       <app-input-select #parentCategoryInput name="parentCategoryId"

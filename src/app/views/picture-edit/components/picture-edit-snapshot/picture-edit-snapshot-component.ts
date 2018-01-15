@@ -12,6 +12,9 @@ export class PictureEditSnapshotComponent {
   path: string;
 
   @Output()
+  change = new EventEmitter();
+
+  @Output()
   deletePicture = new EventEmitter<string>();
 
   @Output()

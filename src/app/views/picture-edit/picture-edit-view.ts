@@ -19,6 +19,7 @@ export class PictureEditView implements OnInit {
   modal: ModalWindowSystem;
   showMoreOptions = false;
   paths = new SortableList<string>();
+  hasChanged = false;
 
   constructor(
     private _controller: PictureEditController,
@@ -53,8 +54,10 @@ export class PictureEditView implements OnInit {
     });
   }
 
-  goBack() {
-    this._location.back();
+  async goBack() {
+    if (!this.hasChanged || await this.modal.confirm('Discard changes?')) {
+      this._location.back();
+    }
   }
 
   onSubmit() {

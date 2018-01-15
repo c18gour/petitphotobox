@@ -6,7 +6,7 @@
 
 <div class="container" *ngIf="entity">
   <h3>Edit Picture</h3>
-  <form (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()" (change)="hasChanged = true">
     <fieldset>
       <!-- TODO: (low) use css animations -->
       <div class="options" [ngClass]="{'open': showMoreOptions}">
@@ -33,6 +33,7 @@
         <label>Add one or more snapshots</label>
         <app-picture-edit-snapshot *ngFor="let path of paths.items"
           [path]="path"
+          (change)="hasChanged = true"
           (deletePicture)="paths.removeItem($event)"
           (downPicture)="paths.moveItemDown($event)"
           (upPicture)="paths.moveItemUp($event)"></app-picture-edit-snapshot>

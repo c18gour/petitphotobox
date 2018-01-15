@@ -20,6 +20,7 @@ export class PictureNewView implements OnInit {
   modal: ModalWindowSystem;
   paths = new SortableList<string>();
   showMoreOptions = false;
+  hasChanged = false;
 
   constructor(
     private _controller: PictureNewController,
@@ -55,8 +56,10 @@ export class PictureNewView implements OnInit {
     });
   }
 
-  goBack() {
-    this._location.back();
+  async goBack() {
+    if (!this.hasChanged || await this.modal.confirm('Discard changes?')) {
+      this._location.back();
+    }
   }
 
   onSubmit() {

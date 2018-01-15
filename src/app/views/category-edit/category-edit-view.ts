@@ -15,6 +15,7 @@ import { CategoryEditEntity } from './entities/category-edit-entity';
 export class CategoryEditView implements OnInit {
   entity: CategoryEditEntity;
   modal: ModalWindowSystem;
+  hasChanged = false;
   private _categoryId: string;
 
   constructor(
@@ -50,8 +51,10 @@ export class CategoryEditView implements OnInit {
     });
   }
 
-  goBack() {
-    this._location.back();
+  async goBack() {
+    if (!this.hasChanged || await this.modal.confirm('Discard changes?')) {
+      this._location.back();
+    }
   }
 
   onSubmit() {
