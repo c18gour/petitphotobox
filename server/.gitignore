@@ -3,5 +3,5 @@
 /app/src/vendor
 
 # ignore user's data
-/app/data/*
-!/app/data/.htaccess
+/app/users/*
+!/app/users/.htaccess
