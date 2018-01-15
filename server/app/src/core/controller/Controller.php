@@ -62,6 +62,7 @@ class Controller extends HttpController
       parent::processRequest();
     } catch (ClientException $e) {
       header("HTTP/1.0 400 Client Error");
+      header("Content-Type: text/plain; charset=utf-8");
 
       $doc = $this->getDocument();
       $doc->setStatusCode($e->getCode());
@@ -71,6 +72,7 @@ class Controller extends HttpController
       throw $e;
     } catch (AppError $e) {
       header("HTTP/1.0 500 Application Error");
+      header("Content-Type: text/plain; charset=utf-8");
 
       $doc = new Document();
       $doc->setStatusCode($e->getCode());
