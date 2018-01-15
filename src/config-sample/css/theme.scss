@@ -93,5 +93,21 @@
     &:focus {
       border: .1rem solid $secondary-text-color;
     }
+
+    &[required] {
+      border-left: .6rem solid $divider-color;
+
+      &:focus {
+        border-left: .6rem solid $secondary-text-color;
+      }
+
+      &.ng-invalid {
+        &:not(.ng-pristine) {
+          border-color: $accent-color;
+          border-style: solid;
+          border-width: 1px 1px 1px .6rem;
+        }
+      }
+    }
   }
 }
