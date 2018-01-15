@@ -14,7 +14,6 @@ use soloproyectos\text\Text;
 
 class ImageUploadController extends Controller
 {
-  private $_allowedImageType = ["image/jpeg", "image/png"];
   private $_path = "";
 
   /**
@@ -56,19 +55,21 @@ class ImageUploadController extends Controller
    */
   public function onPostRequest()
   {
+    $user = UserAuth::getInstance($this->db);
+
     if (!Arr::exist($_FILES, "file")) {
         throw new ClientException("File is required");
     }
 
     $upload = new HttpUpload("file");
-    if (!in_array($upload->getType(), $this->_allowedImageType)) {
-      throw new ClientException("Only JPEG and PNG images are allowed: ");
+    if ($upload->getType() != "image/jpeg") {
+      throw new ClientException("Only JPEG images are allowed;");
     }
 
     // moves the uploaded file
     try {
-      $path = $upload->move(UPLOAD_IMAGE_DIR);
-      $this->_path = ltrim($path, "/");
+      $path = $upload->move($user->getDir());
+      $this->_path = "images/" . basename($path);
     } catch (HttpException $e) {
       throw new ClientException($e->getMessage());
     }

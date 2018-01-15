@@ -6,7 +6,7 @@ use petitphotobox\exceptions\DatabaseError;
 
 class DbSnapshot extends DbSortableRecord
 {
-  private $_validPath = '/^data\/images\/.+\..+$/';
+  private $_validPath = '/^images\/.+\..+$/';
   private $_user;
   public $pictureId;
   public $path;

@@ -5,6 +5,7 @@ use petitphotobox\core\model\record\DbTable;
 use petitphotobox\records\DbCategory;
 use petitphotobox\records\DbPicture;
 use soloproyectos\db\DbConnector;
+use soloproyectos\sys\file\SysFile;
 
 // TODO: cada usuario debería tener su propio directorio
 // Además, debe existir un control de imágenes
@@ -31,6 +32,16 @@ class DbUser extends DbRecord
   public function __construct($db, $id = null)
   {
     parent::__construct($db, $id);
+  }
+
+  /**
+   * Gets user's directory.
+   *
+   * @return string
+   */
+  public function getDir()
+  {
+    return SysFile::concat(USER_DATA_DIR, $this->username);
   }
 
   /**

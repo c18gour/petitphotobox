@@ -36,9 +36,9 @@ class ImageController extends AuthController
       throw new AppError("Path is required");
     }
 
-    $this->_path = SysFile::concat(USER_DATA_DIR, $this->user->username, $path);
+    $this->_path = SysFile::concat($this->user->getDir(), $path);
     if (!is_file($this->_path)) {
-      throw new AppError("Asset not found");
+      throw new AppError("Image not found");
     }
   }
 }
