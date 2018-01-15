@@ -12,6 +12,16 @@ abstract class DbSortableRecord extends DbRecord
   protected $ord;
 
   /**
+   * Gets the ord column.
+   *
+   * @return int
+   */
+  public function getOrd()
+  {
+    return $this->ord;
+  }
+
+  /**
    * Gets the list of records sorted by the 'ord' column in ascendent order
    *
    * @return DbSortableRecord[]

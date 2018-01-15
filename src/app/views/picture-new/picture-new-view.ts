@@ -71,7 +71,7 @@ export class PictureNewView implements OnInit {
           categoryIds,
           title: this.entity.title,
           tags: this.entity.tags,
-          snapshots: this.paths.items
+          snapshots: this.paths.items.reverse()
         });
       } catch (e) {
         this.modal.error(e.message);

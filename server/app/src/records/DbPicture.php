@@ -95,7 +95,7 @@ class DbPicture extends DbRecord
    */
   public function getMainSnapshot()
   {
-    return array_pop($this->getSnapshots());
+    return array_shift($this->getSnapshots());
   }
 
   /**
@@ -129,7 +129,7 @@ class DbPicture extends DbRecord
       p.id,
       p.title,
       group_concat(distinct t.name) as tags,
-      group_concat(distinct s.path) as paths
+      group_concat(distinct s.path order by s.ord desc) as paths
     from picture as p
     left join picture_tag as pt
       on pt.picture_id = p.id
