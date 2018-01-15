@@ -2,6 +2,8 @@
   <div class="buttons left">
     <a (click)="deletePicture.emit(id)" title="Delete picture"><i class="fa fa-trash"></i></a>
   </div>
+  <!-- TODO: (low) 'start' button (also in picture-new and picture-edit) -->
+  <!-- TODO: (low) 'stack' button (also in picture-new and picture-edit) -->
   <div class="buttons right" [hidden]="rightButtonsHidden">
     <a title="Move picture up"
       (click)="upPicture.emit(id)"><i class="fa fa-chevron-circle-up"></i></a>
