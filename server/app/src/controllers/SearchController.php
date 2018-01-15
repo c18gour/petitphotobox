@@ -14,7 +14,7 @@ class SearchController extends AuthController
   private $_pictures = [];
 
   /**
-   * Creates a new instance..
+   * Creates a new instance.
    */
   public function __construct()
   {

@@ -13,7 +13,7 @@ class CategoryNewController extends AuthController
   private $_category;
 
   /**
-   * Creates a new instance..
+   * Creates a new instance.
    */
   public function __construct()
   {

@@ -9,7 +9,7 @@ use soloproyectos\text\Text;
 class PictureDeleteController extends AuthController
 {
   /**
-   * Creates a new instance..
+   * Creates a new instance.
    */
   public function __construct()
   {

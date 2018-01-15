@@ -15,7 +15,7 @@ class Controller extends HttpController
   private $_document;
 
   /**
-   * Creates a new instance..
+   * Creates a new instance.
    */
   public function __construct()
   {

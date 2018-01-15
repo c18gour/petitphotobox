@@ -18,7 +18,7 @@ class ImageUploadController extends Controller
   private $_path = "";
 
   /**
-   * Creates a new instance..
+   * Creates a new instance.
    */
   public function __construct()
   {

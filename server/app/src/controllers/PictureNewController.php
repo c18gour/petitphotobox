@@ -16,7 +16,7 @@ class PictureNewController extends AuthController
   private $_picture;
 
   /**
-   * Creates a new instance..
+   * Creates a new instance.
    */
   public function __construct()
   {
