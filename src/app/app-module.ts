@@ -1,3 +1,4 @@
+// TODO: on 'session error' redirect to 'login view' and go back to the previous page
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';

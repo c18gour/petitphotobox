@@ -91,7 +91,6 @@ class CategoryEditController extends AuthController
       throw new ClientException("The category already exist");
     }
 
-    // TODO: the parent can't be the same category
     $this->_category->parentCategoryId = $parent->getId();
     $this->_category->title = $title;
     $this->_category->save();

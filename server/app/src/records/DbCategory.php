@@ -286,6 +286,10 @@ class DbCategory extends DbRecord
    */
   protected function update()
   {
+    if ($this->parentCategoryId == $this->id) {
+      throw new DatabaseError("A category can not be a parent of itself");
+    }
+
     $sql = "
     update category set
       parent_category_id = ?,
