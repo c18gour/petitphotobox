@@ -49,7 +49,7 @@ export class HomeView implements OnInit {
     this._route.params.subscribe(async (params) => {
       this.categoryId = params.id ? params.id : '';
 
-      this.modal.loading(() => this._refresh());
+      this.modal.loading(() => this.refresh());
     });
   }
 
@@ -88,7 +88,7 @@ export class HomeView implements OnInit {
         throw e;
       }
 
-      this._refresh();
+      this.refresh();
     });
   }
 
@@ -103,7 +103,7 @@ export class HomeView implements OnInit {
         throw e;
       }
 
-      this._refresh();
+      this.refresh();
     });
   }
 
@@ -118,7 +118,7 @@ export class HomeView implements OnInit {
         throw e;
       }
 
-      this._refresh();
+      this.refresh();
     });
   }
 
@@ -130,10 +130,10 @@ export class HomeView implements OnInit {
     this._router.navigate(['/home']);
   }
 
-  private async _refresh() {
+  async refresh(page: number = 0) {
     try {
       this.entity = await this._controller.get(
-        { categoryId: this.categoryId });
+        { categoryId: this.categoryId, page });
     } catch (e) {
       if (e instanceof SessionError) {
         this._router.navigate(['/login']);

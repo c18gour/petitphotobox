@@ -13,3 +13,8 @@ define("DBPASS", "<password>");
  */
 define("DOCUMENT_ROOT", rtrim($_SERVER["DOCUMENT_ROOT"], "/"));
 define("USER_DATA_DIR", DOCUMENT_ROOT . "/users");
+
+/**
+ * Maximun number of items per page.
+ */
+define("MAX_ITEMS_PER_PAGE", 10);

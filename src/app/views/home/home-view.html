@@ -33,10 +33,14 @@
     </h3>
     <!-- endif -->
 
-    <!-- TODO: navigation bar -->
     <p *ngIf="entity.pictures.length === 0">
       <em>This category is empty.</em>
     </p>
+
+    <app-paginator *ngIf="entity.numPages > 1"
+        [page]="entity.page"
+        [numPages]="entity.numPages"
+        (selectPage)="refresh($event)"></app-paginator>
 
     <!-- TODO: (low) when moving a picture, scroll to that picture (also in picture-edit, picture-new) -->
     <app-home-picture *ngFor="let picture of entity.pictures"

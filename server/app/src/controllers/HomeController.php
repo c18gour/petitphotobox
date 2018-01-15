@@ -9,6 +9,8 @@ use soloproyectos\text\Text;
 
 class HomeController extends AuthController
 {
+  private $_page;
+  private $_pictures;
   private $_category;
 
   /**
@@ -28,19 +30,26 @@ class HomeController extends AuthController
   public function getDocument()
   {
     $mainCategory = $this->user->getMainCategory();
+    $pictures = array_slice(
+      $this->_pictures,
+      MAX_ITEMS_PER_PAGE * $this->_page,
+      MAX_ITEMS_PER_PAGE
+    );
 
     return new Document(
       [
         "id" => $this->_category->getId(),
         "title" => $this->_category->title,
         "main" => $this->_category->getId() == $mainCategory->getId(),
+        "page" => $this->_page,
+        "numPages" => $this->_getNumPages(),
         "pictures" => array_map(
           function ($row) {
             $snapshot = $row->getMainSnapshot();
 
             return ["id" => $row->getId(), "path" => $snapshot->path];
           },
-          $this->_category->getPictures()
+          $pictures
         ),
         "categories" => $this->_getCategoryTree($mainCategory)
       ]
@@ -54,6 +63,8 @@ class HomeController extends AuthController
    */
   public function onOpenRequest()
   {
+    $this->_page = intval($this->getParam("page"));
+
     $categoryId = $this->getParam("categoryId");
     $this->_category = Text::isEmpty($categoryId)
       ? $this->user->getMainCategory()
@@ -62,6 +73,32 @@ class HomeController extends AuthController
     if (!$this->_category->isFound()) {
       throw new ClientException("Category not found");
     }
+
+    $this->_pictures = $this->_category->getPictures();
+
+    if (
+      $this->_page < 0 ||
+      ($this->_page > 0 && $this->_getNumPages() < $this->_page +1)
+    ) {
+      throw new ClientException("Page not found");
+    }
+  }
+
+  /**
+   * Gets the number of pages.
+   *
+   * @return int
+   */
+  private function _getNumPages()
+  {
+    $numItems = count($this->_pictures);
+    $numPages = floor($numItems / MAX_ITEMS_PER_PAGE);
+
+    if (MAX_ITEMS_PER_PAGE * $numPages < $numItems) {
+      $numPages++;
+    }
+
+    return $numPages;
   }
 
   /**

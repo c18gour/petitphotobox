@@ -14,9 +14,12 @@ import { AppComponent } from './app-component';
 import { MenuModule } from './modules/menu/menu-module';
 import { ModalWindowSytemModule } from './modules/modal-window-system/modal-window-system-module';
 
+import { IteratorPipe } from './pipes/iterator-pipe';
+
 // components
 import { InputSelectComponent } from './components/input-select/input-select-component';
 import { PictureUploaderComponent } from './components/picture-uploader/picture-uploader-component';
+import { PaginatorComponent } from './components/paginator/paginator-component';
 
 // input-checkbox component
 import { InputCheckboxComponent } from './components/input-checkbox/input-checkbox-component';
@@ -66,9 +69,12 @@ import { PictureDownController } from './views/home/controllers/picture-down-con
   declarations: [
     AppComponent,
 
+    IteratorPipe,
+
     // components
     InputSelectComponent,
     PictureUploaderComponent,
+    PaginatorComponent,
     HomePictureComponent,
     SearchPictureComponent,
 

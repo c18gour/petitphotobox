@@ -6,5 +6,7 @@ export class HomeEntity extends BaseEntity {
   readonly main: boolean;
   title: string;
   categories: Array<MenuEntry>;
+  page: number;
+  numPages: number;
   pictures: Array<{ id: string, path: string }>;
 }
