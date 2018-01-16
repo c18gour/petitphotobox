@@ -43,7 +43,6 @@
         (selectPage)="goPage($event)"></app-paginator>
 
     <!-- TODO: (low) when moving a picture, scroll to that picture (also in picture-edit, picture-new) -->
-    <!-- TODO: down/up debería buscar el elemento -->
     <app-home-picture *ngFor="let picture of entity.pictures"
       [id]="picture.id"
       [path]="picture.path"
