@@ -47,7 +47,7 @@ export class HomeView implements OnInit {
       this, this._resolver, this.modalContainer);
 
     this._route.params.subscribe(async (params) => {
-      this.categoryId = params.id ? params.id : '';
+      this.categoryId = params.categoryId ? params.categoryId : '';
 
       this.modal.loading(() => this.refresh());
     });

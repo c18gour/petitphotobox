@@ -13,7 +13,7 @@ import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
 const routes: Routes = [
   { path: 'home', component: HomeView },
-  { path: 'home/:id', component: HomeView },
+  { path: 'home/:categoryId', component: HomeView },
   { path: 'login', component: UserLoginView },
   { path: 'user-register', component: UserRegisterView },
   { path: 'category/new', component: CategoryNewView },
