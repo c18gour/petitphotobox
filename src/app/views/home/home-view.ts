@@ -12,7 +12,7 @@ import { HomeController } from './controllers/home-controller';
 import { CategoryDeleteController } from './controllers/category-delete-controller';
 import { PictureDeleteController } from './controllers/picture-delete-controller';
 import { PictureUpController } from './controllers/picture-up-controller';
-import { PictureDownController } from './controllers/picture-down-controller';
+import { CategoryPictureDownController } from './controllers/category-picture-down-controller';
 
 @Component({
   selector: 'app-home',
@@ -31,7 +31,7 @@ export class HomeView implements OnInit {
     private _categoryDeleteController: CategoryDeleteController,
     private _pictureDeleteController: PictureDeleteController,
     private _pictureUpController: PictureUpController,
-    private _pictureDownController: PictureDownController,
+    private _pictureDownController: CategoryPictureDownController,
     private _router: Router,
     private _route: ActivatedRoute,
     private _resolver: ComponentFactoryResolver

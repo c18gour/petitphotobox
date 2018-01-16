@@ -6,7 +6,7 @@ use petitphotobox\records\DbCategory;
 use petitphotobox\records\DbPicture;
 use soloproyectos\text\Text;
 
-class PictureDownController extends AuthController
+class CategoryPictureDownController extends AuthController
 {
   /**
    * Creates a new instance.

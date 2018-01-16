@@ -62,7 +62,7 @@ import { HomeController } from './views/home/controllers/home-controller';
 import { CategoryDeleteController } from './views/home/controllers/category-delete-controller';
 import { PictureDeleteController } from './views/home/controllers/picture-delete-controller';
 import { PictureUpController } from './views/home/controllers/picture-up-controller';
-import { PictureDownController } from './views/home/controllers/picture-down-controller';
+import { CategoryPictureDownController } from './views/home/controllers/category-picture-down-controller';
 
 @NgModule({
   declarations: [
@@ -119,7 +119,7 @@ import { PictureDownController } from './views/home/controllers/picture-down-con
     CategoryDeleteController,
     PictureDeleteController,
     PictureUpController,
-    PictureDownController,
+    CategoryPictureDownController,
     PictureNewController,
     PictureEditController,
     SearchController
