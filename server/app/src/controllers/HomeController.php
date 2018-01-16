@@ -63,6 +63,7 @@ class HomeController extends AuthController
    */
   public function onOpenRequest()
   {
+    $pictureId = $this->getParam("pictureId");
     $this->_page = intval($this->getParam("page"));
 
     $categoryId = $this->getParam("categoryId");
@@ -76,12 +77,42 @@ class HomeController extends AuthController
 
     $this->_pictures = $this->_category->getPictures();
 
+    if (!Text::isEmpty($pictureId)) {
+      $pos = $this->_searchPictureById($pictureId);
+      if ($pos < 0) {
+        throw new ClientException("Picture not found");
+      }
+
+      $this->_page = floor($pos / MAX_ITEMS_PER_PAGE);
+    }
+
     if (
       $this->_page < 0 ||
       ($this->_page > 0 && $this->_getNumPages() < $this->_page +1)
     ) {
       throw new ClientException("Page not found");
     }
+  }
+
+  /**
+   * Searches a pictue by ID.
+   *
+   * @param string $pictureId Picture ID
+   *
+   * @return int
+   */
+  private function _searchPictureById($pictureId)
+  {
+    $pos = -1;
+
+    foreach ($this->_pictures as $i => $picture) {
+      if ($picture->getId() == $pictureId) {
+        $pos = $i;
+        break;
+      }
+    }
+
+    return $pos;
   }
 
   /**
