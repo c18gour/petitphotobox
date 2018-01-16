@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit, ComponentFactoryResolver, ViewContainerRe
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { SessionError } from '../../core/exception/session-error';
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
 import { InputCheckboxComponent } from '../../components/input-checkbox/input-checkbox-component';
 
@@ -47,7 +48,12 @@ export class PictureEditView implements OnInit {
           this.entity = await this._controller.get({ pictureId });
           this.paths = new SortableList<string>(this.entity.snapshots);
         } catch (e) {
-          this.modal.error(e.message);
+          if (await this.modal.error(e.message)) {
+            if (e instanceof SessionError) {
+              this._router.navigate(['/login']);
+            }
+          }
+
           throw e;
         }
       });

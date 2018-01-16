@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolve
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { SessionError } from '../../core/exception/session-error';
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
 import { InputSelectComponent } from '../../components/input-select/input-select-component';
 import { CategoryEditController } from './controllers/category-edit-controller';
@@ -44,7 +45,12 @@ export class CategoryEditView implements OnInit {
           this.entity = await this._controller.get(
             { categoryId: this._categoryId });
         } catch (e) {
-          this.modal.error(e.message);
+          if (await this.modal.error(e.message)) {
+            if (e instanceof SessionError) {
+              this._router.navigate(['/login']);
+            }
+          }
+
           throw e;
         }
       });
