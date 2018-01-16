@@ -6,7 +6,7 @@ use petitphotobox\records\DbCategory;
 use petitphotobox\records\DbPicture;
 use soloproyectos\text\Text;
 
-class PictureDeleteController extends AuthController
+class CategoryPictureDeleteController extends AuthController
 {
   /**
    * Creates a new instance.

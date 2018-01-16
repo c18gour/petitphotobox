@@ -60,7 +60,7 @@ import { SearchController } from './views/search/controllers/search-controller';
 // home controllers
 import { HomeController } from './views/home/controllers/home-controller';
 import { CategoryDeleteController } from './views/home/controllers/category-delete-controller';
-import { PictureDeleteController } from './views/home/controllers/picture-delete-controller';
+import { CategoryPictureDeleteController } from './views/home/controllers/category-picture-delete-controller';
 import { CategoryPictureUpController } from './views/home/controllers/category-picture-up-controller';
 import { CategoryPictureDownController } from './views/home/controllers/category-picture-down-controller';
 
@@ -117,7 +117,7 @@ import { CategoryPictureDownController } from './views/home/controllers/category
     CategoryNewController,
     CategoryEditController,
     CategoryDeleteController,
-    PictureDeleteController,
+    CategoryPictureDeleteController,
     CategoryPictureUpController,
     CategoryPictureDownController,
     PictureNewController,

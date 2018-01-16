@@ -5,10 +5,10 @@ import { environment as env } from '../../../../environments/environment';
 import { BaseController } from '../../../core/controller/base-controller';
 
 @Injectable()
-export class PictureDeleteController
+export class CategoryPictureDeleteController
   extends BaseController {
   constructor(http: Http) {
-    super(http, `${env.apiUrl}/picture-delete.php`);
+    super(http, `${env.apiUrl}/category-picture-delete.php`);
   }
 
   post(args: { categoryId: string, pictureId: string }) {
