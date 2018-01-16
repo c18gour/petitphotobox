@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
+import { SessionError } from '../../core/exception/session-error';
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
 import { InputCheckboxComponent } from '../../components/input-checkbox/input-checkbox-component';
 
@@ -19,7 +20,7 @@ export class SearchView implements OnInit {
 
   constructor(
     private _controller: SearchController,
-    private _route: ActivatedRoute,
+    private _router: Router,
     private _location: Location,
     private _resolver: ComponentFactoryResolver
   ) { }
@@ -55,7 +56,12 @@ export class SearchView implements OnInit {
       try {
         this.entity = await this._controller.post({ categoryIds });
       } catch (e) {
-        this.modal.error(e.message);
+        if (await this.modal.error(e.message)) {
+          if (e instanceof SessionError) {
+            this._router.navigate(['/login/back']);
+          }
+        }
+
         throw e;
       }
     });
@@ -68,7 +74,12 @@ export class SearchView implements OnInit {
       try {
         this.entity = await this._controller.post({ categoryIds, page });
       } catch (e) {
-        this.modal.error(e.message);
+        if (await this.modal.error(e.message)) {
+          if (e instanceof SessionError) {
+            this._router.navigate(['/login/back']);
+          }
+        }
+
         throw e;
       }
     });
