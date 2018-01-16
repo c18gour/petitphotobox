@@ -55,7 +55,6 @@ import { CategoryNewController } from './views/category-new/controllers/category
 import { CategoryEditController } from './views/category-edit/controllers/category-edit-controller';
 import { PictureNewController } from './views/picture-new/controllers/picture-new-controller';
 import { PictureEditController } from './views/picture-edit/controllers/picture-edit-controller';
-import { SearchController } from './views/search/controllers/search-controller';
 
 // home controllers
 import { HomeController } from './views/home/controllers/home-controller';
@@ -63,6 +62,10 @@ import { CategoryDeleteController } from './views/home/controllers/category-dele
 import { CategoryPictureDeleteController } from './views/home/controllers/category-picture-delete-controller';
 import { CategoryPictureUpController } from './views/home/controllers/category-picture-up-controller';
 import { CategoryPictureDownController } from './views/home/controllers/category-picture-down-controller';
+
+// search controllers
+import { SearchController } from './views/search/controllers/search-controller';
+import { PictureDeleteController } from './views/search/controllers/picture-delete-controller';
 
 @NgModule({
   declarations: [
@@ -122,7 +125,8 @@ import { CategoryPictureDownController } from './views/home/controllers/category
     CategoryPictureDownController,
     PictureNewController,
     PictureEditController,
-    SearchController
+    SearchController,
+    PictureDeleteController
   ],
   bootstrap: [AppComponent]
 })

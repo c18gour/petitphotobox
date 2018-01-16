@@ -84,4 +84,8 @@ export class SearchView implements OnInit {
       }
     });
   }
+
+  deletePicture(pictureId: string) {
+    console.log(pictureId);
+  }
 }
