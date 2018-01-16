@@ -4,6 +4,7 @@
 
 <div class="container" *ngIf="entity">
   <h3>Search Pictures</h3>
+  <!-- TODO:  -->
   <form (ngSubmit)="onSubmit()">
     <fieldset>
       <div [hidden]="entity.categories.length === 0">
@@ -11,10 +12,25 @@
         <app-input-checkbox #categoriesInput name="categoryId"
           [items]="entity.categories" [value]="entity.categoryIds"></app-input-checkbox>
       </div>
+      <!-- TODO: show pictures that are in ANY|ALL category
+      <select>
+        <option value="any">Show pictures that are in ANY category</option>
+        <option value="all">Show pictures that are in ALL categories</option>
+      </select> -->
+      <!-- TODO: show subcategory pictures
+      <label>
+        <input type="checkbox">
+        <span>Show subcategory pictures</span>
+      </label> -->
       <button type="submit" class="button-primary">Accept</button>
       <button type="button" (click)="goBack()">Cancel</button>
     </fieldset>
   </form>
+
+  <app-paginator *ngIf="entity.numPages > 1"
+      [page]="entity.page"
+      [numPages]="entity.numPages"
+      (selectPage)="goPage($event)"></app-paginator>
 
   <div class="pictures">
     <app-search-picture *ngFor="let picture of entity.pictures"

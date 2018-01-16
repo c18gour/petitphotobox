@@ -12,11 +12,7 @@ export class SearchController extends BaseController<SearchEntity> {
     super(http, `${env.apiUrl}/search.php`);
   }
 
-  get(args: { categoryIds: string[] }) {
-    return super.get(args);
-  }
-
-  post(args: { categoryIds: string[] }) {
+  post(args: { categoryIds: string[], page?: number }) {
     return super.post(args);
   }
 }

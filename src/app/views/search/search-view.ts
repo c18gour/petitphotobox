@@ -38,19 +38,13 @@ export class SearchView implements OnInit {
     this.modal = new ModalWindowSystem(
       this, this._resolver, this.modalContainer);
 
-    this._route.params.subscribe((params) => {
-      const categoryId = params.categoryId;
-
-      this.modal.loading(async () => {
-        try {
-          this.entity = await this._controller.get({
-            categoryIds: [categoryId]
-          });
-        } catch (e) {
-          this.modal.error(e.message);
-          throw e;
-        }
-      });
+    this.modal.loading(async () => {
+      try {
+        this.entity = await this._controller.get();
+      } catch (e) {
+        this.modal.error(e.message);
+        throw e;
+      }
     });
   }
 
@@ -60,6 +54,19 @@ export class SearchView implements OnInit {
 
       try {
         this.entity = await this._controller.post({ categoryIds });
+      } catch (e) {
+        this.modal.error(e.message);
+        throw e;
+      }
+    });
+  }
+
+  goPage(page: number) {
+    this.modal.loading(async () => {
+      const categoryIds = this.categoriesInput.value;
+
+      try {
+        this.entity = await this._controller.post({ categoryIds, page });
       } catch (e) {
         this.modal.error(e.message);
         throw e;
