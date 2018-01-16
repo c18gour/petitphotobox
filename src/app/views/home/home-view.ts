@@ -23,6 +23,7 @@ export class HomeView implements OnInit {
   entity: HomeEntity;
   modal: ModalWindowSystem;
   categoryId: string;
+  page = 0;
 
   constructor(
     private _controller: HomeController,
@@ -48,6 +49,7 @@ export class HomeView implements OnInit {
 
     this._route.params.subscribe(async (params) => {
       this.categoryId = params.categoryId ? params.categoryId : '';
+      this.page = params.page ? parseInt(params.page, 10) : 0;
 
       this.modal.loading(() => this.refresh());
     });
@@ -126,14 +128,14 @@ export class HomeView implements OnInit {
     this._router.navigate([`/picture/edit/${id}`]);
   }
 
-  goHome() {
-    this._router.navigate(['/home']);
+  goPage(page: number) {
+    this._router.navigate([`/home/${this.categoryId}/${page}`]);
   }
 
-  async refresh(page: number = 0) {
+  async refresh() {
     try {
       this.entity = await this._controller.get(
-        { categoryId: this.categoryId, page });
+        { categoryId: this.categoryId, page: this.page });
     } catch (e) {
       if (e instanceof SessionError) {
         this._router.navigate(['/login']);
