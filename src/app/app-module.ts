@@ -61,7 +61,7 @@ import { SearchController } from './views/search/controllers/search-controller';
 import { HomeController } from './views/home/controllers/home-controller';
 import { CategoryDeleteController } from './views/home/controllers/category-delete-controller';
 import { PictureDeleteController } from './views/home/controllers/picture-delete-controller';
-import { PictureUpController } from './views/home/controllers/picture-up-controller';
+import { CategoryPictureUpController } from './views/home/controllers/category-picture-up-controller';
 import { CategoryPictureDownController } from './views/home/controllers/category-picture-down-controller';
 
 @NgModule({
@@ -118,7 +118,7 @@ import { CategoryPictureDownController } from './views/home/controllers/category
     CategoryEditController,
     CategoryDeleteController,
     PictureDeleteController,
-    PictureUpController,
+    CategoryPictureUpController,
     CategoryPictureDownController,
     PictureNewController,
     PictureEditController,

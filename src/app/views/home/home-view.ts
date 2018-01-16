@@ -11,7 +11,7 @@ import { LogoutController } from './../../controllers/logout-controller';
 import { HomeController } from './controllers/home-controller';
 import { CategoryDeleteController } from './controllers/category-delete-controller';
 import { PictureDeleteController } from './controllers/picture-delete-controller';
-import { PictureUpController } from './controllers/picture-up-controller';
+import { CategoryPictureUpController } from './controllers/category-picture-up-controller';
 import { CategoryPictureDownController } from './controllers/category-picture-down-controller';
 
 @Component({
@@ -30,7 +30,7 @@ export class HomeView implements OnInit {
     private _logoutController: LogoutController,
     private _categoryDeleteController: CategoryDeleteController,
     private _pictureDeleteController: PictureDeleteController,
-    private _pictureUpController: PictureUpController,
+    private _pictureUpController: CategoryPictureUpController,
     private _pictureDownController: CategoryPictureDownController,
     private _router: Router,
     private _route: ActivatedRoute,
