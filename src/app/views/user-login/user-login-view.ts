@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { SessionError } from '../../core/exception/session-error';
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
@@ -12,6 +13,7 @@ import { UserLoginEntity } from './entities/user-login-entity';
   styleUrls: ['./user-login-view.scss']
 })
 export class UserLoginView implements OnInit {
+  private _goBack = false;
   entity: UserLoginEntity;
   modal: ModalWindowSystem;
   password = '';
@@ -19,27 +21,33 @@ export class UserLoginView implements OnInit {
   constructor(
     private _controller: UserLoginController,
     private _router: Router,
+    private _route: ActivatedRoute,
+    private _location: Location,
     private _resolver: ComponentFactoryResolver) { }
 
   @ViewChild('modalContainer', { read: ViewContainerRef })
   modalContainer: ViewContainerRef;
 
-  async ngOnInit() {
+  ngOnInit() {
     this.modal = new ModalWindowSystem(
       this, this._resolver, this.modalContainer);
 
-    this.modal.loading(async () => {
-      try {
-        this.entity = await this._controller.get();
-      } catch (e) {
-        if (e instanceof SessionError) {
-          this._router.navigate(['/home']);
-        } else {
-          this.modal.error(e.message);
-        }
+    this._route.params.subscribe((params) => {
+      this._goBack = params.back !== undefined;
 
-        throw e;
-      }
+      this.modal.loading(async () => {
+        try {
+          this.entity = await this._controller.get();
+        } catch (e) {
+          if (e instanceof SessionError) {
+            this._router.navigate(['/home']);
+          } else {
+            this.modal.error(e.message);
+          }
+
+          throw e;
+        }
+      });
     });
   }
 
@@ -54,7 +62,11 @@ export class UserLoginView implements OnInit {
         throw e;
       }
 
-      this._router.navigate(['/home']);
+      if (this._goBack) {
+        this._location.back();
+      } else {
+        this._router.navigate(['/home']);
+      }
     });
   }
 }

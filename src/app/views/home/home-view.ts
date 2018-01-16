@@ -137,10 +137,10 @@ export class HomeView implements OnInit {
       this.entity = await this._controller.get(
         { categoryId: this.categoryId, page: this.page, pictureId });
     } catch (e) {
-      if (e instanceof SessionError) {
-        this._router.navigate(['/login']);
-      } else {
-        this.modal.error(e.message);
+      if (await this.modal.error(e.message)) {
+        if (e instanceof SessionError) {
+          this._router.navigate(['/login/back']);
+        }
       }
 
       throw e;

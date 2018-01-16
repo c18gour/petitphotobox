@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'home/:categoryId', component: HomeView },
   { path: 'home/:categoryId/:page', component: HomeView },
   { path: 'login', component: UserLoginView },
+  { path: 'login/:back', component: UserLoginView },
   { path: 'user-register', component: UserRegisterView },
   { path: 'category/new', component: CategoryNewView },
   { path: 'category/new/:parentCategoryId', component: CategoryNewView },
