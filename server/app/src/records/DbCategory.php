@@ -95,7 +95,7 @@ class DbCategory extends DbRecord
   /**
    * Gets the list of pictures of this category.
    *
-   * @return [type] [description]
+   * @return DbPicture[]
    */
   public function getPictures()
   {
