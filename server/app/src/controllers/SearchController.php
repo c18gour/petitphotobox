@@ -100,7 +100,6 @@ class SearchController extends AuthController
    */
   public function onGetRequest()
   {
-    // TODO: sort results by date
     $type = $this->getParam("type", "any");
     $recurse = filter_var($this->getParam("recurse"), FILTER_VALIDATE_BOOLEAN);
     $fromDate = $this->getParam("fromDate");
