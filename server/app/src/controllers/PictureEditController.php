@@ -72,7 +72,7 @@ class PictureEditController extends AuthController
   {
     $categoryIds = array_filter(explode(",", $this->getParam("categoryIds")));
     $title = $this->getParam("title");
-    $tags = Arr::removeDuplicateItems(
+    $tags = Arr::unique(
       array_filter(
         array_map(
           "strtolower",

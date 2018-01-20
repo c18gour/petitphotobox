@@ -78,7 +78,7 @@ class PictureNewController extends AuthController
   public function onPostRequest()
   {
     $title = $this->getParam("title");
-    $tags = Arr::removeDuplicateItems(
+    $tags = Arr::unique(
       array_filter(
         array_map(
           "strtolower",

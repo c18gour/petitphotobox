@@ -7,11 +7,11 @@ class Arr {
    *
    * @param mixed[]  $items1  List of items
    * @param mixed[]  $items2  List of items
-   * @param callback $compare Compare function
+   * @param callback $compare Compare function (not required)
    *
    * @return mixed[]
    */
-  public static function union($items1, $items2, $compare)
+  public static function union($items1, $items2, $compare = null)
   {
     return Arr::unique(array_merge($items1, $items2), $compare);
   }
@@ -21,11 +21,11 @@ class Arr {
    *
    * @param mixed[]  $items1  List of items
    * @param mixed[]  $items2  List of items1
-   * @param callback $compare Compare function
+   * @param callback $compare Compare function (not required)
    *
    * @return mixed[]
    */
-  public static function intersect($items1, $items2, $compare)
+  public static function intersect($items1, $items2, $compare = null)
   {
     return Arr::unique(
       array_values(
@@ -49,11 +49,11 @@ class Arr {
    *   });
    *
    * @param mixed    $items   List of items
-   * @param callback $compare Compare function
+   * @param callback $compare Compare function (not required)
    *
    * @return mixed[]
    */
-  public static function unique($items, $compare) {
+  public static function unique($items, $compare = null) {
     return array_values(
       array_filter(
         array_values($items),
@@ -72,60 +72,25 @@ class Arr {
    *
    * @param mixed    $item    Item to search
    * @param mixed[]  $items   List of items
-   * @param callback $compare Compare function
+   * @param callback $compare Compare function (not required)
    *
    * @return int
    */
-  public static function search($item, $items, $compare)
+  public static function search($item, $items, $compare = null)
   {
     $ret = -1;
 
     foreach ($items as $i => $item2) {
-      if (call_user_func($compare, $item, $item2)) {
+      $isFound = $compare == null
+        ? $item == $item2
+        : call_user_func($compare, $item, $item2);
+
+      if ($isFound) {
         $ret = $i;
         break;
       }
     }
 
     return $ret;
-  }
-
-  /**
-   * Removes duplicate items.
-   *
-   * @param string[] $items List of items
-   *
-   * @return string[]
-   */
-  public static function removeDuplicateItems($items) {
-    return array_values(
-      array_filter(
-        array_values($items),
-        function ($item, $pos) use ($items) {
-          return Arr::_searchItem($items, $item) >= $pos;
-        },
-        ARRAY_FILTER_USE_BOTH
-      )
-    );
-  }
-
-  /**
-   * Searches an item.
-   *
-   * @param string[] $items List of items
-   * @param string   $str   A string
-   *
-   * @return int
-   */
-  private static function _searchItem($items, $str) {
-    $str = trim(strtolower($str));
-
-    foreach ($items as $pos => $item) {
-      if (trim(strtolower($item)) == $str) {
-        return $pos;
-      }
-    }
-
-    return -1;
   }
 }
