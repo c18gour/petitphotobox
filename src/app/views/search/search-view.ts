@@ -17,6 +17,8 @@ import { SearchEntity } from './entities/search-entity';
 export class SearchView implements OnInit {
   entity: SearchEntity;
   modal: ModalWindowSystem;
+  type = 'any';
+  recurse = false;
 
   constructor(
     private _controller: SearchController,
@@ -54,7 +56,11 @@ export class SearchView implements OnInit {
       const categoryIds = this.categoriesInput.value;
 
       try {
-        this.entity = await this._controller.post({ categoryIds });
+        this.entity = await this._controller.get({
+          categoryIds,
+          type: this.type,
+          recurse: this.recurse
+        });
       } catch (e) {
         if (await this.modal.error(e.message)) {
           if (e instanceof SessionError) {
@@ -72,7 +78,12 @@ export class SearchView implements OnInit {
       const categoryIds = this.categoriesInput.value;
 
       try {
-        this.entity = await this._controller.post({ categoryIds, page });
+        this.entity = await this._controller.get({
+          page,
+          categoryIds,
+          type: this.type,
+          recurse: this.recurse
+        });
       } catch (e) {
         if (await this.modal.error(e.message)) {
           if (e instanceof SessionError) {

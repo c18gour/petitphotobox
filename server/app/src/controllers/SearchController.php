@@ -85,12 +85,6 @@ class SearchController extends AuthController
         throw new AppError("Category not found");
       }
     }
-
-    if (    $this->_page < 0
-        || ($this->_page > 0 && $this->_getNumPages() < $this->_page +1)
-    ) {
-      throw new ClientException("Page not found");
-    }
   }
 
   /**
@@ -137,6 +131,7 @@ class SearchController extends AuthController
       }
     }
 
+    // filters by date
     if (!Text::isEmpty($fromDate)) {
       $date = strtotime($fromDate);
 
@@ -148,6 +143,7 @@ class SearchController extends AuthController
       );
     }
 
+    // filters by date
     if (!Text::isEmpty($toDate)) {
       $date = strtotime($toDate);
 
@@ -169,6 +165,12 @@ class SearchController extends AuthController
         return $date2 - $date1;
       }
     );
+
+    if (    $this->_page < 0
+        || ($this->_page > 0 && $this->_getNumPages() < $this->_page +1)
+    ) {
+      throw new ClientException("Page not found");
+    }
   }
 
   /**

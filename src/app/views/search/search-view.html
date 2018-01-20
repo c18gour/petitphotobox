@@ -11,16 +11,14 @@
         <app-input-checkbox #categoriesInput name="categoryId"
           [items]="entity.categories" [value]="entity.categoryIds"></app-input-checkbox>
       </div>
-      <!-- TODO: show pictures that are in ANY|ALL category
-      <select>
-        <option value="any">Show pictures that are in ANY category</option>
-        <option value="all">Show pictures that are in ALL categories</option>
-      </select> -->
-      <!-- TODO: show subcategory pictures
+      <select name="type" [(ngModel)]="type">
+        <option value="any">Show pictures in ANY category</option>
+        <option value="all">Show pictures in ALL categories</option>
+      </select>
       <label>
-        <input type="checkbox">
+        <input type="checkbox" name="recurse" [(ngModel)]="recurse">
         <span>Include subcategories</span>
-      </label> -->
+      </label>
       <button type="submit" class="button-primary">Accept</button>
       <button type="button" (click)="goBack()">Cancel</button>
     </fieldset>
