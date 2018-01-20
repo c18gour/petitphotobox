@@ -97,7 +97,6 @@ class Arr {
    *
    * @return string[]
    */
-  // TODO: replace this function by Arr::unique
   public static function removeDuplicateItems($items) {
     return array_values(
       array_filter(
