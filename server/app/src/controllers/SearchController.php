@@ -1,5 +1,6 @@
 <?php
 namespace petitphotobox\controllers;
+use petitphotobox\core\arr\Arr;
 use petitphotobox\core\controller\AuthController;
 use petitphotobox\core\exception\AppError;
 use petitphotobox\core\exception\ClientException;
@@ -10,6 +11,7 @@ use soloproyectos\text\Text;
 
 class SearchController extends AuthController
 {
+  private $_validDate = '/^\d{4}-\d{2}-\d{2}$/';
   private $_page;
   private $_categories;
   private $_pictures = [];
@@ -21,7 +23,7 @@ class SearchController extends AuthController
   {
     parent::__construct();
     $this->addOpenRequestHandler([$this, "onOpenRequest"]);
-    $this->addPostRequestHandler([$this, "onPostRequest"]);
+    $this->addGetRequestHandler([$this, "onGetRequest"]);
   }
 
   /**
@@ -83,6 +85,12 @@ class SearchController extends AuthController
         throw new AppError("Category not found");
       }
     }
+
+    if (    $this->_page < 0
+        || ($this->_page > 0 && $this->_getNumPages() < $this->_page +1)
+    ) {
+      throw new ClientException("Page not found");
+    }
   }
 
   /**
@@ -90,32 +98,78 @@ class SearchController extends AuthController
    *
    * @return void
    */
-  public function onPostRequest()
+  public function onGetRequest()
   {
-    $this->_pictures = $this->user->getPictures();
+    // TODO: sort results by date
+    $type = $this->getParam("type", "any");
+    $recurse = filter_var($this->getParam("recurse"), FILTER_VALIDATE_BOOLEAN);
+    $fromDate = $this->getParam("fromDate");
+    $toDate = $this->getParam("toDate");
 
+    if (array_search($type, ["any", "all"]) === false) {
+      throw new ClientException("Invalid type");
+    }
+
+    if (!Text::isEmpty($fromDate) && !preg_match($this->_validDate, $fromDate)
+        || !Text::isEmpty($toDate) && !preg_match($this->_validDate, $toDate)
+    ) {
+      throw new ClientException("Invalid date");
+    }
+
+    // filters by categories
+    $this->_pictures = [];
+    $method = $type == "any" ? "union" : "intersect";
     foreach ($this->_categories as $i => $category) {
+      $pictures = $recurse
+        ? $this->_getAllPictures($category)
+        : $category->getPictures();
+
       if ($i > 0) {
-        $this->_pictures = array_values(
-          array_uintersect(
-            $this->_pictures,
-            $category->getPictures(),
-            function ($row1, $row2) {
-              return strnatcmp($row1->getId(), $row2->getId());
-            }
-          )
+        $this->_pictures = call_user_func(
+          "petitphotobox\core\arr\Arr::$method",
+          $this->_pictures,
+          $pictures,
+          function ($picture1, $picture2) {
+            return $picture1->getId() == $picture2->getId();
+          }
         );
       } else {
-        $this->_pictures = $category->getPictures();
+        $this->_pictures = $pictures;
       }
     }
 
-    if (
-      $this->_page < 0 ||
-      ($this->_page > 0 && $this->_getNumPages() < $this->_page +1)
-    ) {
-      throw new ClientException("Page not found");
+    if (!Text::isEmpty($fromDate)) {
+      $date = strtotime($fromDate);
+
+      $this->_pictures = array_filter(
+        $this->_pictures,
+        function ($picture) use ($date) {
+          return $date <= strtotime($picture->getCreatedAt());
+        }
+      );
     }
+
+    if (!Text::isEmpty($toDate)) {
+      $date = strtotime($toDate);
+
+      $this->_pictures = array_filter(
+        $this->_pictures,
+        function ($picture) use ($date) {
+          return strtotime($picture->getCreatedAt()) <= $date;
+        }
+      );
+    }
+
+    // sorts by date in descending order
+    usort(
+      $this->_pictures,
+      function($picture1, $picture2) {
+        $date1 = strtotime($picture1->getCreatedAt());
+        $date2 = strtotime($picture2->getCreatedAt());
+
+        return $date2 - $date1;
+      }
+    );
   }
 
   /**
@@ -133,5 +187,29 @@ class SearchController extends AuthController
     }
 
     return $numPages;
+  }
+
+  /**
+   * Gets all pictures, including all those subcategory pictures.
+   *
+   * @param DbCategory $category Category
+   *
+   * @return DbPicture[]
+   */
+  private function _getAllPictures($category)
+  {
+    $ret = $category->getPictures();
+
+    $items = $category->getCategories();
+    foreach ($items as $item) {
+      $ret = array_merge($ret, $this->_getAllPictures($item));
+    }
+
+    return Arr::unique(
+      $ret,
+      function ($item1, $item2) {
+        return $item1->getId() == $item2->getId();
+      }
+    );
   }
 }

@@ -12,6 +12,7 @@ use petitphotobox\records\DbTag;
 class DbPicture extends DbRecord
 {
   private $_user;
+  private $_createdAt;
   public $title;
   public $tags = [];
   public $paths = [];
@@ -27,6 +28,11 @@ class DbPicture extends DbRecord
   {
     $this->_user = $user;
     parent::__construct($db, $id);
+  }
+
+  public function getCreatedAt()
+  {
+    return $this->_createdAt;
   }
 
   public function getCategories()
@@ -127,6 +133,7 @@ class DbPicture extends DbRecord
     $sql = "
     select
       p.id,
+      p.created_at,
       p.title,
       group_concat(distinct t.name) as tags,
       group_concat(distinct s.path order by s.ord desc) as paths
@@ -145,6 +152,7 @@ class DbPicture extends DbRecord
     where p.id = ?
     group by p.id";
     $row = $this->db->query($sql, [$this->_user->getId(), $this->id]);
+    $this->_createdAt = $row["created_at"];
     $this->title = $row["title"];
     $this->tags = array_filter(explode(",", $row["tags"]));
     $this->paths = array_filter(explode(",", $row["paths"]));
