@@ -46,8 +46,15 @@ class HomeController extends AuthController
         "pictures" => array_map(
           function ($row) {
             $snapshot = $row->getMainSnapshot();
+            $snapshots = $row->getSnapshots();
+            $categories = $row->getCategories();
 
-            return ["id" => $row->getId(), "path" => $snapshot->path];
+            return [
+              "id" => $row->getId(),
+              "categories" => count($categories),
+              "snapshots" => count($snapshots),
+              "path" => $snapshot->path
+            ];
           },
           $pictures
         ),

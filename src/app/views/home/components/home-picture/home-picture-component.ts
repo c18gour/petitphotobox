@@ -14,6 +14,12 @@ export class HomePictureComponent {
   @Input()
   path: string;
 
+  @Input()
+  categories: number;
+
+  @Input()
+  snapshots: number;
+
   @Output()
   deletePicture = new EventEmitter<string>();
 

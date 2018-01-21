@@ -46,6 +46,8 @@
     <app-home-picture *ngFor="let picture of entity.pictures"
       [id]="picture.id"
       [path]="picture.path"
+      [categories]="picture.categories"
+      [snapshots]="picture.snapshots"
       (deletePicture)="modal.confirm('Are you sure?', deletePicture, picture.id)"
       (upPicture)="movePictureUp(picture.id)"
       (downPicture)="movePictureDown(picture.id)"

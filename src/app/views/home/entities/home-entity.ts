@@ -8,5 +8,7 @@ export class HomeEntity extends BaseEntity {
   categories: Array<MenuEntry>;
   page: number;
   numPages: number;
-  pictures: Array<{ id: string, path: string }>;
+  pictures: Array<{
+    id: string, categories: number, snapshots: number, path: string
+  }>;
 }
