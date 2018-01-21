@@ -112,7 +112,7 @@ class DbPicture extends DbRecord
   public function delete()
   {
     $sql = "
-    delete p
+    delete p, cp
     from picture as p
     inner join category_picture as cp
       on cp.picture_id = p.id
