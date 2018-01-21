@@ -36,10 +36,6 @@ export class SearchView implements OnInit {
   @ViewChild('modalContainer', { read: ViewContainerRef })
   modalContainer: ViewContainerRef;
 
-  goBack() {
-    this._location.back();
-  }
-
   ngOnInit() {
     this.modal = new ModalWindowSystem(
       this, this._resolver, this.modalContainer);
@@ -87,6 +83,10 @@ export class SearchView implements OnInit {
       `/search/${categoryIds}/${page}/${this.type}/${this.recurse}` +
       `/${this.fromDate}/${this.toDate}`
     ]);
+  }
+
+  goBack() {
+    this._router.navigate(['/home']);
   }
 
   deletePicture(pictureId: string) {
