@@ -3,7 +3,7 @@
     <a (click)="deletePicture.emit(id)" title="Delete picture"><i class="fa fa-trash"></i></a>
   </div>
   <div class="buttons right">
-    <a title="Download picture"><i class="fa fa-download"></i></a>
+    <a title="Download picture" [href]="fullPath" download><i class="fa fa-download"></i></a>
     <a title="Edit picture" (click)="editPicture.emit(id)"><i class="fa fa-pencil-square"></i></a>
   </div>
   <img [src]="fullPath">
