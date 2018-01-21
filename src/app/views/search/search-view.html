@@ -43,6 +43,8 @@
     <app-search-picture *ngFor="let picture of entity.pictures"
       [id]="picture.id"
       [path]="picture.path"
+      [categories]="picture.categories"
+      [snapshots]="picture.snapshots"
       (deletePicture)="modal.confirm('Are you sure?', deletePicture, picture.id)"
       (editPicture)="editPicture(picture.id)"></app-search-picture>
   </div>

@@ -47,8 +47,15 @@ class SearchController extends AuthController
         "pictures" => array_map(
           function ($picture) {
             $snapshot = $picture->getMainSnapshot();
+            $snapshots = $picture->getSnapshots();
+            $categories = $picture->getCategories();
 
-            return ["id" => $picture->getId(), "path" => $snapshot->path];
+            return [
+              "id" => $picture->getId(),
+              "categories" => count($categories),
+              "snapshots" => count($snapshots),
+              "path" => $snapshot->path
+            ];
           },
           $pictures
         ),

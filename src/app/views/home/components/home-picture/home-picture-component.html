@@ -12,8 +12,8 @@
     <a title="Edit picture"
       (click)="editPicture.emit(id)"><i class="fa fa-pencil-square"></i></a>
   </div>
-  <div class="info">
-    <ul *ngIf="snapshots > 1 || categories > 1">
+  <div class="info" *ngIf="snapshots > 1 || categories > 1">
+    <ul>
       <li *ngIf="snapshots > 1"><span>Snapshots:</span> {{snapshots}}</li>
       <li *ngIf="categories > 1"><span>Categories:</span> {{categories}}</li>
     </ul>
