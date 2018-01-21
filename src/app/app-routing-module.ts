@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'picture/new/:categoryId', component: PictureNewView },
   { path: 'picture/edit/:pictureId', component: PictureEditView },
   { path: 'search', component: SearchView },
+  { path: 'search/:categoryIds', component: SearchView },
   { path: 'search/:categoryIds/:page/:type/:recurse', component: SearchView },
   {
     path: 'search/:categoryIds/:page/:type/:recurse/:fromDate',

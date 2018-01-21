@@ -86,7 +86,10 @@ export class SearchView implements OnInit {
   }
 
   goBack() {
-    this._router.navigate(['/home']);
+    const categoryIds = this.categoriesInput.value;
+    const categoryId = categoryIds.pop();
+
+    this._router.navigate([categoryId ? `/home/${categoryId}` : '/home']);
   }
 
   deletePicture(pictureId: string) {
