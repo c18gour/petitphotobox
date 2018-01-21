@@ -93,12 +93,7 @@ class HomeController extends AuthController
       $this->_page = floor($pos / MAX_ITEMS_PER_PAGE);
     }
 
-    if (
-      $this->_page < 0 ||
-      ($this->_page > 0 && $this->_getNumPages() < $this->_page +1)
-    ) {
-      throw new ClientException("Page not found");
-    }
+    $this->_page = min(max(0, $this->_page), $this->_getNumPages() - 1);
   }
 
   /**
