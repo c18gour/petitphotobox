@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { SessionError } from '../../core/exception/session-error';
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
@@ -19,10 +19,13 @@ export class SearchView implements OnInit {
   modal: ModalWindowSystem;
   type = 'any';
   recurse = false;
+  fromDate = '';
+  toDate = '';
 
   constructor(
     private _controller: SearchController,
     private _router: Router,
+    private _route: ActivatedRoute,
     private _location: Location,
     private _resolver: ComponentFactoryResolver
   ) { }
@@ -41,59 +44,49 @@ export class SearchView implements OnInit {
     this.modal = new ModalWindowSystem(
       this, this._resolver, this.modalContainer);
 
-    this.modal.loading(async () => {
-      try {
-        this.entity = await this._controller.get();
-      } catch (e) {
-        this.modal.error(e.message);
-        throw e;
-      }
+    this._route.params.subscribe((params) => {
+      const categoryIds = params.categoryIds
+        ? params.categoryIds.split(',') : '';
+      const page = params.page || 0;
+      this.type = params.type || 'any';
+      this.recurse = params.recurse === 'true';
+      this.fromDate = params.fromDate || '';
+      this.toDate = params.toDate || '';
+
+      this.modal.loading(async () => {
+        try {
+          this.entity = await this._controller.get({
+            categoryIds,
+            page,
+            type: this.type,
+            recurse: this.recurse,
+            fromDate: this.fromDate,
+            toDate: this.toDate
+          });
+        } catch (e) {
+          this.modal.error(e.message);
+          throw e;
+        }
+      });
     });
   }
 
   onSubmit() {
-    this.modal.loading(async () => {
-      const categoryIds = this.categoriesInput.value;
-
-      try {
-        this.entity = await this._controller.get({
-          categoryIds,
-          type: this.type,
-          recurse: this.recurse
-        });
-      } catch (e) {
-        if (await this.modal.error(e.message)) {
-          if (e instanceof SessionError) {
-            this._router.navigate(['/login/back']);
-          }
-        }
-
-        throw e;
-      }
-    });
+    this.goPage(0);
   }
 
   goPage(page: number) {
-    this.modal.loading(async () => {
-      const categoryIds = this.categoriesInput.value;
+    const categoryIds = this.categoriesInput.value;
 
-      try {
-        this.entity = await this._controller.get({
-          page,
-          categoryIds,
-          type: this.type,
-          recurse: this.recurse
-        });
-      } catch (e) {
-        if (await this.modal.error(e.message)) {
-          if (e instanceof SessionError) {
-            this._router.navigate(['/login/back']);
-          }
-        }
+    if (categoryIds.length === 0) {
+      this.modal.error('Please select a category');
+      return;
+    }
 
-        throw e;
-      }
-    });
+    this._router.navigate([
+      `/search/${categoryIds}/${page}/${this.type}/${this.recurse}` +
+      `/${this.fromDate}/${this.toDate}`
+    ]);
   }
 
   deletePicture(pictureId: string) {

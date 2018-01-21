@@ -25,7 +25,15 @@ const routes: Routes = [
   { path: 'picture/new/:categoryId', component: PictureNewView },
   { path: 'picture/edit/:pictureId', component: PictureEditView },
   { path: 'search', component: SearchView },
-  { path: 'search/:categoryId', component: SearchView },
+  { path: 'search/:categoryIds/:page/:type/:recurse', component: SearchView },
+  {
+    path: 'search/:categoryIds/:page/:type/:recurse/:fromDate',
+    component: SearchView
+  },
+  {
+    path: 'search/:categoryIds/:page/:type/:recurse/:fromDate/:toDate',
+    component: SearchView
+  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundView }
 ];

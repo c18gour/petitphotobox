@@ -7,7 +7,7 @@
   <form (ngSubmit)="onSubmit()">
     <fieldset>
       <div [hidden]="entity.categories.length === 0">
-        <label for="categoryId">Select a category</label>
+        <label for="categoryId">Select categories</label>
         <app-input-checkbox #categoriesInput name="categoryId"
           [items]="entity.categories" [value]="entity.categoryIds"></app-input-checkbox>
       </div>
@@ -15,9 +15,19 @@
         <option value="any">Show pictures in ANY category</option>
         <option value="all">Show pictures in ALL categories</option>
       </select>
+      <div class="date">
+        <div class="field">
+          <label for="fromDate">From</label>
+          <input type="date" id="fromDate" name="fromDate" [(ngModel)]="fromDate">
+        </div>
+        <div class="field">
+          <label for="toDate">To</label>
+          <input type="date" id="toDate" name="toDate" [(ngModel)]="toDate">
+        </div>
+      </div>
       <label>
         <input type="checkbox" name="recurse" [(ngModel)]="recurse">
-        <span>Include subcategories</span>
+        <span>Include pictures subcategories</span>
       </label>
       <button type="submit" class="button-primary">Accept</button>
       <button type="button" (click)="goBack()">Cancel</button>
