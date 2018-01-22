@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://petitphotobox.gchumillas.localhost'
+  apiUrl: 'http://server.petitphotobox.localhost'
 };
