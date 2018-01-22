@@ -43,21 +43,13 @@ export class SearchView implements OnInit {
     this._route.params.subscribe((params) => {
       const categoryIds = params.categoryIds
         ? params.categoryIds.split(',') : '';
-      const page = params.page || 0;
-      this.type = params.type || 'any';
-      this.recurse = params.recurse === 'true';
-      this.fromDate = params.fromDate || '';
-      this.toDate = params.toDate || '';
 
       this.modal.loading(async () => {
         try {
           this.entity = await this._controller.get({
             categoryIds,
-            page,
             type: this.type,
-            recurse: this.recurse,
-            fromDate: this.fromDate,
-            toDate: this.toDate
+            recurse: this.recurse
           });
         } catch (e) {
           this.modal.error(e.message);
@@ -79,17 +71,25 @@ export class SearchView implements OnInit {
       return;
     }
 
-    this._router.navigate([
-      `/search/${categoryIds}/${page}/${this.type}/${this.recurse}` +
-      `/${this.fromDate}/${this.toDate}`
-    ]);
+    this.modal.loading(async () => {
+      try {
+        this.entity = await this._controller.get({
+          categoryIds,
+          page,
+          type: this.type,
+          recurse: this.recurse,
+          fromDate: this.fromDate,
+          toDate: this.toDate
+        });
+      } catch (e) {
+        this.modal.error(e.message);
+        throw e;
+      }
+    });
   }
 
   goBack() {
-    const categoryIds = this.categoriesInput.value;
-    const categoryId = categoryIds.pop();
-
-    this._router.navigate([categoryId ? `/home/${categoryId}` : '/home']);
+    this._location.back();
   }
 
   deletePicture(pictureId: string) {
