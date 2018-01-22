@@ -106,4 +106,8 @@ export class SearchView implements OnInit {
       this.goPage(this.entity.page);
     });
   }
+
+  editPicture(pictureId: string) {
+    this._router.navigate([`/picture/edit/${pictureId}`]);
+  }
 }
