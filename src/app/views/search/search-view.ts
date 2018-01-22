@@ -7,6 +7,7 @@ import { ModalWindowSystem } from '../../modules/modal-window-system/modal-windo
 import { InputCheckboxComponent } from '../../components/input-checkbox/input-checkbox-component';
 
 import { SearchController } from './controllers/search-controller';
+import { PictureDeleteController } from './controllers/picture-delete-controller';
 import { SearchEntity } from './entities/search-entity';
 
 @Component({
@@ -24,6 +25,7 @@ export class SearchView implements OnInit {
 
   constructor(
     private _controller: SearchController,
+    private _deleteController: PictureDeleteController,
     private _router: Router,
     private _route: ActivatedRoute,
     private _location: Location,
@@ -93,6 +95,15 @@ export class SearchView implements OnInit {
   }
 
   deletePicture(pictureId: string) {
-    console.log(pictureId);
+    this.modal.loading(async () => {
+      try {
+        await this._deleteController.post({ pictureId });
+      } catch (e) {
+        this.modal.error(e.message);
+        throw e;
+      }
+
+      this.goPage(this.entity.page);
+    });
   }
 }
