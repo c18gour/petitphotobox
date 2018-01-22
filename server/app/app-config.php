@@ -6,6 +6,16 @@
  * the application. Do not touch it unless you know what are you doing.   *
  **************************************************************************/
 
+$protocol = stripos("https", $_SERVER["SERVER_PROTOCOL"]) === 0
+  ? "https"
+  : "http";
+$clientUrl = "$protocol://" . CLIENT_URI;
+header("Access-Control-Allow-Origin: $clientUrl");
+header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Methods: \"GET,POST,OPTIONS,DELETE,PUT\"", false);
+header("Access-Control-Allow-Methods: \"Content-Type\"", false);
+header("Access-Control-Allow-Methods: \"Authorization\"", false);
+
 /**
  * Do not print error messages to the user screen.
  *

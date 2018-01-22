@@ -1,4 +1,8 @@
 <?php
+/**
+ * Client's URI (without the protocol).
+ */
+define("CLIENT_URI", "localhost:4200");
 
 /**
  * Database connection.
