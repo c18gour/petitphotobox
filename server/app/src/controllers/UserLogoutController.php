@@ -1,9 +1,9 @@
 <?php
 namespace petitphotobox\controllers;
 use petitphotobox\core\auth\UserAuth;
-use petitphotobox\core\controller\AuthController;
+use petitphotobox\core\controller\Controller;
 
-class UserLogoutController extends AuthController
+class UserLogoutController extends Controller
 {
   /**
    * Creates a new instance.
