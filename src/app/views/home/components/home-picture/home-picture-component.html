@@ -18,5 +18,5 @@
       <li *ngIf="categories > 1"><span>Categories:</span> {{categories}}</li>
     </ul>
   </div>
-  <img [src]="fullPath">
+  <img [defaultImage]="'assets/loading.gif'" [lazyLoad]="fullPath" [offset]="100">
 </div>

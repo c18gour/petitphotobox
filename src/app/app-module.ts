@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AutofocusModule } from 'angular-autofocus-fix';
 import { FileUploadModule } from 'ng2-file-upload';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 import { AppRoutingModule } from './app-routing-module';
 import { AppComponent } from './app-component';
@@ -111,7 +112,8 @@ import { PictureDeleteController } from './views/search/controllers/picture-dele
     ModalWindowSytemModule,
     MenuModule,
     FileUploadModule,
-    RoundProgressModule
+    RoundProgressModule,
+    LazyLoadImageModule
   ],
   providers: [
     UserLoginController,
