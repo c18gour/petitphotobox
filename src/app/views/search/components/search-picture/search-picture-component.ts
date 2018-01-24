@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { fullPath } from '../../../../core/utils';
+import { environment as env } from '../../../../../environments/environment';
+import { Url } from '../../../../core/url/url';
 
 @Component({
   selector: 'app-search-picture',
@@ -26,7 +27,16 @@ export class SearchPictureComponent {
   @Output()
   editPicture = new EventEmitter<string>();
 
-  get fullPath(): string {
-    return fullPath(this.path);
+  get imagePath(): string {
+    const url = Url.parse(this.path, env.apiUrl);
+
+    return url.toString();
+  }
+
+  get smallImagePath(): string {
+    const url = Url.parse(this.path, env.apiUrl);
+    url.addParam('small');
+
+    return url.toString();
   }
 }

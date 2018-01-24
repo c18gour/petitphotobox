@@ -11,10 +11,6 @@ $protocol = stripos("https", $_SERVER["SERVER_PROTOCOL"]) === 0
   : "http";
 $clientUrl = "$protocol://" . CLIENT_URI;
 header("Access-Control-Allow-Origin: $clientUrl");
-header("Access-Control-Allow-Credentials: true");
-header("Access-Control-Allow-Methods: \"GET,POST,OPTIONS,DELETE,PUT\"", false);
-header("Access-Control-Allow-Methods: \"Content-Type\"", false);
-header("Access-Control-Allow-Methods: \"Authorization\"", false);
 
 /**
  * Do not print error messages to the user screen.
@@ -24,13 +20,14 @@ header("Access-Control-Allow-Methods: \"Authorization\"", false);
  * example, a database connection error would append an error message to the
  * response document, ruining it.
  */
-ini_set("display_errors", "Off");
+ini_set("display_errors", "On");
 
 /**
  * General constants.
  */
 
 define("MIN_PASSWORD_LENGTH", 6);
+define("THUMBNAIL_WIDTH", 500);
 
 
 /**

@@ -8,7 +8,7 @@
       (click)="upPicture.emit(id)"><i class="fa fa-chevron-circle-up"></i></a>
     <a title="Move picture down"
       (click)="downPicture.emit(id)"><i class="fa fa-chevron-circle-down"></i></a>
-    <a title="Download picture" [href]="fullPath" download><i class="fa fa-download"></i></a>
+    <a title="Download picture" [href]="imagePath" download><i class="fa fa-download"></i></a>
     <a title="Edit picture"
       (click)="editPicture.emit(id)"><i class="fa fa-pencil-square"></i></a>
   </div>
@@ -18,5 +18,5 @@
       <li *ngIf="categories > 1"><span>Categories:</span> {{categories}}</li>
     </ul>
   </div>
-  <img defaultImage="/assets/loading.gif" [lazyLoad]="fullPath" [offset]="100">
+  <img defaultImage="/assets/loading.gif" [lazyLoad]="smallImagePath" [offset]="100">
 </div>

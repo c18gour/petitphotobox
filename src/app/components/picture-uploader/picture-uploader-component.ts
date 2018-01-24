@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
-import { fullPath } from '../../core/utils';
+
+import { environment as env } from '../../../environments/environment';
+import { Url } from '../../core/url/url';
 
 @Component({
   selector: 'app-picture-uploader',
@@ -21,9 +23,10 @@ export class PictureUploaderComponent implements OnInit {
 
   ngOnInit() {
     const self = this;
+    const url = Url.parse('image-upload.php', env.apiUrl);
 
     this.uploader = new FileUploader({
-      url: fullPath('image-upload.php'),
+      url: url.toString(),
       authToken: 'Authorization',
       autoUpload: true
     });
