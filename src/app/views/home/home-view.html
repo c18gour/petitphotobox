@@ -12,7 +12,7 @@
 <div class="container" *ngIf="entity">
   <app-menu #menu [entries]="entity.categories"
     (selectEntry)="onSelectEntry($event)" [visible]="false"></app-menu>
-  <div class="pictures">
+  <div class="results">
     <!-- if 'main category': -->
     <h3 *ngIf="entity.main">
       <span>Uncategorized pictures</span>
@@ -43,15 +43,17 @@
         (selectPage)="goPage($event)"></app-paginator>
 
     <!-- TODO: (low) when moving a picture, scroll to that picture (also in picture-edit, picture-new) -->
-    <app-home-picture *ngFor="let picture of entity.pictures"
-      [id]="picture.id"
-      [path]="picture.path"
-      [categories]="picture.categories"
-      [snapshots]="picture.snapshots"
-      (deletePicture)="modal.confirm('Are you sure?', deletePicture, picture.id)"
-      (upPicture)="movePictureUp(picture.id)"
-      (downPicture)="movePictureDown(picture.id)"
-      (editPicture)="editPicture(picture.id)"></app-home-picture>
+    <div class="pictures">
+      <app-home-picture *ngFor="let picture of entity.pictures"
+        [id]="picture.id"
+        [path]="picture.path"
+        [categories]="picture.categories"
+        [snapshots]="picture.snapshots"
+        (deletePicture)="modal.confirm('Are you sure?', deletePicture, picture.id)"
+        (upPicture)="movePictureUp(picture.id)"
+        (downPicture)="movePictureDown(picture.id)"
+        (editPicture)="editPicture(picture.id)"></app-home-picture>
+    </div>
   </div>
 </div>
 

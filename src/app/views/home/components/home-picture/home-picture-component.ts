@@ -6,7 +6,10 @@ import { Url } from '../../../../core/url/url';
 @Component({
   selector: 'app-home-picture',
   templateUrl: './home-picture-component.html',
-  styleUrls: ['./home-picture-component.scss']
+  styleUrls: [
+    './home-picture-component.scss',
+    './home-picture-component-tablet.scss'
+  ]
 })
 export class HomePictureComponent {
   @Input()
