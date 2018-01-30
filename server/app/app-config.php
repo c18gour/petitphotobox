@@ -20,7 +20,7 @@ header("Access-Control-Allow-Origin: $clientUrl");
  * example, a database connection error would append an error message to the
  * response document, ruining it.
  */
-ini_set("display_errors", "On");
+ini_set("display_errors", "Off");
 
 /**
  * General constants.
