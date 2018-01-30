@@ -7,6 +7,12 @@ Since ancient times photographers and enthusiasts have felt the need to organize
 The basic problem is that, if we try to classify our pictures in folders, immediately we realize that the same picture could belong to different folders, in the same way that a movie could belong to different genres.
 
 To solve this problem, instead of classifying pictures in folders, we dump them into the same directory and sort them in database categories and tags. That way, we can easily locate picture by different topics.
+
+## Snapshots
+
+![thumb1](https://user-images.githubusercontent.com/5312427/35579741-a0a5354e-05e7-11e8-999f-3e95e1ca29bc.png)
+![thumb2](https://user-images.githubusercontent.com/5312427/35579765-af6ef66e-05e7-11e8-8d81-0d10d57358f2.png)
+![thumb3](https://user-images.githubusercontent.com/5312427/35579768-b00587a0-05e7-11e8-978c-a216670441dc.png)
  
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
 
