@@ -10,7 +10,8 @@
         "soloproyectos-php/http-upload": "^1.1",
         "soloproyectos-php/sys-file": "^1.1",
         "soloproyectos-php/array": "^1.0",
-        "gumlet/php-image-resize": "^1.7"
+        "gumlet/php-image-resize": "^1.7",
+        "kunalvarma05/dropbox-php-sdk": "^0.2.1"
     },
     "autoload": {
         "psr-4": {
