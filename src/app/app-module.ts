@@ -42,7 +42,6 @@ import { PictureEditSnapshotComponent } from './views/picture-edit/components/pi
 import { HomeView } from './views/home/home-view';
 import { UserAccessView } from './views/user-access/user-access-view';
 import { UserVerifyView } from './views/user-verify/user-verify-view';
-import { UserRegisterView } from './views/user-register/user-register-view';
 import { CategoryNewView } from './views/category-new/category-new-view';
 import { CategoryEditView } from './views/category-edit/category-edit-view';
 import { PictureNewView } from './views/picture-new/picture-new-view';
@@ -98,7 +97,6 @@ import { PictureDeleteController } from './views/search/controllers/picture-dele
     HomeView,
     UserAccessView,
     UserVerifyView,
-    UserRegisterView,
     CategoryNewView,
     CategoryEditView,
     PictureNewView,

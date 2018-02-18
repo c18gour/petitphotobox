@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeView } from './views/home/home-view';
 import { UserAccessView } from './views/user-access/user-access-view';
-import { UserRegisterView } from './views/user-register/user-register-view';
 import { UserVerifyView } from './views/user-verify/user-verify-view';
 import { CategoryNewView } from './views/category-new/category-new-view';
 import { CategoryEditView } from './views/category-edit/category-edit-view';
@@ -20,7 +19,6 @@ const routes: Routes = [
   { path: 'verify', component: UserVerifyView },
   // TODO: remove back button
   { path: 'login/:back', component: UserAccessView },
-  { path: 'user-register', component: UserRegisterView },
   { path: 'category/new', component: CategoryNewView },
   { path: 'category/new/:parentCategoryId', component: CategoryNewView },
   { path: 'category/edit/:categoryId', component: CategoryEditView },
