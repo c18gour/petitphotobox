@@ -1,5 +1,6 @@
 <?php
 namespace petitphotobox\controllers;
+use Kunnu\Dropbox\Exceptions\DropboxClientException;
 use petitphotobox\core\auth\SystemAuth;
 use petitphotobox\core\auth\UserAuth;
 use petitphotobox\core\controller\Controller;
@@ -28,9 +29,11 @@ class UserVerifyController extends Controller
       throw new SessionError("The request wasn't well formed");
     }
 
-    $token = SystemAuth::getAccessToken(
-      $code, $state, "http://localhost/user-redirect.php"
-    );
+    try {
+      $token = SystemAuth::getAccessToken($code, $state);
+    } catch (DropboxClientException $e) {
+      throw new AppError($e->getMessage());
+    }
 
     UserAuth::login($this->db, $token);
   }
