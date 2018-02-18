@@ -16,16 +16,6 @@ define("CLIENT_REDIRECT_URL", CLIENT_URL . "/verify");
 header("Access-Control-Allow-Origin: " . CLIENT_URL);
 
 /**
- * Do not print error messages to the user screen.
- *
- * This feature has been disabled because when the client-side sends HTTP
- * requests it expects the response to be a well formed JSON document. For
- * example, a database connection error would append an error message to the
- * response document, ruining it.
- */
-ini_set("display_errors", "Off");
-
-/**
  * Dropbox access keys.
  */
 define("DROPBOX_APP_KEY", "keex5jv7y2rk0zs");
