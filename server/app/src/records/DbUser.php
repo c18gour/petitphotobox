@@ -9,17 +9,8 @@ use soloproyectos\sys\file\SysFile;
 
 class DbUser extends DbRecord
 {
-  /**
-   * User name.
-   * @var string
-   */
-  public $username;
-
-  /**
-   * Password.
-   * @var string
-   */
-  public $password;
+  public $authId;
+  public $authToken;
 
   /**
    * Creates a new instance.
@@ -30,16 +21,6 @@ class DbUser extends DbRecord
   public function __construct($db, $id = null)
   {
     parent::__construct($db, $id);
-  }
-
-  /**
-   * Gets user's directory.
-   *
-   * @return string
-   */
-  public function getDir()
-  {
-    return SysFile::concat(USER_DATA_DIR, $this->username);
   }
 
   /**
@@ -91,14 +72,14 @@ class DbUser extends DbRecord
   }
 
   /**
-   * Searches an user by name.
+   * Searches an user by `authentication id`.
    *
-   * @param DbConnector $db       Database connection
-   * @param string      $username Username
+   * @param DbConnector $db     Database connection
+   * @param string      $authId Authentication ID
    *
    * @return DbUser
    */
-  public static function searchByName($db, $username)
+  public static function searchByAuthId($db, $authId)
   {
     $ret = null;
 
@@ -106,8 +87,8 @@ class DbUser extends DbRecord
     select
       id
     from `user`
-    where username = ?";
-    $row = $db->query($sql, $username);
+    where auth_id = ?";
+    $row = $db->query($sql, $authId);
     if (count($row) > 0) {
       $ret = new DbUser($db, $row["id"]);
     }
@@ -134,10 +115,10 @@ class DbUser extends DbRecord
   {
     list(
       $id,
-      $this->username,
-      $this->password
+      $this->authId,
+      $this->authToken
     ) = DbTable::select(
-      $this->db, "user", ["id", "username", "password"], $this->id
+      $this->db, "user", ["id", "auth_id", "auth_token"], $this->id
     );
 
     return $id;
@@ -153,7 +134,7 @@ class DbUser extends DbRecord
     DbTable::update(
       $this->db,
       "user",
-      ["username" => $this->username, "password" => $this->password],
+      ["auth_id" => $this->authId, "auth_token" => $this->authToken],
       $this->id
     );
   }
@@ -165,10 +146,17 @@ class DbUser extends DbRecord
    */
   protected function insert()
   {
-    return DbTable::insert(
+    $userId = DbTable::insert(
       $this->db,
       "user",
-      ["username" => $this->username, "password" => $this->password]
+      ["auth_id" => $this->authId, "auth_token" => $this->authToken]
     );
+
+    // creates the user's main category
+    $categoryId = DbTable::insert(
+      $this->db, "category", ["user_id" => $userId]
+    );
+
+    return $userId;
   }
 }

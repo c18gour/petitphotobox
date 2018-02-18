@@ -1,5 +1,6 @@
 <?php
 namespace petitphotobox\core\auth;
+use Kunnu\Dropbox\Models\AccessToken;
 use Kunnu\Dropbox\Dropbox;
 use Kunnu\Dropbox\DropboxApp;
 
@@ -8,6 +9,11 @@ use Kunnu\Dropbox\DropboxApp;
  */
 class SystemAuth
 {
+  /**
+   * Gets authorization URL.
+   *
+   * @return string
+   */
   public static function getUrl()
   {
     $helper = SystemAuth::_getAuthHelper();
@@ -15,6 +21,14 @@ class SystemAuth
     return $helper->getAuthUrl(CLIENT_REDIRECT_URL);
   }
 
+  /**
+   * Gets user's authetication token.
+   *
+   * @param string $code  Authentication code
+   * @param string $state Authentication state
+   *
+   * @return AccessToken
+   */
   public static function getAccessToken($code, $state)
   {
     $helper = SystemAuth::_getAuthHelper();

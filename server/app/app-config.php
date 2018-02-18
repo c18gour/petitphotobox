@@ -24,7 +24,6 @@ define("DROPBOX_APP_SECRET", "9mmhe17fq78gban");
 /**
  * General constants.
  */
-define("MIN_PASSWORD_LENGTH", 6);
 define("THUMBNAIL_WIDTH", 500);
 
 

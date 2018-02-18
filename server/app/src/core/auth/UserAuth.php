@@ -1,5 +1,6 @@
 <?php
 namespace petitphotobox\core\auth;
+use Kunnu\Dropbox\Models\AccessToken;
 use petitphotobox\exceptions\AuthException;
 use petitphotobox\records\DbUser;
 use soloproyectos\db\DbConnector;
@@ -7,38 +8,6 @@ use soloproyectos\http\data\HttpSession;
 
 class UserAuth
 {
-  /**
-   * Creates a user.
-   *
-   * @param DbConnector $db       Database connection
-   * @param string      $username User name
-   * @param string      $password Password
-   *
-   * @return DbUser
-   */
-  public static function create($db, $username, $password)
-  {
-    if (!preg_match('/^[a-z1-9_]+$/', $username)) {
-      throw new AuthException(
-        "The username must be written in lowercase " .
-        "and can only contain the following characters: a..z, 1..10, _"
-      );
-    }
-
-    if (strlen($password) < MIN_PASSWORD_LENGTH) {
-      throw new AuthException(
-        "Password must have at least " . MIN_PASSWORD_LENGTH . " characters"
-      );
-    }
-
-    $user = new DbUser($db);
-    $user->username = $username;
-    $user->password = password_hash($password, PASSWORD_BCRYPT);
-    $user->save();
-
-    return $user;
-  }
-
   /**
    * Gets the current user instance.
    *
@@ -65,36 +34,30 @@ class UserAuth
   }
 
   /**
-   * Logs into the system.
+   * Registers a user into the system.
    *
-   * @param DbConnector $db       Database connection
-   * @param string      $username Username
-   * @param string      $password Password
+   * Creates the user if it wasn't already registered.
+   *
+   * @param DbConnector $db          Database connection
+   * @param AccessToken $accessToken Access token
    *
    * @return DbUser
    */
   public static function login($db, $accessToken)
   {
-
-    /*
-    $user = DbUser::searchByName($db, $username);
+    // searches or creates a new user
+    $user = DbUser::searchByAuthId($db, $accessToken->getUid());
     if ($user === null) {
-        throw new AuthException(
-          "The user was not found or the password is wrong..."
-        );
+        $user = new DbUser($db);
+        $user->authId = $accessToken->getUid();
     }
-
-    // verifies the password
-    if (!password_verify($password, $user->password)) {
-      throw new AuthException(
-        "The user was not found or the password is wrong"
-      );
-    }
+    $user->authToken = $accessToken->getToken();
+    $user->save();
 
     // registers the user in the system
     HttpSession::set("user_id", $user->getId());
 
-    return $user;*/
+    return $user;
   }
 
   /**
@@ -102,6 +65,7 @@ class UserAuth
    *
    * @return void
    */
+  // TODO: shouldn't we revoke the auth_token?
   public static function logout()
   {
     HttpSession::delete("user_id");
