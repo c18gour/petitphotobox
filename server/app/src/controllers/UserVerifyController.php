@@ -8,7 +8,7 @@ use petitphotobox\core\model\Document;
 use petitphotobox\exceptions\SessionError;
 use soloproyectos\text\Text;
 
-class UserRedirectController extends Controller
+class UserVerifyController extends Controller
 {
   /**
    * Creates a new instance.
