@@ -6,8 +6,8 @@ import { BaseController } from '../../../core/controller/base-controller';
 import { UserLoginEntity } from '../entities/user-login-entity';
 
 @Injectable()
-export class UserLoginController extends BaseController<UserLoginEntity> {
+export class UserAccessController extends BaseController<UserLoginEntity> {
   constructor(http: Http) {
-    super(http, `${env.apiUrl}/user-login.php`);
+    super(http, `${env.apiUrl}/user-access.php`);
   }
 }

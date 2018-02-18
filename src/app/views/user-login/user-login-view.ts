@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
-import { UserLoginController } from './controllers/user-login-controller';
+import { UserAccessController } from './controllers/user-login-controller';
 import { UserLoginEntity } from './entities/user-login-entity';
 
 @Component({
@@ -16,7 +16,7 @@ export class UserLoginView implements OnInit {
   password = '';
 
   constructor(
-    private _controller: UserLoginController,
+    private _controller: UserAccessController,
     private _resolver: ComponentFactoryResolver) { }
 
   @ViewChild('modalContainer', { read: ViewContainerRef })

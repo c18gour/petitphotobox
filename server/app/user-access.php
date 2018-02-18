@@ -3,7 +3,7 @@ header("Content-Type: application/json; charset=utf-8");
 require_once "src/vendor/autoload.php";
 require_once "config.php";
 require_once "app-config.php";
-use petitphotobox\controllers\UserLoginController;
+use petitphotobox\controllers\UserAccessController;
 
-$c = new UserLoginController();
+$c = new UserAccessController();
 $c->processRequest();

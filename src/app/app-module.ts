@@ -52,7 +52,7 @@ import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
 // controllers
 import { LogoutController } from './controllers/logout-controller';
-import { UserLoginController } from './views/user-login/controllers/user-login-controller';
+import { UserAccessController } from './views/user-login/controllers/user-login-controller';
 import { UserRedirectController } from './views/user-redirect/controllers/user-redirect-controller';
 import { CategoryNewController } from './views/category-new/controllers/category-new-controller';
 import { CategoryEditController } from './views/category-edit/controllers/category-edit-controller';
@@ -119,7 +119,7 @@ import { PictureDeleteController } from './views/search/controllers/picture-dele
     LazyLoadImageModule
   ],
   providers: [
-    UserLoginController,
+    UserAccessController,
     UserRedirectController,
     LogoutController,
     HomeController,

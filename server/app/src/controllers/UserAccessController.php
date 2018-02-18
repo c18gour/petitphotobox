@@ -4,7 +4,7 @@ use petitphotobox\core\auth\SystemAuth;
 use petitphotobox\core\controller\Controller;
 use petitphotobox\core\model\Document;
 
-class UserLoginController extends Controller
+class UserAccessController extends Controller
 {
   /**
    * {@inheritdoc}
