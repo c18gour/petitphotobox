@@ -57,7 +57,7 @@ export class HomeView implements OnInit {
 
   async exit() {
     await this._logoutController.post();
-    this._router.navigate(['/login']);
+    this._router.navigate(['/access']);
   }
 
   onSelectEntry(categoryId: string) {

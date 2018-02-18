@@ -1,5 +1,5 @@
 import { BaseEntity } from '../../../core/model/base-entity';
 
-export class UserLoginEntity extends BaseEntity {
+export class UserAccessEntity extends BaseEntity {
   url: string;
 }

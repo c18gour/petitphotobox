@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
-import { UserAccessController } from './controllers/user-login-controller';
-import { UserLoginEntity } from './entities/user-login-entity';
+import { UserAccessController } from './controllers/user-access-controller';
+import { UserAccessEntity } from './entities/user-access-entity';
 
 @Component({
-  selector: 'app-user-login',
-  templateUrl: './user-login-view.html',
-  styleUrls: ['./user-login-view.scss']
+  selector: 'app-user-access',
+  templateUrl: './user-access-view.html',
+  styleUrls: ['./user-access-view.scss']
 })
-export class UserLoginView implements OnInit {
+export class UserAccessView implements OnInit {
   private _goBack = false;
-  entity: UserLoginEntity;
+  entity: UserAccessEntity;
   modal: ModalWindowSystem;
   password = '';
 

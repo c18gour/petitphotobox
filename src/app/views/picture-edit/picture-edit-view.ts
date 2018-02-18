@@ -50,7 +50,7 @@ export class PictureEditView implements OnInit {
         } catch (e) {
           if (await this.modal.error(e.message)) {
             if (e instanceof SessionError) {
-              this._router.navigate(['/login/back']);
+              this._router.navigate(['/access/back']);
             }
           }
 

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeView } from './views/home/home-view';
-import { UserLoginView } from './views/user-login/user-login-view';
+import { UserAccessView } from './views/user-access/user-access-view';
 import { UserRegisterView } from './views/user-register/user-register-view';
 import { UserRedirectView } from './views/user-redirect/user-redirect-view';
 import { CategoryNewView } from './views/category-new/category-new-view';
@@ -16,11 +16,11 @@ const routes: Routes = [
   { path: 'home', component: HomeView },
   { path: 'home/:categoryId', component: HomeView },
   { path: 'home/:categoryId/:page', component: HomeView },
-  // TODO: rename login by access
-  { path: 'login', component: UserLoginView },
+  { path: 'access', component: UserAccessView },
   // TODO: rename redirect by verify
   { path: 'redirect', component: UserRedirectView },
-  { path: 'login/:back', component: UserLoginView },
+  // TODO: remove back button
+  { path: 'login/:back', component: UserAccessView },
   { path: 'user-register', component: UserRegisterView },
   { path: 'category/new', component: CategoryNewView },
   { path: 'category/new/:parentCategoryId', component: CategoryNewView },

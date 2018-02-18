@@ -36,7 +36,7 @@ export class UserRedirectView implements OnInit {
       } catch (e) {
         if (await this.modal.error(e.message)) {
           if (e instanceof SessionError) {
-            this._router.navigate(['/login']);
+            this._router.navigate(['/access']);
           }
         }
 
