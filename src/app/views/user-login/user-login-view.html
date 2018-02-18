@@ -3,25 +3,7 @@
 </div>
 
 <div class="container" *ngIf="entity">
-  <form (ngSubmit)="onSubmit()">
-    <fieldset>
-      <label for="username">Username</label>
-      <input autofocus
-        type="text" id="username" name="username" required
-        [(ngModel)]="entity.username" #name="ngModel">
-      <div [hidden]="name.valid || name.pristine" class="error-box">Username is required</div>
-      <label for="password">Password</label>
-      <input
-        type="password" id="password" name="password" required
-        [(ngModel)]="password" #pass="ngModel">
-      <button type="submit" class="button-primary">Enter</button>
-    </fieldset>
-    <!--
-    <ul>
-      <li><a routerLink="/user-register"><i class="fa fa-user-plus"></i> New User?</a></li>
-      <li><a routerLink="/user-remember"><i class="fa fa-key"></i> Forgot your password?</a></li>
-    </ul> -->
-  </form>
+  <a [href]="entity.url"><i class="fa fa-dropbox"></i>Log in with Dropbox</a>
 </div>
 
 <template #modalContainer></template>

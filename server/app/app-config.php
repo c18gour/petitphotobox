@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 /**************************************************************************
  * DO NOT TOUCH THIS FILE !!!                                             *
  *                                                                        *
@@ -9,8 +11,9 @@
 $protocol = stripos("https", $_SERVER["SERVER_PROTOCOL"]) === 0
   ? "https"
   : "http";
-$clientUrl = "$protocol://" . CLIENT_URI;
-header("Access-Control-Allow-Origin: $clientUrl");
+define("CLIENT_URL", "$protocol://" . CLIENT_URI);
+define("CLIENT_REDIRECT_URL", CLIENT_URL . "/redirect");
+header("Access-Control-Allow-Origin: " . CLIENT_URL);
 
 /**
  * Do not print error messages to the user screen.
@@ -23,9 +26,14 @@ header("Access-Control-Allow-Origin: $clientUrl");
 ini_set("display_errors", "Off");
 
 /**
+ * Dropbox access keys.
+ */
+define("DROPBOX_APP_KEY", "keex5jv7y2rk0zs");
+define("DROPBOX_APP_SECRET", "9mmhe17fq78gban");
+
+/**
  * General constants.
  */
-
 define("MIN_PASSWORD_LENGTH", 6);
 define("THUMBNAIL_WIDTH", 500);
 

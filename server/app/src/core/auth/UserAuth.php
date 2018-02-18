@@ -73,8 +73,10 @@ class UserAuth
    *
    * @return DbUser
    */
-  public static function login($db, $username, $password)
+  public static function login($db, $accessToken)
   {
+
+    /*
     $user = DbUser::searchByName($db, $username);
     if ($user === null) {
         throw new AuthException(
@@ -92,7 +94,7 @@ class UserAuth
     // registers the user in the system
     HttpSession::set("user_id", $user->getId());
 
-    return $user;
+    return $user;*/
   }
 
   /**
