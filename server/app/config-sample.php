@@ -31,4 +31,4 @@ define("MAX_ITEMS_PER_PAGE", 10);
  * example, a database connection error would append an error message to the
  * response document, ruining it.
  */
-ini_set("display_errors", "On");
+ini_set("display_errors", "Off");
