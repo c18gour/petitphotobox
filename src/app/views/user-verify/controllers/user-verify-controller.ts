@@ -5,9 +5,9 @@ import { environment as env } from '../../../../environments/environment';
 import { BaseController } from '../../../core/controller/base-controller';
 
 @Injectable()
-export class UserRedirectController extends BaseController {
+export class UserVerifyController extends BaseController {
   constructor(http: Http) {
-    super(http, `${env.apiUrl}/user-redirect.php`);
+    super(http, `${env.apiUrl}/user-verify.php`);
   }
 
   get(args: { code: string, state: string }) {

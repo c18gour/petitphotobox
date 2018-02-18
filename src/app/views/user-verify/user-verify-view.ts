@@ -2,20 +2,20 @@ import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolve
 import { Router } from '@angular/router';
 
 import { SessionError } from '../../core/exception/session-error';
-import { UserRedirectController } from './controllers/user-redirect-controller';
+import { UserVerifyController } from './controllers/user-verify-controller';
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
 import { Url } from '../../core/url/url';
 
 @Component({
-  selector: 'app-user-redirect',
-  templateUrl: './user-redirect-view.html',
-  styleUrls: ['./user-redirect-view.scss']
+  selector: 'app-user-verify',
+  templateUrl: './user-verify-view.html',
+  styleUrls: ['./user-verify-view.scss']
 })
-export class UserRedirectView implements OnInit {
+export class UserVerifyView implements OnInit {
   modal: ModalWindowSystem;
 
   constructor(
-    private _controller: UserRedirectController,
+    private _controller: UserVerifyController,
     private _resolver: ComponentFactoryResolver,
     private _router: Router
   ) { }

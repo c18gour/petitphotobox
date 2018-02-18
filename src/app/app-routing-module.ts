@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeView } from './views/home/home-view';
 import { UserAccessView } from './views/user-access/user-access-view';
 import { UserRegisterView } from './views/user-register/user-register-view';
-import { UserRedirectView } from './views/user-redirect/user-redirect-view';
+import { UserVerifyView } from './views/user-verify/user-verify-view';
 import { CategoryNewView } from './views/category-new/category-new-view';
 import { CategoryEditView } from './views/category-edit/category-edit-view';
 import { PictureNewView } from './views/picture-new/picture-new-view';
@@ -17,8 +17,7 @@ const routes: Routes = [
   { path: 'home/:categoryId', component: HomeView },
   { path: 'home/:categoryId/:page', component: HomeView },
   { path: 'access', component: UserAccessView },
-  // TODO: rename redirect by verify
-  { path: 'redirect', component: UserRedirectView },
+  { path: 'verify', component: UserVerifyView },
   // TODO: remove back button
   { path: 'login/:back', component: UserAccessView },
   { path: 'user-register', component: UserRegisterView },

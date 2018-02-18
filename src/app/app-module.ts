@@ -41,7 +41,7 @@ import { PictureEditSnapshotComponent } from './views/picture-edit/components/pi
 // views
 import { HomeView } from './views/home/home-view';
 import { UserAccessView } from './views/user-access/user-access-view';
-import { UserRedirectView } from './views/user-redirect/user-redirect-view';
+import { UserVerifyView } from './views/user-verify/user-verify-view';
 import { UserRegisterView } from './views/user-register/user-register-view';
 import { CategoryNewView } from './views/category-new/category-new-view';
 import { CategoryEditView } from './views/category-edit/category-edit-view';
@@ -53,7 +53,7 @@ import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 // controllers
 import { LogoutController } from './controllers/logout-controller';
 import { UserAccessController } from './views/user-access/controllers/user-access-controller';
-import { UserRedirectController } from './views/user-redirect/controllers/user-redirect-controller';
+import { UserVerifyController } from './views/user-verify/controllers/user-verify-controller';
 import { CategoryNewController } from './views/category-new/controllers/category-new-controller';
 import { CategoryEditController } from './views/category-edit/controllers/category-edit-controller';
 import { PictureNewController } from './views/picture-new/controllers/picture-new-controller';
@@ -97,7 +97,7 @@ import { PictureDeleteController } from './views/search/controllers/picture-dele
     // views
     HomeView,
     UserAccessView,
-    UserRedirectView,
+    UserVerifyView,
     UserRegisterView,
     CategoryNewView,
     CategoryEditView,
@@ -120,7 +120,7 @@ import { PictureDeleteController } from './views/search/controllers/picture-dele
   ],
   providers: [
     UserAccessController,
-    UserRedirectController,
+    UserVerifyController,
     LogoutController,
     HomeController,
     CategoryNewController,
