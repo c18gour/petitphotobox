@@ -35,7 +35,8 @@ abstract class DbSortableRecord extends DbRecord
    */
   public function getFirstRecord()
   {
-    return array_shift($this->getSortedRecords());
+    $records = $this->getSortedRecords();
+    return array_shift($records);
   }
 
   /**
@@ -45,7 +46,8 @@ abstract class DbSortableRecord extends DbRecord
    */
   public function getLastRecord()
   {
-    return array_pop($this->getSortedRecords());
+    $records = $this->getSortedRecords();
+    return array_pop($records);
   }
 
   /**
