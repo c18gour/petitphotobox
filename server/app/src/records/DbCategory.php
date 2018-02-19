@@ -28,6 +28,11 @@ class DbCategory extends DbRecord
     parent::__construct($db, $id);
   }
 
+  /**
+   * Gets parent category.
+   *
+   * @return DbCategory
+   */
   public function getParent()
   {
     return new DbCategory($this->db, $this->_user, $this->parentCategoryId);
@@ -186,6 +191,13 @@ class DbCategory extends DbRecord
     return $cp;
   }
 
+  /**
+   * Removes a picture from the current category.
+   *
+   * @param DbPicture $picture Picture
+   *
+   * @return void
+   */
   public function removePicture($picture)
   {
     if (!$this->hasPicture($picture)) {
@@ -200,6 +212,13 @@ class DbCategory extends DbRecord
     }
   }
 
+  /**
+   * Moves a picture a position down.
+   *
+   * @param DbPicture $picture Picture
+   *
+   * @return void
+   */
   public function movePictureDown($picture)
   {
     $sql = "
@@ -222,6 +241,13 @@ class DbCategory extends DbRecord
     }
   }
 
+  /**
+   * Moves a picture a position up.
+   *
+   * @param DbPicture $picture Picture
+   *
+   * @return void
+   */
   public function movePictureUp($picture)
   {
     $sql = "

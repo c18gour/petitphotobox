@@ -34,6 +34,9 @@ class Controller extends HttpController
   /**
    * {@inheritdoc}
    *
+   * @param string $name     Parameter name
+   * @param string $defValue Default value
+   *
    * @return mixed
    */
   public function getParam($name, $defValue = null)

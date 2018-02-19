@@ -32,6 +32,11 @@ class ImageController extends AuthController
     return $this->_imageContents;
   }
 
+  /**
+   * Processes OPEN requests.
+   *
+   * @return void
+   */
   public function onOpenRequest()
   {
     $smallImage = $this->existParam("small");

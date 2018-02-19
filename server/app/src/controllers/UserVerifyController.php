@@ -20,6 +20,11 @@ class UserVerifyController extends Controller
     $this->addOpenRequestHandler([$this, "onGetRequest"]);
   }
 
+  /**
+   * Processes GET requests.
+   *
+   * @return void
+   */
   public function onGetRequest()
   {
     $code = $this->getParam("code");

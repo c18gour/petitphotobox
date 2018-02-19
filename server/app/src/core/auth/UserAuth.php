@@ -65,7 +65,6 @@ class UserAuth
    *
    * @return void
    */
-  // TODO: shouldn't we revoke the auth_token?
   public static function logout()
   {
     HttpSession::delete("user_id");

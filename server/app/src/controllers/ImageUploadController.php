@@ -38,6 +38,11 @@ class ImageUploadController extends Controller
     ]);
   }
 
+  /**
+   * Processes OPEN requests.
+   *
+   * @return void
+   */
   public function onOpenRequest()
   {
     if ($_SERVER["REQUEST_METHOD"] != "OPTIONS") {

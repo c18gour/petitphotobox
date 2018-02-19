@@ -23,6 +23,11 @@ class PictureEditController extends AuthController
     $this->addPostRequestHandler([$this, "onPostRequest"]);
   }
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return Document
+   */
   public function getDocument()
   {
     $mainCategory = $this->user->getMainCategory();

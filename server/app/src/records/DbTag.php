@@ -64,6 +64,14 @@ class DbTag extends DbRecord
     return DbTable::insert($this->db, "tag", ["name" => $this->name]);
   }
 
+  /**
+   * Searches a tag by its name.
+   *
+   * @param DbConnector $db   Database connection
+   * @param string      $name Tag name
+   *
+   * @return DbTag
+   */
   public static function searchByName($db, $name)
   {
     $ret = null;

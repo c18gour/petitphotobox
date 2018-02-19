@@ -30,11 +30,21 @@ class DbPicture extends DbRecord
     parent::__construct($db, $id);
   }
 
+  /**
+   * Gets creation date.
+   *
+   * @return string
+   */
   public function getCreatedAt()
   {
     return $this->_createdAt;
   }
 
+  /**
+   * Gets the picture's categories.
+   *
+   * @return DbCategory[]
+   */
   public function getCategories()
   {
     $sql = "
@@ -75,6 +85,11 @@ class DbPicture extends DbRecord
     );
   }
 
+  /**
+   * Gets the picture's tags.
+   *
+   * @return DbPictureTag[]
+   */
   public function getPictureTags()
   {
     $sql = "

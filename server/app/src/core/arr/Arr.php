@@ -1,7 +1,8 @@
 <?php
 namespace petitphotobox\core\arr;
 
-class Arr {
+class Arr
+{
   /**
    * Gets the union of two list of items.
    *
@@ -53,7 +54,8 @@ class Arr {
    *
    * @return mixed[]
    */
-  public static function unique($items, $compare = null) {
+  public static function unique($items, $compare = null)
+  {
     return array_values(
       array_filter(
         array_values($items),

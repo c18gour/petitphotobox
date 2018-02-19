@@ -165,7 +165,7 @@ class SearchController extends AuthController
     // sorts by date in descending order
     usort(
       $this->_pictures,
-      function($picture1, $picture2) {
+      function ($picture1, $picture2) {
         $date1 = strtotime($picture1->getCreatedAt());
         $date2 = strtotime($picture2->getCreatedAt());
 

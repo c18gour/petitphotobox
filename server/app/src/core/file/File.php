@@ -3,11 +3,14 @@ namespace petitphotobox\core\file;
 use petitphotobox\core\exception\AppError;
 use soloproyectos\sys\file\SysFile;
 
-class File {
+class File
+{
   /**
    * Gets the 'relative path' of an absolute path.
    *
    * @param string $path Absolute path
+   *
+   * @return string
    */
   static public function getRelativePath($path)
   {
@@ -22,6 +25,8 @@ class File {
    * Gets the 'absolute path' of a relative path.
    *
    * @param string $path Relative path
+   *
+   * @return string
    */
   static public function getAbsolutePath($path)
   {
