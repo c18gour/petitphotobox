@@ -1,6 +1,5 @@
 <?php
-// header("Content-Type: image/jpeg");
-header("Content-Type: text/plain; charset=utf-8");
+header("Content-Type: image/jpeg");
 require_once "src/vendor/autoload.php";
 require_once "config.php";
 require_once "app-config.php";

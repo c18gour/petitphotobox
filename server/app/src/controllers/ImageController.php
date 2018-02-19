@@ -2,6 +2,7 @@
 namespace petitphotobox\controllers;
 // TODO: remove image-resize package
 use Gumlet\ImageResize;
+use Kunnu\Dropbox\Exceptions\DropboxClientException;
 use petitphotobox\core\auth\SystemAuth;
 use petitphotobox\core\controller\AuthController;
 use petitphotobox\core\exception\AppError;
@@ -10,8 +11,7 @@ use soloproyectos\text\Text;
 
 class ImageController extends AuthController
 {
-  private $_smallImage;
-  private $_path;
+  private $_imageContents;
 
   /**
    * Creates a new instance.
@@ -29,20 +29,24 @@ class ImageController extends AuthController
    */
   public function getDocument()
   {
-    $contents = $this->_smallImage
-      ? SystemAuth::getThumbnailContents($this->user, $this->_path)
-      : SystemAuth::getImageContents($this->user, $this->_path);
-
-    return $contents;
+    return $this->_imageContents;
   }
 
   public function onOpenRequest()
   {
-    $this->_smallImage = $this->existParam("small");
-    $this->_path = $this->getParam("path");
+    $smallImage = $this->existParam("small");
+    $path = $this->getParam("path");
 
-    if (Text::isEmpty($this->_path)) {
+    if (Text::isEmpty($path)) {
       throw new AppError("Path is required");
+    }
+
+    try {
+      $this->_imageContents = $smallImage
+        ? SystemAuth::getThumbnailContents($this->user, $path)
+        : SystemAuth::getImageContents($this->user, $path);
+    } catch (DropboxClientException $e) {
+      throw new AppError($e->getMessage());
     }
   }
 }
