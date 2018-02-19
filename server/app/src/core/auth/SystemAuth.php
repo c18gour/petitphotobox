@@ -52,7 +52,7 @@ class SystemAuth
   public static function upload($user, $localPath, $remotePath)
   {
     $path = SystemAuth::prependSlash($remotePath);
-    $account = SysAuth::_getUserAccount($user);
+    $account = SystemAuth::_getUserAccount($user);
     $dpFile = new DropboxFile($localPath);
 
     $file = $account->upload($dpFile, $path, ["autorename" => true]);
