@@ -1,19 +1,19 @@
 <?php
 namespace petitphotobox\controllers;
+use Kunnu\Dropbox\Exceptions\DropboxClientException;
 use petitphotobox\core\auth\UserAuth;
-use petitphotobox\core\controller\AuthController;
+use petitphotobox\core\auth\SystemAuth;
 use petitphotobox\core\controller\Controller;
 use petitphotobox\core\exception\ClientException;
 use petitphotobox\core\model\Document;
-use petitphotobox\core\file\File;
 use petitphotobox\exceptions\SessionError;
 use soloproyectos\arr\Arr;
-use soloproyectos\http\exception\HttpException;
 use soloproyectos\http\upload\HttpUpload;
 use soloproyectos\text\Text;
 
 class ImageUploadController extends Controller
 {
+  private $_user;
   private $_path = "";
 
   /**
@@ -40,11 +40,12 @@ class ImageUploadController extends Controller
 
   public function onOpenRequest()
   {
-    if (
-      $_SERVER["REQUEST_METHOD"] != "OPTIONS"
-      && !UserAuth::isLogged($this->db)
-    ) {
-      throw new SessionError("Your session has expired");
+    if ($_SERVER["REQUEST_METHOD"] != "OPTIONS") {
+      $this->_user = UserAuth::getInstance($this->db);
+
+      if ($this->_user == null) {
+        throw new SessionError("Your session has expired");
+      }
     }
   }
 
@@ -66,12 +67,12 @@ class ImageUploadController extends Controller
       throw new ClientException("Only JPEG images are allowed;");
     }
 
-    // moves the uploaded file
     try {
-      $path = $upload->move($user->getDir());
-      $this->_path = "images/" . basename($path);
-    } catch (HttpException $e) {
-      throw new ClientException($e->getMessage());
+      $this->_path = SystemAuth::upload(
+        $this->_user, $upload->getTempName(), $upload->getName()
+      );
+    } catch (DropboxClientException $e) {
+      throw new SessionError($e->getMessage());
     }
   }
 }
