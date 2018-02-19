@@ -51,19 +51,59 @@ class SystemAuth
    */
   public static function upload($user, $localPath, $remotePath)
   {
-    $dpApp = new DropboxApp(
-      DROPBOX_APP_KEY, DROPBOX_APP_SECRET, $user->authToken
-    );
-    $dp = new Dropbox($dpApp);
+    $path = SystemAuth::prependSlash($remotePath);
+    $account = SysAuth::_getUserAccount($user);
     $dpFile = new DropboxFile($localPath);
 
-    $file = $dp->upload(
-      $dpFile,
-      "/" . ltrim($remotePath, "/"),
-      ["autorename" => true]
-    );
+    $file = $account->upload($dpFile, $path, ["autorename" => true]);
 
     return SysFile::concat(IMAGE_FOLDER, $file->getName());
+  }
+
+  /**
+   * Gets image contents.
+   *
+   * @param DbUser $user       User
+   * @param string $remotePath Remote path
+   *
+   * @return string Image contents
+   */
+  public static function getImageContents($user, $remotePath)
+  {
+    $path = SystemAuth::prependSlash($remotePath);
+    $account = SystemAuth::_getUserAccount($user);
+    $link = $account->getTemporaryLink($path);
+
+    return file_get_contents($link->getLink());
+  }
+
+  /**
+   * Gets thumbnail contents.
+   *
+   * @param DbUser $user       User
+   * @param string $remotePath Remote path
+   *
+   * @return string Thumbnail contents
+   */
+  public static function getThumbnailContents($user, $remotePath)
+  {
+    $path = SystemAuth::prependSlash($remotePath);
+    $account = SystemAuth::_getUserAccount($user);
+    $file = $account->getThumbnail($path, "large");
+
+    return $file->getContents();
+  }
+
+  /**
+   * Adds a slash character to the beginning path.
+   *
+   * @param string $path File path
+   *
+   * @return string
+   */
+  public static function prependSlash($path)
+  {
+    return "/" . ltrim($path, "/");
   }
 
   /**
@@ -77,5 +117,21 @@ class SystemAuth
     $dp = new Dropbox($dpApp);
 
     return $dp->getAuthHelper();
+  }
+
+  /**
+   * Gets the user's account.
+   *
+   * @param DbUser $user User
+   *
+   * @return Dropbox User account
+   */
+  private static function _getUserAccount($user)
+  {
+    $dpApp = new DropboxApp(
+      DROPBOX_APP_KEY, DROPBOX_APP_SECRET, $user->authToken
+    );
+
+    return new Dropbox($dpApp);
   }
 }

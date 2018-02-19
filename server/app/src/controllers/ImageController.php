@@ -1,6 +1,8 @@
 <?php
 namespace petitphotobox\controllers;
+// TODO: remove image-resize package
 use Gumlet\ImageResize;
+use petitphotobox\core\auth\SystemAuth;
 use petitphotobox\core\controller\AuthController;
 use petitphotobox\core\exception\AppError;
 use soloproyectos\sys\file\SysFile;
@@ -27,18 +29,9 @@ class ImageController extends AuthController
    */
   public function getDocument()
   {
-    $contents = "";
-
-    if ($this->_smallImage) {
-      $image = new ImageResize($this->_path);
-      $image->resizeToWidth(THUMBNAIL_WIDTH);
-
-      ob_start();
-      $image->output();
-      $contents = ob_get_clean();
-    } else {
-      $contents = file_get_contents($this->_path);
-    }
+    $contents = $this->_smallImage
+      ? SystemAuth::getThumbnailContents($this->user, $this->_path)
+      : SystemAuth::getImageContents($this->user, $this->_path);
 
     return $contents;
   }
@@ -46,15 +39,10 @@ class ImageController extends AuthController
   public function onOpenRequest()
   {
     $this->_smallImage = $this->existParam("small");
-    $path = $this->getParam("path");
+    $this->_path = $this->getParam("path");
 
-    if (Text::isEmpty($path)) {
+    if (Text::isEmpty($this->_path)) {
       throw new AppError("Path is required");
-    }
-
-    $this->_path = SysFile::concat($this->user->getDir(), $path);
-    if (!is_file($this->_path)) {
-      throw new AppError("Image not found");
     }
   }
 }
