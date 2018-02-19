@@ -6,6 +6,7 @@ use Kunnu\Dropbox\Dropbox;
 use Kunnu\Dropbox\DropboxApp;
 use Kunnu\Dropbox\DropboxFile;
 use petitphotobox\records\DbUser;
+use soloproyectos\sys\file\SysFile;
 
 /**
  * Provides some methods to access the Dropbox user account.
@@ -62,7 +63,7 @@ class SystemAuth
       ["autorename" => true]
     );
 
-    return $file->getName();
+    return SysFile::concat(IMAGE_FOLDER, $file->getName());
   }
 
   /**
