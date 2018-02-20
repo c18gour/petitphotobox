@@ -66,6 +66,10 @@
           <context context-type="sourcefile">app/views/home/home-view.ts</context>
           <context context-type="linenumber">44</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/picture-new/picture-new-view.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="areYouSure" datatype="html">
         <source>Are you sure?</source>
@@ -135,6 +139,10 @@
           <context context-type="linenumber">12</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/views/picture-new/picture-new-view.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
           <context context-type="linenumber">25</context>
         </context-group>
@@ -161,6 +169,10 @@
           <context context-type="linenumber">17</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/views/picture-new/picture-new-view.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
           <context context-type="linenumber">43</context>
         </context-group>
@@ -176,19 +188,20 @@
           <context context-type="linenumber">18</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/views/picture-new/picture-new-view.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
           <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="editPicture" datatype="html">
-        <source>Edit Picture</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="showMoreOptions" datatype="html">
         <source>Show more options</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/picture-new/picture-new-view.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
           <context context-type="linenumber">14</context>
@@ -197,12 +210,20 @@
       <trans-unit id="selectOneOrMoreCategories" datatype="html">
         <source>Select one or more categories</source>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/views/picture-new/picture-new-view.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
           <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="tagsSeparatedByCommas" datatype="html">
         <source>Tags separated by commas</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/picture-new/picture-new-view.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
           <context context-type="linenumber">27</context>
@@ -211,8 +232,19 @@
       <trans-unit id="addOneOrMoreSnapshots" datatype="html">
         <source>Add one or more snapshots</source>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/views/picture-new/picture-new-view.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
           <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="editPicture" datatype="html">
+        <source>Edit Picture</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
+          <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
     </body>
