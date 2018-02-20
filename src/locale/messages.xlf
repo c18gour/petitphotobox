@@ -117,6 +117,13 @@
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="verifyingCredentials" datatype="html">
+        <source>Verifying credentials...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/user-verify/user-verify-view.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="createNewCategory" datatype="html">
         <source>Create a new category</source>
         <context-group purpose="location">
