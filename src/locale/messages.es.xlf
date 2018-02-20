@@ -118,9 +118,21 @@
           <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="createNewCategory" datatype="html">
+        <source>Create a new category</source>
+        <target>Crear nueva categoría</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/category-new/category-new-view.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="parentCategory" datatype="html">
         <source>Parent Category</source>
         <target>Categoría padre</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/category-new/category-new-view.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/views/category-edit/category-edit-view.ts</context>
           <context context-type="linenumber">9</context>
@@ -130,6 +142,10 @@
         <source>Title</source>
         <target>Título</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/views/category-new/category-new-view.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/views/category-edit/category-edit-view.ts</context>
           <context context-type="linenumber">12</context>
         </context-group>
@@ -138,24 +154,36 @@
         <source>Title is required</source>
         <target>El título es obligatorio</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/views/category-new/category-new-view.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/views/category-edit/category-edit-view.ts</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="accept" datatype="html">
         <source>Accept</source>
         <target>Aceptar</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/views/category-new/category-new-view.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/views/category-edit/category-edit-view.ts</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cancel" datatype="html">
         <source>Cancel</source>
         <target>Cancelar</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/views/category-new/category-new-view.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/views/category-edit/category-edit-view.ts</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
     </body>
