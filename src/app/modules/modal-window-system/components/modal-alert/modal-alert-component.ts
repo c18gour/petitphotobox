@@ -9,9 +9,6 @@ import { ModalDialog } from '../../core/modal-dialog';
 })
 export class ModalAlertComponent extends ModalDialog implements OnInit {
   @Input()
-  title = 'Alert';
-
-  @Input()
   message = '';
 
   @Output()

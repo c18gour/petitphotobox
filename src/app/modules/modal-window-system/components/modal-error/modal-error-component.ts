@@ -9,9 +9,6 @@ import { ModalDialog } from '../../core/modal-dialog';
 })
 export class ModalErrorComponent extends ModalDialog implements OnInit {
   @Input()
-  title = 'Error';
-
-  @Input()
   message = '';
 
   @Output()

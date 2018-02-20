@@ -9,9 +9,6 @@ import { ModalDialog } from '../../core/modal-dialog';
 })
 export class ModalConfirmComponent extends ModalDialog implements OnInit {
   @Input()
-  title = 'Confirm';
-
-  @Input()
   message = '';
 
   @Output()

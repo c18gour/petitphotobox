@@ -290,9 +290,29 @@
           <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="alert" datatype="html">
+        <source>Alert</source>
+        <target>Alerta</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modules/modal-window-system/components/modal-alert/modal-alert-component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="accept" datatype="html">
         <source>Accept</source>
         <target>Aceptar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modules/modal-window-system/components/modal-alert/modal-alert-component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modules/modal-window-system/components/modal-confirm/modal-confirm-component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modules/modal-window-system/components/modal-error/modal-error-component.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/views/category-new/category-new-view.ts</context>
           <context context-type="linenumber">17</context>
@@ -302,17 +322,33 @@
           <context context-type="linenumber">17</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
+          <context context-type="sourcefile">app/views/picture-new/picture-new-view.ts</context>
           <context context-type="linenumber">41</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
+          <context context-type="linenumber">43</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/views/search/search-view.ts</context>
           <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="confirm" datatype="html">
+        <source>Confirm</source>
+        <target>Confirmar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modules/modal-window-system/components/modal-confirm/modal-confirm-component.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="cancel" datatype="html">
         <source>Cancel</source>
         <target>Cancelar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modules/modal-window-system/components/modal-confirm/modal-confirm-component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/views/category-new/category-new-view.ts</context>
           <context context-type="linenumber">18</context>
@@ -322,12 +358,24 @@
           <context context-type="linenumber">18</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
+          <context context-type="sourcefile">app/views/picture-new/picture-new-view.ts</context>
           <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
+          <context context-type="linenumber">44</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/views/search/search-view.ts</context>
           <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="error" datatype="html">
+        <source>Error</source>
+        <target>Error</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modules/modal-window-system/components/modal-error/modal-error-component.ts</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="showMoreOptions" datatype="html">
