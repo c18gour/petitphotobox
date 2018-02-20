@@ -110,6 +110,13 @@
           <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="logInWithDropbox" datatype="html">
+        <source>Log in with Dropbox</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/user-access/user-access-view.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="createNewCategory" datatype="html">
         <source>Create a new category</source>
         <context-group purpose="location">

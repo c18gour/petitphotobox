@@ -3,7 +3,10 @@
 </div>
 
 <div class="container" *ngIf="entity">
-  <a [href]="entity.url"><i class="fa fa-dropbox"></i>Log in with Dropbox</a>
+  <a [href]="entity.url">
+    <i class="fa fa-dropbox"></i>
+    <ng-container i18n="@@logInWithDropbox">Log in with Dropbox</ng-container>
+  </a>
 </div>
 
 <template #modalContainer></template>
