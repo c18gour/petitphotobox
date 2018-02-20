@@ -22,6 +22,7 @@ export class PageNotFoundView implements OnInit {
     this.modal = new ModalWindowSystem(
       this, this._resolver, this.modalContainer);
 
+    // TODO: translate literal strings
     if (await this.modal.alert('Page not found.\nRedirect to Home')) {
       this._router.navigate(['/home']);
     }
