@@ -97,6 +97,10 @@
           <context context-type="sourcefile">app/views/home/home-view.ts</context>
           <context context-type="linenumber">40</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/category-edit/category-edit-view.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="newSubcategory" datatype="html">
         <source>New subcategory</source>
@@ -107,11 +111,51 @@
         </context-group>
       </trans-unit>
       <trans-unit id="emptyCategory" datatype="html">
-        <source>This category doesn't contain any picture.</source>
+        <source>This category doesn&apos;t contain any picture.</source>
         <target>Esta categoría no contiene imágenes.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/views/home/home-view.ts</context>
           <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="parentCategory" datatype="html">
+        <source>Parent Category</source>
+        <target>Categoría padre</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/category-edit/category-edit-view.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="title" datatype="html">
+        <source>Title</source>
+        <target>Título</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/category-edit/category-edit-view.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="titleIsRequired" datatype="html">
+        <source>Title is required</source>
+        <target>El título es obligatorio</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/category-edit/category-edit-view.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="accept" datatype="html">
+        <source>Accept</source>
+        <target>Aceptar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/category-edit/category-edit-view.ts</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cancel" datatype="html">
+        <source>Cancel</source>
+        <target>Cancelar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/category-edit/category-edit-view.ts</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
     </body>

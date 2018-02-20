@@ -3,20 +3,19 @@
 </div>
 
 <div class="container" *ngIf="entity">
-  <h3>Edit category</h3>
+  <h3 i18n="@@editCategory">Edit category</h3>
   <form (ngSubmit)="onSubmit()" (change)="hasChanged = true">
     <fieldset>
-      <label for="parentCategoryId">Parent Category</label>
+      <label for="parentCategoryId" i18n="@@parentCategory">Parent Category</label>
       <app-input-select #parentCategoryInput name="parentCategoryId"
         [items]="entity.categories" [value]="entity.parentCategoryId"></app-input-select>
-      <label for="name">Title</label>
+      <label for="name" i18n="@@title">Title</label>
       <input #inputTitle="ngModel" autofocus type="text" id="title" required
         name="title" [(ngModel)]="entity.title" />
-      <div [hidden]="inputTitle.valid || inputTitle.pristine" class="error-box">
-        Title is required
-      </div>
-      <button type="submit" class="button-primary">Accept</button>
-      <button type="button" (click)="goBack()">Cancel</button>
+      <div [hidden]="inputTitle.valid || inputTitle.pristine" class="error-box"
+        i18n="@@titleIsRequired">Title is required</div>
+      <button type="submit" class="button-primary" i18n="@@accept">Accept</button>
+      <button type="button" (click)="goBack()" i18n="@@cancel">Cancel</button>
     </fieldset>
   </form>
 </div>
