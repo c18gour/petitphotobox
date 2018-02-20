@@ -10,6 +10,10 @@
           <context context-type="linenumber">4</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/views/search/components/search-picture/search-picture-component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/views/picture-new/components/picture-new-snapshot/picture-new-snapshot-component.ts</context>
           <context context-type="linenumber">4</context>
         </context-group>
@@ -58,6 +62,10 @@
           <context context-type="linenumber">12</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/views/search/components/search-picture/search-picture-component.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/views/picture-edit/components/picture-edit-snapshot/picture-edit-snapshot-component.ts</context>
           <context context-type="linenumber">11</context>
         </context-group>
@@ -68,6 +76,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/views/home/components/home-picture/home-picture-component.ts</context>
           <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/search/components/search-picture/search-picture-component.ts</context>
+          <context context-type="linenumber">9</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
