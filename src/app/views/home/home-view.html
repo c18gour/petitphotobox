@@ -2,10 +2,15 @@
   <a title="Home" routerLink="/home" ><i class="fa fa-home"></i></a>
   <h1>Photobox</h1>
   <div class="buttons" *ngIf="entity">
-    <a *ngIf="entity.categories.length > 0" (click)="menu.visible = !menu.visible" title="Toggle menu" ><i class="fa fa-bars"></i></a>
-    <a routerLink="/category/new" title="New category"><i class="fa fa-plus"></i></a>
-    <a routerLink="/search" title="Find pictures"><i class="fa fa-search"></i></a>
-    <a (click)="modal.confirm('Do you want exit the system?', exit)" title="Sign out"><i class="fa fa-sign-out"></i></a>
+    <a *ngIf="entity.categories.length > 0" (click)="menu.visible = !menu.visible"
+      i18n-title="@@toggleMenu" title="Toggle menu" ><i class="fa fa-bars"></i></a>
+    <a routerLink="/category/new"
+      i18n-title="@@newCategory" title="New category"><i class="fa fa-plus"></i></a>
+    <a routerLink="/search"
+      i18n-title="@@findPictures" title="Find pictures"><i class="fa fa-search"></i></a>
+    <a (click)="modal.confirm($event.currentTarget.dataset.message, exit)"
+      i18n-data-message="@@signOutMessage" data-message="Do you want to exit the system?"
+      i18n-title="@@signOut" title="Sign out"><i class="fa fa-sign-out"></i></a>
   </div>
 </div>
 
@@ -15,26 +20,35 @@
   <div class="results">
     <!-- if 'main category': -->
     <h3 *ngIf="entity.main">
-      <span>Uncategorized pictures</span>
-      <a routerLink="/category/new" title="New category"><i class="fa fa-plus"></i></a>
-      <a routerLink="/picture/new" title="Upload picture"><i class="fa fa-upload"></i></a>
-      <a routerLink="/search" title="Find pictures"><i class="fa fa-search"></i></a>
+      <span i18n="@@mainCategoryTitle">Uncategorized pictures</span>
+      <a routerLink="/category/new"
+        i18n-title="@@newCategory" title="New category"><i class="fa fa-plus"></i></a>
+      <a routerLink="/picture/new"
+        i18n-title="@@uploadPicture" title="Upload picture"><i class="fa fa-upload"></i></a>
+      <a routerLink="/search"
+        i18n-title="@@findPictures" title="Find pictures"><i class="fa fa-search"></i></a>
     </h3>
     <!-- else: -->
     <h3 *ngIf="!entity.main">
-      <a title="Delete category" (click)="modal.confirm('Are you sure?', deleteCategory)">
+      <a (click)="modal.confirm($event.curentTarget.dataset.message, deleteCategory)"
+        i18n-data-message="@@areYouSure" data-message="Are you sure?"
+        i18n-title="@@deleteCategory" title="Delete category">
         <i class="fa fa-trash-o"></i>
       </a>
       <span>{{entity.title}}</span>
-      <a [routerLink]="'/category/edit/' + entity.id" title="Edit category"><i class="fa fa-pencil"></i></a>
-      <a [routerLink]="'/category/new/' + categoryId" title="New subcategory"><i class="fa fa-plus"></i></a>
-      <a [routerLink]="'/picture/new/' + categoryId" title="Upload picture"><i class="fa fa-upload"></i></a>
-      <a [routerLink]="'/search/' + categoryId" title="Find pictures"><i class="fa fa-search"></i></a>
+      <a [routerLink]="'/category/edit/' + entity.id"
+        i18n-title="@@editCategory" title="Edit category"><i class="fa fa-pencil"></i></a>
+      <a [routerLink]="'/category/new/' + categoryId"
+        i18n-title="@@newSubcategory" title="New subcategory"><i class="fa fa-plus"></i></a>
+      <a [routerLink]="'/picture/new/' + categoryId"
+        i18n-title="@@uploadPicture" title="Upload picture"><i class="fa fa-upload"></i></a>
+      <a [routerLink]="'/search/' + categoryId"
+        i18n-title="@@findPictures" title="Find pictures"><i class="fa fa-search"></i></a>
     </h3>
     <!-- endif -->
 
     <p *ngIf="entity.pictures.length === 0">
-      <em>This category is empty.</em>
+      <em i18n="@@emptyCategory">This category doesn't contain any picture.</em>
     </p>
 
     <app-paginator *ngIf="entity.numPages > 1"

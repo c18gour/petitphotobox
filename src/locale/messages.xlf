@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="toggleMenu" datatype="html">
+        <source>Toggle menu</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/home/home-view.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="newCategory" datatype="html">
+        <source>New category</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/home/home-view.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/home/home-view.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="findPictures" datatype="html">
+        <source>Find pictures</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/home/home-view.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/home/home-view.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/home/home-view.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="signOutMessage" datatype="html">
+        <source>Do you want to exit the system?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/home/home-view.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="signOut" datatype="html">
+        <source>Sign out</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/home/home-view.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="mainCategoryTitle" datatype="html">
+        <source>Uncategorized pictures</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/home/home-view.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uploadPicture" datatype="html">
+        <source>Upload picture</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/home/home-view.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/home/home-view.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="areYouSure" datatype="html">
+        <source>Are you sure?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/home/home-view.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="deleteCategory" datatype="html">
+        <source>Delete category</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/home/home-view.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="editCategory" datatype="html">
+        <source>Edit category</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/home/home-view.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="newSubcategory" datatype="html">
+        <source>New subcategory</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/home/home-view.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="emptyCategory" datatype="html">
+        <source>This category doesn't contain any picture.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/home/home-view.ts</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
