@@ -2,6 +2,30 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="previousPage" datatype="html">
+        <source>Previous page</source>
+        <target>Página anterior</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/paginator/paginator-component.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="page" datatype="html">
+        <source>Page</source>
+        <target>Página</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/paginator/paginator-component.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="nextPage" datatype="html">
+        <source>Next page</source>
+        <target>Página siguiente</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/paginator/paginator-component.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="deletePicture" datatype="html">
         <source>Delete picture</source>
         <target>Borrar imagen</target>
