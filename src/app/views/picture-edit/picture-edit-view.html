@@ -11,7 +11,7 @@
       <div class="options" [ngClass]="{'open': showMoreOptions}">
         <label>
           <a (click)="showMoreOptions = !showMoreOptions">
-            <span i18n="@@showMoreOptions">Show more options</span>
+            <ng-container i18n="@@showMoreOptions">Show more options</ng-container>
             <i class="fa fa-chevron-right"
               [ngClass]="{'fa-chevron-down': showMoreOptions, 'fa-chevron-right': !showMoreOptions}"></i>
           </a>
