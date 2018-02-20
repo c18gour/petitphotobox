@@ -189,6 +189,10 @@
           <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
           <context context-type="linenumber">41</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/search/search-view.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="cancel" datatype="html">
         <source>Cancel</source>
@@ -204,6 +208,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
           <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/search/search-view.ts</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="editPicture" datatype="html">
@@ -260,6 +268,62 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/views/picture-edit/picture-edit-view.ts</context>
           <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="searchPictures" datatype="html">
+        <source>Search Pictures</source>
+        <target>Buscar imágenes</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/search/search-view.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="selectCategories" datatype="html">
+        <source>Select categories</source>
+        <target>Seleccione categorías</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/search/search-view.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="showPicturesInAnyCategory" datatype="html">
+        <source>Show pictures in ANY category</source>
+        <target>Mostrar imágenes en CUALQUIER categoría</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/search/search-view.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="showPicturesInAllCategories" datatype="html">
+        <source>Show pictures in ALL categories</source>
+        <target>Mostrar imágenes en TODAS las categorías</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/search/search-view.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fromDate" datatype="html">
+        <source>From</source>
+        <target>Desde</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/search/search-view.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="toDate" datatype="html">
+        <source>To</source>
+        <target>Hasta</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/search/search-view.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="includePicturesSubcategories" datatype="html">
+        <source>Include pictures subcategories</source>
+        <target>Incluir imágenes de las subcategorías</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/views/search/search-view.ts</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
     </body>

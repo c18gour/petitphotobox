@@ -3,34 +3,34 @@
 </div>
 
 <div class="container" *ngIf="entity">
-  <h3>Search Pictures</h3>
+  <h3 i18n="@@searchPictures">Search Pictures</h3>
   <form (ngSubmit)="onSubmit()">
     <fieldset>
       <div [hidden]="entity.categories.length === 0">
-        <label for="categoryId">Select categories</label>
+        <label for="categoryId" i18n="@@selectCategories">Select categories</label>
         <app-input-checkbox #categoriesInput name="categoryId"
           [items]="entity.categories" [value]="entity.categoryIds"></app-input-checkbox>
       </div>
       <select name="type" [(ngModel)]="type">
-        <option value="any">Show pictures in ANY category</option>
-        <option value="all">Show pictures in ALL categories</option>
+        <option value="any" i18n="@@showPicturesInAnyCategory">Show pictures in ANY category</option>
+        <option value="all" i18n="@@showPicturesInAllCategories">Show pictures in ALL categories</option>
       </select>
       <div class="date">
         <div class="field">
-          <label for="fromDate">From</label>
+          <label for="fromDate" i18n="@@fromDate">From</label>
           <input type="date" id="fromDate" name="fromDate" [(ngModel)]="fromDate">
         </div>
         <div class="field">
-          <label for="toDate">To</label>
+          <label for="toDate" i18n="@@toDate">To</label>
           <input type="date" id="toDate" name="toDate" [(ngModel)]="toDate">
         </div>
       </div>
       <label>
         <input type="checkbox" name="recurse" [(ngModel)]="recurse">
-        <span>Include pictures subcategories</span>
+        <span i18n="@@includePicturesSubcategories">Include pictures subcategories</span>
       </label>
-      <button type="submit" class="button-primary">Accept</button>
-      <button type="button" (click)="goBack()">Cancel</button>
+      <button type="submit" class="button-primary" i18n="@@accept">Accept</button>
+      <button type="button" (click)="goBack()" i18n="@@cancel">Cancel</button>
     </fieldset>
   </form>
 
