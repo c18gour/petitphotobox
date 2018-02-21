@@ -40,7 +40,7 @@
       (selectPage)="goPage($event)"></app-paginator>
 
   <div class="pictures">
-    <app-search-picture *ngFor="let picture of entity.pictures"
+    <app-search-picture *ngFor="let picture of entity.pictures; trackBy: trackPicture"
       [id]="picture.id"
       [path]="picture.path"
       [categories]="picture.categories"

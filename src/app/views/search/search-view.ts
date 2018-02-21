@@ -8,7 +8,7 @@ import { InputCheckboxComponent } from '../../components/input-checkbox/input-ch
 
 import { SearchController } from './controllers/search-controller';
 import { PictureDeleteController } from './controllers/picture-delete-controller';
-import { SearchEntity } from './entities/search-entity';
+import { SearchEntity, SearchPictureEntity } from './entities/search-entity';
 
 @Component({
   selector: 'app-search',
@@ -92,6 +92,10 @@ export class SearchView implements OnInit {
 
   goBack() {
     this._location.back();
+  }
+
+  trackPicture(index: number, item: SearchPictureEntity) {
+    return item.id;
   }
 
   deletePicture(pictureId: string) {
