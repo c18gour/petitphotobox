@@ -1,7 +1,5 @@
 <?php
 namespace petitphotobox\controllers;
-// TODO: remove image-resize package
-use Gumlet\ImageResize;
 use Kunnu\Dropbox\Exceptions\DropboxClientException;
 use petitphotobox\core\auth\SystemAuth;
 use petitphotobox\core\controller\AuthController;

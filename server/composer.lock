@@ -4,56 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "812bef585337d4e5845e8c5b498234c9",
-    "content-hash": "214966f4c2f5df2a68956bea0e780305",
+    "hash": "72524b629f19971725ac1b3993c209b6",
+    "content-hash": "67b606c7aef61db546e760dd4e9a789b",
     "packages": [
-        {
-            "name": "gumlet/php-image-resize",
-            "version": "1.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/gumlet/php-image-resize.git",
-                "reference": "23b4e1e4b429c69b3025b050b8564065cbe18cda"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/gumlet/php-image-resize/zipball/23b4e1e4b429c69b3025b050b8564065cbe18cda",
-                "reference": "23b4e1e4b429c69b3025b050b8564065cbe18cda",
-                "shasum": ""
-            },
-            "require": {
-                "ext-gd": "*",
-                "php": ">=5.3.0"
-            },
-            "suggest": {
-                "ext-exif": "Auto-rotate jpeg files"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "lib"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Aditya Patadia",
-                    "homepage": "http://aditya.patadia.org/"
-                }
-            ],
-            "description": "PHP class to re-size and scale images",
-            "homepage": "https://github.com/gumlet/php-image-resize",
-            "keywords": [
-                "image",
-                "php",
-                "resize",
-                "scale"
-            ],
-            "time": "2018-01-14 09:22:51"
-        },
         {
             "name": "guzzlehttp/guzzle",
             "version": "6.3.0",
