@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolve
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { SessionError } from '../../core/exception/session-error';
-import { HomeEntity } from './entities/home-entity';
+import { HomeEntity, HomePictureEntity } from './entities/home-entity';
 import { MenuComponent } from '../../modules/menu/menu-component';
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
 
@@ -130,6 +130,10 @@ export class HomeView implements OnInit {
 
   goPage(page: number) {
     this._router.navigate([`/home/${this.categoryId}/${page}`]);
+  }
+
+  trackPicture(index: number, item: HomePictureEntity) {
+    return item.id;
   }
 
   private async _refresh(pictureId: string = '') {

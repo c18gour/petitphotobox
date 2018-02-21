@@ -58,7 +58,7 @@
 
     <!-- TODO: (low) when moving a picture, scroll to that picture (also in picture-edit, picture-new) -->
     <div class="pictures">
-      <app-home-picture *ngFor="let picture of entity.pictures"
+      <app-home-picture *ngFor="let picture of entity.pictures; trackBy: trackPicture"
         [id]="picture.id"
         [path]="picture.path"
         [categories]="picture.categories"
