@@ -17,8 +17,6 @@ const routes: Routes = [
   { path: 'home/:categoryId/:page', component: HomeView },
   { path: 'access', component: UserAccessView },
   { path: 'verify', component: UserVerifyView },
-  // TODO: remove back button
-  { path: 'login/:back', component: UserAccessView },
   { path: 'category/new', component: CategoryNewView },
   { path: 'category/new/:parentCategoryId', component: CategoryNewView },
   { path: 'category/edit/:categoryId', component: CategoryEditView },
