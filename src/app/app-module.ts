@@ -14,11 +14,15 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { AppRoutingModule } from './app-routing-module';
 import { AppComponent } from './app-component';
 
+// services
+import { AppTranslateService } from './core/i18n/app-translate-service';
+
+// pipes
+import { IteratorPipe } from './pipes/iterator-pipe';
+
 // modules
 import { MenuModule } from './modules/menu/menu-module';
 import { ModalWindowSytemModule } from './modules/modal-window-system/modal-window-system-module';
-
-import { IteratorPipe } from './pipes/iterator-pipe';
 
 // components
 import { InputSelectComponent } from './components/input-select/input-select-component';
@@ -134,6 +138,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [
+    AppTranslateService,
     UserAccessController,
     UserVerifyController,
     LogoutController,

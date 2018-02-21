@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
+import { AppTranslateService } from '../../core/i18n/app-translate-service';
 
 @Component({
   selector: 'app-page-not-found',
@@ -15,7 +15,8 @@ export class PageNotFoundView implements OnInit {
   constructor(
     private _router: Router,
     private _resolver: ComponentFactoryResolver,
-    private _translate: TranslateService) { }
+    private _translate: AppTranslateService) {
+  }
 
   @ViewChild('modalContainer', { read: ViewContainerRef })
   modalContainer: ViewContainerRef;
@@ -24,11 +25,9 @@ export class PageNotFoundView implements OnInit {
     this.modal = new ModalWindowSystem(
       this, this._resolver, this.modalContainer);
 
-    const message = await this._translate.get('page-not-found')
-      .toPromise<string>();
-
+    const message = await this._translate.get('page-not-found');
     if (await this.modal.alert(message)) {
-      // this._router.navigate(['/home']);
+      this._router.navigate(['/home']);
     }
   }
 
