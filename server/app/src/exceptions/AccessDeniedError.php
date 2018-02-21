@@ -8,7 +8,6 @@ use petitphotobox\core\exception\AppError;
  * For example, if the user has already logged and tries to open the 'register
  * controller', it throws an AccessDeniedError.
  */
-// TODO: redirect to the 'home' page when the user tries to open the 'register' page.
 class AccessDeniedError extends AppError
 {
   /**
