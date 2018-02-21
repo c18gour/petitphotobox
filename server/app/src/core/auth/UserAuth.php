@@ -4,7 +4,7 @@ use Kunnu\Dropbox\Models\AccessToken;
 use petitphotobox\exceptions\AuthException;
 use petitphotobox\records\DbUser;
 use soloproyectos\db\DbConnector;
-use soloproyectos\http\data\HttpSession;
+use soloproyectos\http\data\HttpCookie;
 
 class UserAuth
 {
@@ -18,7 +18,7 @@ class UserAuth
   public static function getInstance($db)
   {
     $ret = null;
-    $userId = HttpSession::get("user_id");
+    $userId = HttpCookie::get("user_id");
 
     $sql = "
     select
@@ -55,7 +55,7 @@ class UserAuth
     $user->save();
 
     // registers the user in the system
-    HttpSession::set("user_id", $user->getId());
+    HttpCookie::set("user_id", $user->getId());
 
     return $user;
   }
@@ -67,7 +67,7 @@ class UserAuth
    */
   public static function logout()
   {
-    HttpSession::delete("user_id");
+    HttpCookie::delete("user_id");
   }
 
   /**
