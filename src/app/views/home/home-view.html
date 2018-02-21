@@ -48,7 +48,7 @@
     <!-- endif -->
 
     <p *ngIf="entity.pictures.length === 0">
-      <em i18n="@@emptyCategory">This category doesn't contain any picture.</em>
+      <em i18n="@@emptyCategory">{{'home.emptyCategory' | translate}}</em>
     </p>
 
     <app-paginator *ngIf="entity.numPages > 1"

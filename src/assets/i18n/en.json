@@ -1,5 +1,8 @@
 {
-    "pageNotFound": {
-      "message": "Page not found.\nRedirect to Home"
-    }
+  "home": {
+    "emptyCategory": "This category doesn't contain any picture."
+  },
+  "pageNotFound": {
+    "message": "Page not found.\nRedirect to Home"
+  }
 }
