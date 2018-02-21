@@ -1,7 +1,11 @@
+import { Injectable } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AutofocusModule } from 'angular-autofocus-fix';
 import { FileUploadModule } from 'ng2-file-upload';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
@@ -69,6 +73,20 @@ import { CategoryPictureDownController } from './views/home/controllers/category
 import { SearchController } from './views/search/controllers/search-controller';
 import { PictureDeleteController } from './views/search/controllers/picture-delete-controller';
 
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
+@Injectable()
+export class Translate {
+  constructor(private _translate: TranslateService) { }
+
+  get(key: string) {
+    this._translate.get(key);
+  }
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,9 +132,18 @@ import { PictureDeleteController } from './views/search/controllers/picture-dele
     MenuModule,
     FileUploadModule,
     RoundProgressModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
+    Translate,
     UserAccessController,
     UserVerifyController,
     LogoutController,

@@ -22,6 +22,8 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
+    "@ngx-translate/core": "^9.1.1",
+    "@ngx-translate/http-loader": "^2.0.1",
     "angular-autofocus-fix": "^0.1.0",
     "angular-svg-round-progressbar": "^1.2.1",
     "compass-mixins": "^0.12.10",
