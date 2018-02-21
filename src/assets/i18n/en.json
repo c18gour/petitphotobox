@@ -1,4 +1,5 @@
 {
-    "HELLO": "hello {{value}}",
-    "page-not-found": "Page not found.\nRedirect to Home"
+    "pageNotFound": {
+      "message": "Page not found.\nRedirect to Home"
+    }
 }

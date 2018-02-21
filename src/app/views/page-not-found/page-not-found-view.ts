@@ -25,7 +25,7 @@ export class PageNotFoundView implements OnInit {
     this.modal = new ModalWindowSystem(
       this, this._resolver, this.modalContainer);
 
-    const message = await this._translate.get('page-not-found');
+    const message = await this._translate.get('pageNotFound.message');
     if (await this.modal.alert(message)) {
       this._router.navigate(['/home']);
     }
