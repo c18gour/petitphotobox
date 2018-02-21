@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AutofocusModule } from 'angular-autofocus-fix';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -78,15 +78,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-@Injectable()
-export class Translate {
-  constructor(private _translate: TranslateService) { }
-
-  get(key: string) {
-    this._translate.get(key);
-  }
-}
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -143,7 +134,6 @@ export class Translate {
     })
   ],
   providers: [
-    Translate,
     UserAccessController,
     UserVerifyController,
     LogoutController,
