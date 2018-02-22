@@ -1,12 +1,12 @@
 <div class="picture">
   <div class="buttons left">
     <a (click)="deletePicture.emit(path); change.emit()"
-      [title]="'pictureNew.picture.deletePicture' | translate"><i class="fa fa-trash"></i></a>
+      [title]="'pictureNew.snapshot.deletePicture' | translate"><i class="fa fa-trash"></i></a>
   </div>
   <div class="buttons right">
-    <a [title]="'pictureNew.picture.movePictureUp' | translate"
+    <a [title]="'pictureNew.snapshot.movePictureUp' | translate"
       (click)="upPicture.emit(path); change.emit()"><i class="fa fa-chevron-circle-up"></i></a>
-    <a [title]="'pictureNew.picture.movePictureDown' | translate"
+    <a [title]="'pictureNew.snapshot.movePictureDown' | translate"
       (click)="downPicture.emit(path); change.emit()"><i class="fa fa-chevron-circle-down"></i></a>
   </div>
   <img defaultImage="/assets/loading.gif" [lazyLoad]="smallImagePath" [offset]="100">

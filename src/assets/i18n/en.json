@@ -47,7 +47,7 @@
     "addOneOrMoreSnapshots": "Add one or more snapshots",
     "accept": "Accept",
     "cancel": "Cancel",
-    "picture": {
+    "snapshot": {
       "deletePicture": "Delete picture",
       "movePictureUp": "Move picture up",
       "movePictureDown": "Move picture down",
@@ -63,7 +63,7 @@
     "addOneOrMoreSnapshots": "Add one or more snapshots",
     "accept": "Accept",
     "cancel": "Cancel",
-    "picture": {
+    "snapshot": {
       "deletePicture": "Delete picture",
       "movePictureUp": "Move picture up",
       "movePictureDown": "Move picture down"
