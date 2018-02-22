@@ -1,26 +1,26 @@
 <div class="picture">
   <div class="buttons left">
     <a (click)="deletePicture.emit(id)"
-      i18n-title="@@deletePicture" title="Delete picture"><i class="fa fa-trash"></i></a>
+      [title]="'home.picture.deletePicture' | translate"><i class="fa fa-trash"></i></a>
   </div>
   <!-- TODO: (low) 'start' button (also in picture-new and picture-edit) -->
   <div class="buttons right">
-    <a i18n-title="@@movePictureUp" title="Move picture up"
+    <a [title]="'home.picture.movePictureUp' | translate"
       (click)="upPicture.emit(id)"><i class="fa fa-chevron-circle-up"></i></a>
-    <a i18n-title="@@movePictureDown" title="Move picture down"
+    <a [title]="'home.picture.movePictureDown' | translate"
       (click)="downPicture.emit(id)"><i class="fa fa-chevron-circle-down"></i></a>
-    <a i18n-title="@@downloadPicture" title="Download picture"
+    <a [title]="'home.picture.downloadPicture' | translate"
       [href]="imagePath" download><i class="fa fa-download"></i></a>
-    <a i18n-title="@@editPicture" title="Edit picture"
+    <a [title]="'home.picture.editPicture' | translate"
       (click)="editPicture.emit(id)"><i class="fa fa-pencil-square"></i></a>
   </div>
   <div class="info" *ngIf="snapshots > 1 || categories > 1">
     <ul>
       <li *ngIf="snapshots > 1">
-        <span i18n="@@snapshots">Snapshots:</span> {{snapshots}}
+        <span>{{'home.picture.snapshots' | translate}}</span> {{snapshots}}
       </li>
       <li *ngIf="categories > 1">
-        <span i18n="@@categories">Categories:</span> {{categories}}
+        <span>{{'home.picture.categories' | translate}}</span> {{categories}}
       </li>
     </ul>
   </div>

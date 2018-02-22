@@ -27,7 +27,16 @@
     "areYouSure": "Are you sure?",
     "deleteCategory": "Delete category",
     "editCategory": "Edit category",
-    "newSubcategory": "New subcategory"
+    "newSubcategory": "New subcategory",
+    "picture": {
+      "deletePicture": "Delete picture",
+      "movePictureUp": "Move picture up",
+      "movePictureDown": "Move picture down",
+      "downloadPicture": "Download picture",
+      "editPicture": "Edit picture",
+      "snapshots": "Snapshots",
+      "categories": "Categories"
+    }
   },
   "pictureEdit": {
     "header": "Edit Picture",
