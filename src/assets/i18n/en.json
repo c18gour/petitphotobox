@@ -60,6 +60,9 @@
     "accept": "Accept",
     "cancel": "Cancel"
   },
+  "userAccess": {
+    "logInWithDropbox": "Log in with Dropbox"
+  },
   "pageNotFound": {
     "message": "Page not found.\nRedirect to Home"
   }
