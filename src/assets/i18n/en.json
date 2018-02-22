@@ -29,6 +29,16 @@
     "editCategory": "Edit category",
     "newSubcategory": "New subcategory"
   },
+  "pictureEdit": {
+    "header": "Edit Picture",
+    "showMoreOptions": "Show more options",
+    "selectOneOrMoreCategories": "Select one or more categories",
+    "title": "Title",
+    "tagsSeparatedByCommas": "Tags separated by commas",
+    "addOneOrMoreSnapshots": "Add one or more snapshots",
+    "accept": "Accept",
+    "cancel": "Cancel"
+  },
   "pageNotFound": {
     "message": "Page not found.\nRedirect to Home"
   }
