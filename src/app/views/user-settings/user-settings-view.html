@@ -1,0 +1,19 @@
+<div class="header">
+  <h1>Photobox</h1>
+</div>
+
+<div class="container" *ngIf="entity">
+  <h3>{{'userSettings.header' | translate}}</h3>
+  <form (ngSubmit)="onSubmit()" (change)="hasChanged = true">
+    <fieldset>
+      <label for="language">{{'userSettings.language' | translate}}</label>
+      <select id="language" name="language" [(ngModel)]="entity.language">
+        <option *ngFor="let language of languages" [value]="language.code">{{language.label}}</option>
+      </select>
+      <button type="submit" class="button-primary">{{'userSettings.accept' | translate}}</button>
+      <button type="button" (click)="goBack()">{{'userSettings.cancel' | translate}}</button>
+    </fieldset>
+  </form>
+</div>
+
+<template #modalContainer></template>

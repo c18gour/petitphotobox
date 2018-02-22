@@ -50,6 +50,7 @@ import { PictureEditSnapshotComponent } from './views/picture-edit/components/pi
 import { HomeView } from './views/home/home-view';
 import { UserAccessView } from './views/user-access/user-access-view';
 import { UserVerifyView } from './views/user-verify/user-verify-view';
+import { UserSettingsView } from './views/user-settings/user-settings-view';
 import { CategoryNewView } from './views/category-new/category-new-view';
 import { CategoryEditView } from './views/category-edit/category-edit-view';
 import { PictureNewView } from './views/picture-new/picture-new-view';
@@ -61,6 +62,7 @@ import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 import { LogoutController } from './controllers/logout-controller';
 import { UserAccessController } from './views/user-access/controllers/user-access-controller';
 import { UserVerifyController } from './views/user-verify/controllers/user-verify-controller';
+import { UserSettingsController } from './views/user-settings/controllers/user-settings-controller';
 import { CategoryNewController } from './views/category-new/controllers/category-new-controller';
 import { CategoryEditController } from './views/category-edit/controllers/category-edit-controller';
 import { PictureNewController } from './views/picture-new/controllers/picture-new-controller';
@@ -110,6 +112,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeView,
     UserAccessView,
     UserVerifyView,
+    UserSettingsView,
     CategoryNewView,
     CategoryEditView,
     PictureNewView,
@@ -141,6 +144,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppTranslateService,
     UserAccessController,
     UserVerifyController,
+    UserSettingsController,
     LogoutController,
     HomeController,
     CategoryNewController,

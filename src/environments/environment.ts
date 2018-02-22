@@ -5,5 +5,14 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost'
+  apiUrl: 'http://localhost',
+  languages: new Array<Language>(
+    { code: 'en', label: 'English' },
+    { code: 'es', label: 'Spanish (Español)' }
+  )
 };
+
+interface Language {
+  code: string;
+  label: string;
+}

@@ -45,6 +45,7 @@
     "toggleMenu": "Toggle menu",
     "newCategory": "New category",
     "findPictures": "Find pictures",
+    "settings": "Settings",
     "systemExit": "Do you want to exit the system?",
     "signOut": "Sign out",
     "emptyCategory": "This category doesn't contain any picture.",
@@ -118,6 +119,12 @@
   },
   "userVerify": {
     "verifyingCredentials": "Verifying credentials..."
+  },
+  "userSettings": {
+    "header": "User settings",
+    "language": "Language",
+    "accept": "Accept",
+    "cancel": "Cancel"
   },
   "pageNotFound": {
     "message": "Page not found.\nRedirect to Home"

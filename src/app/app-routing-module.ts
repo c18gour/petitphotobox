@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeView } from './views/home/home-view';
 import { UserAccessView } from './views/user-access/user-access-view';
 import { UserVerifyView } from './views/user-verify/user-verify-view';
+import { UserSettingsView } from './views/user-settings/user-settings-view';
 import { CategoryNewView } from './views/category-new/category-new-view';
 import { CategoryEditView } from './views/category-edit/category-edit-view';
 import { PictureNewView } from './views/picture-new/picture-new-view';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'home/:categoryId/:page', component: HomeView },
   { path: 'access', component: UserAccessView },
   { path: 'verify', component: UserVerifyView },
+  { path: 'settings', component: UserSettingsView },
   { path: 'category/new', component: CategoryNewView },
   { path: 'category/new/:parentCategoryId', component: CategoryNewView },
   { path: 'category/edit/:categoryId', component: CategoryEditView },
