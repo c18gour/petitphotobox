@@ -7,6 +7,14 @@
     "accept": "Accept",
     "cancel": "Cancel"
   },
+  "categoryNew": {
+    "header": "New category",
+    "parentCategory": "Parent category",
+    "title": "Title",
+    "titleIsRequired": "Title is required",
+    "accept": "Accept",
+    "cancel": "Cancel"
+  },
   "home": {
     "toggleMenu": "Toggle menu",
     "newCategory": "New category",

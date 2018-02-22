@@ -3,19 +3,20 @@
 </div>
 
 <div class="container" *ngIf="entity">
-  <h3 i18n="@@createNewCategory">Create a new category</h3>
+  <h3>{{'categoryNew.header' | translate}}</h3>
   <form (ngSubmit)="onSubmit()" (change)="hasChanged = true">
     <fieldset>
-      <label for="parentCategoryId" i18n="@@parentCategory">Parent Category</label>
+      <label for="parentCategoryId">{{'categoryNew.parentCategory' | translate}}</label>
       <app-input-select #parentCategoryInput name="parentCategoryId"
         [items]="entity.categories" [value]="entity.parentCategoryId"></app-input-select>
-      <label for="name" i18n="@@title">Title</label>
+      <label for="name">{{'categoryNew.title' | translate}}</label>
       <input #inputTitle="ngModel" autofocus type="text" id="title" required
         name="title" [(ngModel)]="entity.title" />
-      <div [hidden]="inputTitle.valid || inputTitle.pristine" class="error-box"
-        i18n="@@titleIsRequired">Title is required</div>
-      <button type="submit" class="button-primary" i18n="@@accept">Accept</button>
-      <button type="button" (click)="goBack()" i18n="@@cancel">Cancel</button>
+      <div [hidden]="inputTitle.valid || inputTitle.pristine" class="error-box">
+        {{'categoryNew.titleIsRequired' | translate}}
+      </div>
+      <button type="submit" class="button-primary">{{'categoryNew.accept' | translate}}</button>
+      <button type="button" (click)="goBack()">{{'categoryNew.cancel' | translate}}</button>
     </fieldset>
   </form>
 </div>
