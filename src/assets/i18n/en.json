@@ -8,6 +8,21 @@
   "pictureUploader": {
     "uploadPicture": "Upload picture"
   },
+  "modalAlert": {
+    "header": "Alert",
+    "accept": "Accept",
+    "cancel": "Cancel"
+  },
+  "modalConfirm": {
+    "header": "Confirm",
+    "accept": "Accept",
+    "cancel": "Cancel"
+  },
+  "modalError": {
+    "header": "Error",
+    "accept": "Accept",
+    "cancel": "Cancel"
+  },
 
   "__VIEWS__": "List of views",
   "categoryEdit": {
