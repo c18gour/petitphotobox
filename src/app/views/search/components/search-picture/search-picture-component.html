@@ -1,18 +1,18 @@
 <div class="picture">
   <div class="buttons left">
     <a (click)="deletePicture.emit(id)"
-      i18n-title="@@deletePicture" title="Delete picture"><i class="fa fa-trash"></i></a>
+      [title]="'search.picture.deletePicture' | translate"><i class="fa fa-trash"></i></a>
   </div>
   <div class="buttons right">
-    <a i18n-title="@@downloadPicture" title="Download picture"
+    <a [title]="'search.picture.downloadPicture' | translate"
       [href]="imagePath" download><i class="fa fa-download"></i></a>
-    <a i18n-title="@@editPicture" title="Edit picture"
+    <a [title]="'search.picture.editPicture' | translate"
       (click)="editPicture.emit(id)"><i class="fa fa-pencil-square"></i></a>
   </div>
   <div class="info" *ngIf="snapshots > 1 || categories > 1">
     <ul>
-      <li *ngIf="snapshots > 1"><span i18n="@@snapshots">Snapshots:</span> {{snapshots}}</li>
-      <li *ngIf="categories > 1"><span i18n="@@categories">Categories:</span> {{categories}}</li>
+      <li *ngIf="snapshots > 1"><span>{{'search.picture.snapshots' | translate}}: </span> {{snapshots}}</li>
+      <li *ngIf="categories > 1"><span>{{'search.picture.categories' | translate}}: </span> {{categories}}</li>
     </ul>
   </div>
   <img defaultImage="/assets/loading.gif" [lazyLoad]="smallImagePath" [offset]="100">

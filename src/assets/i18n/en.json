@@ -78,7 +78,14 @@
     "toDate": "To",
     "includePicturesSubcategories": "Include pictures subcategories",
     "accept": "Accept",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "picture": {
+      "deletePicture": "Delete picture",
+      "downloadPicture": "Download picture",
+      "editPicture": "Edit picture",
+      "snapshots": "Snapshots",
+      "categories": "Categories"
+    }
   },
   "userAccess": {
     "logInWithDropbox": "Log in with Dropbox"
