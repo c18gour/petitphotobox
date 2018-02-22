@@ -1,9 +1,15 @@
 {
+  "__COMPONENTS__": "List of components",
   "paginator": {
     "previousPage": "Previous page",
     "page": "Page",
     "nextPage": "Next page"
   },
+  "pictureUploader": {
+    "uploadPicture": "Upload picture"
+  },
+
+  "__VIEWS__": "List of views",
   "categoryEdit": {
     "header": "Edit category",
     "parentCategory": "Parent category",
