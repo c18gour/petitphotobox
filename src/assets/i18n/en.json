@@ -1,6 +1,17 @@
 {
   "home": {
-    "emptyCategory": "This category doesn't contain any picture."
+    "toggleMenu": "Toggle menu",
+    "newCategory": "New category",
+    "findPictures": "Find pictures",
+    "systemExit": "Do you want to exit the system?",
+    "signOut": "Sign out",
+    "emptyCategory": "This category doesn't contain any picture.",
+    "uncategorizedPictures": "Uncategorized pictures",
+    "uploadPicture": "Upload picture",
+    "areYouSure": "Are you sure?",
+    "deleteCategory": "Delete category",
+    "editCategory": "Edit category",
+    "newSubcategory": "New subcategory"
   },
   "pageNotFound": {
     "message": "Page not found.\nRedirect to Home"

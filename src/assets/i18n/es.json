@@ -1,0 +1,8 @@
+{
+  "home": {
+    "emptyCategory": "Esta categoría no contiene ninguna imagen."
+  },
+  "pageNotFound": {
+    "message": "Página no encontrada.\nRedireccionando a la HOME"
+  }
+}
