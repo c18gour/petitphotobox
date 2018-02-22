@@ -3,31 +3,31 @@
 </div>
 
 <div class="container" *ngIf="entity">
-  <h3 i18n="@@uploadPicture">Upload Picture</h3>
+  <h3>{{'pictureNew.header' | translate}}</h3>
   <form (ngSubmit)="onSubmit()" (change)="hasChanged = true">
     <fieldset>
       <div class="options" [ngClass]="{'open': showMoreOptions}">
         <label>
           <a (click)="showMoreOptions = !showMoreOptions">
-            <ng-container i18n="@@showMoreOptions">Show more options</ng-container>
+            <ng-container>{{'pictureNew.showMoreOptions' | translate}}</ng-container>
             <i class="fa fa-chevron-right"
               [ngClass]="{'fa-chevron-down': showMoreOptions, 'fa-chevron-right': !showMoreOptions}"></i>
           </a>
         </label>
         <div class="body">
           <div [hidden]="entity.categories.length === 0">
-            <label for="categoryId" i18n="@@selectOneOrMoreCategories">Select one or more categories</label>
+            <label for="categoryId">{{'pictureNew.selectOneOrMoreCategories' | translate}}</label>
             <app-input-checkbox #categoriesInput name="categoryId"
               [items]="entity.categories" [value]="entity.categoryIds"></app-input-checkbox>
           </div>
-          <label for="name" i18n="@@title">Title</label>
+          <label for="name">{{'pictureNew.title' | translate}}</label>
           <input autofocus type="text" id="title" name="title" [(ngModel)]="entity.title" />
-          <label for="tags" i18n="@@tagsSeparatedByCommas">Tags separated by commas</label>
+          <label for="tags">{{'pictureNew.tagsSeparatedByCommas' | translate}}</label>
           <input type="text" id="tags" name="tags" [(ngModel)]="entity.tags" />
         </div>
       </div>
       <div class="pictures">
-        <label i18n="@@addOneOrMoreSnapshots">Add one or more snapshots</label>
+        <label>{{'pictureNew.addOneOrMoreSnapshots' | translate}}</label>
         <app-picture-new-snapshot *ngFor="let path of paths.items"
           [path]="path"
           (change)="hasChanged = true"
@@ -38,8 +38,8 @@
           (success)="paths.addItem($event)"
           (error)="modal.error($event)"></app-picture-uploader>
       </div>
-      <button type="submit" class="button-primary" i18n="@@accept">Accept</button>
-      <button type="button" (click)="goBack()" i18n="@@cancel">Cancel</button>
+      <button type="submit" class="button-primary">{{'pictureNew.accept' | translate}}</button>
+      <button type="button" (click)="goBack()">{{'pictureNew.cancel' | translate}}</button>
     </fieldset>
   </form>
 </div>
