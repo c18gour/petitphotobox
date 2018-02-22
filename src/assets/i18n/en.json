@@ -63,6 +63,9 @@
   "userAccess": {
     "logInWithDropbox": "Log in with Dropbox"
   },
+  "userVerify": {
+    "verifyingCredentials": "Verifying credentials..."
+  },
   "pageNotFound": {
     "message": "Page not found.\nRedirect to Home"
   }
