@@ -1,20 +1,20 @@
 <ul>
   <li>
     <button type="button" class="button-outline" (click)="prevPage()" [disabled]="page < 1"
-      i18n-title="@@previousPage" title="Previous page">
+      [title]="'paginator.previousPage' | translate">
       <i class="fa fa-chevron-left"></i>
     </button>
   </li>
   <li class="page-selector">
     <select #inputPage (change)="selectPage.emit(inputPage.value)">
       <option *ngFor="let index of numPages | iterator" [value]="index" [selected]="index === page">
-        <span i18n="@@page">Page</span> {{index + 1}}
+        <span>{{'paginator.page' | translate}}</span> {{index + 1}}
       </option>
     </select>
   </li>
   <li>
     <button type="button" class="button-outline" (click)="nextPage()" [disabled]="page + 1 > lastPage"
-      i18n-title="@@nextPage" title="Next page">
+      [title]="'paginator.nextPage' | translate">
       <i class="fa fa-chevron-right"></i>
     </button>
   </li>

@@ -1,4 +1,9 @@
 {
+  "paginator": {
+    "previousPage": "Previous page",
+    "page": "Page",
+    "nextPage": "Next page"
+  },
   "categoryEdit": {
     "header": "Edit category",
     "parentCategory": "Parent category",
