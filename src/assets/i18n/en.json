@@ -49,6 +49,17 @@
     "accept": "Accept",
     "cancel": "Cancel"
   },
+  "search": {
+    "header": "Search Pictures",
+    "selectCategories": "Select categories",
+    "showPicturesInAnyCategory": "Show pictures in ANY category",
+    "showPicturesInAllCategories": "Show pictures in ALL categories",
+    "fromDate": "From",
+    "toDate": "To",
+    "includePicturesSubcategories": "Include pictures subcategories",
+    "accept": "Accept",
+    "cancel": "Cancel"
+  },
   "pageNotFound": {
     "message": "Page not found.\nRedirect to Home"
   }

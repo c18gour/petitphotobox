@@ -3,34 +3,34 @@
 </div>
 
 <div class="container" *ngIf="entity">
-  <h3 i18n="@@searchPictures">Search Pictures</h3>
+  <h3>{{'search.header' | translate}}</h3>
   <form (ngSubmit)="onSubmit()">
     <fieldset>
       <div [hidden]="entity.categories.length === 0">
-        <label for="categoryId" i18n="@@selectCategories">Select categories</label>
+        <label for="categoryId">{{'search.selectCategories' | translate}}</label>
         <app-input-checkbox #categoriesInput name="categoryId"
           [items]="entity.categories" [value]="entity.categoryIds"></app-input-checkbox>
       </div>
       <select name="type" [(ngModel)]="type">
-        <option value="any" i18n="@@showPicturesInAnyCategory">Show pictures in ANY category</option>
-        <option value="all" i18n="@@showPicturesInAllCategories">Show pictures in ALL categories</option>
+        <option value="any">{{'search.showPicturesInAnyCategory' | translate}}</option>
+        <option value="all">{{'search.showPicturesInAllCategories' | translate}}</option>
       </select>
       <div class="date">
         <div class="field">
-          <label for="fromDate" i18n="@@fromDate">From</label>
+          <label for="fromDate">{{'search.fromDate' | translate}}</label>
           <input type="date" id="fromDate" name="fromDate" [(ngModel)]="fromDate">
         </div>
         <div class="field">
-          <label for="toDate" i18n="@@toDate">To</label>
+          <label for="toDate">{{'search.toDate' | translate}}</label>
           <input type="date" id="toDate" name="toDate" [(ngModel)]="toDate">
         </div>
       </div>
       <label>
         <input type="checkbox" name="recurse" [(ngModel)]="recurse">
-        <span i18n="@@includePicturesSubcategories">Include pictures subcategories</span>
+        <span>{{'search.includePicturesSubcategories' | translate}}</span>
       </label>
-      <button type="submit" class="button-primary" i18n="@@accept">Accept</button>
-      <button type="button" (click)="goBack()" i18n="@@cancel">Cancel</button>
+      <button type="submit" class="button-primary">{{'search.accept' | translate}}</button>
+      <button type="button" (click)="goBack()">{{'search.cancel' | translate}}</button>
     </fieldset>
   </form>
 
