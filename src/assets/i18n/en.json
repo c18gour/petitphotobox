@@ -46,7 +46,13 @@
     "tagsSeparatedByCommas": "Tags separated by commas",
     "addOneOrMoreSnapshots": "Add one or more snapshots",
     "accept": "Accept",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "picture": {
+      "deletePicture": "Delete picture",
+      "movePictureUp": "Move picture up",
+      "movePictureDown": "Move picture down",
+      "downloadPicture": "Download picture"
+    }
   },
   "pictureNew": {
     "header": "Upload Picture",
