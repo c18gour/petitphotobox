@@ -3,7 +3,7 @@
 </div>
 
 <div class="container" *ngIf="entity">
-  <h3>{{'categoryEdit.editCategory' | translate}}</h3>
+  <h3>{{'categoryEdit.header' | translate}}</h3>
   <form (ngSubmit)="onSubmit()" (change)="hasChanged = true">
     <fieldset>
       <label for="parentCategoryId">{{'categoryEdit.parentCategory' | translate}}</label>

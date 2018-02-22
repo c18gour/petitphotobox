@@ -1,6 +1,6 @@
 {
   "categoryEdit": {
-    "editCategory": "Edit category",
+    "header": "Edit category",
     "parentCategory": "Parent category",
     "title": "Title",
     "titleIsRequired": "Title is required",
