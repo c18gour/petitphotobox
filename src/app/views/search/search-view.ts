@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SessionError } from '../../core/exception/session-error';
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
 import { InputCheckboxComponent } from '../../components/input-checkbox/input-checkbox-component';
+import { AppTranslateService } from '../../core/i18n/app-translate-service';
 
 import { SearchController } from './controllers/search-controller';
 import { PictureDeleteController } from './controllers/picture-delete-controller';
@@ -29,7 +30,8 @@ export class SearchView implements OnInit {
     private _router: Router,
     private _route: ActivatedRoute,
     private _location: Location,
-    private _resolver: ComponentFactoryResolver
+    private _resolver: ComponentFactoryResolver,
+    private _translate: AppTranslateService
   ) { }
 
   @ViewChild('categoriesInput')
@@ -65,11 +67,12 @@ export class SearchView implements OnInit {
     this.goPage(0);
   }
 
-  goPage(page: number) {
+  async goPage(page: number) {
     const categoryIds = this.categoriesInput.value;
+    const message = await this._translate.get('search.selectACategory');
 
     if (categoryIds.length === 0) {
-      this.modal.error('Please select a category');
+      this.modal.error(message);
       return;
     }
 

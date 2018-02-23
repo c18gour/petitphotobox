@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SessionError } from '../../core/exception/session-error';
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
 import { InputCheckboxComponent } from '../../components/input-checkbox/input-checkbox-component';
+import { AppTranslateService } from '../../core/i18n/app-translate-service';
 
 import { PictureEditController } from './controllers/picture-edit-controller';
 import { PictureEditEntity } from './entities/picture-edit-entity';
@@ -27,7 +28,8 @@ export class PictureEditView implements OnInit {
     private _router: Router,
     private _route: ActivatedRoute,
     private _location: Location,
-    private _resolver: ComponentFactoryResolver
+    private _resolver: ComponentFactoryResolver,
+    private _translate: AppTranslateService
   ) { }
 
   @ViewChild('categoriesInput')
@@ -70,9 +72,10 @@ export class PictureEditView implements OnInit {
     this.modal.loading(async () => {
       const categoryIds = this.categoriesInput.value;
       const pictureId = this.entity.id;
+      const message = await this._translate.get('pictureEdit.selectACategory');
 
       if (categoryIds.length === 0) {
-        this.modal.error('Select at least a category');
+        this.modal.error(message);
         return;
       }
 
