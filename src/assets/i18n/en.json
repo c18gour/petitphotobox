@@ -1,4 +1,10 @@
 {
+  "__COMMON__": "List of commons strings",
+  "button": {
+    "accept": "Accept",
+    "cancel": "Cancel"
+  },
+
   "__COMPONENTS__": "List of components",
   "paginator": {
     "previousPage": "Previous page",
@@ -9,19 +15,13 @@
     "uploadPicture": "Upload picture"
   },
   "modalAlert": {
-    "header": "Alert",
-    "accept": "Accept",
-    "cancel": "Cancel"
+    "header": "Alert"
   },
   "modalConfirm": {
-    "header": "Confirm",
-    "accept": "Accept",
-    "cancel": "Cancel"
+    "header": "Confirm"
   },
   "modalError": {
-    "header": "Error",
-    "accept": "Accept",
-    "cancel": "Cancel"
+    "header": "Error"
   },
 
   "__VIEWS__": "List of views",
@@ -29,17 +29,13 @@
     "header": "Edit category",
     "parentCategory": "Parent category",
     "title": "Title",
-    "titleIsRequired": "Title is required",
-    "accept": "Accept",
-    "cancel": "Cancel"
+    "titleIsRequired": "Title is required"
   },
   "categoryNew": {
     "header": "New category",
     "parentCategory": "Parent category",
     "title": "Title",
-    "titleIsRequired": "Title is required",
-    "accept": "Accept",
-    "cancel": "Cancel"
+    "titleIsRequired": "Title is required"
   },
   "home": {
     "toggleMenu": "Toggle menu",
@@ -72,8 +68,6 @@
     "title": "Title",
     "tagsSeparatedByCommas": "Tags separated by commas",
     "addOneOrMoreSnapshots": "Add one or more snapshots",
-    "accept": "Accept",
-    "cancel": "Cancel",
     "snapshot": {
       "deletePicture": "Delete picture",
       "movePictureUp": "Move picture up",
@@ -88,8 +82,6 @@
     "title": "Title",
     "tagsSeparatedByCommas": "Tags separated by commas",
     "addOneOrMoreSnapshots": "Add one or more snapshots",
-    "accept": "Accept",
-    "cancel": "Cancel",
     "snapshot": {
       "deletePicture": "Delete picture",
       "movePictureUp": "Move picture up",
@@ -104,8 +96,6 @@
     "fromDate": "From",
     "toDate": "To",
     "includePicturesSubcategories": "Include pictures subcategories",
-    "accept": "Accept",
-    "cancel": "Cancel",
     "picture": {
       "deletePicture": "Delete picture",
       "downloadPicture": "Download picture",
@@ -122,9 +112,7 @@
   },
   "userSettings": {
     "header": "User settings",
-    "language": "Language",
-    "accept": "Accept",
-    "cancel": "Cancel"
+    "language": "Language"
   },
   "pageNotFound": {
     "message": "Page not found.\nRedirect to Home"

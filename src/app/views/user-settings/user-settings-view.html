@@ -10,8 +10,8 @@
       <select id="language" name="language" [(ngModel)]="entity.language">
         <option *ngFor="let language of languages" [value]="language.code">{{language.label}}</option>
       </select>
-      <button type="submit" class="button-primary">{{'userSettings.accept' | translate}}</button>
-      <button type="button" (click)="goBack()">{{'userSettings.cancel' | translate}}</button>
+      <button type="submit" class="button-primary">{{'button.accept' | translate}}</button>
+      <button type="button" (click)="goBack()">{{'button.cancel' | translate}}</button>
     </fieldset>
   </form>
 </div>
