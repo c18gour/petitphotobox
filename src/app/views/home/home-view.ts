@@ -5,6 +5,7 @@ import { SessionError } from '../../core/exception/session-error';
 import { HomeEntity, HomePictureEntity } from './entities/home-entity';
 import { MenuComponent } from '../../modules/menu/menu-component';
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
+import { AppTranslateService } from '../../core/i18n/app-translate-service';
 
 // controllers
 import { LogoutController } from './../../controllers/logout-controller';
@@ -34,7 +35,8 @@ export class HomeView implements OnInit {
     private _pictureDownController: CategoryPictureDownController,
     private _router: Router,
     private _route: ActivatedRoute,
-    private _resolver: ComponentFactoryResolver
+    private _resolver: ComponentFactoryResolver,
+    private _translate: AppTranslateService
   ) { }
 
   @ViewChild('menu')
@@ -55,9 +57,13 @@ export class HomeView implements OnInit {
     });
   }
 
-  async exit() {
-    await this._logoutController.post();
-    this._router.navigate(['/access']);
+  async confirmExit() {
+    const message = await this._translate.get('home.systemExit');
+
+    if (await this.modal.confirm(message)) {
+      await this._logoutController.post();
+      this._router.navigate(['/access']);
+    }
   }
 
   onSelectEntry(categoryId: string) {
@@ -65,18 +71,22 @@ export class HomeView implements OnInit {
     this._router.navigate(['/home', categoryId]);
   }
 
-  deleteCategory() {
-    this.modal.loading(async () => {
-      try {
-        await this._categoryDeleteController.post(
-          { categoryId: this.entity.id });
-      } catch (e) {
-        this.modal.error(e.message);
-        throw e;
-      }
+  async confirmDeleteCategory() {
+    const message = await this._translate.get('dialog.areYouSure');
 
-      this._router.navigate(['/home']);
-    });
+    if (await this.modal.confirm(message)) {
+      this.modal.loading(async () => {
+        try {
+          await this._categoryDeleteController.post(
+            { categoryId: this.entity.id });
+        } catch (e) {
+          this.modal.error(e.message);
+          throw e;
+        }
+
+        this._router.navigate(['/home']);
+      });
+    }
   }
 
   deletePicture(pictureId: string) {

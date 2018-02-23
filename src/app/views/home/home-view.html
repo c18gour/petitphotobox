@@ -10,8 +10,7 @@
       [title]="'home.findPictures' | translate"><i class="fa fa-search"></i></a>
     <a routerLink="/settings"
       [title]="'home.settings' | translate"><i class="fa fa-user"></i></a>
-    <a (click)="modal.confirm($event.currentTarget.dataset.message, exit)"
-      [attr.data-message]="'home.systemExit' | translate"
+    <a (click)="confirmExit()"
       [title]="'home.signOut' | translate"><i class="fa fa-sign-out"></i></a>
   </div>
 </div>
@@ -32,9 +31,7 @@
     </h3>
     <!-- else: -->
     <h3 *ngIf="!entity.main">
-      <a (click)="modal.confirm($event.currentTarget.dataset.message, deleteCategory)"
-        [attr.data-message]="'dialog.areYouSure' | translate"
-        [title]="'home.deleteCategory' | translate">
+      <a (click)="confirmDeleteCategory()" [title]="'home.deleteCategory' | translate">
         <i class="fa fa-trash-o"></i>
       </a>
       <span>{{entity.title}}</span>
