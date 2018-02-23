@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { SessionError } from '../../core/exception/session-error';
+import { AppTranslateService } from '../../core/i18n/app-translate-service';
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
 import { InputCheckboxComponent } from '../../components/input-checkbox/input-checkbox-component';
 
@@ -28,7 +29,8 @@ export class PictureNewView implements OnInit {
     private _router: Router,
     private _route: ActivatedRoute,
     private _location: Location,
-    private _resolver: ComponentFactoryResolver
+    private _resolver: ComponentFactoryResolver,
+    private _translate: AppTranslateService
   ) { }
 
   @ViewChild('categoriesInput')
@@ -63,7 +65,9 @@ export class PictureNewView implements OnInit {
   }
 
   async goBack() {
-    if (!this.hasChanged || await this.modal.confirm('Discard changes?')) {
+    const message = await this._translate.get('dialog.discardChanges');
+
+    if (!this.hasChanged || await this.modal.confirm(message)) {
       this._location.back();
     }
   }

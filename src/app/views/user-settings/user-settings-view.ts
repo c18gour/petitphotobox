@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { environment as env } from '../../../environments/environment';
 
 import { SessionError } from '../../core/exception/session-error';
+import { AppTranslateService } from '../../core/i18n/app-translate-service';
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
 
 import { UserSettingsController } from './controllers/user-settings-controller';
@@ -23,7 +24,8 @@ export class UserSettingsView implements OnInit {
     private _controller: UserSettingsController,
     private _router: Router,
     private _location: Location,
-    private _resolver: ComponentFactoryResolver
+    private _resolver: ComponentFactoryResolver,
+    private _translate: AppTranslateService
   ) { }
 
   @ViewChild('modalContainer', { read: ViewContainerRef })
@@ -53,7 +55,9 @@ export class UserSettingsView implements OnInit {
   }
 
   async goBack() {
-    if (!this.hasChanged || await this.modal.confirm('Discard changes?')) {
+    const message = await this._translate.get('dialog.discardChanges');
+
+    if (!this.hasChanged || await this.modal.confirm(message)) {
       this._location.back();
     }
   }

@@ -1,7 +1,8 @@
 {
   "__COMMON__": "List of commons strings",
   "dialog": {
-    "areYouSure": "Are you sure?"
+    "areYouSure": "Are you sure?",
+    "discardChanges": "Discard changes?"
   },
   "button": {
     "accept": "Accept",
