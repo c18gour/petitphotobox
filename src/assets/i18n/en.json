@@ -1,5 +1,8 @@
 {
   "__COMMON__": "List of commons strings",
+  "dialog": {
+    "areYouSure": "Are you sure?"
+  },
   "button": {
     "accept": "Accept",
     "cancel": "Cancel"
@@ -47,7 +50,6 @@
     "emptyCategory": "This category doesn't contain any picture.",
     "uncategorizedPictures": "Uncategorized pictures",
     "uploadPicture": "Upload picture",
-    "areYouSure": "Are you sure?",
     "deleteCategory": "Delete category",
     "editCategory": "Edit category",
     "newSubcategory": "New subcategory",

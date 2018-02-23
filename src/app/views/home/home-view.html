@@ -32,8 +32,8 @@
     </h3>
     <!-- else: -->
     <h3 *ngIf="!entity.main">
-      <a (click)="modal.confirm($event.curentTarget.dataset.message, deleteCategory)"
-        [attr.data-message]="'home.areYouSure' | translate"
+      <a (click)="modal.confirm($event.currentTarget.dataset.message, deleteCategory)"
+        [attr.data-message]="'dialog.areYouSure' | translate"
         [title]="'home.deleteCategory' | translate">
         <i class="fa fa-trash-o"></i>
       </a>
