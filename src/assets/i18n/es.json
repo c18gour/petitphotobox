@@ -1,8 +1,125 @@
 {
+  "__COMMON__": "Listado de cadenas comunes",
+  "dialog": {
+    "areYouSure": "¿Está seguro?",
+    "discardChanges": "¿Desea descartar los cambios?"
+  },
+  "button": {
+    "accept": "Aceptar",
+    "cancel": "Cancelar"
+  },
+
+  "__COMPONENTS__": "Listado de components",
+  "paginator": {
+    "previousPage": "Página anterior",
+    "page": "Página",
+    "nextPage": "Página siguiente"
+  },
+  "pictureUploader": {
+    "uploadPicture": "Subir imagen"
+  },
+  "modalAlert": {
+    "header": "Alerta"
+  },
+  "modalConfirm": {
+    "header": "Confirmar"
+  },
+  "modalError": {
+    "header": "Error"
+  },
+
+  "__VIEWS__": "Listado de vistas",
+  "categoryEdit": {
+    "header": "Editar categoría",
+    "parentCategory": "Categoría padre",
+    "title": "Título",
+    "titleIsRequired": "El título es obligatorio"
+  },
+  "categoryNew": {
+    "header": "Nueva categoría",
+    "parentCategory": "Categoría padre",
+    "title": "Título",
+    "titleIsRequired": "El título es obligatorio"
+  },
   "home": {
-    "emptyCategory": "Esta categoría no contiene ninguna imagen."
+    "toggleMenu": "Abrir o cerrar el menú",
+    "newCategory": "Nueva categoría",
+    "findPictures": "Buscar imágenes",
+    "settings": "Preferencias",
+    "systemExit": "¿Desea salir del sistema?",
+    "signOut": "Salir",
+    "emptyCategory": "Esta categoría no contiene ninguna imagen",
+    "uncategorizedPictures": "Imágenes sin categorizar",
+    "uploadPicture": "Subir imagen",
+    "deleteCategory": "Borrar categoría",
+    "editCategory": "Editar categoría",
+    "newSubcategory": "Nueva subcategoría",
+    "picture": {
+      "deletePicture": "Borrar imagen",
+      "movePictureUp": "Mover imagen una posición arriba",
+      "movePictureDown": "Mover imagen una posición abajo",
+      "downloadPicture": "Descargar imagen",
+      "editPicture": "Editar imagen",
+      "snapshots": "Capturas",
+      "categories": "Categorías"
+    }
+  },
+  "pictureEdit": {
+    "header": "Editar imagen",
+    "showMoreOptions": "Mostrar más opciones",
+    "selectOneOrMoreCategories": "Seleccione una o más categorías",
+    "title": "Título",
+    "tagsSeparatedByCommas": "Etiquetas separadas por comas",
+    "addOneOrMoreSnapshots": "Añada una o más capturas",
+    "selectACategory": "Seleccione al menos una categoría",
+    "snapshot": {
+      "deletePicture": "Borrar captura",
+      "movePictureUp": "Mover captura una posición arriba",
+      "movePictureDown": "Mover captura una posición abajo",
+      "downloadPicture": "Descargar imagen"
+    }
+  },
+  "pictureNew": {
+    "header": "Subir imagen",
+    "showMoreOptions": "Mostrar más opciones",
+    "selectOneOrMoreCategories": "Seleccione una o más categorías",
+    "title": "Título",
+    "tagsSeparatedByCommas": "Etiquetas separadas por comas",
+    "addOneOrMoreSnapshots": "Añada una o más capturas",
+    "snapshot": {
+      "deletePicture": "Borrar captura",
+      "movePictureUp": "Mover captura una posición arriba",
+      "movePictureDown": "Mover captura una posición abajo"
+    }
+  },
+  "search": {
+    "header": "Buscar imágenes",
+    "selectCategories": "Seleccione categorías",
+    "showPicturesInAnyCategory": "Imágenes en CUALQUIER categoría",
+    "showPicturesInAllCategories": "Imágenes en TODAS las categorías",
+    "fromDate": "Desde",
+    "toDate": "Hasta",
+    "includePicturesSubcategories": "Incluír imágenes de las subcategorías",
+    "selectACategory": "Por favor, seleccione una categoría",
+    "picture": {
+      "deletePicture": "Borrar imagen",
+      "downloadPicture": "Descargar imagen",
+      "editPicture": "Editar imagen",
+      "snapshots": "Capturas",
+      "categories": "Categorías"
+    }
+  },
+  "userAccess": {
+    "logInWithDropbox": "Identificarse con Dropbox"
+  },
+  "userVerify": {
+    "verifyingCredentials": "Verificando credenciales..."
+  },
+  "userSettings": {
+    "header": "Preferencias de usuario",
+    "language": "Lenguaje"
   },
   "pageNotFound": {
-    "message": "Página no encontrada.\nRedireccionando a la HOME"
+    "message": "Página no encontrada.\nRedireccionando a la Home"
   }
 }
