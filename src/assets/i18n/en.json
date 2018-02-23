@@ -73,10 +73,10 @@
     "addOneOrMoreSnapshots": "Add one or more snapshots",
     "selectACategory": "Select at least one category",
     "snapshot": {
-      "deletePicture": "Delete picture",
-      "movePictureUp": "Move picture up",
-      "movePictureDown": "Move picture down",
-      "downloadPicture": "Download picture"
+      "deletePicture": "Delete snapshot",
+      "movePictureUp": "Move snapshot up",
+      "movePictureDown": "Move snapshot down",
+      "downloadPicture": "Download snapshot"
     }
   },
   "pictureNew": {
@@ -87,9 +87,9 @@
     "tagsSeparatedByCommas": "Tags separated by commas",
     "addOneOrMoreSnapshots": "Add one or more snapshots",
     "snapshot": {
-      "deletePicture": "Delete picture",
-      "movePictureUp": "Move picture up",
-      "movePictureDown": "Move picture down"
+      "deletePicture": "Delete snapshot",
+      "movePictureUp": "Move snapshot up",
+      "movePictureDown": "Move snapshot down"
     }
   },
   "search": {
