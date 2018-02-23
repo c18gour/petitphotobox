@@ -6,6 +6,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost',
+  defaultLanguage: 'en',
   languages: new Array<Language>(
     { code: 'en', label: 'English' },
     { code: 'es', label: 'Spanish (Español)' }

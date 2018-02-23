@@ -10,6 +10,7 @@ import { AutofocusModule } from 'angular-autofocus-fix';
 import { FileUploadModule } from 'ng2-file-upload';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing-module';
 import { AppComponent } from './app-component';
@@ -141,6 +142,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [
+    CookieService,
     AppTranslateService,
     UserAccessController,
     UserVerifyController,

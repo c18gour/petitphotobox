@@ -73,7 +73,7 @@ export class UserSettingsView implements OnInit {
         throw e;
       }
 
-      this._location.back();
+      window.location.reload();
     });
   }
 }
