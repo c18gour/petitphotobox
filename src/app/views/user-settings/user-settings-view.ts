@@ -65,15 +65,14 @@ export class UserSettingsView implements OnInit {
   onSubmit() {
     this.modal.loading(async () => {
       try {
-        this.entity = await this._controller.post({
-          language: this.entity.language
-        });
+        await this._controller.post({ language: this.entity.language });
       } catch (e) {
         this.modal.error(e.message);
         throw e;
       }
 
-      window.location.reload();
+      // backs to home
+      window.location.href = '/';
     });
   }
 }
