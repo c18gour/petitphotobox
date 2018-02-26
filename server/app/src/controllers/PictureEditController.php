@@ -59,12 +59,12 @@ class PictureEditController extends AuthController
     $pictureId = $this->getParam("pictureId");
 
     if (Text::isEmpty($pictureId)) {
-      throw new AppError("Picture ID is required");
+      throw new AppError("requiredFields");
     }
 
     $this->_picture = new DbPicture($this->db, $this->user, $pictureId);
     if (!$this->_picture->isFound()) {
-      throw new AppError("Picture not found");
+      throw new AppError("pictureNotFound");
     }
   }
 
@@ -90,7 +90,7 @@ class PictureEditController extends AuthController
     );
 
     if (count($snapshots) < 1) {
-      throw new ClientException("Add one or more snapshots");
+      throw new ClientException("pictureEdit.addSnapshots");
     }
 
     $categories = array_map(
@@ -106,7 +106,7 @@ class PictureEditController extends AuthController
 
     foreach ($categories as $category) {
       if (!$category->isFound()) {
-        throw new ClientException("Category not found");
+        throw new ClientException("categoryNotFound");
       }
     }
 

@@ -49,7 +49,7 @@ class ImageUploadController extends Controller
       $this->_user = UserAuth::getInstance($this->db);
 
       if ($this->_user == null) {
-        throw new SessionError("Your session has expired");
+        throw new SessionError("expiredSession");
       }
     }
   }
@@ -64,12 +64,12 @@ class ImageUploadController extends Controller
     $user = UserAuth::getInstance($this->db);
 
     if (!Arr::exist($_FILES, "file")) {
-        throw new ClientException("File is required");
+        throw new ClientException("requiredFields");
     }
 
     $upload = new HttpUpload("file");
     if ($upload->getType() != "image/jpeg") {
-      throw new ClientException("Only JPEG images are allowed;");
+      throw new ClientException("imageUpload.onlyJpegImagesAreAllowed");
     }
 
     try {

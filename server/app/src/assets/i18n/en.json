@@ -1,0 +1,37 @@
+{
+  "__COMMON__": "List of common messages",
+  "expiredSession": "Your session has expired",
+  "requiredFields": "Missing required fields",
+  "categoryNotFound": "Category not found",
+  "pictureNotFound": "Picture not found",
+  "parentCategoryNotFound": "Parent's category not found",
+
+  "__CONTROLLERS__": "List of controllers",
+  "categoryDelete": {
+    "mainCategoryCannotBeDeleted": "The main category cannot be deleted"
+  },
+  "categoryEdit": {
+    "mainCategoryCannotBeEdited": "The main category cannot be edited",
+    "duplicateCategory": "Duplicate title",
+    "categoryCannotBeParentOfItself": "A category cannot be parent of itself"
+  },
+  "categoryNew": {
+    "duplicateCategory": "Duplicate title"
+  },
+  "imageUpload": {
+    "onlyJpegImagesAreAllowed": "Only JPEG images are allowed"
+  },
+  "pictureEdit": {
+    "addSnapshots": "Add one or more snapshots"
+  },
+  "pictureNew": {
+    "addSnapshots": "Add one or more snapshots"
+  },
+  "userVerify": {
+    "badRequest": "Bad formed request"
+  },
+  "searchController": {
+    "invalidType": "Invalid type",
+    "invalidDate": "Invalid date"
+  }
+}

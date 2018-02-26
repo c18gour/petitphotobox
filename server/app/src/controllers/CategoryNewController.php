@@ -54,7 +54,7 @@ class CategoryNewController extends AuthController
       ? $this->user->getMainCategory()
       : new DbCategory($this->db, $this->user, $parentId);
     if (!$this->_parentCategory->isFound()) {
-      throw new AppError("Parent category not found");
+      throw new AppError("parentCategoryNotFound");
     }
 
     $this->_category = new DbCategory($this->db, $this->user);
@@ -70,14 +70,15 @@ class CategoryNewController extends AuthController
     $title = $this->getParam("title");
 
     if (Text::isEmpty($title)) {
-      throw new ClientException("Title is required");
+      throw new ClientException("requiredFields");
     }
 
+    // prevents from duplicate categories
     $category = DbCategory::searchByTitle(
       $this->db, $this->user, $this->_parentCategory->getId(), $title
     );
     if ($category != null) {
-      throw new ClientException("The category already exist");
+      throw new ClientException("categoryNew.duplicateCategory");
     }
 
     $this->_category->parentCategoryId = $this->_parentCategory->getId();

@@ -25,16 +25,16 @@ class CategoryDeleteController extends AuthController
   {
     $id = $this->getParam("categoryId");
     if (Text::isEmpty($id)) {
-      throw new ClientException("Category ID is required");
+      throw new ClientException("requiredFields");
     }
 
     $category = new DbCategory($this->db, $this->user, $id);
     if (!$category->isFound()) {
-      throw new ClientException("Category not found");
+      throw new ClientException("categoryNotFound");
     }
 
     if ($category->isMain()) {
-      throw new ClientException("Main category cannot be deleted");
+      throw new ClientException("categoryDelete.mainCategoryCannotBeDeleted");
     }
 
     $category->delete();

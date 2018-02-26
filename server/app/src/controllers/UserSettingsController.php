@@ -40,7 +40,7 @@ class UserSettingsController extends AuthController
     $language = $this->getParam("language");
 
     if (Text::isEmpty($language)) {
-      throw new ClientException("Language is required");
+      throw new ClientException("requiredFields");
     }
 
     $this->setCookie("lang", $language);

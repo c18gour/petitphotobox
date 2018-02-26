@@ -20,7 +20,7 @@ abstract class AuthController extends Controller
       // retrieves the user from the current session
       $this->user = UserAuth::getInstance($this->db);
       if ($this->user === null) {
-        throw new SessionError("Your session has expired");
+        throw new SessionError("expiredSession");
       }
     });
   }

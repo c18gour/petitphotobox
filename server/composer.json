@@ -10,7 +10,8 @@
         "soloproyectos-php/http-upload": "^1.1",
         "soloproyectos-php/sys-file": "^1.1",
         "soloproyectos-php/array": "^1.0",
-        "kunalvarma05/dropbox-php-sdk": "^0.2.1"
+        "kunalvarma05/dropbox-php-sdk": "^0.2.1",
+        "soloproyectos-php/i18n": "^2.0"
     },
     "autoload": {
         "psr-4": {

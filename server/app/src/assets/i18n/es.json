@@ -1,0 +1,37 @@
+{
+  "__COMMON__": "Listado de mensajes comunes",
+  "expiredSession": "Su sesión ha expirado",
+  "requiredFields": "Faltan campos obligatorios",
+  "categoryNotFound": "Categoría no encontrada",
+  "pictureNotFound": "Imagen no encontrada",
+  "parentCategoryNotFound": "Categoría padre no encontrada",
+
+  "__CONTROLLERS__": "Listado de controladores",
+  "categoryDelete": {
+    "mainCategoryCannotBeDeleted": "La categoría principal no se puede borrar"
+  },
+  "categoryEdit": {
+    "mainCategoryCannotBeEdited": "La categoría principal no es pued editar",
+    "duplicateCategory": "Título duplicado",
+    "categoryCannotBeParentOfItself": "A category cannot be parent of itself"
+  },
+  "categoryNew": {
+    "duplicateCategory": "Título duplicado"
+  },
+  "imageUpload": {
+    "onlyJpegImagesAreAllowed": "Sólo se permiten imagenes de tipo JPEG"
+  },
+  "pictureEdit": {
+    "addSnapshots": "Añada una o más capturas"
+  },
+  "pictureNew": {
+    "addSnapshots": "Añada una o más capturas"
+  },
+  "userVerify": {
+    "badRequest": "Petición mal formada"
+  },
+  "searchController": {
+    "invalidType": "Tipo inválido",
+    "invalidDate": "Fecha inválida"
+  }
+}

@@ -50,12 +50,12 @@ class CategoryEditController extends AuthController
   {
     $id = $this->getParam("categoryId");
     if (Text::isEmpty($id)) {
-      throw new AppError("Category ID is required");
+      throw new AppError("requiredFields");
     }
 
     $this->_category = new DbCategory($this->db, $this->user, $id);
     if (!$this->_category->isFound()) {
-      throw new ClientException("Category not found");
+      throw new ClientException("categoryNotFound");
     }
   }
 
@@ -70,25 +70,30 @@ class CategoryEditController extends AuthController
     $title = $this->getParam("title");
 
     if (Text::isEmpty($title)) {
-      throw new ClientException("Title is required");
+      throw new ClientException("requiredFields");
     }
 
     if ($this->_category->isMain()) {
-      throw new ClientException("Main category cannot be edited");
+      throw new ClientException("categoryEdit.mainCategoryCannotBeEdited");
     }
 
     $parent = Text::isEmpty($parentId)
       ? $this->_category->getParent()
       : new DbCategory($this->db, $this->user, $parentId);
     if (!$parent->isFound()) {
-      throw new ClientException("Parent category not found");
+      throw new ClientException("parentCategoryNotFound");
     }
 
+    if ($this->_category->getId() == $parentId) {
+      throw new ClientException("categoryEdit.categoryCannotBeParentOfItself");
+    }
+
+    // prevents from duplicate categories
     $category = DbCategory::searchByTitle(
       $this->db, $this->user, $parent->getId(), $title
     );
     if ($category != null && $category->getId() != $this->_category->getId()) {
-      throw new ClientException("The category already exist");
+      throw new ClientException("categoryEdit.duplicateCategory");
     }
 
     $this->_category->parentCategoryId = $parent->getId();

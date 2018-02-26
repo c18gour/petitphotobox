@@ -31,7 +31,7 @@ class UserVerifyController extends Controller
     $state = $this->getParam("state");
 
     if (Text::isEmpty($code) || Text::isEmpty($state)) {
-      throw new SessionError("The request wasn't well formed");
+      throw new SessionError("userVerify.badRequest");
     }
 
     try {

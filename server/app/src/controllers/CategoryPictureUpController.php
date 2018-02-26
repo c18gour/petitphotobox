@@ -28,19 +28,19 @@ class CategoryPictureUpController extends AuthController
     $pictureId = $this->getParam("pictureId");
 
     if (Text::isEmpty($pictureId)) {
-      throw new ClientException("Picture ID is required");
+      throw new ClientException("requiredFields");
     }
 
     $category = Text::isEmpty($categoryId)
       ? $this->user->getMainCategory()
       : new DbCategory($this->db, $this->user, $categoryId);
     if (!$category->isFound()) {
-      throw new ClientException("Category not found");
+      throw new ClientException("categoryNotFound");
     }
 
     $picture = new DbPicture($this->db, $this->user, $pictureId);
     if (!$picture->isFound()) {
-      throw new ClientException("Picture not found");
+      throw new ClientException("pictureNotFound");
     }
 
     $category->movePictureUp($picture);

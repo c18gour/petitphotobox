@@ -41,7 +41,7 @@ class ImageController extends AuthController
     $path = $this->getParam("path");
 
     if (Text::isEmpty($path)) {
-      throw new AppError("Path is required");
+      throw new AppError("requiredFields");
     }
 
     try {

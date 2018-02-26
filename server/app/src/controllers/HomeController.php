@@ -79,7 +79,7 @@ class HomeController extends AuthController
       : new DbCategory($this->db, $this->user, $categoryId);
 
     if (!$this->_category->isFound()) {
-      throw new ClientException("Category not found");
+      throw new ClientException("categoryNotFound");
     }
 
     $this->_pictures = $this->_category->getPictures();
@@ -87,7 +87,7 @@ class HomeController extends AuthController
     if (!Text::isEmpty($pictureId)) {
       $pos = $this->_searchPictureById($pictureId);
       if ($pos < 0) {
-        throw new ClientException("Picture not found");
+        throw new ClientException("pictureNotFound");
       }
 
       $this->_page = floor($pos / MAX_ITEMS_PER_PAGE);

@@ -26,12 +26,12 @@ class PictureDeleteController extends AuthController
     $pictureId = $this->getParam("pictureId");
 
     if (Text::isEmpty($pictureId)) {
-      throw new ClientException("Picture ID is required");
+      throw new ClientException("requiredFields");
     }
 
     $picture = new DbPicture($this->db, $this->user, $pictureId);
     if (!$picture->isFound()) {
-      throw new ClientException("Picture not found");
+      throw new ClientException("pictureNotFound");
     }
 
     $picture->delete();

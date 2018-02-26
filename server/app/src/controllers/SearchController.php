@@ -89,7 +89,7 @@ class SearchController extends AuthController
 
     foreach ($this->_categories as $i => $category) {
       if (!$category->isFound()) {
-        throw new AppError("Category not found");
+        throw new AppError("categoryNotFound");
       }
     }
   }
@@ -107,13 +107,13 @@ class SearchController extends AuthController
     $toDate = $this->getParam("toDate");
 
     if (array_search($type, ["any", "all"]) === false) {
-      throw new ClientException("Invalid type");
+      throw new ClientException("searchController.invalidType");
     }
 
     if (!Text::isEmpty($fromDate) && !preg_match($this->_validDate, $fromDate)
         || !Text::isEmpty($toDate) && !preg_match($this->_validDate, $toDate)
     ) {
-      throw new ClientException("Invalid date");
+      throw new ClientException("searchController.invalidDate");
     }
 
     // filters by categories

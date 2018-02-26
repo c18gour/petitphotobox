@@ -24,7 +24,8 @@ define("DROPBOX_APP_SECRET", "9mmhe17fq78gban");
 /**
  * General constants.
  */
-define("THUMBNAIL_WIDTH", 500);
+define("I18N_DEFAULT_LANG", "en");
+define("I18N_DIR", "./src/assets/i18n");
 define("IMAGE_FOLDER", "images");
 
 

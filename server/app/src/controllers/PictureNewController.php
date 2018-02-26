@@ -68,7 +68,7 @@ class PictureNewController extends AuthController
 
     foreach ($this->_categories as $category) {
       if (!$category->isFound()) {
-        throw new AppError("Category not found");
+        throw new AppError("categoryNotFound");
       }
     }
 
@@ -96,7 +96,7 @@ class PictureNewController extends AuthController
     );
 
     if (count($snapshots) < 1) {
-      throw new ClientException("Add one or more snapshots");
+      throw new ClientException("pictureNew.addSnapshots");
     }
 
     // creates a new picture
