@@ -94,6 +94,7 @@ class SystemAuth
     return $file->getContents();
   }
 
+  // TODO: this method should be private
   /**
    * Adds a slash character to the beginning path.
    *
