@@ -6,7 +6,7 @@ use petitphotobox\core\dropbox\DropboxService;
 use petitphotobox\core\model\Document;
 use soloproyectos\text\Text;
 
-class UserAccessController extends Controller
+class UserLoginController extends Controller
 {
   /**
    * Creates a new instance.
