@@ -36,6 +36,7 @@ abstract class DbSortableRecord extends DbRecord
   public function getFirstRecord()
   {
     $records = $this->getSortedRecords();
+
     return array_shift($records);
   }
 
@@ -47,6 +48,7 @@ abstract class DbSortableRecord extends DbRecord
   public function getLastRecord()
   {
     $records = $this->getSortedRecords();
+
     return array_pop($records);
   }
 
@@ -57,16 +59,14 @@ abstract class DbSortableRecord extends DbRecord
    */
   public function getPrevRecord()
   {
-    $records = $this->getSortedRecords();
-
-    return array_pop(
-      array_filter(
-        $records,
-        function ($record) {
-          return $record->ord < $this->ord;
-        }
-      )
+    $records = array_filter(
+      $this->getSortedRecords(),
+      function ($record) {
+        return $record->ord < $this->ord;
+      }
     );
+
+    return array_pop($records);
   }
 
   /**
@@ -76,16 +76,14 @@ abstract class DbSortableRecord extends DbRecord
    */
   public function getNextRecord()
   {
-    $records = $this->getSortedRecords();
-
-    return array_shift(
-      array_filter(
-        $records,
-        function ($record) {
-          return $record->ord > $this->ord;
-        }
-      )
+    $records = array_filter(
+      $this->getSortedRecords(),
+      function ($record) {
+        return $record->ord > $this->ord;
+      }
     );
+
+    return array_shift($records);
   }
 
   /**
