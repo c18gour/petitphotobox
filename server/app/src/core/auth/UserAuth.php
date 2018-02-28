@@ -2,7 +2,7 @@
 namespace petitphotobox\core\auth;
 use Kunnu\Dropbox\Exceptions\DropboxClientException;
 use petitphotobox\core\dropbox\DropboxService;
-use petitphotobox\core\exception\AppError;
+use petitphotobox\exceptions\SessionError;
 use petitphotobox\records\DbUser;
 use soloproyectos\db\DbConnector;
 use soloproyectos\http\data\HttpCookie;
@@ -53,7 +53,7 @@ class UserAuth
       $dropboxId = $token->getUid();
       $dtopboxToken = $token->getToken();
     } catch (DropboxClientException $e) {
-      throw new AppError($e->getMessage());
+      throw new SessionError($e->getMessage());
     }
 
     // searches or creates a new user
