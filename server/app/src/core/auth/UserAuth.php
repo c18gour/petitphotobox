@@ -1,7 +1,8 @@
 <?php
 namespace petitphotobox\core\auth;
-use Kunnu\Dropbox\Models\AccessToken;
-use petitphotobox\exceptions\AuthException;
+use Kunnu\Dropbox\Exceptions\DropboxClientException;
+use petitphotobox\core\dropbox\DropboxService;
+use petitphotobox\core\exception\AppError;
 use petitphotobox\records\DbUser;
 use soloproyectos\db\DbConnector;
 use soloproyectos\http\data\HttpCookie;
@@ -36,22 +37,33 @@ class UserAuth
   /**
    * Registers a user into the system.
    *
-   * Creates the user if it wasn't already registered.
-   *
-   * @param DbConnector $db          Database connection
-   * @param AccessToken $accessToken Access token
+   * @param DbConnector $db    Database connection
+   * @param string      $code  Dropbox code
+   * @param string      $state Dropbox state
    *
    * @return DbUser
    */
-  public static function login($db, $accessToken)
+  public static function login($db, $code, $state)
   {
-    // searches or creates a new user
-    $user = DbUser::searchByAuthId($db, $accessToken->getUid());
-    if ($user === null) {
-        $user = new DbUser($db);
-        $user->authId = $accessToken->getUid();
+    $dropboxId = "";
+    $dtopboxToken = "";
+
+    try {
+      $token = DropboxService::getAccessToken($code, $state);
+      $dropboxId = $token->getUid();
+      $dtopboxToken = $token->getToken();
+    } catch (DropboxClientException $e) {
+      throw new AppError($e->getMessage());
     }
-    $user->authToken = $accessToken->getToken();
+
+    // searches or creates a new user
+    $user = DbUser::searchByDropboxId($db, $dropboxId);
+    if ($user === null) {
+      $user = new DbUser($db);
+    }
+
+    $user->dropboxId = $dropboxId;
+    $user->dropboxToken = $dtopboxToken;
     $user->save();
 
     // registers the user in the system

@@ -9,8 +9,8 @@ use soloproyectos\sys\file\SysFile;
 
 class DbUser extends DbRecord
 {
-  public $authId;
-  public $authToken;
+  public $dropboxId;
+  public $dropboxToken;
 
   /**
    * Creates a new instance.
@@ -21,6 +21,16 @@ class DbUser extends DbRecord
   public function __construct($db, $id = null)
   {
     parent::__construct($db, $id);
+  }
+
+  /**
+   * Gets the Dropbox user's account.
+   *
+   * @return UserAccount
+   */
+  public function getAccount()
+  {
+    return new UserAccount($this->_authToken);
   }
 
   /**
@@ -72,14 +82,14 @@ class DbUser extends DbRecord
   }
 
   /**
-   * Searches an user by `authentication id`.
+   * Searches a user by the dropbox ID.
    *
-   * @param DbConnector $db     Database connection
-   * @param string      $authId Authentication ID
+   * @param DbConnector $db        Database connection
+   * @param string      $dropboxId Dropbox ID
    *
    * @return DbUser
    */
-  public static function searchByAuthId($db, $authId)
+  public static function searchByDropboxId($db, $dropboxId)
   {
     $ret = null;
 
@@ -87,8 +97,8 @@ class DbUser extends DbRecord
     select
       id
     from `user`
-    where auth_id = ?";
-    $row = $db->query($sql, $authId);
+    where dropbox_id = ?";
+    $row = $db->query($sql, $dropboxId);
     if (count($row) > 0) {
       $ret = new DbUser($db, $row["id"]);
     }
@@ -115,10 +125,13 @@ class DbUser extends DbRecord
   {
     list(
       $id,
-      $this->authId,
-      $this->authToken
+      $this->dropboxId,
+      $this->dropboxToken
     ) = DbTable::select(
-      $this->db, "user", ["id", "auth_id", "auth_token"], $this->id
+      $this->db,
+      "user",
+      ["id", "dropbox_id", "dropbox_token"],
+      $this->id
     );
 
     return $id;
@@ -134,7 +147,10 @@ class DbUser extends DbRecord
     DbTable::update(
       $this->db,
       "user",
-      ["auth_id" => $this->authId, "auth_token" => $this->authToken],
+      [
+        "dropbox_id" => $this->dropboxId,
+        "dropbox_token" => $this->dropboxToken
+      ],
       $this->id
     );
   }
@@ -149,7 +165,10 @@ class DbUser extends DbRecord
     $userId = DbTable::insert(
       $this->db,
       "user",
-      ["auth_id" => $this->authId, "auth_token" => $this->authToken]
+      [
+        "dropbox_id" => $this->dropboxId,
+        "dropbox_token" => $this->dropboxToken
+      ]
     );
 
     // creates the user's main category
