@@ -72,9 +72,11 @@ class ImageUploadController extends Controller
       throw new ClientException("imageUpload.onlyJpegImagesAreAllowed");
     }
 
+    $account = $this->_user->getAccount();
+
     try {
-      $this->_path = SystemAuth::upload(
-        $this->_user, $upload->getTempName(), $upload->getName()
+      $this->_path = $account->upload(
+        $upload->getTempName(), $upload->getName()
       );
     } catch (DropboxClientException $e) {
       throw new SessionError($e->getMessage());

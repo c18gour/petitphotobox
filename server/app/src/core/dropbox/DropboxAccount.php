@@ -2,7 +2,9 @@
 namespace petitphotobox\core\dropbox;
 use Kunnu\Dropbox\Dropbox;
 use Kunnu\Dropbox\DropboxApp;
+use Kunnu\Dropbox\DropboxFile;
 use petitphotobox\core\dropbox\DropboxService;
+use soloproyectos\sys\file\SysFile;
 
 class DropboxAccount
 {
@@ -37,6 +39,25 @@ class DropboxAccount
     $account = $this->_getAccount();
 
     return $account->getEmail();
+  }
+
+  /**
+   * Uploads a file to the user's account.
+   *
+   * @param string $localPath  Local path
+   * @param string $remotePath Remote path
+   *
+   * @return string Remote path
+   */
+  public function upload($localPath, $remotePath)
+  {
+    $path = "/" . ltrim($remotePath, "/");
+    $box = $this->_getBox();
+    $file = new DropboxFile($localPath);
+
+    $file = $box->upload($file, $path, ["autorename" => true]);
+
+    return SysFile::concat(IMAGE_FOLDER, $file->getName());
   }
 
   private function _getBox()

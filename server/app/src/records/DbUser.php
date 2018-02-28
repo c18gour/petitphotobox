@@ -1,5 +1,6 @@
 <?php
 namespace  petitphotobox\records;
+use petitphotobox\core\dropbox\DropboxAccount;
 use petitphotobox\core\model\record\DbRecord;
 use petitphotobox\core\model\record\DbTable;
 use petitphotobox\records\DbCategory;
@@ -27,11 +28,11 @@ class DbUser extends DbRecord
   /**
    * Gets the Dropbox user's account.
    *
-   * @return UserAccount
+   * @return DropboxAccount
    */
   public function getAccount()
   {
-    return new UserAccount($this->_authToken);
+    return new DropboxAccount($this->dropboxId, $this->dropboxToken);
   }
 
   /**

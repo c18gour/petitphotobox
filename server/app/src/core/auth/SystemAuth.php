@@ -130,7 +130,7 @@ class SystemAuth
   private static function _getUserAccount($user)
   {
     $dpApp = new DropboxApp(
-      DROPBOX_APP_KEY, DROPBOX_APP_SECRET, $user->authToken
+      DROPBOX_APP_KEY, DROPBOX_APP_SECRET, $user->dropboxToken
     );
 
     return new Dropbox($dpApp);
