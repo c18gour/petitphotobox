@@ -117,13 +117,13 @@
   },
   "userRegisterComplete": {
     "header": "Complete registration",
-    "displayedName": "Nombre mostrado",
-    "applicationLanguage": "Lenguaje de la aplicación",
+    "displayedName": "Displayed name",
+    "applicationLanguage": "Application language",
     "saveChanges": "Save changes"
   },
   "userSettings": {
     "header": "User settings",
-    "language": "Language"
+    "applicationLanguage": "Application language"
   },
   "pageNotFound": {
     "message": "Page not found.\nRedirect to Home"

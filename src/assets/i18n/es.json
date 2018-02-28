@@ -123,7 +123,7 @@
   },
   "userSettings": {
     "header": "Preferencias de usuario",
-    "language": "Lenguaje"
+    "applicationLanguage": "Lenguaje de la aplicación"
   },
   "pageNotFound": {
     "message": "Página no encontrada.\nRedireccionando a la Home"
