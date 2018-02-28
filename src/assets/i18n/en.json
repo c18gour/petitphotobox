@@ -109,10 +109,10 @@
       "categories": "Categories"
     }
   },
-  "userAccess": {
+  "userLogin": {
     "logInWithDropbox": "Log in with Dropbox"
   },
-  "userVerify": {
+  "userRegister": {
     "verifyingCredentials": "Verifying credentials..."
   },
   "userRegisterComplete": {
