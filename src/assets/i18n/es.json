@@ -115,6 +115,12 @@
   "userVerify": {
     "verifyingCredentials": "Verificando credenciales..."
   },
+  "userRegisterComplete": {
+    "header": "Complete el registro",
+    "name": "Nombre",
+    "language": "Lenguaje",
+    "saveChanges": "Guardar cambios"
+  },
   "userSettings": {
     "header": "Preferencias de usuario",
     "language": "Lenguaje"

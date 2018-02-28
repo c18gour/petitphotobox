@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeView } from './views/home/home-view';
 import { UserLoginView } from './views/user-login/user-login-view';
 import { UserRegisterView } from './views/user-register/user-register-view';
+import { UserRegisterCompleteView } from './views/user-register-complete/user-register-complete-view';
 import { UserSettingsView } from './views/user-settings/user-settings-view';
 import { CategoryNewView } from './views/category-new/category-new-view';
 import { CategoryEditView } from './views/category-edit/category-edit-view';
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'home/:categoryId/:page', component: HomeView },
   { path: 'login', component: UserLoginView },
   { path: 'register', component: UserRegisterView },
+  { path: 'complete', component: UserRegisterCompleteView },
   { path: 'settings', component: UserSettingsView },
   { path: 'category/new', component: CategoryNewView },
   { path: 'category/new/:parentCategoryId', component: CategoryNewView },

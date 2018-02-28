@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SessionError } from '../../core/exception/session-error';
 import { UserRegisterController } from './controllers/user-register-controller';
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
+import { UserRegisterEntity } from './entities/user-register-entity';
 import { Url } from '../../core/url/url';
 
 @Component({
@@ -12,6 +13,7 @@ import { Url } from '../../core/url/url';
   styleUrls: ['./user-register-view.scss']
 })
 export class UserRegisterView implements OnInit {
+  entity: UserRegisterEntity;
   modal: ModalWindowSystem;
 
   constructor(
@@ -32,7 +34,8 @@ export class UserRegisterView implements OnInit {
 
     this.modal.loading(async () => {
       try {
-        await this._controller.get({ code: params.code, state: params.state });
+        this.entity = await this._controller.get(
+          { code: params.code, state: params.state });
       } catch (e) {
         if (await this.modal.error(e.message)) {
           if (e instanceof SessionError) {
@@ -43,7 +46,8 @@ export class UserRegisterView implements OnInit {
         throw e;
       }
 
-      this._router.navigate(['/home']);
+      const page = this.entity.isNewUser ? '/complete' : 'home';
+      this._router.navigate([page]);
     });
   }
 }

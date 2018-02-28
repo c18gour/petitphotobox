@@ -51,6 +51,7 @@ import { PictureEditSnapshotComponent } from './views/picture-edit/components/pi
 import { HomeView } from './views/home/home-view';
 import { UserLoginView } from './views/user-login/user-login-view';
 import { UserRegisterView } from './views/user-register/user-register-view';
+import { UserRegisterCompleteView } from './views/user-register-complete/user-register-complete-view';
 import { UserSettingsView } from './views/user-settings/user-settings-view';
 import { CategoryNewView } from './views/category-new/category-new-view';
 import { CategoryEditView } from './views/category-edit/category-edit-view';
@@ -63,6 +64,7 @@ import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 import { LogoutController } from './controllers/logout-controller';
 import { UserLoginController } from './views/user-login/controllers/user-login-controller';
 import { UserRegisterController } from './views/user-register/controllers/user-register-controller';
+import { UserRegisterCompleteController } from './views/user-register-complete/controllers/user-register-complete-controller';
 import { UserSettingsController } from './views/user-settings/controllers/user-settings-controller';
 import { CategoryNewController } from './views/category-new/controllers/category-new-controller';
 import { CategoryEditController } from './views/category-edit/controllers/category-edit-controller';
@@ -113,6 +115,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeView,
     UserLoginView,
     UserRegisterView,
+    UserRegisterCompleteView,
     UserSettingsView,
     CategoryNewView,
     CategoryEditView,
@@ -146,6 +149,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppTranslateService,
     UserLoginController,
     UserRegisterController,
+    UserRegisterCompleteController,
     UserSettingsController,
     LogoutController,
     HomeController,

@@ -38,14 +38,18 @@ class UserAuth
   /**
    * Registers a user into the system.
    *
+   * Returns 'true' if the user wasn't previously registered.
+   *
    * @param DbConnector $db    Database connection
    * @param string      $code  Dropbox code
    * @param string      $state Dropbox state
    *
-   * @return DbUser
+   * @return boolean Is a new user?
    */
   public static function login($db, $code, $state)
   {
+    $isNewUser = false;
+
     try {
       list($id, $token) = DropboxService::getAccessToken($code, $state);
     } catch (DropboxClientException $e) {
@@ -56,7 +60,9 @@ class UserAuth
 
     // searches or creates a new user
     $user = DbUser::searchByDropboxId($db, $account->getId());
-    if ($user === null) {
+    $isNewUser = $user === null;
+
+    if ($isNewUser) {
       $user = new DbUser($db);
       $user->name = $account->getName();
     }
@@ -68,7 +74,7 @@ class UserAuth
     // registers the user in the system
     HttpCookie::set("user_id", $user->getId());
 
-    return $user;
+    return $isNewUser;
   }
 
   /**
