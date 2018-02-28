@@ -24,7 +24,6 @@ class UserRegisterController extends Controller
    */
   public function getDocument()
   {
-    // TODO: language should be in the database
     return new Document(
       [
         "isNewUser" => $this->_isNewUser
