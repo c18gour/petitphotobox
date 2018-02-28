@@ -60,6 +60,40 @@ class DropboxAccount
     return SysFile::concat(IMAGE_FOLDER, $file->getName());
   }
 
+  /**
+   * Gets image contents.
+   *
+   * @param DbUser $user       User
+   * @param string $remotePath Remote path
+   *
+   * @return string Image contents
+   */
+  public function getImageContents($user, $remotePath)
+  {
+    $path = "/" . ltrim($remotePath, "/");
+    $box = $this->_getBox();
+    $link = $box->getTemporaryLink($path);
+
+    return file_get_contents($link->getLink());
+  }
+
+  /**
+   * Gets thumbnail contents.
+   *
+   * @param DbUser $user       User
+   * @param string $remotePath Remote path
+   *
+   * @return string Thumbnail contents
+   */
+  public function getThumbnailContents($user, $remotePath)
+  {
+    $path = "/" . ltrim($remotePath, "/");
+    $box = $this->_getBox();
+    $file = $box->getThumbnail($path, "large");
+
+    return $file->getContents();
+  }
+
   private function _getBox()
   {
     $dpApp = new DropboxApp(

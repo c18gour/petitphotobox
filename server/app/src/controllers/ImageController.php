@@ -1,7 +1,6 @@
 <?php
 namespace petitphotobox\controllers;
 use Kunnu\Dropbox\Exceptions\DropboxClientException;
-use petitphotobox\core\auth\SystemAuth;
 use petitphotobox\core\controller\AuthController;
 use petitphotobox\core\exception\AppError;
 use soloproyectos\sys\file\SysFile;
@@ -44,10 +43,12 @@ class ImageController extends AuthController
       throw new AppError("requiredFields");
     }
 
+    $account = $this->user->getAccount();
+
     try {
       $this->_imageContents = $smallImage
-        ? SystemAuth::getThumbnailContents($this->user, $path)
-        : SystemAuth::getImageContents($this->user, $path);
+        ? $account->getThumbnailContents($this->user, $path)
+        : $account->getImageContents($this->user, $path);
     } catch (DropboxClientException $e) {
       throw new AppError($e->getMessage());
     }

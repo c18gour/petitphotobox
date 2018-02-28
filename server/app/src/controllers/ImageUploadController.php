@@ -2,7 +2,6 @@
 namespace petitphotobox\controllers;
 use Kunnu\Dropbox\Exceptions\DropboxClientException;
 use petitphotobox\core\auth\UserAuth;
-use petitphotobox\core\auth\SystemAuth;
 use petitphotobox\core\controller\Controller;
 use petitphotobox\core\exception\ClientException;
 use petitphotobox\core\model\Document;
