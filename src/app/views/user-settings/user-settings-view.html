@@ -12,6 +12,8 @@
       <select id="language" name="language" [(ngModel)]="entity.language">
         <option *ngFor="let language of languages" [value]="language.code">{{language.label}}</option>
       </select>
+      <label>Dropbox available space</label>
+      <progress-bar [progress]="availSpace" color="#607D8B"></progress-bar>
       <button type="submit" class="button-primary">{{'button.accept' | translate}}</button>
       <button type="button" (click)="goBack()">{{'button.cancel' | translate}}</button>
     </fieldset>

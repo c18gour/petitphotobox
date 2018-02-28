@@ -35,6 +35,14 @@ export class UserSettingsView implements OnInit {
     return env.languages;
   }
 
+  get availSpace() {
+    const usedSpace = this.entity.space.used;
+    const availSpace = this.entity.space.available;
+    const percentage = Math.round(100 * usedSpace / availSpace);
+
+    return percentage;
+  }
+
   ngOnInit() {
     this.modal = new ModalWindowSystem(
       this, this._resolver, this.modalContainer);

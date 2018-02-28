@@ -23,9 +23,16 @@ class UserSettingsController extends AuthController
    */
   public function getDocument()
   {
+    $account = $this->user->getAccount();
+    list($usedSpace, $availSpace) = $account->getSpaceInfo();
+
     return new Document(
       [
         "name" => $this->user->name,
+        "space" => [
+          "used" => $usedSpace,
+          "available" => $availSpace
+        ],
         "language" => $this->getCookie("lang")
       ]
     );

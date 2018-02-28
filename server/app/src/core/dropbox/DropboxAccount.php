@@ -72,6 +72,21 @@ class DropboxAccount
   }
 
   /**
+   * Gets information about the used and available space.
+   *
+   * @return integer[] [<used space in bytes>, <available space in bytes>]
+   */
+  public function getSpaceInfo()
+  {
+    $box = $this->_getBox();
+    $info = $box->getSpaceUsage();
+    $usedSpace = intval($info["used"]);
+    $availSpace = intval($info["allocation"]["allocated"]);
+
+    return [$usedSpace, $availSpace];
+  }
+
+  /**
    * Uploads a file to the user's account.
    *
    * @param string $localPath  Local path
