@@ -3,7 +3,6 @@ namespace petitphotobox\core\dropbox;
 use Kunnu\Dropbox\Authentication\DropboxAuthHelper;
 use Kunnu\Dropbox\Dropbox;
 use Kunnu\Dropbox\DropboxApp;
-use Kunnu\Dropbox\Models\AccessToken;
 
 class DropboxService
 {
@@ -25,14 +24,14 @@ class DropboxService
    * @param string $code  Code
    * @param string $state Description
    *
-   * @return AccessToken
+   * @return string[] [<Dropbox ID>, <Dropbox token>]
    */
   public static function getAccessToken($code, $state)
   {
     $helper = DropboxService::_getHelper();
     $token = $helper->getAccessToken($code, $state, CLIENT_REDIRECT_URL);
 
-    return $token;
+    return [$token->getUid(), $token->getToken()];
   }
 
   /**

@@ -1,6 +1,7 @@
 <?php
 namespace petitphotobox\core\auth;
 use Kunnu\Dropbox\Exceptions\DropboxClientException;
+use petitphotobox\core\dropbox\DropboxAccount;
 use petitphotobox\core\dropbox\DropboxService;
 use petitphotobox\exceptions\SessionError;
 use petitphotobox\records\DbUser;
@@ -45,25 +46,23 @@ class UserAuth
    */
   public static function login($db, $code, $state)
   {
-    $dropboxId = "";
-    $dtopboxToken = "";
-
     try {
-      $token = DropboxService::getAccessToken($code, $state);
-      $dropboxId = $token->getUid();
-      $dtopboxToken = $token->getToken();
+      list($id, $token) = DropboxService::getAccessToken($code, $state);
     } catch (DropboxClientException $e) {
       throw new SessionError($e->getMessage());
     }
 
+    $account = new DropboxAccount($id, $token);
+
     // searches or creates a new user
-    $user = DbUser::searchByDropboxId($db, $dropboxId);
+    $user = DbUser::searchByDropboxId($db, $account->getId());
     if ($user === null) {
       $user = new DbUser($db);
+      $user->name = $account->getName();
     }
 
-    $user->dropboxId = $dropboxId;
-    $user->dropboxToken = $dtopboxToken;
+    $user->dropboxId = $account->getId();
+    $user->dropboxToken = $account->getToken();
     $user->save();
 
     // registers the user in the system

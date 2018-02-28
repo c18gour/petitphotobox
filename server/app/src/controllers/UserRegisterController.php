@@ -2,8 +2,6 @@
 namespace petitphotobox\controllers;
 use petitphotobox\core\auth\UserAuth;
 use petitphotobox\core\controller\Controller;
-use petitphotobox\core\model\Document;
-use soloproyectos\text\Text;
 
 class UserRegisterController extends Controller
 {
@@ -26,8 +24,6 @@ class UserRegisterController extends Controller
     $code = $this->getParam("code");
     $state = $this->getParam("state");
 
-    if (Text::isEmpty($code) || Text::isEmpty($state)) {
-      UserAuth::login($this->db, $code, $state);
-    }
+    UserAuth::login($this->db, $code, $state);
   }
 }
