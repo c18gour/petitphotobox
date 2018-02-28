@@ -117,8 +117,8 @@
   },
   "userRegisterComplete": {
     "header": "Complete registration",
-    "name": "Name",
-    "language": "Language",
+    "displayedName": "Nombre mostrado",
+    "applicationLanguage": "Lenguaje de la aplicación",
     "saveChanges": "Save changes"
   },
   "userSettings": {
