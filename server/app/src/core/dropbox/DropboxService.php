@@ -39,7 +39,7 @@ class DropboxService
    *
    * @return DropboxAuthHelper
    */
-  public static function _getHelper()
+  private static function _getHelper()
   {
     $app = new DropboxApp(DROPBOX_APP_KEY, DROPBOX_APP_SECRET);
     $box = new Dropbox($app);

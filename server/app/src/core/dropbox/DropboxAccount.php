@@ -3,6 +3,7 @@ namespace petitphotobox\core\dropbox;
 use Kunnu\Dropbox\Dropbox;
 use Kunnu\Dropbox\DropboxApp;
 use Kunnu\Dropbox\DropboxFile;
+use Kunnu\Dropbox\Models\Account;
 use petitphotobox\core\dropbox\DropboxService;
 use soloproyectos\sys\file\SysFile;
 
@@ -11,22 +12,46 @@ class DropboxAccount
   private $_id;
   private $_token;
 
+  /**
+   * Constructor.
+   *
+   * Creates a new account based on the ID and Token returned by the
+   * Dropbox's authentication system.
+   *
+   * @param string $id    Dropbox ID
+   * @param string $token Dropbox token
+   */
   public function __construct($id, $token)
   {
     $this->_id = $id;
     $this->_token = $token;
   }
 
+  /**
+   * Gets the Dropbox ID.
+   *
+   * @return string
+   */
   public function getId()
   {
     return $this->_id;
   }
 
+  /**
+   * Gets the Dropbox token.
+   *
+   * @return string
+   */
   public function getToken()
   {
     return $this->_token;
   }
 
+  /**
+   * Gets the user's name.
+   *
+   * @return string
+   */
   public function getName()
   {
     $account = $this->_getAccount();
@@ -34,6 +59,11 @@ class DropboxAccount
     return $account->getDisplayName();
   }
 
+  /**
+   * Gets the user's email.
+   *
+   * @return string
+   */
   public function getEmail()
   {
     $account = $this->_getAccount();
@@ -94,6 +124,11 @@ class DropboxAccount
     return $file->getContents();
   }
 
+  /**
+   * Gets the Dropbox box.
+   *
+   * @return DropBox
+   */
   private function _getBox()
   {
     $dpApp = new DropboxApp(
@@ -103,6 +138,11 @@ class DropboxAccount
     return new DropBox($dpApp);
   }
 
+  /**
+   * Gets the Dropbox user's account.
+   *
+   * @return Account
+   */
   private function _getAccount()
   {
     $box = $this->_getBox();
