@@ -1,3 +1,26 @@
-ul {
-  list-style: none;
+@import '../../../config/css/palette';
+
+.container {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+a {
+  border: 1px solid $divider-color;
+  border-radius: 1rem;
+  display: inline-block;
+  padding: .6rem 1rem;
+  text-align: center;
+  text-decoration: none;
+
+  i {
+    display: block;
+    font-size: 8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &:active,
+  &:hover {
+    text-decoration: none;
+  }
 }
