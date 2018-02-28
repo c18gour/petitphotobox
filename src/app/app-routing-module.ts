@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeView } from './views/home/home-view';
-import { UserAccessView } from './views/user-access/user-access-view';
+import { UserLoginView } from './views/user-login/user-login-view';
 import { UserVerifyView } from './views/user-verify/user-verify-view';
 import { UserSettingsView } from './views/user-settings/user-settings-view';
 import { CategoryNewView } from './views/category-new/category-new-view';
@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'home', component: HomeView },
   { path: 'home/:categoryId', component: HomeView },
   { path: 'home/:categoryId/:page', component: HomeView },
-  { path: 'access', component: UserAccessView },
+  { path: 'login', component: UserLoginView },
   { path: 'verify', component: UserVerifyView },
   { path: 'settings', component: UserSettingsView },
   { path: 'category/new', component: CategoryNewView },

@@ -3,23 +3,23 @@ import { Router } from '@angular/router';
 
 import { SessionError } from '../../core/exception/session-error';
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
-import { UserAccessController } from './controllers/user-access-controller';
-import { UserAccessEntity } from './entities/user-access-entity';
+import { UserLoginController } from './controllers/user-login-controller';
+import { UserLoginEntity } from './entities/user-login-entity';
 import { Url } from '../../core/url/url';
 
 @Component({
   selector: 'app-user-access',
-  templateUrl: './user-access-view.html',
-  styleUrls: ['./user-access-view.scss']
+  templateUrl: './user-login-view.html',
+  styleUrls: ['./user-login-view.scss']
 })
-export class UserAccessView implements OnInit {
+export class UserLoginView implements OnInit {
   private _goBack = false;
-  entity: UserAccessEntity;
+  entity: UserLoginEntity;
   modal: ModalWindowSystem;
   password = '';
 
   constructor(
-    private _controller: UserAccessController,
+    private _controller: UserLoginController,
     private _resolver: ComponentFactoryResolver,
     private _router: Router) { }
 
@@ -40,7 +40,7 @@ export class UserAccessView implements OnInit {
       } catch (e) {
         if (await this.modal.error(e.message)) {
           if (e instanceof SessionError) {
-            this._router.navigate(['/access']);
+            this._router.navigate(['/login']);
           }
         }
 

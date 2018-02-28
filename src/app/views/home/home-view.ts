@@ -62,7 +62,7 @@ export class HomeView implements OnInit {
 
     if (await this.modal.confirm(message)) {
       await this._logoutController.post();
-      this._router.navigate(['/access']);
+      this._router.navigate(['/login']);
     }
   }
 
@@ -153,7 +153,7 @@ export class HomeView implements OnInit {
     } catch (e) {
       if (await this.modal.error(e.message)) {
         if (e instanceof SessionError) {
-          this._router.navigate(['/access']);
+          this._router.navigate(['/login']);
         }
       }
 

@@ -3,11 +3,11 @@ import { Http } from '@angular/http';
 
 import { environment as env } from '../../../../environments/environment';
 import { BaseController } from '../../../core/controller/base-controller';
-import { UserAccessEntity } from '../entities/user-access-entity';
+import { UserLoginEntity } from '../entities/user-login-entity';
 
 @Injectable()
-export class UserAccessController extends BaseController<UserAccessEntity> {
+export class UserLoginController extends BaseController<UserLoginEntity> {
   constructor(http: Http) {
-    super(http, `${env.apiUrl}/user-access.php`);
+    super(http, `${env.apiUrl}/user-login.php`);
   }
 }
