@@ -14,7 +14,6 @@ class UserRegisterController extends Controller
   {
     parent::__construct();
     $this->addOpenRequestHandler([$this, "onGetRequest"]);
-    $this->addPostRequestHandler([$this, "onPostRequest"]);
   }
 
   /**
@@ -30,14 +29,5 @@ class UserRegisterController extends Controller
     if (Text::isEmpty($code) || Text::isEmpty($state)) {
       UserAuth::login($this->db, $code, $state);
     }
-  }
-
-  /**
-   * Processes POST requests.
-   *
-   * @return void
-   */
-  public function onPostRequest()
-  {
   }
 }
