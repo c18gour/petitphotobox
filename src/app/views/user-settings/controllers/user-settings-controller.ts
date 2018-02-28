@@ -11,7 +11,7 @@ export class UserSettingsController extends BaseController<UserSettingsEntity> {
     super(http, `${env.apiUrl}/user-settings.php`);
   }
 
-  post(args: { language: string }) {
+  post(args: { name: string, language: string }) {
     return super.post(args);
   }
 }

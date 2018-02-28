@@ -25,6 +25,7 @@ class UserSettingsController extends AuthController
   {
     return new Document(
       [
+        "name" => $this->user->name,
         "language" => $this->getCookie("lang")
       ]
     );
@@ -37,11 +38,15 @@ class UserSettingsController extends AuthController
    */
   public function onPostRequest()
   {
+    $name = $this->getParam("name");
     $language = $this->getParam("language");
 
-    if (Text::isEmpty($language)) {
+    if (Text::isEmpty($name) || Text::isEmpty($language)) {
       throw new ClientException("requiredFields");
     }
+
+    $this->user->name = $name;
+    $this->user->save();
 
     $this->setCookie("lang", $language);
   }
