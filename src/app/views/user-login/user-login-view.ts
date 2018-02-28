@@ -13,10 +13,8 @@ import { Url } from '../../core/url/url';
   styleUrls: ['./user-login-view.scss']
 })
 export class UserLoginView implements OnInit {
-  private _goBack = false;
   entity: UserLoginEntity;
   modal: ModalWindowSystem;
-  password = '';
 
   constructor(
     private _controller: UserLoginController,
