@@ -2,20 +2,20 @@ import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolve
 import { Router } from '@angular/router';
 
 import { SessionError } from '../../core/exception/session-error';
-import { UserVerifyController } from './controllers/user-verify-controller';
+import { UserRegisterController } from './controllers/user-register-controller';
 import { ModalWindowSystem } from '../../modules/modal-window-system/modal-window-system';
 import { Url } from '../../core/url/url';
 
 @Component({
-  selector: 'app-user-verify',
-  templateUrl: './user-verify-view.html',
-  styleUrls: ['./user-verify-view.scss']
+  selector: 'app-user-register',
+  templateUrl: './user-register-view.html',
+  styleUrls: ['./user-register-view.scss']
 })
-export class UserVerifyView implements OnInit {
+export class UserRegisterView implements OnInit {
   modal: ModalWindowSystem;
 
   constructor(
-    private _controller: UserVerifyController,
+    private _controller: UserRegisterController,
     private _resolver: ComponentFactoryResolver,
     private _router: Router
   ) { }

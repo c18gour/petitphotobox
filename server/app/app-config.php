@@ -12,7 +12,7 @@ $protocol = stripos("https", $_SERVER["SERVER_PROTOCOL"]) === 0
   ? "https"
   : "http";
 define("CLIENT_URL", "$protocol://" . CLIENT_URI);
-define("CLIENT_REDIRECT_URL", CLIENT_URL . "/login");
+define("CLIENT_REDIRECT_URL", CLIENT_URL . "/register");
 header("Access-Control-Allow-Origin: " . CLIENT_URL);
 
 /**

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeView } from './views/home/home-view';
 import { UserLoginView } from './views/user-login/user-login-view';
-import { UserVerifyView } from './views/user-verify/user-verify-view';
+import { UserRegisterView } from './views/user-register/user-register-view';
 import { UserSettingsView } from './views/user-settings/user-settings-view';
 import { CategoryNewView } from './views/category-new/category-new-view';
 import { CategoryEditView } from './views/category-edit/category-edit-view';
@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'home/:categoryId', component: HomeView },
   { path: 'home/:categoryId/:page', component: HomeView },
   { path: 'login', component: UserLoginView },
-  { path: 'verify', component: UserVerifyView },
+  { path: 'register', component: UserRegisterView },
   { path: 'settings', component: UserSettingsView },
   { path: 'category/new', component: CategoryNewView },
   { path: 'category/new/:parentCategoryId', component: CategoryNewView },
