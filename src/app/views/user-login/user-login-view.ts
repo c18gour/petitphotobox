@@ -8,7 +8,7 @@ import { UserLoginEntity } from './entities/user-login-entity';
 import { Url } from '../../core/url/url';
 
 @Component({
-  selector: 'app-user-access',
+  selector: 'app-user-login',
   templateUrl: './user-login-view.html',
   styleUrls: ['./user-login-view.scss']
 })
