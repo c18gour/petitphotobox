@@ -27,7 +27,7 @@
   "pictureNew": {
     "addSnapshots": "Add one or more snapshots"
   },
-  "userVerify": {
+  "userRegister": {
     "badRequest": "Bad formed request"
   },
   "searchController": {

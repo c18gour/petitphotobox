@@ -27,7 +27,7 @@
   "pictureNew": {
     "addSnapshots": "Añada una o más capturas"
   },
-  "userVerify": {
+  "userRegister": {
     "badRequest": "Petición mal formada"
   },
   "searchController": {
