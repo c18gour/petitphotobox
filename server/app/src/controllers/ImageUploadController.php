@@ -60,8 +60,6 @@ class ImageUploadController extends Controller
    */
   public function onPostRequest()
   {
-    $user = UserAuth::getInstance($this->db);
-
     if (!Arr::exist($_FILES, "file")) {
         throw new ClientException("requiredFields");
     }
