@@ -3,6 +3,7 @@ namespace petitphotobox\core\auth;
 use Kunnu\Dropbox\Exceptions\DropboxClientException;
 use petitphotobox\core\dropbox\DropboxAccount;
 use petitphotobox\core\dropbox\DropboxService;
+use petitphotobox\core\http\HttpClient;
 use petitphotobox\exceptions\SessionError;
 use petitphotobox\records\DbUser;
 use soloproyectos\db\DbConnector;
@@ -67,6 +68,7 @@ class UserAuth
       $user->name = $account->getName();
     }
 
+    $user->language = HttpClient::getLanguage();
     $user->dropboxId = $account->getId();
     $user->dropboxToken = $account->getToken();
     $user->save();

@@ -27,7 +27,7 @@ class UserRegisterCompleteController extends AuthController
     return new Document(
       [
         "name" => $this->user->name,
-        "language" => $this->getCookie("lang")
+        "language" => $this->user->language
       ]
     );
   }
@@ -47,6 +47,7 @@ class UserRegisterCompleteController extends AuthController
     }
 
     $this->user->name = $name;
+    $this->user->language = $language;
     $this->user->save();
 
     $this->setCookie("lang", $language);

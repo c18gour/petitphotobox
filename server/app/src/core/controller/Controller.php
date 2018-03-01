@@ -3,6 +3,7 @@ namespace petitphotobox\core\controller;
 use \Exception;
 use petitphotobox\core\exception\AppError;
 use petitphotobox\core\exception\ClientException;
+use petitphotobox\core\http\HttpClient;
 use petitphotobox\exceptions\DatabaseError;
 use petitphotobox\core\model\Document;
 use soloproyectos\db\DbConnector;
@@ -46,15 +47,27 @@ class Controller extends HttpController
         $this->translator = new I18nTranslator();
         $this->translator->loadDictionaries(I18N_DIR, "en");
 
+        // gets current language
         $lang = $this->getCookie("lang");
-        $langs = $this->translator->getLangs();
-        if (in_array($lang, $langs)) {
-          $this->translator->useLang($lang);
+        if (Text::isEmpty($lang)) {
+          $lang = HttpClient::getLanguage();
         }
+
+        $this->useLang($lang);
+
       } catch (DbException $e) {
         throw new DatabaseError($e->getMessage());
       }
     });
+  }
+
+  public function useLang($lang)
+  {
+    $langs = $this->translator->getLangs();
+    if (in_array($lang, $langs)) {
+      $this->translator->useLang($lang);
+      $this->setCookie("lang", $lang);
+    }
   }
 
   /**

@@ -11,6 +11,7 @@ use soloproyectos\sys\file\SysFile;
 class DbUser extends DbRecord
 {
   public $name;
+  public $language;
   public $dropboxId;
   public $dropboxToken;
 
@@ -128,12 +129,13 @@ class DbUser extends DbRecord
     list(
       $id,
       $this->name,
+      $this->language,
       $this->dropboxId,
       $this->dropboxToken
     ) = DbTable::select(
       $this->db,
       "user",
-      ["id", "name", "dropbox_id", "dropbox_token"],
+      ["id", "name", "language", "dropbox_id", "dropbox_token"],
       $this->id
     );
 
@@ -152,6 +154,7 @@ class DbUser extends DbRecord
       "user",
       [
         "name" => $this->name,
+        "language" => $this->language,
         "dropbox_id" => $this->dropboxId,
         "dropbox_token" => $this->dropboxToken
       ],
@@ -171,6 +174,7 @@ class DbUser extends DbRecord
       "user",
       [
         "name" => $this->name,
+        "language" => $this->language,
         "dropbox_id" => $this->dropboxId,
         "dropbox_token" => $this->dropboxToken
       ]

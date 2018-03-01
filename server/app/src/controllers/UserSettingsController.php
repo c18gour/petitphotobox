@@ -33,7 +33,7 @@ class UserSettingsController extends AuthController
           "used" => $usedSpace,
           "available" => $availSpace
         ],
-        "language" => $this->getCookie("lang")
+        "language" => $this->user->language
       ]
     );
   }
@@ -53,6 +53,7 @@ class UserSettingsController extends AuthController
     }
 
     $this->user->name = $name;
+    $this->user->language = $language;
     $this->user->save();
 
     $this->setCookie("lang", $language);

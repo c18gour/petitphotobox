@@ -3,6 +3,7 @@ namespace petitphotobox\core\controller;
 use petitphotobox\core\auth\UserAuth;
 use petitphotobox\core\controller\Controller;
 use petitphotobox\exceptions\SessionError;
+use soloproyectos\text\Text;
 
 abstract class AuthController extends Controller
 {
@@ -21,6 +22,10 @@ abstract class AuthController extends Controller
       $this->user = UserAuth::getInstance($this->db);
       if ($this->user === null) {
         throw new SessionError("expiredSession");
+      }
+
+      if (!Text::isEmpty($this->user->language)) {
+        $this->useLang($this->user->language);
       }
     });
   }
