@@ -23,7 +23,6 @@ class UserRegisterCompleteController extends AuthController
    */
   public function getDocument()
   {
-    // TODO: language should be in the database
     return new Document(
       [
         "name" => $this->user->name,
