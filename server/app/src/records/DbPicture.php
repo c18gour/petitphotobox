@@ -207,18 +207,31 @@ class DbPicture extends DbRecord
       $pt->save();
     }
 
-    // removes all snapshots
-    $snapshots = $this->getSnapshots();
-    foreach ($snapshots as $s) {
-      $s->delete();
+    // creates new snapshots
+    $newSnapshots = [];
+    foreach ($this->paths as $path) {
+      $snapshot = new DbSnapshot($this->db, $this->_user);
+
+      $s = $this->_searchSnapshotByPath($path);
+      if ($s !== null) {
+        $snapshot->createdAt = $s->createdAt;
+      }
+
+      $snapshot->pictureId = $this->getId();
+      $snapshot->path = $path;
+
+      array_push($newSnapshots, $snapshot);
     }
 
-    // adds snapshots
-    foreach ($this->paths as $path) {
-      $s = new DbSnapshot($this->db, $this->_user);
-      $s->pictureId = $this->id;
-      $s->path = $path;
-      $s->save();
+    // deletes all previous snapshots
+    $snapshots = $this->getSnapshots();
+    foreach ($snapshots as $snapshot) {
+      $snapshot->delete();
+    }
+
+    // save new snapshots
+    foreach ($newSnapshots as $snapshot) {
+      $snapshot->save();
     }
 
     $sql = "
@@ -281,5 +294,24 @@ class DbPicture extends DbRecord
     }
 
     return $pictureId;
+  }
+
+  private function _searchSnapshotByPath($path)
+  {
+    $ret = null;
+
+    $sql = "
+    select
+      id
+    from snapshot
+    where picture_id = ?
+    and path = ?";
+    $row = $this->db->query($sql, [$this->getId(), $path]);
+
+    if (count($row) > 0) {
+      $ret = new DbSnapshot($this->db, $this->_user, $row["id"]);
+    }
+
+    return $ret;
   }
 }

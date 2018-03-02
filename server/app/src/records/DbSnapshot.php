@@ -10,6 +10,7 @@ class DbSnapshot extends DbSortableRecord
   private $_user;
   public $pictureId;
   public $path;
+  public $createdAt;
 
   /**
    * Creates a new instance.
@@ -21,6 +22,7 @@ class DbSnapshot extends DbSortableRecord
   public function __construct($db, $user, $id = null)
   {
     $this->_user = $user;
+    $this->createdAt = date("Y-m-d H:i:s");
     parent::__construct($db, $id);
   }
 
@@ -94,6 +96,7 @@ class DbSnapshot extends DbSortableRecord
     select
       s.id,
       s.picture_id,
+      s.created_at,
       s.path,
       s.ord
     from snapshot as s
@@ -107,6 +110,7 @@ class DbSnapshot extends DbSortableRecord
     where s.id = ?";
     $row = $this->db->query($sql, [$this->_user->getId(), $this->id]);
     $this->pictureId = $row["picture_id"];
+    $this->createdAt = $row["created_at"];
     $this->path = $row["path"];
     $this->ord = $row["ord"];
 
@@ -164,6 +168,7 @@ class DbSnapshot extends DbSortableRecord
       "snapshot",
       [
         "picture_id" => $this->pictureId,
+        "created_at" => $this->createdAt,
         "path" => $this->path,
         "ord" => $this->getNextOrd()
       ]
