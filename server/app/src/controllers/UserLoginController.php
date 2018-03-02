@@ -6,6 +6,7 @@ use petitphotobox\core\dropbox\DropboxService;
 use petitphotobox\core\model\Document;
 use soloproyectos\text\Text;
 
+// TODO: redirect to home if the user was already logged
 class UserLoginController extends Controller
 {
   /**
