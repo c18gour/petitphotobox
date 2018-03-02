@@ -91,18 +91,18 @@ class PictureNewController extends AuthController
         )
       )
     );
-    $snapshots = array_filter(
+    $paths = array_filter(
       array_map("trim", explode(",", $this->getParam("snapshots")))
     );
 
-    if (count($snapshots) < 1) {
+    if (count($paths) < 1) {
       throw new ClientException("pictureNew.addSnapshots");
     }
 
     // creates a new picture
     $this->_picture->title = $title;
     $this->_picture->tags = $tags;
-    $this->_picture->paths = $snapshots;
+    $this->_picture->paths = $paths;
     $this->_picture->save();
 
     // adds it to the categories
