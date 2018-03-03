@@ -6,6 +6,8 @@ RewriteEngine On
   Header add Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
   Header add Access-Control-Allow-Headers: "Content-Type"
   Header add Access-Control-Allow-Headers: "Authorization"
+
+  Header set Cache-Control "max-age=7200, must-revalidate"
 </IfModule>
 
 RewriteRule ^images/([^/]+)$ image.php?path=$1&%{QUERY_STRING} [L,NC]
