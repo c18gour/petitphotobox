@@ -2,6 +2,8 @@ Options -Indexes
 RewriteEngine On
 
 <IfModule mod_headers.c>
+  Header set Cache-Control "max-age=7200, must-revalidate"
+
   Header set Access-Control-Allow-Credentials true
   Header add Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
   Header add Access-Control-Allow-Headers: "Content-Type"

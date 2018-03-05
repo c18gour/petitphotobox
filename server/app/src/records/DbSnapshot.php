@@ -64,6 +64,15 @@ class DbSnapshot extends DbSortableRecord
     );
   }
 
+  public function loadThumbnail()
+  {
+    $ret = null;
+    $account = $this->_user->getAccount();
+    $path = preg_replace('/^images/', '', $this->path);
+
+    return $account->getThumbnailContents($this->_user, $path);
+  }
+
   /**
    * {@inheritdoc}
    *
@@ -173,5 +182,30 @@ class DbSnapshot extends DbSortableRecord
         "ord" => $this->getNextOrd()
       ]
     );
+  }
+
+  public static function searchByPath($db, $user, $path)
+  {
+    $ret = null;
+
+    $sql = "
+    select
+      s.id
+    from snapshot as s
+    inner join picture as p
+      on p.id = s.picture_id
+    inner join category_picture as cp
+      on cp.picture_id = p.id
+    inner join category as c
+      on c.user_id = ?
+      and c.id = cp.category_id
+    where path = ?
+    group by id";
+    $row = $db->query($sql, [$user->getId(), $path]);
+    if (count($row) > 0) {
+      $ret = new DbSnapshot($db, $user, $row["id"]);
+    }
+
+    return $ret;
   }
 }
