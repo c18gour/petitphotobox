@@ -15,7 +15,7 @@ use soloproyectos\text\Text;
 class Controller extends HttpController
 {
   /**
-   * Dateabase connection.
+   * Database connection.
    * @var DbConnector
    */
   protected $db;
@@ -42,10 +42,8 @@ class Controller extends HttpController
 
     $this->addOpenRequestHandler(function () {
       try {
-        $this->db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
-
         $this->translator = new I18nTranslator();
-        $this->translator->loadDictionaries(I18N_DIR, "en");
+        $this->translator->loadDictionaries(I18N_DIR, I18N_DEFAULT_LANG);
 
         // gets current language
         $lang = $this->getCookie("lang");
@@ -55,6 +53,7 @@ class Controller extends HttpController
 
         $this->useLang($lang);
 
+        $this->db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
       } catch (DbException $e) {
         throw new DatabaseError($e->getMessage());
       }
