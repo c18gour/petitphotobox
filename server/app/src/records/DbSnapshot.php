@@ -6,7 +6,6 @@ use petitphotobox\exceptions\DatabaseError;
 
 class DbSnapshot extends DbSortableRecord
 {
-  private $_validPath = '/^images\/.+\..+$/';
   private $_user;
   public $pictureId;
   public $path;
@@ -124,10 +123,6 @@ class DbSnapshot extends DbSortableRecord
    */
   protected function update()
   {
-    if (!preg_match($this->_validPath, $this->path)) {
-      throw new DatabaseError("Invalid path");
-    }
-
     $sql = "
     update snapshot as s
     inner join picture as p
@@ -159,10 +154,6 @@ class DbSnapshot extends DbSortableRecord
    */
   protected function insert()
   {
-    if (!preg_match($this->_validPath, $this->path)) {
-      throw new DatabaseError("Invalid path");
-    }
-
     return DbTable::insert(
       $this->db,
       "snapshot",
