@@ -212,7 +212,7 @@ class DbPicture extends DbRecord
     foreach ($this->paths as $path) {
       $snapshot = new DbSnapshot($this->db, $this->_user);
 
-      $s = $this->_searchSnapshotByPath($path);
+      $s = DbSnapshot::searchByPath($path);
       if ($s !== null) {
         $snapshot->createdAt = $s->createdAt;
       }
@@ -294,24 +294,5 @@ class DbPicture extends DbRecord
     }
 
     return $pictureId;
-  }
-
-  private function _searchSnapshotByPath($path)
-  {
-    $ret = null;
-
-    $sql = "
-    select
-      id
-    from snapshot
-    where picture_id = ?
-    and path = ?";
-    $row = $this->db->query($sql, [$this->getId(), $path]);
-
-    if (count($row) > 0) {
-      $ret = new DbSnapshot($this->db, $this->_user, $row["id"]);
-    }
-
-    return $ret;
   }
 }

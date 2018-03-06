@@ -64,13 +64,30 @@ class DbSnapshot extends DbSortableRecord
     );
   }
 
+  /**
+   * Loads image contents from the Dropbox account.
+   *
+   * @return string
+   */
+  public function loadImage()
+  {
+    $ret = null;
+    $account = $this->_user->getAccount();
+
+    return $account->getImageContents($this->_user, $this->path);
+  }
+
+  /**
+   * Loads thumbnail contents from the Dropbox account.
+   *
+   * @return string
+   */
   public function loadThumbnail()
   {
     $ret = null;
     $account = $this->_user->getAccount();
-    $path = preg_replace('/^images/', '', $this->path);
 
-    return $account->getThumbnailContents($this->_user, $path);
+    return $account->getThumbnailContents($this->_user, $this->path);
   }
 
   /**
@@ -184,6 +201,15 @@ class DbSnapshot extends DbSortableRecord
     );
   }
 
+  /**
+   * Searches a snapshot by its path.
+   *
+   * @param DbConnector $db   Database connection
+   * @param DbUser      $user User
+   * @param string      $path Image path
+   *
+   * @return DbSnapshot
+   */
   public static function searchByPath($db, $user, $path)
   {
     $ret = null;

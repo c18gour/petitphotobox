@@ -7,7 +7,6 @@ use petitphotobox\core\exception\AppError;
 use petitphotobox\records\DbSnapshot;
 use soloproyectos\db\DbConnector;
 use soloproyectos\http\controller\HttpController;
-use soloproyectos\i18n\translator\I18nTranslator;
 use soloproyectos\text\Text;
 
 class SnapshotController extends HttpController
@@ -50,6 +49,7 @@ class SnapshotController extends HttpController
   {
     $db = new DbConnector(DBNAME, DBUSER, DBPASS, DBHOST);
     $path = $this->getParam("path");
+    $small = $this->existParam("small");
 
     if (Text::isEmpty($path)) {
       throw new AppError("Missing required fields");
@@ -70,18 +70,17 @@ class SnapshotController extends HttpController
 
     CacheSystem::ifNotCached(
       $createdAt, $etag,
-      function () {
+      function () use ($small) {
         try {
-          $this->printImage();
+          $contents = $small
+            ? $this->snapshot->loadThumbnail()
+            : $this->snapshot->loadImage();
+
+          echo $contents;
         } catch (DropboxClientException $e) {
           throw new AppError($e->getMessage());
         }
       }
     );
-  }
-
-  protected function printImage()
-  {
-    echo $this->snapshot->loadThumbnail();
   }
 }

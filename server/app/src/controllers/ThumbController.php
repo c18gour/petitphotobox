@@ -55,12 +55,6 @@ class ThumbController extends AuthController
     header("Last-Modified: ".gmdate("D, d M Y H:i:s", $createdAt)." GMT");
     header("Etag: $etag");
 
-    if (@strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']) == $createdAt ||
-      @trim($_SERVER['HTTP_IF_NONE_MATCH']) == $etag) {
-      header("HTTP/1.1 304 Not Modified");
-      die();
-    }
-
     $account = $this->user->getAccount();
 
     $path = preg_replace('/^images/', '', $snapshot->path);

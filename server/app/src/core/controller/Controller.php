@@ -1,6 +1,5 @@
 <?php
 namespace petitphotobox\core\controller;
-use \Exception;
 use petitphotobox\core\exception\AppError;
 use petitphotobox\core\exception\ClientException;
 use petitphotobox\core\http\HttpClient;
@@ -60,9 +59,17 @@ class Controller extends HttpController
     });
   }
 
+  /**
+   * Uses an specific language.
+   *
+   * @param string $lang Language
+   *
+   * @return void
+   */
   public function useLang($lang)
   {
     $langs = $this->translator->getLangs();
+
     if (in_array($lang, $langs)) {
       $this->translator->useLang($lang);
       $this->setCookie("lang", $lang);

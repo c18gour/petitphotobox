@@ -2,7 +2,10 @@ Options -Indexes
 RewriteEngine On
 
 <IfModule mod_headers.c>
-  Header set Cache-Control "max-age=7200, must-revalidate"
+  # one day cache
+  <filesMatch "snapshot.php$">
+    Header set Cache-Control "max-age=86400, public, must-revalidate"
+  </filesMatch>
 
   Header set Access-Control-Allow-Credentials true
   Header add Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
@@ -10,4 +13,5 @@ RewriteEngine On
   Header add Access-Control-Allow-Headers: "Authorization"
 </IfModule>
 
-RewriteRule ^images/([^/]+)$ image.php?path=$1&%{QUERY_STRING} [L,NC]
+RewriteRule ^images/([^/]+)$ snapshot.php?path=$1 [L,NC]
+RewriteRule ^thumbs/([^/]+)$ snapshot.php?path=$1&small=1 [L,NC]
