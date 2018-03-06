@@ -54,8 +54,7 @@ class HomeController extends AuthController
               "id" => $id,
               "categories" => count($categories),
               "snapshots" => count($snapshots),
-              "path" => "thumb.php?pictureId=$id"
-              // "path" => $snapshot->path"
+              "path" => $snapshot->path
             ];
           },
           $pictures

@@ -25,14 +25,13 @@ export class PictureEditSnapshotComponent {
   downPicture = new EventEmitter<string>();
 
   get imagePath(): string {
-    const url = Url.parse(this.path, env.apiUrl);
+    const url = Url.parse(env.imagesDir + this.path, env.apiUrl);
 
     return url.toString();
   }
 
-  get smallImagePath(): string {
-    const url = Url.parse(this.path, env.apiUrl);
-    url.addParam('small');
+  get thumbImagePath(): string {
+    const url = Url.parse(env.thumbsDir + this.path, env.apiUrl);
 
     return url.toString();
   }

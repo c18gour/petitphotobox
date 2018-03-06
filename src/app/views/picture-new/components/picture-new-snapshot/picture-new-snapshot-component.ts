@@ -24,9 +24,8 @@ export class PictureNewSnapshotComponent {
   @Output()
   downPicture = new EventEmitter<string>();
 
-  get smallImagePath(): string {
-    const url = Url.parse(this.path, env.apiUrl);
-    url.addParam('small');
+  get thumbImagePath(): string {
+    const url = Url.parse(env.thumbsDir + this.path, env.apiUrl);
 
     return url.toString();
   }

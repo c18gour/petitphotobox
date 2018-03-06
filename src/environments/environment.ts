@@ -6,6 +6,8 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost',
+  imagesDir: 'images/',
+  thumbsDir: 'thumbs/',
   defaultLanguage: 'en',
   languages: new Array<Language>(
     { code: 'en', label: 'English' },
