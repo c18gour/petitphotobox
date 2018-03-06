@@ -102,7 +102,7 @@ class DropboxAccount
 
     $file = $box->upload($file, $path, ["autorename" => true]);
 
-    return SysFile::concat(IMAGE_FOLDER, $file->getName());
+    return $file->getName();
   }
 
   /**

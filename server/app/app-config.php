@@ -31,8 +31,6 @@ define("I18N_DIR", "./src/assets/i18n");
  * Image constants.
  */
 define("IMAGE_NOT_FOUND_PATH", "src/assets/images/picture-not-found.jpg");
-// TODO: remove this constant
-define("IMAGE_FOLDER", "images");
 
 
 /**
