@@ -98,9 +98,14 @@ class SnapshotController extends HttpController
   private function _loadImage($path, $small)
   {
     $account = $this->_user->getAccount();
-    $contents = $small
-      ? $account->loadThumbnail($this->_user, $path)
-      : $account->loadImage($this->_user, $path);
+
+    try {
+      $contents = $small
+        ? $account->loadThumbnail($this->_user, $path)
+        : $account->loadImage($this->_user, $path);
+    } catch (DropboxClientException $e) {
+      throw new AppError($e->getMessage());
+    }
 
     return $contents;
   }
