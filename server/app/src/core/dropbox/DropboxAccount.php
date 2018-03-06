@@ -105,6 +105,7 @@ class DropboxAccount
     return $file->getName();
   }
 
+  // TODO: rename by loadImage();
   /**
    * Gets image contents.
    *
@@ -122,6 +123,7 @@ class DropboxAccount
     return file_get_contents($link->getLink());
   }
 
+  // TODO: rename by loadThumbnail();
   /**
    * Gets thumbnail contents.
    *
