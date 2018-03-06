@@ -105,16 +105,15 @@ class DropboxAccount
     return $file->getName();
   }
 
-  // TODO: rename by loadImage();
   /**
-   * Gets image contents.
+   * Loads an image from the user's account.
    *
    * @param DbUser $user       User
    * @param string $remotePath Remote path
    *
-   * @return string Image contents
+   * @return string
    */
-  public function getImageContents($user, $remotePath)
+  public function loadImage($user, $remotePath)
   {
     $path = "/" . ltrim($remotePath, "/");
     $box = $this->_getBox();
@@ -125,14 +124,14 @@ class DropboxAccount
 
   // TODO: rename by loadThumbnail();
   /**
-   * Gets thumbnail contents.
+   * Loads a thumbnail from the user's account.
    *
    * @param DbUser $user       User
    * @param string $remotePath Remote path
    *
-   * @return string Thumbnail contents
+   * @return string
    */
-  public function getThumbnailContents($user, $remotePath)
+  public function loadThumbnail($user, $remotePath)
   {
     $path = "/" . ltrim($remotePath, "/");
     $box = $this->_getBox();

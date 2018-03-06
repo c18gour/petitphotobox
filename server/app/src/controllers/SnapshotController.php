@@ -99,8 +99,8 @@ class SnapshotController extends HttpController
   {
     $account = $this->_user->getAccount();
     $contents = $small
-      ? $account->getThumbnailContents($this->_user, $path)
-      : $account->getImageContents($this->_user, $path);
+      ? $account->loadThumbnail($this->_user, $path)
+      : $account->loadImage($this->_user, $path);
 
     return $contents;
   }
