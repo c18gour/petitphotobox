@@ -65,32 +65,6 @@ class DbSnapshot extends DbSortableRecord
   }
 
   /**
-   * Loads image contents from the Dropbox account.
-   *
-   * @return string
-   */
-  public function loadImage()
-  {
-    $ret = null;
-    $account = $this->_user->getAccount();
-
-    return $account->getImageContents($this->_user, $this->path);
-  }
-
-  /**
-   * Loads thumbnail contents from the Dropbox account.
-   *
-   * @return string
-   */
-  public function loadThumbnail()
-  {
-    $ret = null;
-    $account = $this->_user->getAccount();
-
-    return $account->getThumbnailContents($this->_user, $this->path);
-  }
-
-  /**
    * {@inheritdoc}
    *
    * @return void
