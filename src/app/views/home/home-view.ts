@@ -18,7 +18,7 @@ import { CategoryPictureDownController } from './controllers/category-picture-do
 @Component({
   selector: 'app-home',
   templateUrl: './home-view.html',
-  styleUrls: ['./home-view.scss', './home-view-tablet.scss']
+  styleUrls: ['./home-view.scss']
 })
 export class HomeView implements OnInit {
   entity: HomeEntity;
