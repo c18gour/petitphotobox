@@ -28,10 +28,11 @@ define("I18N_DEFAULT_LANG", "en");
 define("I18N_DIR", "./src/assets/i18n");
 
 /**
- * Image constants.
+ * General constants.
  */
+define("DOCUMENT_ROOT", rtrim($_SERVER["DOCUMENT_ROOT"], "/"));
 define("IMAGE_NOT_FOUND_PATH", "src/assets/images/picture-not-found.jpg");
-
+define("MAX_ITEMS_PER_PAGE", 5);
 
 /**
  * List of exception codes.
