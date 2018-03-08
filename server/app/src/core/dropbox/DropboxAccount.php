@@ -122,7 +122,6 @@ class DropboxAccount
     return file_get_contents($link->getLink());
   }
 
-  // TODO: rename by loadThumbnail();
   /**
    * Loads a thumbnail from the user's account.
    *
