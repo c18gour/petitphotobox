@@ -212,7 +212,7 @@ class DbPicture extends DbRecord
     foreach ($this->paths as $path) {
       $snapshot = new DbSnapshot($this->db, $this->_user);
 
-      $s = DbSnapshot::searchByPath($path);
+      $s = DbSnapshot::searchByPath($this->db, $this->_user, $path);
       if ($s !== null) {
         $snapshot->createdAt = $s->createdAt;
       }
