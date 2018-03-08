@@ -20,35 +20,32 @@
     (selectEntry)="onSelectEntry($event)" [visible]="false"></app-menu>
   <div class="results">
     <!-- if 'main category': -->
-    <h3 *ngIf="entity.main">
-      <span>{{'home.uncategorizedPictures' | translate}}</span>
-      <a routerLink="/category/new"
-        [title]="'home.newCategory' | translate"><i class="fa fa-plus"></i></a>
-      <a routerLink="/picture/new"
-        [title]="'home.uploadPicture' | translate"><i class="fa fa-upload"></i></a>
-      <a routerLink="/search"
-        [title]="'home.findPictures' | translate"><i class="fa fa-search"></i></a>
-    </h3>
+    <ng-container *ngIf="entity.main">
+      <h3 [translate]="'home.welcome'" [translateParams]="{username: entity.username}"></h3>
+      <p [innerHTML]="'home.welcomeMessage' | translate"></p>
+    </ng-container>
     <!-- else: -->
-    <h3 *ngIf="!entity.main">
-      <a (click)="confirmDeleteCategory()" [title]="'home.deleteCategory' | translate">
-        <i class="fa fa-trash-o"></i>
-      </a>
-      <span>{{entity.title}}</span>
-      <a [routerLink]="'/category/edit/' + entity.id"
-        [title]="'home.editCategory' | translate"><i class="fa fa-pencil"></i></a>
-      <a [routerLink]="'/category/new/' + categoryId"
-        [title]="'home.newSubcategory' | translate"><i class="fa fa-plus"></i></a>
-      <a [routerLink]="'/picture/new/' + categoryId"
-        [title]="'home.uploadPicture' | translate"><i class="fa fa-upload"></i></a>
-      <a [routerLink]="'/search/' + categoryId"
-        [title]="'home.findPictures' | translate"><i class="fa fa-search"></i></a>
-    </h3>
-    <!-- endif -->
+    <ng-container *ngIf="!entity.main">
+      <h3>
+        <a (click)="confirmDeleteCategory()" [title]="'home.deleteCategory' | translate">
+          <i class="fa fa-trash-o"></i>
+        </a>
+        <span>{{entity.title}}</span>
+        <a [routerLink]="'/category/edit/' + entity.id"
+          [title]="'home.editCategory' | translate"><i class="fa fa-pencil"></i></a>
+        <a [routerLink]="'/category/new/' + categoryId"
+          [title]="'home.newSubcategory' | translate"><i class="fa fa-plus"></i></a>
+        <a [routerLink]="'/picture/new/' + categoryId"
+          [title]="'home.uploadPicture' | translate"><i class="fa fa-upload"></i></a>
+        <a [routerLink]="'/search/' + categoryId"
+          [title]="'home.findPictures' | translate"><i class="fa fa-search"></i></a>
+      </h3>
+      <!-- endif -->
 
-    <p *ngIf="entity.pictures.length === 0">
-      <em>{{'home.emptyCategory' | translate}}</em>
-    </p>
+      <p *ngIf="entity.pictures.length === 0">
+        <em>{{'home.emptyCategory' | translate}}</em>
+      </p>
+    </ng-container>
 
     <app-paginator *ngIf="entity.numPages > 1"
         [page]="entity.page"

@@ -42,6 +42,8 @@
     "titleIsRequired": "Title is required"
   },
   "home": {
+    "welcome": "Welcome {{username}}.",
+    "welcomeMessage": "Images are stored in categories. To create a new category press the <i class='fa fa-plus'></i> button from the top menu.",
     "toggleMenu": "Toggle menu",
     "newCategory": "New category",
     "findPictures": "Find pictures",

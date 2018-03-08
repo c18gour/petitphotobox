@@ -39,6 +39,7 @@ class HomeController extends AuthController
     return new Document(
       [
         "id" => $this->_category->getId(),
+        "username" => $this->user->name,
         "title" => $this->_category->title,
         "main" => $this->_category->getId() == $mainCategory->getId(),
         "page" => $this->_page,
