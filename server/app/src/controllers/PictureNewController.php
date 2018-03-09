@@ -59,6 +59,10 @@ class PictureNewController extends AuthController
   {
     $categoryIds = array_filter(explode(",", $this->getParam("categoryIds")));
 
+    if (count($categoryIds) == 0) {
+      throw new ClientException("requiredFields");
+    }
+
     $this->_categories = array_map(
       function ($id) {
         return new DbCategory($this->db, $this->user, $id);
@@ -94,10 +98,6 @@ class PictureNewController extends AuthController
     $paths = array_filter(
       array_map("trim", explode(",", $this->getParam("snapshots")))
     );
-
-    if (count($categoryIds) == 0) {
-      throw new ClientException("requiredFields");
-    }
 
     if (count($paths) < 1) {
       throw new ClientException("pictureNew.addSnapshots");
