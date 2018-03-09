@@ -68,7 +68,7 @@ export class HomeView implements OnInit {
 
   onSelectEntry(categoryId: string) {
     this.menu.visible = false;
-    this._router.navigate(['/home', categoryId]);
+    this._router.navigate(['/category', categoryId]);
   }
 
   async confirmDeleteCategory() {
@@ -139,7 +139,7 @@ export class HomeView implements OnInit {
   }
 
   goPage(page: number) {
-    this._router.navigate([`/home/${this.categoryId}/${page}`]);
+    this._router.navigate([`/category/${this.categoryId}/${page}`]);
   }
 
   trackPicture(index: number, item: HomePictureEntity) {

@@ -15,8 +15,6 @@ import { PageNotFoundView } from './views/page-not-found/page-not-found-view';
 
 const routes: Routes = [
   { path: 'home', component: HomeView },
-  { path: 'home/:categoryId', component: HomeView },
-  { path: 'home/:categoryId/:page', component: HomeView },
   { path: 'login', component: UserLoginView },
   { path: 'register', component: UserRegisterView },
   { path: 'complete', component: UserRegisterCompleteView },
@@ -24,6 +22,8 @@ const routes: Routes = [
   { path: 'category/new', component: CategoryNewView },
   { path: 'category/new/:parentCategoryId', component: CategoryNewView },
   { path: 'category/edit/:categoryId', component: CategoryEditView },
+  { path: 'category/:categoryId', component: HomeView },
+  { path: 'category/:categoryId/:page', component: HomeView },
   { path: 'picture/new', component: PictureNewView },
   { path: 'picture/new/:categoryId', component: PictureNewView },
   { path: 'picture/edit/:pictureId', component: PictureEditView },

@@ -80,7 +80,7 @@ export class CategoryEditView implements OnInit {
         throw e;
       }
 
-      this._router.navigate([`/home/${this.entity.id}`]);
+      this._router.navigate([`/category/${this.entity.id}`]);
     });
   }
 }

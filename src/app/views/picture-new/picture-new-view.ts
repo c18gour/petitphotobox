@@ -88,7 +88,7 @@ export class PictureNewView implements OnInit {
         throw e;
       }
 
-      this._router.navigate([`/home/${this._categoryId}`]);
+      this._router.navigate([`/category/${this._categoryId}`]);
     });
   }
 }
