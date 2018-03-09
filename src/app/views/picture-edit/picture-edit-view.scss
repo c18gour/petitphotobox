@@ -24,8 +24,10 @@
   }
 }
 
-.pictures {
-  float: left;
-  margin-bottom: 1.5rem;
-  width: 100%;
+@media (min-width: 40rem) {
+  .pictures {
+    float: left;
+    margin-bottom: 1.5rem;
+    width: 100%;
+  }
 }
