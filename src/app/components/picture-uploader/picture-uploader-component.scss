@@ -1,4 +1,5 @@
 @import '../../../config/css/palette';
+@import '../../../assets/css/mixins';
 
 .uploader {
   border: 1px solid $divider-color;
@@ -26,7 +27,7 @@
   }
 }
 
-@media (min-width: 40rem) {
+@include large-screen {
   .uploader {
     float: left;
     margin-right: 1.5rem;

@@ -1,3 +1,5 @@
+@import '../../../assets/css/mixins';
+
 .options {
   margin-bottom: 1.5rem;
 
@@ -24,7 +26,7 @@
   }
 }
 
-@media (min-width: 40rem) {
+@include large-screen {
   .pictures {
     float: left;
     margin-bottom: 1.5rem;

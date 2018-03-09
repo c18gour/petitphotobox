@@ -1,4 +1,6 @@
-@media (min-width: 40rem) {
+@import '../../../../../assets/css/mixins';
+
+@include large-screen {
   .picture {
     .image {
       height: 18.7rem;

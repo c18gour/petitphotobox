@@ -1,5 +1,6 @@
 @import './config/css/palette';
 @import './config/css/metrics';
+@import './assets/css/mixins';
 
 div {
   %box {
@@ -86,7 +87,7 @@ div {
   }
 }
 
-@media (min-width: 40rem) {
+@include large-screen {
   .picture {
     float: left;
     margin-right: 1.5rem;

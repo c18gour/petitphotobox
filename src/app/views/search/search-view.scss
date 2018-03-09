@@ -1,3 +1,5 @@
+@import '../../../assets/css/mixins';
+
 .date {
   margin-bottom: 1rem;
 
@@ -11,7 +13,7 @@
   }
 }
 
-@media (min-width: 40rem) {
+@include large-screen {
   .pictures {
     float: left;
     margin-bottom: 5rem;
