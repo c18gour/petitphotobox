@@ -10,3 +10,11 @@
     }
   }
 }
+
+@media (min-width: 40rem) {
+  .pictures {
+    float: left;
+    margin-bottom: 5rem;
+    width: 100%;
+  }
+}
