@@ -42,7 +42,7 @@ define("I18N_DIR", "./src/assets/i18n");
  */
 define("DOCUMENT_ROOT", rtrim($_SERVER["DOCUMENT_ROOT"], "/"));
 define("IMAGE_NOT_FOUND_PATH", "src/assets/images/picture-not-found.jpg");
-define("MAX_ITEMS_PER_PAGE", 5);
+define("MAX_ITEMS_PER_PAGE", 20);
 
 /**
  * List of exception codes.
