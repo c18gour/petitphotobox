@@ -95,6 +95,10 @@ class PictureNewController extends AuthController
       array_map("trim", explode(",", $this->getParam("snapshots")))
     );
 
+    if (count($categoryIds) == 0) {
+      throw new ClientException("requiredFields");
+    }
+
     if (count($paths) < 1) {
       throw new ClientException("pictureNew.addSnapshots");
     }
