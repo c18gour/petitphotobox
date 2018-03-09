@@ -100,10 +100,15 @@ div {
 
     .buttons {
       font-size: $font-size-h4;
+      padding: 0 1rem;
+
+      a {
+        padding-left: .6rem;
+      }
     }
 
     .info {
-      font-size: $font-size-h5;
+      font-size: $font-size-h6;
     }
 
     .buttons,
