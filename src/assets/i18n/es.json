@@ -42,8 +42,8 @@
     "titleIsRequired": "El título es obligatorio"
   },
   "home": {
-    "welcome": "Bienvenido {{username}}.",
-    "welcomeMessage": "Las imágenes se guardan en categorías. Para crear una nueva categoría presione el botón <i class='fa fa-plus'></i> del menú superior.",
+    "welcome": "Bienvenido {{username}}",
+    "welcomeMessage": "Las imágenes se guardan en categorías y subcategorías. Para empezar a subir imágenes presione el botón <i class='fa fa-plus'></i> del menú superior.",
     "toggleMenu": "Abrir o cerrar el menú",
     "newCategory": "Nueva categoría",
     "findPictures": "Buscar imágenes",
