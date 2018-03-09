@@ -1,16 +1,18 @@
 @import '../../../config/css/palette';
 
-div {
-  align-items: center;
+.uploader {
   border: 1px solid $divider-color;
-  display: flex;
-  height: 23rem;
-  justify-content: center;
   margin-bottom: 1.5rem;
+  padding: .6rem;
   position: relative;
 
-  a {
-    font-size: 3.6rem;
+  .image {
+    background: url('/assets/upload.png') center / contain no-repeat;
+    padding-bottom: 67%;
+
+    &.uploading {
+      background: url('/assets/loading.gif') center / contain no-repeat;
+    }
   }
 
   input {
@@ -21,5 +23,18 @@ div {
     position: absolute;
     top: 0;
     width: 100%;
+  }
+}
+
+@media (min-width: 40rem) {
+  .uploader {
+    float: left;
+    margin-right: 1.5rem;
+
+    .image {
+      height: 18.7rem;
+      padding: 0;
+      width: 24rem;
+    }
   }
 }

@@ -1,8 +1,5 @@
-<div>
-  <a *ngIf="state === 'initial'"
-    [title]="'pictureUploader.uploadPicture' | translate"><i class="fa fa-upload"></i></a>
-  <round-progress *ngIf="state === 'uploading'"
-    [current]="current" [max]="100" [radius]="30" [stroke]="5"></round-progress>
+<div class="uploader">
+  <div class="image" [ngClass]="{uploading: state == 'uploading'}"></div>
   <input #inputFile ng2FileSelect [uploader]="uploader" type="file"
     accept="image/jpeg" [disabled]="state !== 'initial'" (change)="onInputChange(inputFile)">
 </div>

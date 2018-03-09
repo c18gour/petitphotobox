@@ -9,5 +9,5 @@
     <a [title]="'pictureNew.snapshot.movePictureDown' | translate"
       (click)="downPicture.emit(path); change.emit()"><i class="fa fa-chevron-circle-down"></i></a>
   </div>
-  <img defaultImage="/assets/loading.gif" [lazyLoad]="thumbImagePath" [offset]="100">
+  <div class="image" [lazyLoad]="thumbImagePath" [offset]="100"></div>
 </div>
