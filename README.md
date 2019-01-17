@@ -2,7 +2,7 @@
 
 *— A picture manager application. —*
 
-Since ancient times photographers and enthusiasts have felt the need to organize their photos. And for that purpose they have created a variety of techniques. Just do a Google search to realize that there is no a universal consensus and that every photographer has its own techniques and tricks.
+From ancient times photographers and enthusiasts have felt the need to organize their photos. And for that purpose they have created a variety of techniques. Just do a Google search to realize that there is no a universal consensus and that every photographer has its own techniques and tricks.
 
 The basic problem is that, if we try to classify our pictures in folders, immediately we realize that the same picture could belong to different folders, in the same way that a movie could belong to different genres.
 
