@@ -6,7 +6,7 @@ From ancient times photographers and enthusiasts have felt the need to organize 
 
 The basic problem is that, if we try to classify our pictures in folders, immediately we realize that the same picture could belong to different folders, in the same way that a movie could belong to different genres.
 
-To solve this problem, instead of classifying pictures in folders, we dump them into the same directory and sort them in database categories and tags. That way, we can easily locate picture by different topics.
+To solve this problem, instead of classifying pictures in folders, we dump them into the same directory and sort them in database categories and tags. That way, we can easily locate the pictures by different topics.
 
 ## Snapshots
 
